@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Robocent</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>
+      Robocent
+      <%= yield :title %>
+    </title>
+    <meta name="author" content="ThemeFuse"/>
+    <meta name="description" content="RoboCent is one of the nation's largest providers of political and permission-based robocalls. Learn more about our services and create an account in less than 2 minutes!"/>
+    <meta name="keywords" content="robocalls, robo calls, robocent, auto dials, autodials, robocall software, autodial software, robo call software, auto dial software, group calling, mass contact, mass call, emergency notification system, notification software, automatic calls, robocall, robo call, auto dial, autodials, political robocalls, cheap robocalls, 1 cent robocalls, 2 cent robocalls, 2 cent autodials, robodials, robo dials, robocaller"/>
 
-<%= yield %>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic|Cutive' rel='stylesheet' type='text/css'/>
 
-</body>
+    <%= stylesheet_link_tag    "public", :media => "all" %>
+    <%= javascript_include_tag "public" %>
+
+    <!--[if IE 7]>
+     <link rel="stylesheet" type="text/css" media="screen" href="/assets/ie.css">
+    <![endif]-->
+
+    <%= csrf_meta_tags %>
+    <link rel="shortcut icon" href="favicon.ico"/>
+  </head>
+  <body>
+    <div class="body_wrap">
+
+      <%= render 'shared/public_top_nav' %>
+
+      <div class="middle full_width">
+        <div class="container_12" style="padding-top:0px">
+          <%= yield %>
+        </div>
+      </div>
+
+      <%= render 'shared/public_footer' %>
+
+    </div>
+  </body>
 </html>
