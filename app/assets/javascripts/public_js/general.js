@@ -76,16 +76,16 @@ jQuery(document).ready(function($) {
 	$(".row .col:last-child").addClass("omega"); 	
 
 // toggle content
-//	$(".toggle_content").hide();
-//	$(".toggle").toggle(function(){
-//		$(this).addClass("active");
-//		}, function () {
-//		$(this).removeClass("active");
-//	});
-//
-//	$(".toggle").click(function(){
-//		$(this).next(".toggle_content").slideToggle(300,'easeInQuad');
-//	});
+	$(".toggle_content").hide(); 	
+	$(".toggle").toggle(function(){
+		$(this).addClass("active");
+		}, function () {
+		$(this).removeClass("active");
+	});
+	
+	$(".toggle").click(function(){
+		$(this).next(".toggle_content").slideToggle(300,'easeInQuad');
+	});
 
 // pricing
 	$(".pricing_box li.price_col").css('width',$(".pricing_box ul").width() / $(".pricing_box li.price_col").size());
