@@ -13,4 +13,7 @@ class PublicController < ApplicationController
 
   def faq
   end
+
+  def tutorials
+  end
 end
