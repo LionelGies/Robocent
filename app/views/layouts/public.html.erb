@@ -27,11 +27,7 @@
       <%= render 'shared/public_top_nav' %>
 
       <!-- header -->
-      <% if current_page?(root_path) %>
-        <%= render 'shared/public_header_home' %>
-      <% else %>
-        <%= yield :header %>
-      <% end %>
+      <%= yield :header %>
       <!--/ header -->
 
       <div class="middle full_width">

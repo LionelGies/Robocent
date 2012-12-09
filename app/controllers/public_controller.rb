@@ -4,4 +4,7 @@ class PublicController < ApplicationController
 
   def solutions
   end
+
+  def pricing
+  end
 end

@@ -1,0 +1,27 @@
+<% title " - Pricing" %>
+
+<% content_for :header do %>
+  <div class="header header_thin">
+    <div class="container_12">
+      <div class="breadcrumbs">
+        <%= link_to "Homepage", root_path %>
+        <span class="separator">&nbsp;</span>
+        <a href="#">Our Hosting</a>
+        <span class="separator">&nbsp;</span>
+        Plans & Pricing
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="content">
+  <div class="post-item post-detail">
+
+    <div class="entry">
+
+      <%= render 'pricing_table' %>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
