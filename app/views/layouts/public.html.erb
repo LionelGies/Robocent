@@ -19,6 +19,21 @@
     <![endif]-->
 
     <%= csrf_meta_tags %>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-32347443-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
     <link rel="shortcut icon" href="favicon.ico"/>
   </head>
   <body>
@@ -26,17 +41,7 @@
 
       <%= render 'shared/public_top_nav' %>
 
-      <!-- header -->
-      <%= yield :header %>
-      <!--/ header -->
-
-      <div class="middle full_width">
-        <div class="container_12" style="padding-top:0px">
-          <!-- content -->
-          <%= yield %>
-          <!--/ content -->
-        </div>
-      </div>
+      <%= yield %>
 
       <%= render 'shared/public_footer' %>
 

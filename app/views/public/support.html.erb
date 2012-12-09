@@ -1,0 +1,120 @@
+<% title " - Support" %>
+
+<div class="header header_thin">
+  <div class="container_12">
+    <div class="breadcrumbs">
+      <%= link_to "Homepage", root_path %>
+      <span class="separator">&nbsp;</span>
+      Support
+    </div>
+  </div>
+</div>
+
+<div class="middle full_width">
+  <div class="container_12">
+
+    <!-- content -->
+    <div class="content">
+
+      <div class="post-item post-detail">
+
+        <div class="post-title">
+          <h1>NEED OUR SUPPORT? CHECK OUT THE OPTIONS BELOW</h1>
+        </div>
+
+        <div class="entry">
+
+          <!-- 2 column -->
+          <div class="row">
+
+            <p>
+              We're always here to help our clients get the most out of our platform.
+              If you have questions, concerns or comments,
+              feel free to reach out to us through one of our offered support options:
+            </p>
+
+          </div>
+          <!--/ 2 column -->
+
+          <div class="divider_space_thin"></div>
+
+          <!-- 3 column w styled textblock2 -->
+          <div class="row">
+
+            <div class="col col_1_3">
+              <div class="inner">
+                <div class="text-block-2">
+                  <%= image_tag("public_images/temp/features2_6.png", :class => "aligncenter") %>
+                  <div class="title_small">
+                    <h2>LIVE ONLINE CHAT </h2>
+                    <p class="subtitle">Quickest contact, 7 days a week.</p>
+                  </div>
+                  <p>Chat with one of our support representatives using the Live Chat button to the right. They will be able to answer your questions, provide technical support and assist with billing.</p>
+                  <br/>
+                  <p class="text-center">
+                    <a href="#" onClick="return SnapABug.startLink();" class="button_link">
+                      <span>ENTER LIVE CHAT</span>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col_1_3">
+              <div class="inner">
+                <div class="text-block-2">
+                  <%= image_tag("public_images/temp/features2_7.png", :class => "aligncenter") %>
+                  <div class="title_small">
+                    <h2>EMAIL SUPPORT</h2>
+                    <p class="subtitle">We will respond within 12 hrs.</p>
+                  </div>
+                  <p>Feel free to email us anytime with any questions, concerns or comments. We promise the fastest response rate possible, direct from our support department. </p>
+                  <br/>
+                  <p class="text-center">
+                    <%= link_to content_tag(:span, "SEND MAIL"), "#", :class => "button_link" %>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col_1_3 ">
+              <div class="inner">
+                <div class="text-block-2">
+                  <%= image_tag("public_images/temp/features2_8.png", :class => "aligncenter") %>
+                  <div class="title_small">
+                    <h2>Web Materials</h2>
+                    <p class="subtitle">FAQs, Tutorials, Guides</p>
+                  </div>
+                  <p>
+                    Browse some
+                    <%= link_to "frequently asked questions", faq_path %>
+                    , watch our online
+                    <%= link_to "video tutorials", "#" %>
+                    , or download the latest version of our comprehensive
+                    <%= link_to "help guide", "#" %>
+                    !
+                  </p>
+                  <br/>
+                  <p class="text-center">
+                    <%= link_to content_tag(:span, "Watch Tutorials"), "#", :class => "button_link" %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/ 3 column w styled textblock2 -->
+
+
+          <div class="divider_space"></div>
+
+
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+
+    <!--/ content -->
+
+    <div class="clear"></div>
+  </div>
+</div>

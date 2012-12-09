@@ -1,27 +1,34 @@
 <% title " - Pricing" %>
 
-<% content_for :header do %>
-  <div class="header header_thin">
-    <div class="container_12">
-      <div class="breadcrumbs">
-        <%= link_to "Homepage", root_path %>
-        <span class="separator">&nbsp;</span>
-        <a href="#">Our Hosting</a>
-        <span class="separator">&nbsp;</span>
-        Plans & Pricing
-      </div>
+<div class="header header_thin">
+  <div class="container_12">
+    <div class="breadcrumbs">
+      <%= link_to "Homepage", root_path %>
+      <span class="separator">&nbsp;</span>
+      <a href="#">Our Hosting</a>
+      <span class="separator">&nbsp;</span>
+      Plans & Pricing
     </div>
   </div>
-<% end %>
+</div>
 
-<div class="content">
-  <div class="post-item post-detail">
+<div class="middle full_width">
+  <div class="container_12" style="padding-top:0px">
 
-    <div class="entry">
+    <!-- Content -->
+    <div class="content">
+      <div class="post-item post-detail">
 
-      <%= render 'pricing_table' %>
+        <div class="entry">
 
-      <div class="clear"></div>
+          <%= render 'pricing_table' %>
+
+          <div class="clear"></div>
+        </div>
+      </div>
     </div>
+    <!--/ content -->
+
+    <div class="clear"></div>
   </div>
 </div>

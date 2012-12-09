@@ -1,7 +1,9 @@
 Robocent::Application.routes.draw do
 
-  match "pricing" => "public#pricing", :as => "pricing"
-  match 'solutions' => "public#solutions", :as => "solutions"
+  match "faq"       => "public#faq",        :as => "faq"
+  match "support"   => "public#support",    :as => "support"
+  match "pricing"   => "public#pricing",    :as => "pricing"
+  match 'solutions' => "public#solutions",  :as => "solutions"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -16,9 +16,12 @@
         <li>
           <%= link_to content_tag(:span, "Pricing"), pricing_path %>
         </li>
-        <li><a href=""><span>Support</span></a>
+        <li>
+          <%= link_to content_tag(:span, "Support"), support_path %>
           <ul>
-            <li><a href=""><span>FAQs</span></a></li>
+            <li>
+              <%= link_to content_tag(:span, "FAQs"), faq_path %>
+            </li>
             <li><a href=""><span>Video Tutorials</span></a></li>
             <li><a href="#" onClick="return SnapABug.startLink();"><span>Live Chat</span></a></li>
           </ul>

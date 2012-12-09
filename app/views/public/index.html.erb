@@ -1,77 +1,83 @@
 <% title " - Texting & Calling Solutions" %>
 
-<% content_for :header do %>
-   <%= render "home_header" %>
-<% end %>
+<%= render "home_header" %>
 
-<div class="content">
-  <div class="post-detail">
-    <div class="entry">
+<div class="middle full_width">
+  <div class="container_12" style="padding-top:0px">
 
-      <!-- 3 column w styled textblock -->
-      <div class="row">
+    <!-- Content -->
+    <div class="content">
+      <div class="post-detail">
+        <div class="entry">
 
-        <div class="col col_1_3">
-          <div class="inner">
-            <div class="text-block-1">
-              <div class="title_small">
-                <h2>Real-Time Dashboard</h2>
-                <p class="subtitle">Complete User Control</p>
+          <!-- 3 column w styled textblock -->
+          <div class="row">
+
+            <div class="col col_1_3">
+              <div class="inner">
+                <div class="text-block-1">
+                  <div class="title_small">
+                    <h2>Real-Time Dashboard</h2>
+                    <p class="subtitle">Complete User Control</p>
+                  </div>
+                  <p>RoboCent's Dashboard gives clients 100% control over their calls and the ability to monitor results in real-time. The dashboard is accessible from any device with an internet connection.</p>
+                  <br/><br/><br/>
+                  <p class="text-center">
+                    <a href="#" class="link-more2">Already convinced? Join us here:</a>
+                  </p>
+                </div>
               </div>
-              <p>RoboCent's Dashboard gives clients 100% control over their calls and the ability to monitor results in real-time. The dashboard is accessible from any device with an internet connection.</p>
-              <br/><br/><br/>
-              <p class="text-center">
-                <a href="#" class="link-more2">Already convinced? Join us here:</a>
-              </p>
+            </div>
+
+            <div class="col col_1_3">
+              <div class="inner">
+                <div class="text-block-1">
+                  <div class="title_small">
+                    <h2>Unlimited Scaleability</h2>
+                    <p class="subtitle">1 to 1 Billion Calls</p>
+                  </div>
+                  <p>RoboCent's servers have the ability to scale endlessly, enabling your calls to be delivered in the quickest manner possible, while still guaranteeing quality. If you plan on placing more than 1 million calls, please <a href="contact.php">contact us</a> for bulk pricing.</p>
+                  <br/><br/>
+                  <p class="text-center">
+                    <%= link_to "CREATE AN ACCOUNT", "#", :class => "btn tf_btn_red" %>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col_1_3 ">
+              <div class="inner">
+                <div class="text-block-1">
+                  <div class="title_small">
+                    <h2>Live Support</h2>
+                    <p class="subtitle">We're always here to help</p>
+                  </div>
+                  <p>A live, human, U.S.-based representative is available on live chat, via email at info@RoboCent.com and by phone at 757.821.2121 seven days a week.</p>
+                  <br/><br/><br/>
+                  <p class="text-center">
+                    <a href="#" class="link-more2">Not yet convinced? Learn more!</a>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+          <!--/ 3 column w styled textblock -->
 
-        <div class="col col_1_3">
-          <div class="inner">
-            <div class="text-block-1">
-              <div class="title_small">
-                <h2>Unlimited Scaleability</h2>
-                <p class="subtitle">1 to 1 Billion Calls</p>
-              </div>
-              <p>RoboCent's servers have the ability to scale endlessly, enabling your calls to be delivered in the quickest manner possible, while still guaranteeing quality. If you plan on placing more than 1 million calls, please <a href="contact.php">contact us</a> for bulk pricing.</p>
-              <br/><br/>
-              <p class="text-center">
-                <%= link_to "CREATE AN ACCOUNT", "#", :class => "btn tf_btn_red" %>
-              </p>
-            </div>
-          </div>
-        </div>
+          <div class="divider_big"></div>
 
-        <div class="col col_1_3 ">
-          <div class="inner">
-            <div class="text-block-1">
-              <div class="title_small">
-                <h2>Live Support</h2>
-                <p class="subtitle">We're always here to help</p>
-              </div>
-              <p>A live, human, U.S.-based representative is available on live chat, via email at info@RoboCent.com and by phone at 757.821.2121 seven days a week.</p>
-              <br/><br/><br/>
-              <p class="text-center">
-                <a href="#" class="link-more2">Not yet convinced? Learn more!</a>
-              </p>
-            </div>
-          </div>
+          <%= render 'pricing_table' %>
+
+          <div class="divider_big"></div>
+
+          <p class="text-center">
+            <%= link_to "CREATE AN ACCOUNT", "#", :class => "btn tf_btn_red" %>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= link_to "VIEW OUR SOLUTIONS", "#", :class => "btn tf_btn_green" %>
+          </p>
         </div>
       </div>
-      <!--/ 3 column w styled textblock -->
-
-      <div class="divider_big"></div>
-
-      <%= render 'pricing_table' %>
-
-      <div class="divider_big"></div>
-
-      <p class="text-center">
-        <%= link_to "CREATE AN ACCOUNT", "#", :class => "btn tf_btn_red" %>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <%= link_to "VIEW OUR SOLUTIONS", "#", :class => "btn tf_btn_green" %>
-      </p>
     </div>
+    <!--/ content -->
+
   </div>
 </div>

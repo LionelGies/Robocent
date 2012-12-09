@@ -7,4 +7,10 @@ class PublicController < ApplicationController
 
   def pricing
   end
+
+  def support
+  end
+
+  def faq
+  end
 end
