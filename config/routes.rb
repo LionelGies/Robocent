@@ -1,5 +1,6 @@
 Robocent::Application.routes.draw do
 
+  match "contact"   => "public#contact",    :as => "contact"
   match "guide"     => "public#guide",      :as => "guide"
   match "tutorials" => "public#tutorials",  :as => "tutorials"
   match "faq"       => "public#faq",        :as => "faq"

@@ -19,4 +19,7 @@ class PublicController < ApplicationController
 
   def guide
   end
+
+  def contact
+  end
 end
