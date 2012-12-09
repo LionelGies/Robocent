@@ -7,8 +7,12 @@
 
     <div class="topmenu">
       <ul class="dropdown">
-        <li class="menu-item-home"><a href="<%= root_path %>"><span></span></a></li>
-        <li><a href=""><span>Solutions</span></a></li>
+        <li class="menu-item-home">
+          <%= link_to content_tag(:span), root_path %>
+        </li>
+        <li>
+          <%= link_to content_tag(:span, "Solutions"), solutions_path %>
+        </li>
         <li><a href=""><span>Pricing</span></a></li>
         <li><a href=""><span>Support</span></a>
           <ul>

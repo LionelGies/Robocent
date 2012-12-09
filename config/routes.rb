@@ -1,4 +1,7 @@
 Robocent::Application.routes.draw do
+
+  match 'solutions' => "public#solutions", :as => "solutions"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
