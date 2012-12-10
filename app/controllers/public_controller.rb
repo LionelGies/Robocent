@@ -22,4 +22,7 @@ class PublicController < ApplicationController
 
   def contact
   end
+
+  def terms
+  end
 end

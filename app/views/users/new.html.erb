@@ -1,0 +1,131 @@
+<% title " - Create an Account" %>
+
+<div class="header header_thin">
+  <div class="container_12">
+    <div class="breadcrumbs">
+      <%= link_to "Homepage", root_path %>
+      <span class="separator">&nbsp;</span>
+      Register
+    </div>
+  </div>
+</div>
+
+<div class="middle cols2">
+  <div class="container_12">
+
+    <!-- content -->
+    <div class="content">
+
+      <div class="post-item post-detail">
+
+        <div class="post-title">
+          <h1>Create an Account</h1>
+        </div>
+
+        <div class="entry">
+          <p>To create an account, simply fill out the information below. 
+            No credit card is required to get started and there are no monthly or
+            yearly commitments! Once you have created an account, check out our library of
+            <%= link_to "video tutorials", tutorials_path %>
+            to step you through your first call.
+            If you have any questions, don't hesitate to ask.</p>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <!--/ post item -->
+
+
+      <!-- add comment -->
+      <div class="add-comment contact-form">
+        <h3>Account Details</h3>
+
+
+        <div id="results">
+
+        </div>
+        <div class="comment-form">
+          <%= form_for @user do |f| %>
+            <div class="row alignleft">
+              <label><strong>Full Name</strong></label>
+              <%= f.text_field :name, :class => "inputtext input_middle required" %>
+            </div>
+
+            <div class="space"></div>
+
+            <div class="row alignleft">
+              <label><strong>Email</strong></label>
+              <%= f.text_field :email, :class => "inputtext input_middle required" %>
+            </div>
+
+            <div class="row alignleft">
+              <label><strong>Company/Organization</strong></label>
+              <%= f.text_field :organization_name, :class => "inputtext input_middle required" %>
+            </div>
+
+            <div class="space"></div>
+
+            <div class="row alignleft">
+              <label><strong>Telephone</strong></label>
+              <%= f.text_field :phone, :class => "inputtext input_middle required" %>
+            </div>
+
+            <div class="row alignleft">
+              <label><strong>Organization Type</strong></label>
+              <%= f.select :organization_type, User::ORGANIZATION_NAMES, {}, :class => "select-large inputtext" %>
+            </div>
+
+            <div class="space"></div>
+
+            <div class="row alignleft">
+              <label><strong>Time Zone</strong></label>
+              <%= f.select :time_zone, ActiveSupport::TimeZone.us_zones.collect{|t| t.name}.unshift(['Please Select', nil]), {}, :class => "select-large inputtext" %>
+            </div>
+
+            <div class="row alignleft">
+              <label><strong>Password</strong></label>
+              <%= f.password_field :password, :class => "inputtext input_middle required" %>
+            </div>
+
+            <div class="space"></div>
+
+            <div class="row alignleft">
+              <label><strong>Verify Password</strong></label>
+              <%= f.password_field :password_confirmation, :class => "inputtext input_middle required" %>
+            </div>
+
+            <div class="clear"></div>
+
+            <p class="forgetmenot">
+              <%= f.check_box :terms_and_conditions %>
+              <label for="user_terms_and_conditions">I agree to the
+                <%= link_to "Terms & Conditions", terms_path, :target => "_blank" %>
+                .
+              </label>
+            </p>
+
+            <div class="row rowSubmit">
+              <%#*<input type="button" id="reg_form" value="CREATE ACCOUNT" class="btn-submit" />%>
+              <%= f.submit "CREATE ACCOUNT", :class => "btn-submit" %>
+              <a onclick="document.getElementById('new_user').reset();return false" href="#" class="link-reset">reset all fields</a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <!--/add comment -->
+
+    </div>
+    <!--/ content -->
+
+    <!-- sidebar -->
+    <%= render "shared/location" %>
+    <!--/ sidebar -->
+
+    <div class="clear"></div>
+  </div>
+</div>
+
+<style type="text/css">
+  .select-large.inputtext{
+    width: 276px;
+  }
+</style>
