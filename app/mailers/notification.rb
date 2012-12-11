@@ -13,7 +13,7 @@ class Notification < ActionMailer::Base
     @url  = activate_url(user.activation_token)
     headers['X-SMTPAPI'] = "{\"category\" : \"Activation Needed\"}"
     mail(:to      => user.email,
-      :subject => "Activation Required - Robocent")
+      :subject => "Welcome to RoboCent!")
   end
 
   def activation_success_email(user)

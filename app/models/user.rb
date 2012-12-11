@@ -11,12 +11,11 @@ class User < ActiveRecord::Base
   validates :organization_name, :presence => true
   validates :phone, :presence => true
   validates :organization_type, :presence => true
-  validates :address, :presence => true
   validates :state, :presence => true
   validates_confirmation_of :password
   validates :password, :presence => true, :on => :create
   validates_uniqueness_of :email
-  validates_acceptance_of :terms_and_conditions
+  validates_acceptance_of :terms_and_conditions, :on => :create
 
   # scopes
   scope :active, :conditions => {:activation_state => 'active'}

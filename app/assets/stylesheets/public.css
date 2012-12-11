@@ -5,4 +5,9 @@
  *= require public_css/jquery.onebyone
  *= require public_css/animate
  *= require public_css/uniform.default
- */
+*/
+
+.btn-link.btn-submit{
+  height: 40px;
+  margin-top: 10px;
+}

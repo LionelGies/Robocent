@@ -10,3 +10,44 @@
 $(document).ready(function(){
   $("select").uniform();
 });
+
+//Register Form validation
+$(document).ready(function(){
+  $("#user_form_step_1_submit").click(function(){
+    var email_regexp = /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/;
+    var name = $("#user_name").val();
+    var email = $("#user_email").val();
+    var organization_name = $("#user_organization_name").val();
+    var phone = $("#user_phone").val();
+    var organization_type = $("#user_organization_type").val();
+    var state = $("#user_state").val();
+    var password = $("#user_password").val();
+    var password_confirmation = $("#user_password_confirmation").val();
+
+    var error = " ";
+    if(name == "") error += "Name can't be blank.<br/>";
+    if(!email_regexp.test(email)) error += "Email is invalid.<br/>";
+    if(organization_name == "") error += "Company/Organization can't be blank.<br/>";
+    if(phone == "") error += "Phone can't be blank.<br/>";
+    if(organization_type == "") error += "Organization type can't be blank.<br/>";
+    if(state == "") error += "State can't be blank.<br/>";
+
+    if($(".comment-form form").attr("id") == "new_user"){
+      if(password.length < 6) error += "Password is too short (minimum is 6 characters).<br/>";
+      if(password != password_confirmation) error += "Password doesn't match confirmation.<br/>";
+    }
+
+    if(!$('#user_terms_and_conditions').is(':checked')) error += "Terms and conditions must be accepted.<br/>";
+
+    if(error != " ")
+    {
+      $("#results").html("Please correct these errors:<br/>"+error);
+      return false;
+    }
+    else
+    {
+      $("#results").html("");
+      return true;
+    }
+  });
+});

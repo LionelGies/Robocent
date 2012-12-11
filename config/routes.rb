@@ -8,7 +8,9 @@ Robocent::Application.routes.draw do
   #
   # registration
   #
-  match 'register'                 => 'users#new',          :as => :register
+  put   'register'                 => 'users#create',     :as => :register_user
+  post  'register'                 => 'users#create',     :as => :register_user
+  get   'register'                 => 'users#new',          :as => :register
   match 'register/activate/:token' => 'users#activate',     :as => :activate
   match 'register/confirmation'    => 'users#confirmation', :as => :register_confirmation
 

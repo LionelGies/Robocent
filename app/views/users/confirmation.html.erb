@@ -1,0 +1,51 @@
+<% title " - Confirmation" %>
+
+<div class="header header_thin">
+  <div class="container_12">
+    <div class="breadcrumbs">
+      <%= link_to "Homepage", root_path %>
+      <span class="separator">&nbsp;</span>
+      Register
+    </div>
+  </div>
+</div>
+
+<div class="middle cols2">
+  <div class="container_12">
+
+    <!-- content -->
+    <div class="content">
+
+      <div class="post-item post-detail">
+
+        <div class="post-title">
+          <h1>Confirmation Email!</h1>
+        </div>
+
+        <div class="entry">
+          <p>
+            <% if @user.present? %>
+              Welcome
+              <strong>
+                <%= @user.name %>
+              </strong>
+              <br/>
+              Email: <%= @user.email %><br/>
+            <% end %>
+            Please check your email to confirm your account.
+          </p>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <!--/ post item -->
+
+    </div>
+    <!--/ content -->
+
+    <!-- sidebar -->
+    <%= render "shared/location" %>
+    <!--/ sidebar -->
+
+    <div class="clear"></div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<p>
+  Select a Phone Number<br/>
+  Subscribers can text a keyword to this number to subscribe to your text notifications,
+  call this number to subscribe to your voice notifications and
+  you may use it as a text comment line in which you can communicate with your customers!
+</p>
+
+<div class="row alignleft">
+  <label><strong>Enter Area Code</strong></label>
+  <%= text_field_tag :area_code, "", :class => "inputtext input_middle required" %>
+</div>
+
+<div class="space"></div>
+
+<div class="row alignleft">
+  <label><strong>Select Phone Number</strong></label>
+  <%= text_field_tag :number, "", :class => "inputtext input_middle required" %>
+</div>
+
+<div class="clear"></div>
+
+<br/>
+
+<p>
+  What if I want to use a short code like 41257 instead?<br/>
+  You will have that option on the dashboard once you create an account.
+  For now, please select a phone number (they are free and you don't have to use it
+  if you don't want to).
+</p>
+
+
+<%= hidden_field_tag :step_id, "2" %>
+
+<div class="row alignleft">
+  <%= link_to "BACK", register_user_path(:step_id => "1"), :class => "btn-submit btn-link" %>
+</div>
+
+<div class="space"></div>
+
+<div class="row alignleft">
+  <%= f.submit "NEXT", :class => "btn-submit" %>
+</div>
+
+<div class="clear"></div>
