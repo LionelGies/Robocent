@@ -3,28 +3,27 @@ class User < ActiveRecord::Base
 
   attr_accessible :organization_name, :organization_type, :name, :phone, :email,
     :time_zone, :password, :password_confirmation, :activation_state, :activation_token,
-    :terms_and_conditions
+    :terms_and_conditions, :address, :state
   attr_accessor :terms_and_conditions
 
+  validates :name, :presence => true
+  validates :email, :format =>  { :with => /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/ }
+  validates :organization_name, :presence => true
+  validates :phone, :presence => true
+  validates :organization_type, :presence => true
+  validates :address, :presence => true
+  validates :state, :presence => true
   validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
-  validates_presence_of :email
+  validates :password, :presence => true, :on => :create
   validates_uniqueness_of :email
   validates_acceptance_of :terms_and_conditions
 
   # scopes
   scope :active, :conditions => {:activation_state => 'active'}
 
-  ORGANIZATION_NAMES = [
-    ['School', 'school'],
-    ['Non-Profit', 'non_profit'],
-    ['Political Campaign', 'political_campaign'],
-    ['Small Business', 'small_business'],
-    ['Government', 'government'],
-    ['Other', 'other']
-  ]
+  before_save :update_time_zone
 
-  TIME_ZONES = [
-    ['Dhaka', 'dhaka']
-  ]
+  def update_time_zone
+    self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank?
+  end
 end

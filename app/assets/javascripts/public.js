@@ -5,3 +5,8 @@
 //= require public_js/jquery.onebyone
 //= require public_js/jquery.touchwipe.min
 //= require public_js/jquery.jcarousel.min
+//= require public_js/jquery.uniform
+
+$(document).ready(function(){
+  $("select").uniform();
+});
