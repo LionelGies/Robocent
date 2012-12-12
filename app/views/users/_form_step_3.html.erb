@@ -46,7 +46,7 @@
     <div class="clear"></div>
 
     <div class="row alignleft">
-      <label><strong>Card's expiration</strong></label>
+      <label><strong>Card's Expiration Date</strong></label>
       <%= date_select "", :expiry_date, {:discard_day => true, :order => [:month, :year], :use_month_numbers => true, :start_year => Date.today.year, :end_year => Date.today.year + 25, :disabled => true}, {:class => 'small'} %>
     </div>
 
