@@ -27,5 +27,12 @@
 
       <strong>Stripe Customer id:</strong> <%= current_user.billing_setting.stripe_id %><br/>
     <% end %>
+
+      <% if current_user.subscription.present? %>
+      <br/>
+      <strong>Subscribed Plan:</strong> <%= current_user.subscription.plan.name %><br/>
+      <strong>Plan Details:</strong> <%= current_user.subscription.plan.details %>
+      <% end %>
+
   </div>
 </div>

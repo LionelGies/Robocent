@@ -17,7 +17,7 @@
 
   <div class="row alignleft">
     <label><strong>Choose a Plan</strong></label>
-    <%= b.select :subscription_plan_id, [['Gold','1']],{ :prompt => "Select one" }, :class => "select-uniform" %>
+    <%= b.select :plan_id, Plan.all.collect{|p| [p.details, p.id]}, { }, :class => "select-uniform" %>
   </div>
 
   <div class="space"></div>

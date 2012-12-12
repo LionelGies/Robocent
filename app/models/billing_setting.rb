@@ -1,8 +1,8 @@
 class BillingSetting < ActiveRecord::Base
   attr_accessible :card_expiry_date, :card_last_four_digits, :card_type, :stripe_id, :user_id,
-    :stripe_token, :card_exp_month, :card_exp_year, :card_holder_name, :subscription_plan_id
+    :stripe_token, :card_exp_month, :card_exp_year, :card_holder_name, :plan_id
 
-  attr_accessor :stripe_token, :card_exp_month, :card_exp_year, :subscription_plan_id
+  attr_accessor :stripe_token, :card_exp_month, :card_exp_year, :plan_id
 
   belongs_to :user
 
@@ -39,6 +39,10 @@ class BillingSetting < ActiveRecord::Base
       self.stripe_token = nil
     end
     
+  end
+
+  def customer
+    @customer ||= Stripe::Customer.retrieve(self.stripe_id) rescue nil
   end
 
 end

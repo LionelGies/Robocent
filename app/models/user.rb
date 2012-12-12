@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   attr_accessor :terms_and_conditions
 
   has_one :billing_setting
+  has_one :subscription
 
   validates :name, :presence => true
   validates :email, :format =>  { :with => /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/ }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121211211301) do
+ActiveRecord::Schema.define(:version => 20121212193249) do
 
   create_table "billing_settings", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,28 @@ ActiveRecord::Schema.define(:version => 20121211211301) do
     t.string   "card_holder_name"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+  end
+
+  create_table "plans", :force => true do |t|
+    t.string   "stripe_id"
+    t.integer  "amount"
+    t.string   "currency"
+    t.string   "interval"
+    t.string   "name"
+    t.integer  "trial_period_days"
+    t.integer  "minimum_numbers"
+    t.integer  "maximum_numbers"
+    t.float    "price_per_call_or_text"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "plan_id"
+    t.string   "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

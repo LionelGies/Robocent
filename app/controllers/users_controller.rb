@@ -28,14 +28,12 @@ class UsersController < ApplicationController
       #twilio integration
       @step_id = "3"
     elsif @step_id == "3"
-      #
       # save billing setting with stripe
-      puts params.inspect
       if session[:user_temp_id].present? && @user.present?
-        puts "User"
-        puts @user.inspect
         @billing_setting = @user.build_billing_setting(params[:billing_setting])
         @billing_setting.save
+        @subscription = @user.build_subscription(:plan_id => params[:billing_setting][:plan_id])
+        @subscription.create_or_update_subscription
         @step_id = "finish"
       else
         @step_id = "1"

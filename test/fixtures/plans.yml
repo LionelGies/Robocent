@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  amount: 1
+  currrency: MyString
+  interval: MyString
+  name: MyString
+  trial_period_days: 1
+  minimum_numbers: 1
+  maximum_numbers: 1
+  price_per_call_or_text: 1
+
+two:
+  amount: 1
+  currrency: MyString
+  interval: MyString
+  name: MyString
+  trial_period_days: 1
+  minimum_numbers: 1
+  maximum_numbers: 1
+  price_per_call_or_text: 1
