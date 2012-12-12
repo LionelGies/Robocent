@@ -4,7 +4,7 @@
   </div>
   <div style="padding-left: 50px;">
     <h4>Welcome <%= current_user.name %>
-    <%= link_to "logout", logout_path %>
+      <%= link_to "logout", logout_path %>
     </h4>
     <br/><br/>
     <strong>Email:</strong> <%= current_user.email %><br/>
@@ -19,12 +19,13 @@
     <br/>
     Twilio Phone Number Integration pending....<br/><br/>
     <strong>Billing Information</strong><br/>
-    <strong>Card Holder Name:</strong> <%= current_user.billing_setting.card_holder_name %><br/>
-    <strong>Card Last Four Digits:</strong> <%= current_user.billing_setting.card_last_four_digits %><br/>
-    <strong>Card Expiry Date:</strong> <%= current_user.billing_setting.card_expiry_date %><br/>
-    <strong>Card Type:</strong> <%= current_user.billing_setting.card_type %><br/><br/>
+    <% if current_user.billing_setting.present? %>
+      <strong>Card Holder Name:</strong> <%= current_user.billing_setting.card_holder_name %><br/>
+      <strong>Card Last Four Digits:</strong> <%= current_user.billing_setting.card_last_four_digits %><br/>
+      <strong>Card Expiry Date:</strong> <%= current_user.billing_setting.card_expiry_date %><br/>
+      <strong>Card Type:</strong> <%= current_user.billing_setting.card_type %><br/><br/>
 
-    <strong>Stripe Customer id:</strong> <%= current_user.billing_setting.stripe_id %><br/>
-    
+      <strong>Stripe Customer id:</strong> <%= current_user.billing_setting.stripe_id %><br/>
+    <% end %>
   </div>
 </div>
