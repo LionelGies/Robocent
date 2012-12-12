@@ -66,6 +66,12 @@ class UsState
     ['Pacific/Honolulu']
   ]
 
+  def self.state_expansion(state)
+    state_exp = UsState::NAMES.find {|n| n.include? state}
+    return state_exp.first if state_exp.present?
+    return nil
+  end
+
   def self.get_time_zone(state)
     case state
     when "AL" ; "Central Time (US & Canada)"

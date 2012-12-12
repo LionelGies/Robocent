@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     if @user = User.load_from_activation_token(params[:token])
       @user.activate!
       auto_login(@user)
-      redirect_back_or_to root_path, :notice => "User was successfully activated."
+      redirect_back_or_to dashboard_url, :notice => "User was successfully activated."
     else
       flash[:notice] = "Looks like your account has already been activated.  Please login or request password help."
       not_authenticated

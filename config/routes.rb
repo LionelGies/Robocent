@@ -1,5 +1,13 @@
 Robocent::Application.routes.draw do
 
+  #
+  # Dashboard
+  #
+  match 'dashboard'             => 'dashboard#index',             :as => :dashboard
+
+  #
+  # user sessions
+  #
   match 'login'                 => 'user_sessions#new',           :as => :login
   match 'logout'                => 'user_sessions#destroy',       :as => :logout
 

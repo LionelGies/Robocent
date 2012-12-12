@@ -1,16 +1,96 @@
-<%= form_tag user_sessions_path do %>
-  <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email, params[:email] %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="field">
-    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-    <%= label_tag :remember_me %>
-  </div>
-  <div class="actions"><%= submit_tag "Log in" %></div>
-<% end %>
+<% title " - Client Login"  %>
 
+<div class="header header_thin">
+  <div class="container_12">
+    <div class="breadcrumbs">
+      <%= link_to "Homepage", root_path %>
+      <span class="separator">&nbsp;</span>
+      Login
+    </div>
+  </div>
+</div>
+
+<div class="middle cols2">
+  <div class="container_12">
+
+    <!-- content -->
+    <div class="content">
+
+      <div class="entry">
+
+        <div class="row">
+          <div class="col col_1_2 ">
+            <div class="inner">
+              <h2>Client Login</h2>
+
+              <!-- add comment -->
+              <!-- login widget -->
+              <div class="widget-container widget_login">
+                <% if flash.present? %>
+                  <p style="color:#FF0000;">
+                    <%= flash.now[:alert] %>
+                  </p>
+                <% end %>
+                <%= form_tag user_sessions_path, :class => "loginform" do %>
+                  <p>
+                    <%= label_tag :email %>
+                    <%= text_field_tag :email, params[:email], :class => "input", :size => "20", :tabindex => "10" %>
+                  </p>
+                  <p>
+                    <%= label_tag :password %>
+                    <%= password_field_tag :password, "", :class => "input", :size => "20", :tabindex => "20" %>
+                  </p>
+                  <p class="forgetmenot">
+                    <%= check_box_tag :remember_me, 1, params[:remember_me], :tabindex => "90" %>
+                    <%= label_tag :remember_me %>
+                  </p>
+                  <p class="forget_password">
+                    <a href="#">Forgot Password?</a>
+                  </p>
+                  <p class="submit">
+                    <%= submit_tag "Login", :class => "btn-submit", :tabindex => "100" %>
+                    <%= hidden_field_tag :redirect_to %>
+                    <%= hidden_field_tag :textcookie, "1" %>
+                  </p>
+                <% end %>
+              </div>
+              <!--/ login widget -->
+            </div>
+          </div>
+
+          <div class="col col_1_2 ">
+            <div class="inner">
+              <h2>Support Center</h2>
+              <p>We're always here to help our clients get the most out of our platform. If you have questions, concerns or comments, feel free to reach out to us through one of our offered support options:</p>
+              <h5 style="margin-bottom:-5px; margin-top:0px;">
+                <%= image_tag("public_images/temp/features2_6.png", :style => "float:left", :width => "45", :height => "45", :class => "alignleft") %>
+                <div style="padding-top:15px;">Live Chat Online</div>
+              </h5>
+              <br clear="all"/>
+              <h5 style="margin-bottom:-5px; margin-top:0px;">
+                <%= image_tag("public_images/temp/features2_7.png", :style => "float:left", :width => "45", :height => "45", :class => "alignleft") %>
+                <div style="padding-top:15px;">Email Us</div>
+              </h5>
+              <br clear="all"/>
+              <h5 style="margin-bottom:-5px; margin-top:0px;">
+                <%= image_tag("public_images/temp/features2_8.png", :style => "float:left", :width => "45", :height => "45", :class => "alignleft") %>
+                <div style="padding-top:15px;">FAQs & Videos</div>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+      <!--/add comment -->
+
+    </div>
+    <!--/ content -->
+
+    <!-- sidebar -->
+    <%= render "shared/location" %>
+    <!--/ sidebar -->
+
+    <div class="clear"></div>
+  </div>
+</div>

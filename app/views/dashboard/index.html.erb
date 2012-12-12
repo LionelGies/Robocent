@@ -1,0 +1,30 @@
+<div style="width: 900px;margin-left: auto;margin-right: auto;font-size: 13px;font-family: verdana;">
+  <div style="padding-left: 50px;">
+    <h3>Temporary Dashboard</h3>
+  </div>
+  <div style="padding-left: 50px;">
+    <h4>Welcome <%= current_user.name %>
+    <%= link_to "logout", logout_path %>
+    </h4>
+    <br/><br/>
+    <strong>Email:</strong> <%= current_user.email %><br/>
+    <strong>Phone:</strong> <%= current_user.phone %><br/>
+    <strong>Organization Name:</strong> <%= current_user.organization_name %><br/>
+    <strong>Organization Type:</strong> <%= current_user.organization_type %><br/>
+    <strong>Address:</strong> <%= current_user.address %><br/>
+    <strong>State:</strong> 
+    <%= UsState::state_expansion(current_user.state) %>
+    (<%= current_user.state %>)<br/>
+    <strong>Time Zone:</strong> <%= current_user.time_zone %><br/>
+    <br/>
+    Twilio Phone Number Integration pending....<br/><br/>
+    <strong>Billing Information</strong><br/>
+    <strong>Card Holder Name:</strong> <%= current_user.billing_setting.card_holder_name %><br/>
+    <strong>Card Last Four Digits:</strong> <%= current_user.billing_setting.card_last_four_digits %><br/>
+    <strong>Card Expiry Date:</strong> <%= current_user.billing_setting.card_expiry_date %><br/>
+    <strong>Card Type:</strong> <%= current_user.billing_setting.card_type %><br/><br/>
+
+    <strong>Stripe Customer id:</strong> <%= current_user.billing_setting.stripe_id %><br/>
+    
+  </div>
+</div>
