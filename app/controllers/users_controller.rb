@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   end
 
   def confirmation
-    @user = User.find(session[:user_id]) if session[:user_temp_id].present?
+    @user = User.find(session[:user_temp_id]) if session[:user_temp_id].present?
     session.delete(:user_temp_id)
   end
 
