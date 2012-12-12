@@ -13,6 +13,8 @@
 
     <%= stylesheet_link_tag    "public", :media => "all" %>
     <%= javascript_include_tag "public" %>
+    <%= javascript_include_tag "https://js.stripe.com/v1/"%>
+    <%= javascript_tag "Stripe.publishableKey = '#{STRIPE_PUBLIC_KEY}';"; %>
 
     <!--[if IE 7]>
      <link rel="stylesheet" type="text/css" media="screen" href="/assets/ie.css">
@@ -34,7 +36,7 @@
 
     </script>
 
-    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="shortcut icon" href="/favicon.ico"/>
   </head>
   <body>
     <div class="body_wrap">

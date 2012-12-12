@@ -6,6 +6,7 @@
 //= require public_js/jquery.touchwipe.min
 //= require public_js/jquery.jcarousel.min
 //= require public_js/jquery.uniform
+//= require stripe
 
 $(document).ready(function(){
   $("select").uniform();

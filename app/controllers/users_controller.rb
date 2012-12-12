@@ -20,7 +20,6 @@ class UsersController < ApplicationController
     end
 
     if @step_id == "1"
-      puts "Step 1"
       if @user.update_attributes(params[:user])
         session[:user_id] = @user.id
         @step_id = "2"
@@ -28,11 +27,19 @@ class UsersController < ApplicationController
     elsif @step_id == "2"
       #twilio integration
       @step_id = "3"
-      puts "Step 2"
     elsif @step_id == "3"
-      #stripe integration
-      @step_id = "finish"
-      puts "Step 3"
+      #
+      # save billing setting with stripe
+      puts params.inspect
+      if session[:user_id].present? && @user.present?
+        puts "User"
+        puts @user.inspect
+        @billing_setting = @user.build_billing_setting(params[:billing_setting])
+        @billing_setting.save
+        @step_id = "finish"
+      else
+        @step_id = "1"
+      end
     end
 
     if @step_id == "finish"
@@ -40,6 +47,11 @@ class UsersController < ApplicationController
     else
       render :new
     end
+
+  rescue Stripe::StripeError => e
+    logger.error e.message
+    @user.errors.add :base, e.message
+    render :action => :new
   end
 
   def confirmation

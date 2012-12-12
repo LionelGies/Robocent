@@ -1,10 +1,58 @@
 <p>
   Please enter the billing information you would like to keep on file.
   You may cancel your account anytime during the 30 day free trial and
-  your account will not be billed
+  your account will not be billed.
 </p>
 
+<div id="credit-card-errors" style="display: none">
+  <div id="stripe-error-message" class="alert-message block-message error" style="color:#FF0000;padding: 5px;"></div>
+</div>
 
+<%= fields_for @billing_setting = BillingSetting.new do |b| %>
+  <%= b.hidden_field :stripe_token %>
+  <%= b.hidden_field :card_last_four_digits %>
+  <%= b.hidden_field :card_exp_month %>
+  <%= b.hidden_field :card_exp_year %>
+  <%= b.hidden_field :card_type %>
+
+  <div class="row alignleft">
+    <label><strong>Choose a Plan</strong></label>
+    <%= b.select :subscription_plan_id, [['Gold','1']],{ :prompt => "Select one" }, :class => "select-uniform" %>
+  </div>
+
+  <div class="space"></div>
+
+  <div class="row alignleft">
+    <label><strong>Cardholder's full name</strong></label>
+    <%= b.text_field :card_holder_name, :class => "inputtext input_middle required" %>
+  </div>
+
+  <div class="clear"></div>
+
+  <div id="credit-card">
+
+    <div class="row alignleft">
+      <label><strong>Card Number</strong></label>
+      <%= text_field_tag :credit_card_number, "", :disabled => true, :class => "inputtext input_middle required" %>
+    </div>
+
+    <div class="space"></div>
+
+    <div class="row alignleft">
+      <label><strong>Card Security Code (CVC)</strong></label>
+      <%= text_field_tag :cvv, "", :disabled => true, :class => "inputtext input_middle required" %>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="row alignleft">
+      <label><strong>Card's expiration</strong></label>
+      <%= date_select "", :expiry_date, {:discard_day => true, :order => [:month, :year], :use_month_numbers => true, :start_year => Date.today.year, :end_year => Date.today.year + 25, :disabled => true}, {:class => 'small'} %>
+    </div>
+
+  </div>
+
+<% end %>
 
 
 <%= hidden_field_tag :step_id, "3" %>

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121211125004) do
+ActiveRecord::Schema.define(:version => 20121211211301) do
+
+  create_table "billing_settings", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "stripe_id"
+    t.string   "card_last_four_digits"
+    t.date     "card_expiry_date"
+    t.string   "card_type"
+    t.string   "card_holder_name"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "organization_name"
