@@ -51,4 +51,17 @@ $(document).ready(function(){
       return true;
     }
   });
+
+  $("#user_form_step_2_submit").click(function(){
+    var area_code = $("#twilio_phone_number_area_code").val();
+    var phone_number = $("#twilio_phone_number_phone_number").val();
+
+    if( ( area_code && !phone_number ) || ( !area_code && phone_number ) ){
+      return true;
+    }
+    else{
+      $("#results").html("<br/>You must input Area Code OR select Phone Number.<br/>");
+      return false;
+    }
+  });
 });

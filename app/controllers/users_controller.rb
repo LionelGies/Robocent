@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  require 'twilio-ruby'
   layout 'public'
   
   def new
@@ -20,13 +21,26 @@ class UsersController < ApplicationController
     end
 
     if @step_id == "1"
+      # create or update user
       if @user.update_attributes(params[:user])
         session[:user_temp_id] = @user.id
         @step_id = "2"
       end
+      
     elsif @step_id == "2"
       #twilio integration
-      @step_id = "3"
+      
+      if session[:user_temp_id].present? && @user.present?
+        if @user.twilio_phone_number.blank?
+          @twilio_phone_number = @user.build_twilio_phone_number(params[:twilio_phone_number])
+          #@twilio_phone_number.phone_number = TwilioRequest::buy_phone_number(params[:twilio_phone_number][:area_code], params[:twilio_phone_number][:phone_number])
+          @twilio_phone_number.save
+        end
+        @step_id = "3"
+      else
+        @step_id = "1"
+      end
+
     elsif @step_id == "3"
       # save billing setting with stripe
       if session[:user_temp_id].present? && @user.present?
@@ -59,7 +73,10 @@ class UsersController < ApplicationController
 
   def activate
     if @user = User.load_from_activation_token(params[:token])
-      if @user.billing_setting.blank?
+      if @user.twilio_phone_number.blank?
+        session[:user_temp_id] = @user.id
+        redirect_to register_url(:step_id => "2")
+      elsif @user.billing_setting.blank?
         session[:user_temp_id] = @user.id
         redirect_to register_url(:step_id => "3")
       else

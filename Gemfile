@@ -8,6 +8,9 @@ gem 'rails', '3.2.9'
 gem 'mysql2'
 gem 'sorcery'
 gem 'stripe'
+gem 'twilio-ruby'
+
+gem 'thin'
 
 
 # Gems used only for assets and not required

@@ -17,7 +17,10 @@
     (<%= current_user.state %>)<br/>
     <strong>Time Zone:</strong> <%= current_user.time_zone %><br/>
     <br/>
-    Twilio Phone Number Integration pending....<br/><br/>
+    <% if current_user.twilio_phone_number.present? %>
+    Selected Twilio Phone Number: <%= current_user.twilio_phone_number.phone_number.present? ? current_user.twilio_phone_number.phone_number : "+#{current_user.twilio_phone_number.area_code}********" %>
+    <% end %>
+    <br/><br/>
     <strong>Billing Information</strong><br/>
     <% if current_user.billing_setting.present? %>
       <strong>Card Holder Name:</strong> <%= current_user.billing_setting.card_holder_name %><br/>
@@ -28,11 +31,11 @@
       <strong>Stripe Customer id:</strong> <%= current_user.billing_setting.stripe_id %><br/>
     <% end %>
 
-      <% if current_user.subscription.present? %>
+    <% if current_user.subscription.present? %>
       <br/>
       <strong>Subscribed Plan:</strong> <%= current_user.subscription.plan.name %><br/>
       <strong>Plan Details:</strong> <%= current_user.subscription.plan.details %>
-      <% end %>
+    <% end %>
 
   </div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212193249) do
+ActiveRecord::Schema.define(:version => 20121212233934) do
 
   create_table "billing_settings", :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(:version => 20121212193249) do
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "twilio_phone_numbers", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "area_code"
+    t.string   "phone_number"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "users", :force => true do |t|

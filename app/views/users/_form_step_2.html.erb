@@ -5,21 +5,46 @@
   you may use it as a text comment line in which you can communicate with your customers!
 </p>
 
-<div class="row alignleft">
-  <label><strong>Enter Area Code</strong></label>
-  <%= text_field_tag :area_code, "", :class => "inputtext input_middle required" %>
-</div>
+<% if @user.twilio_phone_number.present? %>
+  <p>
+    Your Selected Number:
+    <strong>
+      <%= @user.twilio_phone_number.phone_number %>
+    </strong>
+  </p>
+<% else %>
 
-<div class="space"></div>
+  <p>
+    The area code in which you'd like a new incoming phone number.
+    Any three digit, US area code is valid.
+    We will provision a random phone number within this area code for you.
+    You must include either this or the PhoneNumber parameter to have your POST succeed.
+  </p>
 
-<div class="row alignleft">
-  <label><strong>Select Phone Number</strong></label>
-  <%= text_field_tag :number, "", :class => "inputtext input_middle required" %>
-</div>
+  <%= fields_for @twilio_phone_number ||= TwilioPhoneNumber.new do |t| %>
 
-<div class="clear"></div>
+    <div class="row alignleft">
+      <label><strong>Enter Area Code</strong></label>
+      <%= t.text_field :area_code, :class => "inputtext", :style => "width:150px;" %>
+    </div>
 
-<br/>
+    <div class="space"></div>
+    <div class="space"></div>
+    <div class="alignleft" style="padding-top:30px;">OR</div>
+    <div class="space"></div>
+    <div class="space"></div>
+
+    <div class="row alignleft">
+      <label><strong>Select Phone Number</strong></label>
+      <%= t.select :phone_number, TwilioRequest::available_phone_numbers.collect{|n| [n.phone_number]}, {:prompt => "Select one" } %>
+    </div>
+
+    <div class="clear"></div>
+
+  <% end %>
+
+  <br/>
+<% end %>
 
 <p>
   What if I want to use a short code like 41257 instead?<br/>
@@ -38,7 +63,7 @@
 <div class="space"></div>
 
 <div class="row alignleft">
-  <%= f.submit "NEXT", :class => "btn-submit" %>
+  <%= f.submit "NEXT", :class => "btn-submit", :id => "user_form_step_2_submit" %>
 </div>
 
 <div class="clear"></div>
