@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="RoboCent is one of the nation's largest providers of political and permission-based robocalls. Learn more about our services and create an account in less than 2 minutes!"/>
+    <meta name="keywords" content="robocalls, robo calls, robocent, auto dials, autodials, robocall software, autodial software, robo call software, auto dial software, group calling, mass contact, mass call, emergency notification system, notification software, automatic calls, robocall, robo call, auto dial, autodials, political robocalls, cheap robocalls, 1 cent robocalls, 2 cent robocalls, 2 cent autodials, robodials, robo dials, robocaller"/>
+    <title>Robocent</title>
+    <!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <%= javascript_include_tag "dashboard/Flot/excanvas" %>
+	<![endif]-->
+    <!-- The Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Oswald|Droid+Sans:400,700" rel="stylesheet"/>
+
+    <%= stylesheet_link_tag    "dashboard", :media => "all" %>
+    <%= javascript_include_tag "dashboard" %>
+  </head>
+
+  <body>
+    <!-- Change Pattern -->
+    <div class="changePattern">
+      <span id="pattern1"></span>
+      <span id="pattern2"></span>
+      <span id="pattern3"></span>
+      <span id="pattern4"></span>
+      <span id="pattern5"></span>
+      <span id="pattern6"></span>
+    </div>
+
+    <!-- Top Panel -->
+    <%= render "shared/dashboard_top_panel" %>
+
+    <!-- Header -->
+    <%= render "shared/dashboard_header" %>
+
+<%#*<div class="wrapper small_menu">%>
+<%#*<ul class="menu_small_buttons">%>
+<%#*<li><a title="General Info" class="i_22_dashboard smActive" href="index.html"></a></li>%>
+<%#*<li><a title="Your Messages" class="i_22_inbox" href="inbox.html"></a></li>%>
+<%#*<li><a title="Visual Data" class="i_22_charts" href="charts.html"></a></li>%>
+<%#*<li><a title="Kit elements" class="i_22_ui" href="ui.html"></a></li>%>
+<%#*<li><a title="Some Rows" class="i_22_tables" href="tables.html"></a></li>%>
+<%#*<li><a title="Some Fields" class="i_22_forms" href="forms.html"></a></li>%>
+<%#*</ul>%>
+<%#*</div>%>
+
+    <div class="wrapper contents_wrapper">
+
+      <%= render "shared/dashboard_side_bar_menu" %>
+
+      <div class="contents">
+        <div class="grid_wrapper">
+           <%= yield %>
+        </div>
+      </div>
+
+    </div>
+
+  <footer>
+    <div class="wrapper">
+      <span class="copyright">
+	COPYRIGHT © 2012  | RoboCent, LLC.
+      </span>
+    </div>
+  </footer>
+</body>
+</html>

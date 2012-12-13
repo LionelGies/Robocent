@@ -1,0 +1,11 @@
+/*
+ * This is a manifest file that'll be compiled into dashboard.css, which will include all the files
+ *= require dashboard/normalize
+ *= require dashboard/tipsy
+ *= require dashboard/colorpicker
+ *= require dashboard/jquery.cleditor
+ *= require dashboard/fullcalendar
+ *= require dashboard/colorbox
+ *= require dashboard/style.css
+ *= require_self
+*/

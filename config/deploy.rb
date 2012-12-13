@@ -44,12 +44,12 @@ after "deploy:setup", :"deploy:create_shared_files_and_directories"
 
 after "deploy:create_symlink", :link_shared_files
 after "deploy:create_symlink", :"deploy:install_bundle"
-after "deploy:create_symlink", :"deploy:restart"
 after "deploy", "deploy:cleanup"
 
 task :link_shared_files, :roles => :app do
   run "rm -rf #{current_path}/tmp/sockets; ln -s #{shared_path}/sockets #{current_path}/tmp/sockets"
   run "rm -rf #{current_path}/public/uploads; ln -s #{shared_path}/uploads #{current_path}/public/uploads"
+  run "rm -rf #{current_path}/public/assets; ln -s #{shared_path}/assets #{current_path}/public/assets"
   run "rm -rf #{current_path}/public/.htaccess; rm -rf #{current_path}/public/dispatch.fcgi"
 end
 
@@ -68,6 +68,10 @@ namespace :deploy do
 
   task :install_bundle, :roles => :app do
     run "cd #{current_path}; rvmsudo bundle install"
+  end
+
+  task :assets_precompile, :roles => :app do
+    run "rm -rf #{current_path}/public/assets/*; cd #{current_path}; RAILS_ENV=production bundle exec rake assets:precompile"
   end
 
   #

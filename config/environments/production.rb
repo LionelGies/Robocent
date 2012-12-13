@@ -48,7 +48,10 @@ Robocent::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
   config.assets.precompile += %w( public.css )
+  config.assets.precompile += %w( dashboard.css )
   config.assets.precompile += %w( public.js )
+  config.assets.precompile += %w( dashboard.js )
+  config.assets.precompile += %w( dashboard/Flot/excanvas.js )
   config.assets.precompile += %w( ie.css )
 
   # Disable delivery errors, bad email addresses will be ignored
