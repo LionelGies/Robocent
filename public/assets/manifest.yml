@@ -2627,8 +2627,8 @@ public_images/youtube.jpg: public_images/youtube-6ab26fd1b8f7462960916bce06092e3
 public_images/youtube/index.jpg: public_images/youtube-6ab26fd1b8f7462960916bce06092e33.jpg
 application.js: application-32ed6ebaba49211fc69e08f40c7b97c4.js
 application/index.js: application-32ed6ebaba49211fc69e08f40c7b97c4.js
-public.js: public-c80aecc1244805e64dda86d3d747f5f7.js
-public/index.js: public-c80aecc1244805e64dda86d3d747f5f7.js
+public.js: public-86d4bcb328a29627c712bdcae4bcbe89.js
+public/index.js: public-86d4bcb328a29627c712bdcae4bcbe89.js
 application.css: application-1b13569e9620782f423d4cd3ce931750.css
 application/index.css: application-1b13569e9620782f423d4cd3ce931750.css
 ie.css: ie-fa487239f805a089ee55ec3a3b274182.css
