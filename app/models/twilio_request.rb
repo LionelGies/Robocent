@@ -6,7 +6,7 @@ class TwilioRequest
 
   def self.available_phone_numbers(area_code)
     return @account.available_phone_numbers.get('US').local.list({
-      :contains => "+#{area_code}"
+      :contains => "+1#{area_code}"
       })
   end
 

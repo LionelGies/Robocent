@@ -1,3 +1,7 @@
-<%= fields_for @twilio_phone_number ||= TwilioPhoneNumber.new do |t| %>
-  <%= t.select :phone_number, @numbers %>
+<% if @numbers.size > 0 %>
+  <%= fields_for @twilio_phone_number ||= TwilioPhoneNumber.new do |t| %>
+    <%= t.select :phone_number, @numbers %>
+  <% end %>
+<% else %>
+  No Available Numbers in Area Code <%= @area_code %>
 <% end %>

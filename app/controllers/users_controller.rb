@@ -91,6 +91,7 @@ class UsersController < ApplicationController
   end
 
   def twilionumbers
+    @area_code = params[:code]
     @numbers = TwilioRequest::available_phone_numbers(params[:code]).collect{|n| [n.phone_number]}
   end
 end
