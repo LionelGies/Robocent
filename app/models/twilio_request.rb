@@ -4,8 +4,10 @@ class TwilioRequest
   @client = Twilio::REST::Client.new @account_sid, @auth_token
   @account = @client.account
 
-  def self.available_phone_numbers
-    return @account.available_phone_numbers.get('US').local.list({})
+  def self.available_phone_numbers(area_code)
+    return @account.available_phone_numbers.get('US').local.list({
+      :contains => "+#{area_code}"
+      })
   end
 
   def self.buy_phone_number(area_code, phone_number)

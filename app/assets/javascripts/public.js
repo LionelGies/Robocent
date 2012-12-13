@@ -52,15 +52,26 @@ $(document).ready(function(){
     }
   });
 
+  $("#twilio_phone_number_area_code").keyup(function(){
+    var area_code = $(this).val();
+    if(area_code.length == 3){
+      $("#ajax-loader img").show();
+      $("#twilio_phone_number_phone_number").attr('disabled', true).end();
+      $("#twilio_phone_number_select").load("/twilionumbers/"+area_code, function(){
+        $("select").uniform();
+        $("#ajax-loader img").hide();
+      });
+    }
+  });
+
   $("#user_form_step_2_submit").click(function(){
-    var area_code = $("#twilio_phone_number_area_code").val();
     var phone_number = $("#twilio_phone_number_phone_number").val();
 
-    if( ( area_code && !phone_number ) || ( !area_code && phone_number ) ){
+    if( phone_number ){
       return true;
     }
     else{
-      $("#results").html("<br/>You must input Area Code OR select Phone Number.<br/>");
+      $("#results").html("<br/>You must select Phone Number.<br/>");
       return false;
     }
   });

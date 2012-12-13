@@ -1,0 +1,3 @@
+<%= fields_for @twilio_phone_number ||= TwilioPhoneNumber.new do |t| %>
+  <%= t.select :phone_number, @numbers %>
+<% end %>

@@ -89,4 +89,8 @@ class UsersController < ApplicationController
       not_authenticated
     end
   end
+
+  def twilionumbers
+    @numbers = TwilioRequest::available_phone_numbers(params[:code]).collect{|n| [n.phone_number]}
+  end
 end

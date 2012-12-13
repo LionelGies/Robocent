@@ -16,6 +16,7 @@ Robocent::Application.routes.draw do
   #
   # registration
   #
+  get   'twilionumbers/:code'        => 'users#twilionumbers', :as => :twilionumbers
   put   'register'                 => 'users#create',     :as => :register_user
   post  'register'                 => 'users#create',     :as => :register_user
   get   'register'                 => 'users#new',          :as => :register

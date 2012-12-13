@@ -17,26 +17,29 @@
   <p>
     The area code in which you'd like a new incoming phone number.
     Any three digit, US area code is valid.
-    We will provision a random phone number within this area code for you.
-    You must include either this or the PhoneNumber parameter to have your POST succeed.
+    Select phone number will auto populate within this area code for you.
   </p>
 
   <%= fields_for @twilio_phone_number ||= TwilioPhoneNumber.new do |t| %>
 
     <div class="row alignleft">
       <label><strong>Enter Area Code</strong></label>
-      <%= t.text_field :area_code, :class => "inputtext", :style => "width:150px;" %>
+      <%= t.text_field :area_code, :maxlength => "3", :class => "inputtext", :style => "width:150px;" %>
     </div>
 
     <div class="space"></div>
     <div class="space"></div>
-    <div class="alignleft" style="padding-top:30px;">OR</div>
+    <div id="ajax-loader" class="alignleft" style="padding-top:26px;width: 33px;">
+      <%= image_tag("public_images/loading.gif", :style => "display:none") %>
+    </div>
     <div class="space"></div>
     <div class="space"></div>
 
     <div class="row alignleft">
       <label><strong>Select Phone Number</strong></label>
-      <%= t.select :phone_number, TwilioRequest::available_phone_numbers.collect{|n| [n.phone_number]}, {:prompt => "Select one" } %>
+      <span id="twilio_phone_number_select">
+        <%= t.select :phone_number, TwilioRequest::available_phone_numbers("175").collect{|n| [n.phone_number]}, {:prompt => "Select one" } %>
+      </span>
     </div>
 
     <div class="clear"></div>
