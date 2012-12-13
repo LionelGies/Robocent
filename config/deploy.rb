@@ -48,8 +48,6 @@ after "deploy:create_symlink", :"deploy:restart"
 after "deploy", "deploy:cleanup"
 
 task :link_shared_files, :roles => :app do
-  #run "rm -rf #{current_path}/.bundle; ln -s #{shared_path}/config/.bundle #{current_path}/.bundle"
-  #run "rm #{current_path}/vendor/bundle; ln -s #{shared_path}/bundle #{current_path}/vendor/bundle"
   run "rm -rf #{current_path}/tmp/sockets; ln -s #{shared_path}/sockets #{current_path}/tmp/sockets"
   run "rm -rf #{current_path}/public/uploads; ln -s #{shared_path}/uploads #{current_path}/public/uploads"
   run "rm -rf #{current_path}/public/.htaccess; rm -rf #{current_path}/public/dispatch.fcgi"
@@ -72,15 +70,13 @@ namespace :deploy do
     run "cd #{current_path}; rvmsudo bundle install"
   end
 
+  #
+  # Need to Test
+  #
   task :create_shared_files_and_directories, :role => :app do
-    run "sudo mkdir -p #{shared_path}/sockets"
-    run "sudo mkdir -p #{shared_path}/config/.bundle"
-    run "sudo mkdir -p #{shared_path}/bundle"
-    run "sudo mkdir -p #{shared_path}/uploads"
-    #run "sudo touch #{shared_path}/config/.bundle/config"
-
-    #run "sudo echo '---' >> #{shared_path}/config/.bundle/config"
-    #run "sudo echo 'BUNDLE_PATH: vendor/bundle' >> #{shared_path}/config/.bundle/config"
-    #run "sudo echo \"BUNDLE_DISABLE_SHARED_GEMS: '1'\" >> #{shared_path}/config/.bundle/config"
+    #    run "sudo mkdir -p #{shared_path}/sockets"
+    #    run "sudo mkdir -p #{shared_path}/config/.bundle"
+    #    run "sudo mkdir -p #{shared_path}/bundle"
+    #    run "sudo mkdir -p #{shared_path}/uploads"
   end
 end
