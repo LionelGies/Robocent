@@ -12,9 +12,9 @@
   <%= b.hidden_field :card_type %>
 
   <% Plan.all.each_with_index do |p, index| %>
-    <div class="alignleft">
-      <%= image_tag("public_images/select_plan.png", :width => "150") %>
-      <div style="padding-left: 59px;">
+    <div class="alignleft" style="margin-bottom: 15px;">
+      <%= image_tag("public_images/select-plan/#{p.maximum_numbers.to_s}.png") %>
+      <div style="padding-left: 100px;">
         <% if index == 0 %>
           <%= b.radio_button :plan_id, p.id, :checked => true %>
         <% else %>
