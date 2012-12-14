@@ -21,8 +21,8 @@ Plan.create([
     maximum_numbers: "10000", price_per_call_or_text: "1.7"},
   {stripe_id: "plan_4", amount: "3900", currency: "usd", interval: "month",
     name: "Gold", trial_period_days: "30", minimum_numbers: "10001",
-    maximum_numbers: "24500", price_per_call_or_text: "1.5"},
+    maximum_numbers: "25000", price_per_call_or_text: "1.5"},
   {stripe_id: "plan_5", amount: "5900", currency: "usd", interval: "month",
-    name: "Platinum", trial_period_days: "30", minimum_numbers: "24501",
+    name: "Platinum", trial_period_days: "30", minimum_numbers: "25001",
     maximum_numbers: "50000", price_per_call_or_text: "1.3"}
   ])
