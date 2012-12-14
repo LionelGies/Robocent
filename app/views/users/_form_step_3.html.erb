@@ -4,10 +4,6 @@
   your account will not be billed.
 </p>
 
-<div id="credit-card-errors" style="display: none">
-  <div id="stripe-error-message" class="alert-message block-message error" style="color:#FF0000;padding: 5px;"></div>
-</div>
-
 <%= fields_for @billing_setting = BillingSetting.new do |b| %>
   <%= b.hidden_field :stripe_token %>
   <%= b.hidden_field :card_last_four_digits %>
@@ -15,12 +11,32 @@
   <%= b.hidden_field :card_exp_year %>
   <%= b.hidden_field :card_type %>
 
-  <div class="row alignleft">
-    <label><strong>Choose a Plan</strong></label>
-    <%= b.select :plan_id, Plan.all.collect{|p| [p.details, p.id]}, { }, :class => "select-uniform" %>
+  <% Plan.all.each_with_index do |p, index| %>
+    <div class="alignleft">
+      <%= image_tag("public_images/select_plan.png", :width => "150") %>
+      <div style="padding-left: 59px;">
+        <% if index == 0 %>
+          <%= b.radio_button :plan_id, p.id, :checked => true %>
+        <% else %>
+          <%= b.radio_button :plan_id, p.id %>
+        <% end %>
+      </div>
+    </div>
+    <div class="space"></div>
+  <% end %>
+
+  <div class="clear"></div>
+
+  <div id="credit-card-errors" style="display: none">
+    <div id="stripe-error-message" class="alert-message block-message error" style="color:#FF0000;padding: 5px;"></div>
   </div>
 
-  <div class="space"></div>
+  <%#*<div class="row alignleft">%>
+  <%#*<label><strong>Choose a Plan</strong></label>%>
+  <%#= b.select :plan_id, Plan.all.collect{|p| [p.details, p.id]}, { }, :class => "select-uniform" %>
+  <%#*</div>%>
+
+  <%#*<div class="space"></div>%>
 
   <div class="row alignleft">
     <label><strong>Cardholder's full name</strong></label>
