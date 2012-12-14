@@ -1,3 +1,24 @@
+<style type="text/css">
+  table.plan-select{
+    margin-bottom: 20px;
+  }
+  table.plan-select tr td
+  {
+    border: 1px solid #6EA004;
+    width: 75px;
+  }
+  table.plan-select tr td:first-child{
+    text-align: left;
+    width: 140px;
+  }
+  table.plan-select tr:first-child{
+    background-color: #BED48F;
+  }
+  table.plan-select tr:last-child{
+    background-color: #eee;
+  }
+</style>
+
 <p>
   Please enter the billing information you would like to keep on file.
   You may cancel your account anytime during the 30 day free trial and
@@ -11,19 +32,51 @@
   <%= b.hidden_field :card_exp_year %>
   <%= b.hidden_field :card_type %>
 
-  <% Plan.all.each_with_index do |p, index| %>
-    <div class="alignleft" style="margin-bottom: 15px;">
-      <%= image_tag("public_images/select-plan/#{p.maximum_numbers.to_s}.png") %>
-      <div style="padding-left: 100px;">
-        <% if index == 0 %>
-          <%= b.radio_button :plan_id, p.id, :checked => true %>
-        <% else %>
-          <%= b.radio_button :plan_id, p.id %>
-        <% end %>
-      </div>
-    </div>
-    <div class="space"></div>
-  <% end %>
+  <% @plans = Plan.all %>
+  <table class="plan-select">
+    <tr>
+      <td>Plan Type</td>
+      <% @plans.each do |p| %>
+        <td><%= p.name %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Maximum Contacts</td>
+      <% @plans.each do |p| %>
+        <td><%= number_with_delimiter(p.maximum_numbers) %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Cost per Message</td>
+      <% @plans.each do |p| %>
+        <td><%= p.price_per_call_or_text %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Free Credits</td>
+      <% @plans.each do |p| %>
+        <td>$10.00</td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>30 Day Free Trial</td>
+      <% @plans.each do |p| %>
+        <td><%= p.trial_period_days.to_s == "30" ? "Yes" : "No" %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Select One</td>
+      <% @plans.each_with_index do |p, index| %>
+        <td>
+          <% if index == 0 %>
+            <%= b.radio_button :plan_id, p.id, :checked => true %>
+          <% else %>
+            <%= b.radio_button :plan_id, p.id %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
 
   <div class="clear"></div>
 
