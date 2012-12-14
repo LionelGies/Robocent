@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # bronze silver gold platinum diamond
 
-Plan.all.each{ |p| p.destory }
+Plan.all.each{ |p| p.destroy }
 
 Plan.create([
   {stripe_id: "plan_1", amount: "500", currency: "usd", interval: "month",
