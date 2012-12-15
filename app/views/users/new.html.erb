@@ -75,6 +75,11 @@
               <% end %>
             </span>
           <% end %>
+          <% if flash.present? %>
+            <span style="color:#FF0000;">
+              <%= flash.now[:alert] %>
+            </span>
+          <% end %>
         </div>
 
         <div class="comment-form">
