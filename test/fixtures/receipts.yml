@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  debit: 1.5
+  credit: 1.5
+  current_balance: 1.5
+  memo: MyString
+  free: false
+
+two:
+  user_id: 1
+  debit: 1.5
+  credit: 1.5
+  current_balance: 1.5
+  memo: MyString
+  free: false

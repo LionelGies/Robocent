@@ -419,6 +419,8 @@ dashboard/Textures/visitor_stats.png: dashboard/Textures/visitor_stats-f7f95e646
 dashboard/Textures/visitor_stats/index.png: dashboard/Textures/visitor_stats-f7f95e6461d79256c587af54b498f559.png
 dashboard/Textures/wHead.png: dashboard/Textures/wHead-de108c3e3d5bcb9ed2f7487f7894354f.png
 dashboard/Textures/wHead/index.png: dashboard/Textures/wHead-de108c3e3d5bcb9ed2f7487f7894354f.png
+dashboard/custom/add_contacts.png: dashboard/custom/add_contacts-111fb8ecfb3bcc00bdfafb5bc8b61c3f.png
+dashboard/custom/add_contacts/index.png: dashboard/custom/add_contacts-111fb8ecfb3bcc00bdfafb5bc8b61c3f.png
 dashboard/kanrisha_logo.png: dashboard/kanrisha_logo-0cf2b82bc5f8c71e00f10d2e7ab02a23.png
 dashboard/kanrisha_logo/index.png: dashboard/kanrisha_logo-0cf2b82bc5f8c71e00f10d2e7ab02a23.png
 dashboard/user_avatar.png: dashboard/user_avatar-3cb16fb4a86b1af717df98e499be2e73.png

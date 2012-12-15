@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121212233934) do
+ActiveRecord::Schema.define(:version => 20121215194309) do
+
+  create_table "account_balances", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "current_balance", :default => 0.0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
 
   create_table "billing_settings", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +43,17 @@ ActiveRecord::Schema.define(:version => 20121212233934) do
     t.float    "price_per_call_or_text"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+  end
+
+  create_table "receipts", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "debit",           :default => 0.0
+    t.float    "credit",          :default => 0.0
+    t.float    "current_balance", :default => 0.0
+    t.string   "memo"
+    t.boolean  "free"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "subscriptions", :force => true do |t|

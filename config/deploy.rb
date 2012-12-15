@@ -74,8 +74,12 @@ namespace :deploy do
     run "rm -rf #{current_path}/public/assets/*; cd #{current_path}; RAILS_ENV=production bundle exec rake assets:precompile"
   end
 
-  task :run_seed, :roles => :app do
+  task :db_seed, :roles => :app do
     run "cd #{current_path}; RAILS_ENV=production bundle exec rake db:seed"
+  end
+
+  task :db_reset, :roles => :app do
+    run "cd #{current_path}; RAILS_ENV=production bundle exec rake db:reset"
   end
 
   #
