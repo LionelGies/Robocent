@@ -1,0 +1,4 @@
+<% if @list.present? %>
+$("#contact-lists-table .ajax-loading").hide();
+$("#contact-lists-table tbody tr#list_row_<%= @list.id %>").remove();
+<% end %>

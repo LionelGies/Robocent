@@ -7,6 +7,7 @@
  *= require dashboard/fullcalendar
  *= require dashboard/colorbox
  *= require dashboard/style.css
+ *= require jquery.fancybox
  *= require_self
 */
 

@@ -1,7 +1,15 @@
-<tr>
+<tr id="list_row_<%= list.id %>">
   <td><%= list.name %></td>
   <td><%= list.type_of_list %></td>
   <td><%= list.number_of_contacts %></td>
   <td><%= list.keyword %></td>
-  <td>Edit / Delete</td>
+  <td>
+    <div style="float: left">
+      <%= link_to "Edit", edit_list_path(list), :class => "fancybox fancybox.ajax simple_buttons", :style => "padding: 0 10px 0 10px;" %>
+      / </div>
+    <%= form_tag list_url(list), :method => "delete", :id => "list_delete_link", :style => "float:left;margin-left:5px;" do %>
+      <%= submit_tag "Delete", :class => "submitIt simple_buttons" %>
+    <% end %>
+    <div class="clear"></div>
+  </td>
 </tr>

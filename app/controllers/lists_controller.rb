@@ -1,9 +1,12 @@
 class ListsController < ApplicationController
   before_filter :require_login
 
+  layout 'dashboard'
+
   # GET /lists/1/edit
   def edit
     @list = List.find(params[:id])
+    render :layout => false
   end
 
   # POST /lists
@@ -13,10 +16,10 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.save
-        format.html { redirect_to @list, notice: 'List was successfully created.' }
+        format.html { redirect_to contacts_path }
         format.js
       else
-        format.html { render action: "new" }
+        format.html { redirect_to contacts_path }
         format.js
       end
     end
@@ -29,11 +32,11 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.update_attributes(params[:list])
-        format.html { redirect_to @list, notice: 'List was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to contacts_path, notice: 'List was successfully updated.' }
+        format.js
       else
-        format.html { render action: "edit" }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
+        format.html { redirect_to contacts_path }
+        format.js
       end
     end
   end
@@ -45,8 +48,8 @@ class ListsController < ApplicationController
     @list.destroy
 
     respond_to do |format|
-      format.html { redirect_to lists_url }
-      format.json { head :no_content }
+      format.html { redirect_to contacts_url }
+      format.js
     end
   end
 end

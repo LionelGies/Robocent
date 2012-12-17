@@ -71,8 +71,8 @@
     <table class="tables" id="contact-lists-table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Type</th>
+          <th>List Name</th>
+          <th>Type of List</th>
           <th>Number of Contacts</th>
           <th>Keyword</th>
           <th>
@@ -104,3 +104,23 @@
     <%= render "lists/form" %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    $(".fancybox").fancybox();
+
+    $("form#list_delete_link").live("submit", function(){
+      if (confirm('Are you sure to delete!')) {
+        var action = $(this).attr("action");
+        $.ajax({
+          type: 'DELETE',
+          url: action,
+          data: $(this).serialize(),
+          dataType: "script"
+        });
+        $("#contact-lists-table .ajax-loading").show();
+      }
+      return false;
+    });
+  });
+</script>

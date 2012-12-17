@@ -5,7 +5,7 @@ Robocent::Application.routes.draw do
   resources :contacts
 
 
-  resources :lists
+  resources :lists, :only => [:create, :edit, :update, :destroy]
 
 
   #
