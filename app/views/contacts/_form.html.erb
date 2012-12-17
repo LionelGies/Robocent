@@ -1,0 +1,191 @@
+<div class="g_6">
+  <div class="widget_header">
+    <h4 class="widget_header_title wwIcon i_16_valid">Upload One Contact</h4>
+  </div>
+  <div class="widget_contents noPadding">
+    <%= form_for(@contact ||= Contact.new) do |f| %>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">List Name<span class="must">*</span></span>
+        </div>
+        <div class="g_9">
+          <%= f.select :list_id, List.all.collect{|l| [l.name, l.id]}, {}, :class => "simple_form", :required => true %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Phone Number<span class="must">*</span></span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :phone_number, :class => "simple_field", :required => true %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Unique Identifier</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :unique_identifier, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">First Name</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :first_name, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Last Name</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :last_name, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Email</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :email, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Do not Import</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :do_not_import, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Company Name</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :company_name, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Address 1</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :address_1, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Address 2</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :address_2, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">City</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :city, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">State</span>
+        </div>
+        <div class="g_9">
+          <%= f.select :state, UsState::NAMES, {}, :class => "simple_form" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Zip</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :zip, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Custom 1</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :custom_1, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Custom 2</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :custom_2, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Custom 3</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :custom_3, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Custom 4</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :custom_4, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Custom 5</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :custom_5, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3"></div>
+        <div class="g_9">
+          <%= f.submit :class => "submitIt simple_buttons" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="g_6">
+  <div class="widget_header">
+    <h4 class="widget_header_title wwIcon i_16_valid">Upload Multiple Contacts</h4>
+  </div>
+  <div class="widget_contents noPadding">
+    <%= form_for(@import ||= Import.new) do |f| %>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">List Name<span class="must">*</span></span>
+        </div>
+        <div class="g_9">
+          <%= f.select :list_id, List.all.collect{|l| [l.name, l.id]}, {}, :class => "simple_form", :required => true %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Excel / CSV</span>
+        </div>
+        <div class="g_9">
+          <%= f.file_field :file_name, :class => "simple_form", :disable => true %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3"></div>
+        <div class="g_9">
+          <%= f.submit "Upload", :class => "submitIt simple_buttons" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

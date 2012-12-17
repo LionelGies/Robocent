@@ -1,5 +1,13 @@
 Robocent::Application.routes.draw do
 
+  resources :imports
+
+  resources :contacts
+
+
+  resources :lists
+
+
   #
   # Dashboard
   #

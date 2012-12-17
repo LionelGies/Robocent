@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   has_one :twilio_phone_number,   :dependent => :destroy
   has_one :account_balance,       :dependent => :destroy
   has_many :receipts,             :dependent => :destroy
+  has_many :lists,                :dependent => :destroy
+  has_many :imports,              :dependent => :destroy
+  has_many :contacts,             :dependent => :destroy
 
   validates :name, :presence => true
   validates :email, :format =>  { :with => /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/ }

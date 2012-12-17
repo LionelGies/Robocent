@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  name: MyString
+  type_of_list: MyString
+  number_of_contacts: 1
+  keyword: MyString
+  file: MyString
+  hold: false
+  uploaded: false
+
+two:
+  user_id: 1
+  name: MyString
+  type_of_list: MyString
+  number_of_contacts: 1
+  keyword: MyString
+  file: MyString
+  hold: false
+  uploaded: false

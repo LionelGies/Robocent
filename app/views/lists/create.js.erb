@@ -1,0 +1,5 @@
+<% if @list.present? %>
+$("#no-records-row").remove();
+$("#contact-lists-table .ajax-loading").hide();
+$("#contact-lists-table tbody").prepend("<%= escape_javascript(render :partial => "list_tiny", :locals => {:list => @list}).html_safe %>");
+<% end %>

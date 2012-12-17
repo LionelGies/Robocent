@@ -68,7 +68,7 @@
   <div class="widget_contents">
     <div class="banner-box">
       <span class="highlight-number">
-        1702
+        <%= @total_contacts_count %>
       </span>
       <span class="small-text">
         ACTIVE<br/>CONTACTS
@@ -76,12 +76,13 @@
       <div class="clear"></div>
     </div>
     <div class="contacts-stat">
-      399 Texting Contacts<br/>
-      402 Calling Contacts
+      <%= pluralize(@text_contacts_count, "Texting Contacts") %>
+      <br/>
+      <%= pluralize(@call_contacts_count, "Calling Contacts") %>
     </div>
     <div class="link">
       <%= image_tag("dashboard/custom/add_contacts.png") %>
-      <%= link_to "Add and update contacts", "#" %>
+      <%= link_to "Add and update contacts", contacts_path %>
       <div class="clear"></div>
     </div>
   </div>
@@ -94,13 +95,17 @@
   <div class="widget_contents">
     <div class="banner-box">
       <div class="balance">
-        <%= "$#{current_user.current_balance}" %>
+        <%= "$#{"%.3f" % current_user.current_balance}" %>
         Current Balance
       </div>
     </div>
     <div class="balance-stat">
-      It will cost $8.000 to send a text to your contacts<br/>
-      It will cost $4.000 to send a call to your contacts
+      It will cost
+      $<%= "%.3f" % @cost_for_text %>
+      to send a text to your contacts<br/>
+      It will cost
+      $<%= "%.3f" % @cost_for_call %>
+      to send a call to your contacts
     </div>
     <div class="link">
       <%= image_tag("dashboard/custom/add_contacts.png") %>

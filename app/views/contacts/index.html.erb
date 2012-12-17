@@ -1,0 +1,154 @@
+<div class="g_6 contents_header">
+  <h3 class="i_16_ui tab_label">Contacts</h3>
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+<div class="g_6" style="padding-top:12px;">
+  <%= image_tag("dashboard/Icons/16/i_16_ui.png") %>
+  <%= pluralize(@contacts.count, "Contact") %>
+  <div class="simple_buttons" style="width:100px;text-align: center">
+    <%= link_to "Add Contacts", new_contact_path, :class => "contact-button" %>
+  </div>
+</div>
+<div class="g_6">
+  <form>
+    <div class="g_9">
+      <%= text_field_tag :search, params[:search], :class => "simple_field", :placeholder => "Search Contacts by Phone Number" %>
+    </div>
+    <div class="g_3">
+      <div class="simple_buttons" style="width:100%;text-align: center">
+        <%= link_to 'Search', "javascript:void(0);", :onclick => "$('form:first').submit();", :class => 'contact-button' %>
+      </div>
+    </div>
+  </form>
+</div>
+
+<% if @search_contacts.present? %>
+  <div class="g_12">
+    <div class="widget_header wwOptions">
+      <h4 class="widget_header_title wwIcon i_16_tables">Search Results for '<%= params[:search] %>'</h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <table class="tables" id="contact-lists-table">
+        <thead>
+        <th>List Name</th>
+        <th>Phone</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th></th>
+        </thead>
+        <tbody>
+          <% @search_contacts.each do |contact| %>
+            <tr>
+              <td><%= contact.list.name %></td>
+              <td><%= contact.phone_number %></td>
+              <td><%= contact.name %></td>
+              <td><%= contact.email %></td>
+              <td>View / Edit</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+<div class="g_12">
+  <div class="widget_header wwOptions">
+    <h4 class="widget_header_title wwIcon i_16_tables">Contact Lists</h4>
+    <div class="w_Options i_16_add">
+      <!-- Drop Menu -->
+      <ul class="drop_menu menu_with_icons right_direction">
+        <li>
+          <%= link_to new_list_path, :class => "i_16_add", :id => "new_list_link" do %>
+            <span class="label">Add New List</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="widget_contents noPadding">
+    <table class="tables" id="contact-lists-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Number of Contacts</th>
+          <th>Keyword</th>
+          <th>
+            <div class="ajax-loading" style="display:none">
+              <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @lists.present? %>
+          <% @lists.each do |list| %>
+            <%= render :partial => "lists/list_tiny", :locals => { :list => list } %>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="5" align="center" id="no-records-row">
+              No Records Found.
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="dialog" title="Create New List">
+  <div class="dialog">
+    <%= render "lists/form" %>
+  </div>
+</div>
+
+
+<style type="text/css">
+  a.contact-button{
+    color: #8F8F8F;
+    cursor: pointer;
+    font-family: Oswald;
+    font-size: 12px;
+    line-height: 26px;
+    text-shadow: 0 1px 0 #FFFFFF;
+  }
+  .dialog{
+    width: 500px;
+  }
+</style>
+
+<script type="text/javascript">
+  $(function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: "blind",
+      hide: "explode",
+      width:'auto'
+    });
+
+    $( "#new_list_link" ).click(function() {
+      $( "#dialog" ).dialog( "open" );
+      $(".w_Options.i_16_add").trigger('click');
+      return false;
+    });
+
+    $("form#new_list").submit(function(){
+      var action = $(this).attr('action');
+
+      $(".ajax-loading").show();
+      $.ajax({
+        type: 'POST',
+        url: action,
+        data: $(this).serialize(),
+        dataType: "script"
+      });
+      $("#contact-lists-table .ajax-loading").show();
+      $("#dialog").dialog("close");
+      return false;
+    });
+  });
+</script>

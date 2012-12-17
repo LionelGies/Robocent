@@ -9,8 +9,14 @@ gem 'mysql2'
 gem 'sorcery'
 gem 'stripe'
 gem 'twilio-ruby'
-
 gem 'thin'
+
+gem 'carrierwave'
+gem 'carrierwave_direct'
+gem "spreadsheet" #parsing xls files
+gem "rubyXL"      #parsing xlsx files
+gem 'nokogiri'
+gem 'rubyzip'
 
 
 # Gems used only for assets and not required

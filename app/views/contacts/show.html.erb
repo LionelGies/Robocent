@@ -1,0 +1,100 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @contact.user_id %>
+</p>
+
+<p>
+  <b>List:</b>
+  <%= @contact.list_id %>
+</p>
+
+<p>
+  <b>Phone number:</b>
+  <%= @contact.phone_number %>
+</p>
+
+<p>
+  <b>Unique identifier:</b>
+  <%= @contact.unique_identifier %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @contact.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @contact.last_name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @contact.email %>
+</p>
+
+<p>
+  <b>Do not import:</b>
+  <%= @contact.do_not_import %>
+</p>
+
+<p>
+  <b>Company name:</b>
+  <%= @contact.company_name %>
+</p>
+
+<p>
+  <b>Address 1:</b>
+  <%= @contact.address_1 %>
+</p>
+
+<p>
+  <b>Address 2:</b>
+  <%= @contact.address_2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @contact.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @contact.state %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%= @contact.zip %>
+</p>
+
+<p>
+  <b>Custom 1:</b>
+  <%= @contact.custom_1 %>
+</p>
+
+<p>
+  <b>Custom 2:</b>
+  <%= @contact.custom_2 %>
+</p>
+
+<p>
+  <b>Custom 3:</b>
+  <%= @contact.custom_3 %>
+</p>
+
+<p>
+  <b>Custom 4:</b>
+  <%= @contact.custom_4 %>
+</p>
+
+<p>
+  <b>Custom 5:</b>
+  <%= @contact.custom_5 %>
+</p>
+
+
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>

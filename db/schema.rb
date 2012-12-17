@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121215194309) do
+ActiveRecord::Schema.define(:version => 20121216002034) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -29,6 +29,52 @@ ActiveRecord::Schema.define(:version => 20121215194309) do
     t.string   "card_holder_name"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "list_id"
+    t.string   "phone_number"
+    t.string   "unique_identifier"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "do_not_import"
+    t.string   "company_name"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "custom_1"
+    t.string   "custom_2"
+    t.string   "custom_3"
+    t.string   "custom_4"
+    t.string   "custom_5"
+    t.string   "source"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "imports", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "list_id"
+    t.string   "file_name"
+    t.integer  "number_of_contacts"
+    t.boolean  "hold"
+    t.boolean  "uploaded"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "lists", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "type_of_list"
+    t.integer  "number_of_contacts", :default => 0
+    t.string   "keyword"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "plans", :force => true do |t|
