@@ -17,3 +17,33 @@
 //= require dashboard/FullCalendar/fullcalendar
 //= require dashboard/ColorBox/jquery.colorbox
 //= require dashboard/kanrisha
+
+
+// Contacts
+$(function() {
+  $( "#dialog" ).dialog({
+    autoOpen: false,
+    show: "blind",
+    hide: "explode",
+    width:'auto'
+  });
+
+  $( "#new_list_link" ).click(function() {
+    $( "#dialog" ).dialog( "open" );
+    $(".w_Options.i_16_add").trigger('click');
+    return false;
+  });
+
+  $("form#new_list").submit(function(){
+    var action = $(this).attr('action');
+    $.ajax({
+      type: 'POST',
+      url: action,
+      data: $(this).serialize(),
+      dataType: "script"
+    });
+    $("#contact-lists-table .ajax-loading").show();
+    $("#dialog").dialog("close");
+    return false;
+  });
+});
