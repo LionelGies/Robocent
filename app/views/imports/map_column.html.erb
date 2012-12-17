@@ -1,0 +1,80 @@
+<div class="g_6 contents_header">
+  <h3 class="i_16_ui tab_label">Map Column of Contacts With Our Database</h3>
+</div>
+<div class="g_4"></div>
+<div class="g_2">
+  <%= link_to "Back to Contacts", contacts_path, :class => "simple_buttons contact-button" %>
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+<div class="g_12" style="height: 45px;">
+  <div id="error" class="alert iDialog" style="display:none;">You are not allowed to select same column multiple time!</div>
+</div>
+
+<%= form_tag(insert_into_db_import_path(@import)) do %>
+  <div class="g_12">
+    <% @data.each_with_index do |column, index| %>
+      <div class="g_2">
+        <div class="">
+          <span class="label">
+            <%= column %>
+          </span>
+        </div>
+        <div class="">
+          <%= select_tag "row[#{index}]", options_for_select(Contact::get_column_array), :prompt => "-- select --", :class => "simple_form", :id => "row_#{index}" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="g_12">
+    <div class="g_4"></div>
+    <div class="g_8">
+      <%= submit_tag "Submit", :class => "submitIt simple_buttons" %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('[id ^= "row_"]').change(function(){
+      var id = $(this).attr('id');
+      id = id.replace('row_','');
+      var value = $(this).val();
+
+<% for i in (0..@data.count-1) do %>
+          var v = $("#row_<%= i %>").val();
+          if(v == value && <%= i %> != id)
+          {
+            $("#error").delay(500).fadeIn(1500);
+            $("#error").delay(3000).fadeOut(1500);
+          }
+  <% end %>
+      });
+
+      $("form").submit(function(){
+        var arr = new Array();
+  <% for i in (0..@data.count-1) do %>
+            arr[<%= i %>] = $("#row_<%= i %>").val();
+    <% end %>
+
+    <% Contact::get_column_array.each do |column|  %>
+            if(count_occurences(arr, "<%= column %>") > 1){
+              $("#error").delay(500).fadeIn(1500);
+              $("#error").delay(3000).fadeOut(1500);
+              return false;
+            }
+    <% end %>
+          return true;
+        });
+      });
+
+      function count_occurences(arr, target)
+      {
+        var count = $.grep(arr, function (elem) {
+          return elem === target;
+        }).length;
+        return count
+      }
+    </script>
+

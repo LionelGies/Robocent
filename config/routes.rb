@@ -1,12 +1,17 @@
 Robocent::Application.routes.draw do
-
-  resources :imports
+  resources :imports do
+    collection do
+      get :save_s3_file_path
+    end
+    member do
+      get :map_column
+      post :insert_into_db
+    end
+  end
 
   resources :contacts
 
-
   resources :lists
-
 
   #
   # Dashboard

@@ -3,10 +3,27 @@
 </div>
 <div class="g_4"></div>
 <div class="g_2">
-    <%= link_to "Back to Contacts", contacts_path, :class => "simple_buttons contact-button" %>
+  <%= link_to "Back to Contacts", contacts_path, :class => "simple_buttons contact-button" %>
 </div>
 
 <div class="g_12 separator"><span></span></div>
+
+<% if flash[:alert].present? %>
+  <div class="g_12">
+    <div class="alert iDialog">
+      <%= flash[:alert] %>
+    </div>
+  </div>
+<% end %>
+
+<% if flash[:notice].present? %>
+  <div class="g_12">
+    <div class="success iDialog">
+      <%= flash[:notice] %>
+    </div>
+  </div>
+<% end %>
+
 
 <div class="g_12">
   <%= render 'form' %>

@@ -177,15 +177,34 @@
           <span class="label">Excel / CSV</span>
         </div>
         <div class="g_9">
-          <%= f.file_field :file_name, :class => "simple_form", :disabled => true %>
+          <%= f.file_field :file_name, :class => "simple_form" %>
         </div>
       </div>
       <div class="line_grid">
         <div class="g_3"></div>
         <div class="g_9">
-          <%= f.submit "Upload", :class => "submitIt simple_buttons", :disabled => true %>
+          <%= f.submit "Upload", :class => "submitIt simple_buttons" %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function(){
+    $('#import_file_name').change(function(){
+      var ext = $('#import_file_name').val().split('.').pop().toLowerCase();
+      if($.inArray(ext, ['xls','xlsx','csv']) == -1) {
+        alert('You may only upload an xls, xlsx, or csv file');
+      }
+    });
+
+    $("#new_import").submit(function(){
+      var ext = $('#import_file_name').val().split('.').pop().toLowerCase();
+      if($.inArray(ext, ['xls','xlsx','csv']) == -1) {
+        alert('You may only upload an xls, xlsx, or csv file');
+        return false;
+      }else { return true; }
+    });
+  });
+</script>
