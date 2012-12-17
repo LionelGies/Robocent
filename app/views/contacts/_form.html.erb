@@ -177,13 +177,13 @@
           <span class="label">Excel / CSV</span>
         </div>
         <div class="g_9">
-          <%= f.file_field :file_name, :class => "simple_form", :disable => true %>
+          <%= f.file_field :file_name, :class => "simple_form", :disabled => true %>
         </div>
       </div>
       <div class="line_grid">
         <div class="g_3"></div>
         <div class="g_9">
-          <%= f.submit "Upload", :class => "submitIt simple_buttons" %>
+          <%= f.submit "Upload", :class => "submitIt simple_buttons", :disabled => true %>
         </div>
       </div>
     <% end %>
