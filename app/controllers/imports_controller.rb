@@ -46,7 +46,7 @@ class ImportsController < ApplicationController
     end
 
     if @import.hold
-      redirect_to new_contact_path, :alert => "You are trying to upload more than 499 contacts in one File. Your upload is awaiting for moderation by admin."
+      redirect_to new_contact_path, :alert => "Your list is currently pending administrator approval."
     else
       require "yaml"
       map = HashWithIndifferentAccess.new(YAML.load @import.mapping)
