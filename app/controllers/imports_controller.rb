@@ -45,8 +45,13 @@ class ImportsController < ApplicationController
       @import = Import.find(params[:id])
     end
 
+    @total_contacts_count = current_user.lists.sum_number_of_contacts.first.total.to_i
+    @allowed_contacts_count = current_user.subscription.plan.maximum_numbers
+
     if @import.hold
       redirect_to new_contact_path, :alert => "Your list is currently pending administrator approval."
+    elsif((@total_contacts_count + @import.number_of_contacts) > @allowed_contacts_count)
+      redirect_to new_contact_path, :alert => "Your list is currently pending administrator approval. Please upgrade your account in order to add more subscribers to the system."
     else
       require "yaml"
       map = HashWithIndifferentAccess.new(YAML.load @import.mapping)
