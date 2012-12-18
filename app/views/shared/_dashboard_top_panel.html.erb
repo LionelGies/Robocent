@@ -1,7 +1,8 @@
 <div class="top_panel">
   <div class="wrapper">
     <div class="user">
-      <%= image_tag("dashboard/user_avatar.png", :class => "user_avatar") %>
+      <%#= image_tag("dashboard/user_avatar.png", :class => "user_avatar") %>
+      <img src="/assets/dashboard/user_avatar.png" class="user_avatar" alt=""/>
       <span class="label">
         <% if current_user.present? %>
           <%= current_user.name %>
