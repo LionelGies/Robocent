@@ -1,6 +1,24 @@
-<h1>Editing contact</h1>
+<div class="g_12 separator"><span></span></div>
 
-<%= render 'form' %>
+<div class="g_12">
+  <%= render 'form' %>
+</div>
 
-<%= link_to 'Show', @contact %> |
-<%= link_to 'Back', contacts_path %>
+<script type="text/javascript">
+  $(function(){
+    $(".edit_contact select").uniform();
+
+    $("form.edit_contact").submit(function(){
+    var action = $(this).attr('action');
+    $.ajax({
+      type: 'POST',
+      url: action,
+      data: $(this).serialize(),
+      dataType: "script"
+    });
+    $("#contacts-table .ajax-loading").show();
+    $.fancybox.close();
+    return false;
+  });
+  });
+</script>

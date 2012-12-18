@@ -28,7 +28,7 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :layout => false }
       format.json { render json: @contact }
     end
   end
@@ -47,6 +47,7 @@ class ContactsController < ApplicationController
   # GET /contacts/1/edit
   def edit
     @contact = Contact.find(params[:id])
+    render :layout => false
   end
 
   # POST /contacts
@@ -72,11 +73,11 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
-        format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to contacts_path, notice: 'Contact was successfully updated.' }
+        format.js
       else
-        format.html { render action: "edit" }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
+        format.html { redirect_to contacts_path }
+        format.js
       end
     end
   end
@@ -89,7 +90,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to contacts_url }
-      format.json { head :no_content }
+      format.js
     end
   end
 end

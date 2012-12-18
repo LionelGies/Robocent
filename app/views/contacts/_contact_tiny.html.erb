@@ -1,0 +1,16 @@
+<tr id="contact_row_<%= contact.id %>">
+  <td><%= contact.list.name %></td>
+  <td><%= contact.phone_number %></td>
+  <td><%= contact.name %></td>
+  <td><%= contact.email %></td>
+  <td>
+    <div style="float: left">
+      <%= link_to "Edit", edit_contact_path(contact), :class => "fancybox fancybox.ajax simple_buttons", :style => "padding: 0 10px 0 10px;" %>
+      /
+    </div>
+    <%= form_tag contact_path(contact), :method => "delete", :id => "contact_delete_link", :style => "float:left;margin-left:5px;" do %>
+      <%= submit_tag "Delete", :class => "submitIt simple_buttons" %>
+    <% end %>
+    <div class="clear"></div>
+  </td>
+</tr>

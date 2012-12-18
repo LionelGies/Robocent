@@ -42,7 +42,7 @@ Robocent::Application.routes.draw do
   # public pages
   #
   match "terms"     => "public#terms",      :as => "terms"
-  match "contact"   => "public#contact",    :as => "contact"
+  match "contact-us"   => "public#contact",    :as => "contact_us"
   match "guide"     => "public#guide",      :as => "guide"
   match "tutorials" => "public#tutorials",  :as => "tutorials"
   match "faq"       => "public#faq",        :as => "faq"

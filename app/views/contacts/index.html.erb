@@ -29,23 +29,21 @@
       <h4 class="widget_header_title wwIcon i_16_tables">Search Results for '<%= params[:search] %>'</h4>
     </div>
     <div class="widget_contents noPadding">
-      <table class="tables" id="contact-lists-table">
+      <table class="tables" id="contacts-table">
         <thead>
         <th>List Name</th>
         <th>Phone</th>
         <th>Name</th>
         <th>Email</th>
-        <th></th>
+        <th>
+          <div class="ajax-loading" style="display:none">
+            <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
+          </div>
+        </th>
         </thead>
         <tbody>
           <% @search_contacts.each do |contact| %>
-            <tr>
-              <td><%= contact.list.name %></td>
-              <td><%= contact.phone_number %></td>
-              <td><%= contact.name %></td>
-              <td><%= contact.email %></td>
-              <td>View / Edit</td>
-            </tr>
+            <%= render :partial => "contact_tiny", :locals => {:contact => contact} %>
           <% end %>
         </tbody>
       </table>
@@ -119,6 +117,19 @@
           dataType: "script"
         });
         $("#contact-lists-table .ajax-loading").show();
+      }
+      return false;
+    });
+    $("form#contact_delete_link").live("submit", function(){
+      if (confirm('Are you sure to delete!')) {
+        var action = $(this).attr("action");
+        $.ajax({
+          type: 'DELETE',
+          url: action,
+          data: $(this).serialize(),
+          dataType: "script"
+        });
+        $("#contacts-table .ajax-loading").show();
       }
       return false;
     });

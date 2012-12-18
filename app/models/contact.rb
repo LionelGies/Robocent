@@ -14,6 +14,7 @@ class Contact < ActiveRecord::Base
   scope :by_phone_number, lambda{ |phone| {:conditions => ["contacts.phone_number LIKE ?", "%#{phone}%"]} }
 
   after_create :update_number_of_contacts
+  after_destroy :decrease_number_of_contacts
 
   def name
     "#{first_name} #{last_name}"
@@ -53,6 +54,11 @@ class Contact < ActiveRecord::Base
 
   def update_number_of_contacts
     list.number_of_contacts += 1
+    list.save
+  end
+
+  def decrease_number_of_contacts
+    list.number_of_contacts -= 1
     list.save
   end
 end

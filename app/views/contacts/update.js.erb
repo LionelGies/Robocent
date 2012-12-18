@@ -1,0 +1,4 @@
+<% if @contact.present? %>
+  $("#contacts-table .ajax-loading").hide();
+  $("#contacts-table tbody tr#contact_row_<%= @contact.id %>").replaceWith("<%= escape_javascript(render :partial => "contact_tiny", :locals => {:contact => @contact}).html_safe %>");
+<% end %>
