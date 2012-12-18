@@ -36,7 +36,6 @@ class Contact < ActiveRecord::Base
     self.first_name = value if(col == "first_name")
     self.last_name = value if(col == "last_name")
     self.email = value if(col == "email")
-    self.do_not_import = value if(col == "do_not_import")
     self.company_name = value if(col == "company_name")
     self.address_1 = value if(col == "address_1")
     self.address_2 = value if(col == "address_2")

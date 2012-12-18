@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121216002034) do
+ActiveRecord::Schema.define(:version => 20121218030521) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20121216002034) do
     t.boolean  "uploaded"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.text     "mapping"
   end
 
   create_table "lists", :force => true do |t|

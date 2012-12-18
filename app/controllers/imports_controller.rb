@@ -15,42 +15,55 @@ class ImportsController < ApplicationController
 
   def map_column
     @import = Import.find(params[:id])
+    sheet1 = @import.get_sheet
+    @import.number_of_contacts = sheet1.count
+    @import.hold = true if @import.number_of_contacts > 499
+    @import.save
+
     if @import.uploaded
       redirect_to new_contact_path, :alert => "This File is already uploaded."
     end
     @data = []
-    sheet = @import.get_sheet
-
-    @import.number_of_contacts = sheet.count - 1
-    @import.hold = true if @import.number_of_contacts > 499
-    @import.save
-
-    if @import.hold
-      redirect_to new_contact_path, :alert => "You are trying to upload more than 499 contacts in one File. Your upload is awaiting for moderation by admin."
-    else
-      sheet.first.each do |col|
-        @data << col
+    sheet1 = @import.get_sheet
+    sheet1.each_with_index do |row, index|
+      @columns_count = row.count
+      break if index > 9
+      d = []
+      row.each do |col|
+        d << col if col.present?
+        d << " " if col.blank?
       end
-    end
+      @data << d
+    end   
   end
 
   def insert_into_db
     @import = Import.find(params[:id])
-    sheet = @import.get_sheet
-    count = 0
-    sheet.each_with_index do |row, index|
-      if index > 0
-        contact = current_user.contacts.new
-        contact.list_id = @import.list_id
-        for i in 0..params["row"].size.to_i - 1 do
-          contact.set_value(params["row"]["#{i}"], row[i])
-        end
-        count += 1 if contact.save
-      end
+    if params["row"].present?
+      @import.mapping = params["row"].to_hash
+      @import.save
+      @import = Import.find(params[:id])
     end
+
+    if @import.hold
+      redirect_to new_contact_path, :alert => "You are trying to upload more than 499 contacts in one File. Your upload is awaiting for moderation by admin."
+    else
+      require "yaml"
+      map = HashWithIndifferentAccess.new(YAML.load @import.mapping)
+      sheet = @import.get_sheet
+      count = 0
+      sheet.each_with_index do |row, index|
+          contact = current_user.contacts.new
+          contact.list_id = @import.list_id
+          for i in 0..map.size.to_i - 1 do
+            contact.set_value(map["#{i}"], row[i])
+          end
+          count += 1 if contact.save
+      end
     
-    @import.uploaded = true
-    @import.save
-    redirect_to new_contact_path, :notice => "successfully uploaded #{count} contacts."
+      @import.uploaded = true
+      @import.save
+      redirect_to new_contact_path, :notice => "successfully uploaded #{count} contacts."
+    end
   end
 end

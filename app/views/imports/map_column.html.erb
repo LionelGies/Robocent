@@ -1,5 +1,5 @@
 <div class="g_6 contents_header">
-  <h3 class="i_16_ui tab_label">Map Column of Contacts With Our Database</h3>
+  <h3 class="i_16_ui tab_label">Select how to label your data</h3>
 </div>
 <div class="g_4"></div>
 <div class="g_2">
@@ -14,67 +14,99 @@
 
 <%= form_tag(insert_into_db_import_path(@import)) do %>
   <div class="g_12">
-    <% @data.each_with_index do |column, index| %>
-      <div class="g_2">
-        <div class="">
-          <span class="label">
-            <%= column %>
-          </span>
-        </div>
-        <div class="">
-          <%= select_tag "row[#{index}]", options_for_select(Contact::get_column_array), :prompt => "-- select --", :class => "simple_form", :id => "row_#{index}" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <div class="g_12">
-    <div class="g_4"></div>
-    <div class="g_8">
-      <%= submit_tag "Submit", :class => "submitIt simple_buttons" %>
+    <div class="g_6">
+      <h4 class="widget_header_title">Left blank Unlabeled columns</h4>
     </div>
-  </div>
-<% end %>
+    <div class="g_6">
+      <h4 class="widget_header_title" style="width:100%;text-align:right;">
+        File Name: <%= File.basename(@import.file_name.path) %><br/>
+        Number of Contacts: <%= @import.number_of_contacts %> |
+        columns: <%= @columns_count %>
+      </h4>
+    </div>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('[id ^= "row_"]').change(function(){
-      var id = $(this).attr('id');
-      id = id.replace('row_','');
-      var value = $(this).val();
+    <div class="g_12" style="overflow:auto;overflow-y: hidden;-ms-overflow-y: hidden;">
+      <table class="tables">
+        <thead>
+          <tr>
+            <% for i in (0..@columns_count-1) do %>
+                <td>
+                  <%= "#{i+1}." %>
+                </td>
+                <td>
+                  <%= select_tag "row[#{i}]", options_for_select(Contact::get_column_array), :prompt => "Select Label", :class => "simple_form", :id => "row_#{i}" %>
+                </td>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
 
-<% for i in (0..@data.count-1) do %>
-          var v = $("#row_<%= i %>").val();
-          if(v == value && <%= i %> != id)
-          {
-            $("#error").delay(500).fadeIn(1500);
-            $("#error").delay(3000).fadeOut(1500);
-          }
+            <% @data.each_with_index do |row, index| %>
+              <tr>
+                <% row.compact.each_with_index do |column, index| %>
+                  <td colspan="2">
+                    <%= column %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="g_12">
+      <div class="g_4"></div>
+      <div class="g_8">
+        <%= submit_tag "Submit", :class => "submitIt simple_buttons", :style => "width:150px;" %>
+      </div>
+    </div>
   <% end %>
-      });
 
-      $("form").submit(function(){
-        var arr = new Array();
-  <% for i in (0..@data.count-1) do %>
-            arr[<%= i %>] = $("#row_<%= i %>").val();
-    <% end %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('[id ^= "row_"]').change(function(){
+        var id = $(this).attr('id');
+        id = id.replace('row_','');
+        var value = $(this).val();
 
-    <% Contact::get_column_array.each do |column|  %>
-            if(count_occurences(arr, "<%= column %>") > 1){
+  <% for i in (0..@columns_count-1) do %>
+            var v = $("#row_<%= i %>").val();
+            if(v == value && <%= i %> != id)
+            {
               $("#error").delay(500).fadeIn(1500);
               $("#error").delay(3000).fadeOut(1500);
-              return false;
             }
     <% end %>
-          return true;
         });
-      });
 
-      function count_occurences(arr, target)
-      {
-        var count = $.grep(arr, function (elem) {
-          return elem === target;
-        }).length;
-        return count
-      }
-    </script>
+        $("form").submit(function(){
+          var arr = new Array();
+    <% for i in (0..@columns_count-1) do %>
+              arr[<%= i %>] = $("#row_<%= i %>").val();
+      <% end %>
 
+      <% Contact::get_column_array.each do |column|  %>
+              if(count_occurences(arr, "<%= column %>") > 1){
+                $("#error").delay(500).fadeIn(1500);
+                $("#error").delay(3000).fadeOut(1500);
+                return false;
+              }
+      <% end %>
+            return true;
+          });
+        });
+
+        function count_occurences(arr, target)
+        {
+          var count = $.grep(arr, function (elem) {
+            return elem === target;
+          }).length;
+          return count
+        }
+      </script>
+
+      <style type="text/css">
+        .selector{
+          min-width: 130px;
+        }
+      </style>

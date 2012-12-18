@@ -7,7 +7,6 @@ class Import < ActiveRecord::Base
   belongs_to :list
 
   def get_sheet
-    #file_path = self.file_name.url.to_s
     au = ExcelUploader.new
     au.download!(self.file_name.url.to_s)
     au.retrieve_from_cache!(au.cache_name)
@@ -23,7 +22,7 @@ class Import < ActiveRecord::Base
       sheet1 = book.worksheet 0
     elsif file_path.include? "csv"
       require "csv"
-      sheet1 = CSV.open(file_path, "r")
+      sheet1 = CSV.open(file_path, "rb")
     end
 
     return sheet1
