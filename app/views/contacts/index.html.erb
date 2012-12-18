@@ -23,7 +23,7 @@
   </form>
 </div>
 
-<% if @search_contacts.present? %>
+<% if params[:search].present? %>
   <div class="g_12">
     <div class="widget_header wwOptions">
       <h4 class="widget_header_title wwIcon i_16_tables">Search Results for '<%= params[:search] %>'</h4>
@@ -42,8 +42,16 @@
         </th>
         </thead>
         <tbody>
-          <% @search_contacts.each do |contact| %>
-            <%= render :partial => "contact_tiny", :locals => {:contact => contact} %>
+          <% if @search_contacts.present? %>
+            <% @search_contacts.each do |contact| %>
+              <%= render :partial => "contact_tiny", :locals => {:contact => contact} %>
+            <% end %>
+          <% else %>
+          <tr>
+            <td colspan="5" style="text-align:center">
+              No Records Found.
+            </td>
+          </tr>
           <% end %>
         </tbody>
       </table>
@@ -108,7 +116,7 @@
     $(".fancybox").fancybox();
 
     $("form#list_delete_link").live("submit", function(){
-      if (confirm('Are you sure to delete!')) {
+      if (confirm('By deleting this list, all contacts within this list will be erased. Do you want to proceed?')) {
         var action = $(this).attr("action");
         $.ajax({
           type: 'DELETE',
