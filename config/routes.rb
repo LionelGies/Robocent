@@ -1,4 +1,10 @@
 Robocent::Application.routes.draw do
+
+  put   'update-billing/:id' => 'billing#update',       :as => :update_billing
+  match 'edit-billing/:id'   => 'billing#edit',         :as => :edit_billing
+  post  'fund-account'       => 'billing#fund_account', :as => :fund_account
+  match 'billing'            => 'billing#index',        :as => :billing
+
   resources :imports do
     collection do
       get :save_s3_file_path

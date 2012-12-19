@@ -1,5 +1,6 @@
 class Receipt < ActiveRecord::Base
-  attr_accessible :credit, :current_balance, :debit, :free, :memo, :user_id
+  attr_accessible :credit, :current_balance, :debit, :free, :memo, :user_id,
+    :stripe_charge_id
 
   belongs_to :user
 

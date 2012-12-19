@@ -3071,8 +3071,8 @@ public_images/youtube.jpg: public_images/youtube-6ab26fd1b8f7462960916bce06092e3
 public_images/youtube/index.jpg: public_images/youtube-6ab26fd1b8f7462960916bce06092e33.jpg
 application.js: application-32ed6ebaba49211fc69e08f40c7b97c4.js
 application/index.js: application-32ed6ebaba49211fc69e08f40c7b97c4.js
-dashboard.js: dashboard-be23d008efc1288cd27a179b66b41789.js
-dashboard/index.js: dashboard-be23d008efc1288cd27a179b66b41789.js
+dashboard.js: dashboard-f41a9f28b7e3de65914bc93681393595.js
+dashboard/index.js: dashboard-f41a9f28b7e3de65914bc93681393595.js
 dashboard/Flot/excanvas.js: dashboard/Flot/excanvas-5e6d75c7b564806ccb01cabffbb4e58b.js
 dashboard/Flot/excanvas/index.js: dashboard/Flot/excanvas-5e6d75c7b564806ccb01cabffbb4e58b.js
 public.js: public-001a99e4083605a1759a159e991ea4b8.js

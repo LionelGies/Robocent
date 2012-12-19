@@ -18,7 +18,7 @@
 //= require dashboard/ColorBox/jquery.colorbox
 //= require jquery.fancybox.pack
 //= require dashboard/kanrisha
-
+//= require stripe
 
 // Contacts
 $(function() {

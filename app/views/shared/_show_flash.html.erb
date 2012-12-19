@@ -1,0 +1,30 @@
+<% if flash.present? %>
+  <% if flash[:notice].present? %>
+    <div class="g_12" id="flash" style="display:none">
+      <div class="success iDialog">
+        <%= flash[:notice] %>
+      </div>
+    </div>
+  <% end %>
+  <% if flash[:alert].present? %>
+    <div class="g_12" id="flash" style="display:none">
+      <div class="alert iDialog">
+        <%= flash[:alert] %>
+      </div>
+    </div>
+  <% end %>
+  <% if flash[:error].present? %>
+    <div class="g_12" id="flash" style="display:none">
+      <div class="error iDialog">
+        <%= flash[:error] %>
+      </div>
+    </div>
+  <% end %>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#flash").delay(500).fadeIn(1500);
+      $("#flash").delay(3000).fadeOut(1500);
+    });
+  </script>
+<% end %>

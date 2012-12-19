@@ -1,0 +1,37 @@
+<div class="widget_header">
+  <h4 class="widget_header_title wwIcon i_16_valid" style="float:left">
+    Billing Information
+  </h4>
+  <div style="float:right">
+    <%= link_to "Edit", "#", :id => "billing-edit-button", :class => "simple_buttons", :style => "padding: 0 15px 0 15px;" %>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="widget_contents noPadding">
+  <table class="tables">
+    <tr>
+      <td>Card Holder Name</td>
+      <td>
+        <%= @billing_setting.card_holder_name %>
+      </td>
+    </tr>
+    <tr>
+      <td>Card Number</td>
+      <td>
+        <%= "*********#{@billing_setting.card_last_four_digits}" %>
+      </td>
+    </tr>
+    <tr>
+      <td>Card Expiration</td>
+      <td>
+        <%= @billing_setting.card_expiry_date.strftime("%B %d, %Y") %>
+      </td>
+    </tr>
+    <tr>
+      <td>Card Type</td>
+      <td>
+        <%= @billing_setting.card_type %>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -25,8 +25,8 @@
         <span class="tab_label">Send a Call</span>
       <% end %>
     </li>
-    <li class="i_32_tables">
-      <%= link_to "#" do %>
+    <li class="i_32_tables <%= "active_tab" if controller_name == "billing" %>">
+      <%= link_to billing_path do %>
         <span class="tab_label">Billing</span>
       <% end %>
     </li>

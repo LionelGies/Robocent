@@ -1,0 +1,98 @@
+<div class="g_8 contents_header">
+  <h3 class="i_16_tables tab_label">Billing</h3>
+</div>
+<div class="g_2" id="billing">
+  <div class="ajax-loading" style="display:none">
+    <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
+  </div>
+</div>
+<div class="g_2">
+  <%= link_to "Add Funds", "#", :class => "simple_buttons contact-button", :id => "new_list_link" %>
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+<%= render "shared/show_flash" %>
+
+<div class="g_6">
+  <h4 class="widget_header_title" style="width:100%;text-align:left;">
+    Your Account Balance is currently $
+    <span id="current-balance">
+      <%= "%.3f" % @current_balance %>
+    </span>
+    <br/>
+    You may send out
+    <span id="total-call-can">
+      <%= @total_call_can %>
+    </span>
+    calls or texts with your current balance.
+    <br/>
+  </h4>
+</div>
+<div class="g_6">
+
+</div>
+<div class="clear"></div>
+<div class="g_6">
+  <div id="show-billing">
+    <%= render "show" %>
+  </div>
+  <div id="edit-billing" style="display:none">
+    <%= render "edit" %>
+  </div>
+</div>
+<div class="g_6">
+
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+
+
+
+<div id="dialog" title="Add Funds">
+  <div class="dialog">
+    <%= render "add_funds_form" %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $(".fancybox").fancybox();
+
+    $(".edit_billing_setting select").uniform();
+    
+    $("#fund-account-form").submit(function(){
+      var amount = parseFloat($("#fund-account-form #amount").val());
+      if(amount >= 0.5)
+      {
+        var action = $(this).attr("action");
+        $.ajax({
+          type: 'POST',
+          url: action,
+          data: $(this).serialize(),
+          dataType: "script"
+        });
+        $("#billing .ajax-loading").show();
+        $("#dialog").dialog("close");
+      }
+      else
+      {
+        alert("Amount can't be less than $0.5 !");
+      }
+      return false;
+    });
+
+    $("#billing-edit-button").click(function(){
+      $("#show-billing").hide();
+      $("#edit-billing").show();
+      return false;
+    });
+    $("#billing-close-button").click(function(){
+      $("#edit-billing").hide();
+      $("#show-billing").show();
+      return false;
+    });
+
+  });
+</script>
