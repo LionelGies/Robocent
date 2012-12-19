@@ -31,18 +31,26 @@
                 </td>
               </tr>
             <% end %>
+          <% else %>
+            <tr>
+              <td colspan="3" style="text-align:center">
+                No Records Found.
+              </td>
+            </tr>
           <% end %>
         </tbody>
       </table>
-      <div class="g_12">
-        <h4 class="widget_header_title">
-          Total Funded ( From
-          <%= @funds.first.created_at.in_time_zone(current_user.time_zone).strftime("%B %d, %Y") %>
-          To <%= @funds.last.created_at.in_time_zone(current_user.time_zone).strftime("%B %d, %Y") %>
-          ) :
-          $<%= "%.2f" % @funds.sum(:credit) %>
-        </h4>
-      </div>
+      <% if @funds.present? %>
+        <div class="g_12">
+          <h4 class="widget_header_title">
+            Total Funded ( From
+            <%= @funds.first.created_at.in_time_zone(current_user.time_zone).strftime("%B %d, %Y") %>
+            To <%= @funds.last.created_at.in_time_zone(current_user.time_zone).strftime("%B %d, %Y") %>
+            ) :
+            $<%= "%.2f" % @funds.sum(:credit) %>
+          </h4>
+        </div>
+      <% end %>
     </div>
     <div id="table_wTabs-1">
       <div class="g_12">
