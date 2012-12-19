@@ -4,6 +4,8 @@ class Receipt < ActiveRecord::Base
 
   belongs_to :user
 
+  scope :by_date_range, lambda{ |*args| {:conditions => ["receipts.created_at BETWEEN ? AND ?", args.first, args.second]} }
+
   after_create :update_account_balance
 
   private

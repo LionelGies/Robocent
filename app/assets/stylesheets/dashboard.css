@@ -8,6 +8,8 @@
  *= require dashboard/colorbox
  *= require dashboard/style.css
  *= require jquery.fancybox
+ *= require dhtmlxcalendar
+ *= require dhtmlxcalendar_omega
  *= require_self
 */
 

@@ -9,6 +9,26 @@ class BillingController < ApplicationController
     @price_per_call_or_text = @subscribed_plan.price_per_call_or_text
     @total_call_can = (@current_balance / (@price_per_call_or_text / 100 )).to_i
     @billing_setting = current_user.billing_setting
+    @funds = current_user.receipts.where({:free => nil, :debit => "0"})
+
+    Time.zone = current_user.time_zone
+    if params[:date_from].present? && params[:date_to].present?
+      @date_from = Time.zone.parse(params[:date_from].to_date.to_s).beginning_of_day.utc
+      @date_to = Time.zone.parse(params[:date_to].to_date.to_s).end_of_day.utc
+    else
+      @date_from = Time.zone.now.beginning_of_month.utc
+      @date_to = Time.zone.now.end_of_day.utc
+    end
+    Time.zone = "UTC"
+
+    @transactions = current_user.receipts.by_date_range(@date_from, @date_to).order("created_at desc")
+    if @transactions.present?
+      @beginning_balance = @transactions.last.current_balance - @transactions.last.credit + @transactions.last.debit
+      @total_debits = @transactions.sum(:debit)
+      @total_credits = @transactions.sum(:credit)
+      @total_change = (@total_credits - @total_debits).abs
+      @ending_balance = @transactions.first.current_balance
+    end
   end
 
   def fund_account
