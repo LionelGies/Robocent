@@ -14,8 +14,9 @@
 
 <%= render "shared/show_flash" %>
 
+<div class="g_6"></div>
 <div class="g_6">
-  <h4 class="widget_header_title" style="width:100%;text-align:left;">
+  <h4 class="widget_header_title" style="width:100%;text-align:right;">
     Your Account Balance is currently $
     <span id="current-balance">
       <%= "%.3f" % @current_balance %>
@@ -29,23 +30,7 @@
     <br/>
   </h4>
 </div>
-<div class="g_6">
-
-</div>
 <div class="clear"></div>
-<div class="g_6">
-  <div id="show-billing">
-    <%= render "show" %>
-  </div>
-  <div id="edit-billing" style="display:none">
-    <%= render "edit" %>
-  </div>
-</div>
-<div class="g_6">
-
-</div>
-
-<div class="g_12 separator"><span></span></div>
 
 <%= render "transactions" %>
 
@@ -94,4 +79,15 @@
     });
 
   });
+
+  window.onload = function() {
+    var myCalendar1 = new dhtmlXCalendarObject(["date_from"]);
+    myCalendar1.setDateFormat("%F %d, %Y");
+    myCalendar1.hideTime();
+    myCalendar1.setSkin('omega');
+    var myCalendar2 = new dhtmlXCalendarObject(["date_to"]);
+    myCalendar2.setDateFormat("%F %d, %Y");
+    myCalendar2.hideTime();
+    myCalendar2.setSkin('omega');
+  };
 </script>

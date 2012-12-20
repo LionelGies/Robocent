@@ -26,8 +26,8 @@
                 <td>
                   <%= fund.memo %>
                 </td>
-                <td>
-                  <%= "%.2f" % fund.credit unless fund.credit.zero? %>
+                <td style="text-align: right">
+                  <%= "%.3f" % fund.credit unless fund.credit.zero? %>
                 </td>
               </tr>
             <% end %>
@@ -47,7 +47,7 @@
             <%= @funds.first.created_at.in_time_zone(current_user.time_zone).strftime("%B %d, %Y") %>
             To <%= @funds.last.created_at.in_time_zone(current_user.time_zone).strftime("%B %d, %Y") %>
             ) :
-            $<%= "%.2f" % @funds.sum(:credit) %>
+            $<%= "%.3f" % @funds.sum(:credit) %>
           </h4>
         </div>
       <% end %>
@@ -83,14 +83,14 @@
                 <td>
                   <%= tx.memo %>
                 </td>
-                <td>
-                  <%= "%.2f" % tx.debit unless tx.debit.zero? %>
+                <td style="text-align: right">
+                  <%= "%.3f" % tx.debit unless tx.debit.zero? %>
                 </td>
-                <td>
-                  <%= "%.2f" % tx.credit unless tx.credit.zero? %>
+                <td style="text-align: right">
+                  <%= "%.3f" % tx.credit unless tx.credit.zero? %>
                 </td>
-                <td>
-                  <%= "%.2f" % tx.current_balance %>
+                <td style="text-align: right">
+                  <%= "%.3f" % tx.current_balance %>
                 </td>
               </tr>
             <% end %>
@@ -101,10 +101,19 @@
               </td>
             </tr>
           <% end %>
+            <tr>
+              <td colspan="5" height="15"></td>
+            </tr>
         </tbody>
       </table>
       <% if @transactions.present? %>
         <div class="g_6">
+          <div id="show-billing">
+            <%= render "show" %>
+          </div>
+          <div id="edit-billing" style="display:none">
+            <%= render "edit" %>
+          </div>
         </div>
         <div class="g_6">
           <table class="tables">
@@ -122,7 +131,7 @@
                   Beginning Balance
                 </td>
                 <td style="text-align: right">
-                  $<%= "%.2f" % @beginning_balance %>
+                  $<%= "%.3f" % @beginning_balance %>
                 </td>
               </tr>
               <tr>
@@ -130,7 +139,7 @@
                   Total Credits
                 </td>
                 <td style="text-align: right">
-                  $<%= "%.2f" % @total_credits %>
+                  $<%= "%.3f" % @total_credits %>
                 </td>
               </tr>
               <tr>
@@ -138,7 +147,7 @@
                   Total Debits
                 </td>
                 <td style="text-align: right">
-                  $<%= "%.2f" % @total_debits %>
+                  $<%= "%.3f" % @total_debits %>
                 </td>
               </tr>
               <tr>
@@ -146,7 +155,7 @@
                   Total Change
                 </td>
                 <td style="text-align: right">
-                  $<%= "%.2f" % @total_change %>
+                  $<%= "%.3f" % @total_change %>
                 </td>
               </tr>
               <tr>
@@ -154,7 +163,7 @@
                   Ending Balance
                 </td>
                 <td style="text-align: right">
-                  $<%= "%.2f" % @ending_balance %>
+                  $<%= "%.3f" % @ending_balance %>
                 </td>
               </tr>
             </tbody>
@@ -164,16 +173,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  window.onload = function() {
-    var myCalendar1 = new dhtmlXCalendarObject(["date_from"]);
-    myCalendar1.setDateFormat("%F %d, %Y");
-    myCalendar1.hideTime();
-    myCalendar1.setSkin('omega');
-    var myCalendar2 = new dhtmlXCalendarObject(["date_to"]);
-    myCalendar2.setDateFormat("%F %d, %Y");
-    myCalendar2.hideTime();
-    myCalendar2.setSkin('omega');
-  };
-</script>
