@@ -14,23 +14,21 @@
 
 <%= render "shared/show_flash" %>
 
-<div class="g_6"></div>
 <div class="g_6">
-  <h4 class="widget_header_title" style="width:100%;text-align:right;">
-    Your Account Balance is currently $
-    <span id="current-balance">
-      <%= "%.3f" % @current_balance %>
-    </span>
-    <br/>
-    You may send out
-    <span id="total-call-can">
-      <%= @total_call_can %>
-    </span>
-    calls or texts with your current balance.
-    <br/>
-  </h4>
+  <div id="show-billing">
+    <%= render "show" %>
+  </div>
+  <div id="edit-billing" style="display:none">
+    <%= render "edit" %>
+  </div>
 </div>
-<div class="clear"></div>
+
+<div class="g_6">
+  <%= render "account_info" %>
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
 
 <%= render "transactions" %>
 

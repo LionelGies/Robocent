@@ -1,0 +1,37 @@
+<div class="widget_header">
+  <h4 class="widget_header_title wwIcon i_16_valid">
+    Account Information
+  </h4>
+</div>
+<div class="widget_contents noPadding">
+  <table class="tables">
+    <tr>
+      <td>Account Balance</td>
+      <td style="text-align: right">
+        <span id="current-balance">
+          $<%= "%.3f" % @current_balance %>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td style="line-height: 36px;">Calls or Texts that can be Sent with this Balance</td>
+      <td style="text-align: right">
+        <span id="total-call-can">
+          <%= @total_call_can %>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td>Price per Call or Text</td>
+      <td style="text-align: right">
+        $<%= "%.3f" % @price_per_call_or_text %>
+      </td>
+    </tr>
+    <tr>
+      <td>Monthly Charge</td>
+      <td style="text-align: right">
+        $<%= "%.3f" % @monthly_charge %>
+      </td>
+    </tr>
+  </table>
+</div>

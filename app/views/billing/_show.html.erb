@@ -33,5 +33,9 @@
         <%= @billing_setting.card_type %>
       </td>
     </tr>
+    <tr>
+      <td>Last Updated</td>
+      <td><%= @billing_setting.updated_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %></td>
+    </tr>
   </table>
 </div>

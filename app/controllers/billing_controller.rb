@@ -6,6 +6,7 @@ class BillingController < ApplicationController
   def index
     @current_balance = current_user.current_balance
     @subscribed_plan = current_user.subscription.plan
+    @monthly_charge = @subscribed_plan.amount.to_f / 100.0
     @price_per_call_or_text = @subscribed_plan.price_per_call_or_text
     @total_call_can = (@current_balance / (@price_per_call_or_text / 100 )).to_i
     @billing_setting = current_user.billing_setting
