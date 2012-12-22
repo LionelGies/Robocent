@@ -11,13 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121219002412) do
+ActiveRecord::Schema.define(:version => 20121221223505) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
     t.float    "current_balance", :default => 0.0
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+  end
+
+  create_table "billing_events", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "event_type"
+    t.text     "response"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "billing_settings", :force => true do |t|
