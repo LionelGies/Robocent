@@ -46,18 +46,6 @@
           <% end %>
         </tr>
         <tr>
-          <td>Free Credits</td>
-          <% @plans.each do |p| %>
-            <td>$10.00</td>
-          <% end %>
-        </tr>
-        <tr>
-          <td>30 Day Free Trial</td>
-          <% @plans.each do |p| %>
-            <td><%= p.trial_period_days.to_s == "30" ? "Yes" : "No" %></td>
-          <% end %>
-        </tr>
-        <tr>
           <td>Select One</td>
           <% @plans.each_with_index do |p, index| %>
             <% if @current_plan.id == p.id %>
@@ -73,7 +61,7 @@
         </tr>
         <tr>
           <td colspan="6" style="text-align: center">
-            <%= f.submit "Migrate Now", :class => "submitIt simple_buttons" %>
+            <%= f.submit "Change Now", :class => "submitIt simple_buttons" %>
           </td>
         </tr>
       </table>
