@@ -2,8 +2,8 @@ class StripeWebhookController < ApplicationController
   skip_before_filter :verify_authenticity_token
   def create
     begin
-      codes = %w(charge.succeeded charge.failed charge.refunded charge.dispute.created charge.dispute.updated charge.dispute.closed)
-      if codes.include?(params["type"])
+      types = %w(charge.succeeded charge.failed charge.refunded charge.dispute.created charge.dispute.updated charge.dispute.closed)
+      if types.include?(params["type"])
         billing_setting = BillingSetting.find_by_stripe_id(params["data"]["object"]["customer"])
         BillingEvent.create(
           :event_type     => params["type"],

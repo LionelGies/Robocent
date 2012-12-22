@@ -32,4 +32,12 @@ class Notification < ActionMailer::Base
       :subject => "Your password reset request - Robocent")
   end
 
+  def charge_succeeded(event)
+    @user = event.user
+    @event = HashWithIndifferentAccess.new(YAML.load event.response)
+    headers['X-SMTPAPI'] = "{\"category\" : \"Payment Succeeded\"}"
+    mail(:to => @user.email,
+        :subject => "Thanks for your payment!")
+  end
+
 end
