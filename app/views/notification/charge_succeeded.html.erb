@@ -2,7 +2,8 @@ Dear <%= @user.name %>,
 <br/><br/>
 Thanks for your payment.
 .<br/><br/>
-<%= @event.inspect %>
+Description: <%= @event["description"] %><br/>
+Amount: <%= "$%.3f" % (@event["amount"].to_f / 100) %>
 <br/><br/>
 If you ever have any questions, comments or need assistance,
 please do not hesitate to contact us via live chat,
