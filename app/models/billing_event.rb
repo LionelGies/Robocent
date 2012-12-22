@@ -6,6 +6,8 @@ class BillingEvent < ActiveRecord::Base
   after_create :send_notification_email
 
 
+  private
+
   def send_notification_email
     Notification.charge_succeeded(self).deliver if self.event_type == "charge.succeeded"
   end
