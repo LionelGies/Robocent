@@ -1,10 +1,13 @@
-<div class="g_8 contents_header">
+<div class="g_6 contents_header">
   <h3 class="i_16_tables tab_label">Billing</h3>
 </div>
 <div class="g_2" id="billing">
   <div class="ajax-loading" style="display:none">
     <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
   </div>
+</div>
+<div class="g_2">
+  <%= link_to "Upgrade/Downgrade", migration_path, :class => "simple_buttons contact-button" %>
 </div>
 <div class="g_2">
   <%= link_to "Add Funds", "#", :class => "simple_buttons contact-button", :id => "new_list_link" %>

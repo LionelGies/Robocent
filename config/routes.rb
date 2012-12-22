@@ -1,5 +1,8 @@
 Robocent::Application.routes.draw do
 
+  put "migrate"           => "subscriptions#migrate", :as => :migrate
+  match "migration"        => "subscriptions#migration", :as => :migration
+
   post 'stripe-webhook'       => 'stripe_webhook#create'
 
   put   'update-billing/:id'  => 'billing#update',       :as => :update_billing

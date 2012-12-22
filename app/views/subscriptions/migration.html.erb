@@ -1,0 +1,88 @@
+<style type="text/css">
+  #plan-select tr td{
+    text-align: center;
+  }
+  #plan-select tr td:first-child{
+    text-align: left;
+  }
+</style>
+
+<div class="g_9 contents_header">
+  <h3 class="i_16_tables tab_label">Migrate Account</h3>
+</div>
+<div class="g_3">
+  <%= link_to "Back to Billing Page", billing_path, :class => "simple_buttons contact-button" %>
+</div>
+<div class="g_12 separator"><span></span></div>
+
+<%= render "shared/show_flash" %>
+
+<div class="g_12">
+  <div class="widget_contents noPadding">
+    <%= form_for(@subscription, :url => migrate_path) do |f| %>
+      <table class="tables" id="plan-select">
+        <tr>
+          <th>Plan Type</th>
+          <% @plans.each do |p| %>
+            <th><%= p.name %></th>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Maximum Contacts</td>
+          <% @plans.each do |p| %>
+            <td><%= number_with_delimiter(p.maximum_numbers) %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Cost per Month</td>
+          <% @plans.each do |p| %>
+            <td>$<%= p.amount/100 %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Cost per Message</td>
+          <% @plans.each do |p| %>
+            <td><%= p.price_per_call_or_text %>&cent;</td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Free Credits</td>
+          <% @plans.each do |p| %>
+            <td>$10.00</td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>30 Day Free Trial</td>
+          <% @plans.each do |p| %>
+            <td><%= p.trial_period_days.to_s == "30" ? "Yes" : "No" %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Select One</td>
+          <% @plans.each_with_index do |p, index| %>
+            <% if @current_plan.id == p.id %>
+              <td>
+                Your Plan
+              </td>
+            <% else %>
+              <td>
+                <%= f.radio_button :plan_id, p.id %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+        <tr>
+          <td colspan="6" style="text-align: center">
+            <%= f.submit "Migrate Now", :class => "submitIt simple_buttons" %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
+
+<div class="g_12">
+  <h4 class="widget_header_title">
+    If you wish to cancel your account, please call 757.821.2121.
+  </h4>
+</div>
