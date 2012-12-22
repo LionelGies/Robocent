@@ -3,7 +3,8 @@ class StripeWebhookController < ApplicationController
   def create
     begin
       types = %w(charge.succeeded charge.failed charge.refunded charge.dispute.created charge.dispute.updated charge.dispute.closed)
-      if types.include?(params["type"])
+      invoice_types = %w(invoice.payment_succeeded invoice.payment_failed)
+      if types.include?(params["type"]) or (invoice_types.include?(params["type"]) and params['data']['object']['total'] != 0)
         billing_setting = BillingSetting.find_by_stripe_id(params["data"]["object"]["customer"])
         BillingEvent.create(
           :event_type     => params["type"],

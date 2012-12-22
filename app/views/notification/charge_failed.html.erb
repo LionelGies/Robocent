@@ -1,6 +1,6 @@
 Dear <%= @user.name %>,
 <br/><br/>
-Thanks for your payment.
+Your payment is failed. Please update your payment method.
 <br/><br/>
 Description: <%= @charge["description"] %><br/>
 Amount: <%= "$%.3f" % (@charge["amount"].to_f / 100) %>

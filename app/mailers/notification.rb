@@ -36,10 +36,29 @@ class Notification < ActionMailer::Base
     @event = BillingEvent.find(event_id)
     @user = @event.user
     require "yaml"
-    @event = HashWithIndifferentAccess.new(YAML.load @event.response)
+    @charge = HashWithIndifferentAccess.new(YAML.load @event.response)
     headers['X-SMTPAPI'] = "{\"category\" : \"Payment Succeeded\"}"
     mail(:to => @user.email,
-        :subject => "Thanks for your payment!")
+      :subject => "Thanks for your payment!")
   end
 
+  def charge_failed(event_id)
+    @event = BillingEvent.find(event_id)
+    @user = @event.user
+    require "yaml"
+    @charge = HashWithIndifferentAccess.new(YAML.load @event.response)
+    headers['X-SMTPAPI'] = "{\"category\" : \"Payment Failed\"}"
+    mail(:to => @user.email,
+      :subject => "Your payment is failed!")
+  end
+
+  def recurring_payment(event_id)
+    @event = BillingEvent.find(event_id)
+    @user = @event.user
+    require "yaml"
+    @invoice = HashWithIndifferentAccess.new(YAML.load @event.response)
+    headers['X-SMTPAPI'] = "{\"category\" : \"Payment Failed\"}"
+    mail(:to => @user.email,
+      :subject => "Monthly Subscription Fee!")
+  end
 end
