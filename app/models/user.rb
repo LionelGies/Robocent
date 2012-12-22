@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :lists,                :dependent => :destroy
   has_many :imports,              :dependent => :destroy
   has_many :contacts,             :dependent => :destroy
+  has_many :billing_events,     :dependent => :destroy
 
   validates :name, :presence => true
   validates :email, :format =>  { :with => /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/ }
