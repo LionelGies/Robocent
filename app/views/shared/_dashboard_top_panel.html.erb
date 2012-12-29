@@ -22,15 +22,15 @@
           <a href="#" title="">
             <span class="label">Balance
               <% if current_user.present? %>
-                <%= "$#{current_user.current_balance}" %>
+                <%= "$%.3f" % current_user.current_balance %>
               <% end %>
             </span>
           </a>
         </li>
         <li class="i_22_ui">
-          <a href="#" title="">
+          <%= link_to contacts_path do %>
             <span class="label">Contacts</span>
-          </a>
+          <% end %>
         </li>
         <li class="i_22_inbox top_inbox">
           <a href="#" title="">
