@@ -10,14 +10,14 @@
           <% end %>
         </span>
       <% end %>
-      <ul class="user_options" style="position: relative;float: right;margin: 8px 33px;">
-        <li class="i_16_logout">
-          <%= link_to "", logout_path, :title => "Log-Out" %>
-        </li>
-      </ul>
     </div>
     <div class="top_links">
       <ul>
+        <li class="small">
+          <%= link_to logout_path do %>
+            <span class="label">Logout</span>
+          <% end %>
+        </li>
         <li class="small">
           <a href="#" title="">
             <span class="label">Balance
