@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_filter :require_login, :only => [:new, :create, :confirmation, :activate, :twilionumbers]
   require 'twilio-ruby'
   layout 'publics'
   
@@ -96,5 +97,23 @@ class UsersController < ApplicationController
   def twilionumbers
     @area_code = params[:code]
     @numbers = TwilioRequest::available_phone_numbers(params[:code]).collect{|n| [n.phone_number]}
+  end
+
+  def update_password
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      redirect_to profile_path, :notice => "Your password has been updated"
+    else
+      redirect_to profile_path
+    end
+  end
+
+  def update
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      redirect_to profile_path, :notice => "Your profile has been updated"
+    else
+      redirect_to profile_path
+    end
   end
 end

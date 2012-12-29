@@ -1,5 +1,10 @@
 Robocent::Application.routes.draw do
 
+  #
+  # Profile
+  #
+  put 'update-password'    => 'users#update_password',   :as => :update_password
+
   put "migrate"             => "subscriptions#migrate",   :as => :migrate
   match "migration"         => "subscriptions#migration", :as => :migration
 
@@ -27,6 +32,7 @@ Robocent::Application.routes.draw do
   #
   # Dashboard
   #
+  match 'profile'               => 'dashboard#profile',           :as => :profile
   match 'dashboard'             => 'dashboard#index',             :as => :dashboard
 
   #

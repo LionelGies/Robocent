@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   private
 
   def update_time_zone
-    self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank?
+    self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank? or self.state != self.state_was
   end
 
   def add_free_balance

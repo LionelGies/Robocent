@@ -11,4 +11,9 @@ class DashboardController < ApplicationController
     @cost_for_text = (@text_contacts_count.to_f * @price_per_call_or_text) / 100
     @cost_for_call = (@call_contacts_count.to_f * @price_per_call_or_text) / 100
   end
+
+  def profile
+    @user = current_user
+  end
+  
 end

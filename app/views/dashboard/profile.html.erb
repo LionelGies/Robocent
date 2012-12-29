@@ -1,0 +1,212 @@
+<div class="g_6 contents_header">
+  <h3 class="i_16_login tab_label">Profile</h3>
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+<%= render "shared/show_flash" %>
+
+<div class="g_6">
+  <div id="show-profile">
+    <div class="widget_header">
+      <h4 class="widget_header_title wwIcon i_16_valid" style="float:left">
+        Profile Information
+      </h4>
+      <div style="float:right">
+        <%= link_to "Edit", "#", :id => "profile-edit-button", :class => "simple_buttons", :style => "padding: 0 15px 0 15px;" %>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="widget_contents noPadding">
+      <table class="tables">
+        <tr>
+          <td>Organization Name</td>
+          <td>
+            <%= @user.organization_name %>
+          </td>
+        </tr>
+        <tr>
+          <td>Organization Type</td>
+          <td>
+            <%= @user.organization_type %>
+          </td>
+        </tr>
+        <tr>
+          <td>Contact Name</td>
+          <td>
+            <%= @user.name %>
+          </td>
+        </tr>
+        <tr>
+          <td>Contact Email</td>
+          <td>
+            <%= @user.email %>
+          </td>
+        </tr>
+        <tr>
+          <td>Contact Phone</td>
+          <td>
+            <%= @user.phone %>
+          </td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td>
+            <%= @user.address %>
+          </td>
+        </tr>
+        <tr>
+          <td>State</td>
+          <td>
+            <%= "#{@user.state} (#{UsState::state_expansion(@user.state)})" %>
+          </td>
+        </tr>
+        <tr>
+          <td>Time Zone</td>
+          <td>
+            <%= @user.time_zone %>
+          </td>
+        </tr>
+        <tr>
+          <td>Your RoboCent Phone Number</td>
+          <td>
+            <%= @user.twilio_phone_number.phone_number %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div id="edit-profile" style="display:none">
+    <div class="widget_header">
+      <h4 class="widget_header_title wwIcon i_16_valid" style="float:left">
+        Edit Profile Information
+      </h4>
+      <div style="float:right">
+        <%= link_to "Close", "#", :id => "profile-close-button", :class => "simple_buttons", :style => "padding: 0 15px 0 15px;" %>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="widget_contents noPadding">
+      <%= form_for(@user) do |f| %>
+        <table class="tables">
+          <tr>
+            <td>Organization Name</td>
+            <td>
+              <%= f.text_field :organization_name, :class => "simple_field", :required => true %>
+            </td>
+          </tr>
+          <tr>
+            <td>Organization Type</td>
+            <td>
+              <%= f.select :organization_type, Organization::NAMES, {}, :class => "simple_form" %>
+            </td>
+          </tr>
+          <tr>
+            <td>Contact Name</td>
+            <td>
+              <%= f.text_field :name, :class => "simple_field", :required => true %>
+            </td>
+          </tr>
+          <tr>
+            <td>Contact Email</td>
+            <td>
+              <%= f.text_field :email, :class => "simple_field", :required => true %>
+            </td>
+          </tr>
+          <tr>
+            <td>Contact Phone</td>
+            <td>
+              <%= f.text_field :phone, :class => "simple_field", :required => true %>
+            </td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td>
+              <%= f.text_field :address, :class => "simple_field", :required => true %>
+            </td>
+          </tr>
+          <tr>
+            <td>State</td>
+            <td>
+              <%= f.select :state, UsState::NAMES, { }, :class => "simple_form"%>
+            </td>
+          </tr>
+          <tr>
+            <td>Time Zone</td>
+            <td>
+              <%= f.select :time_zone, UsState::TIME_ZONES, { }, :class => "simple_form" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <%= f.submit "Update Profile", :class => "submitIt simple_buttons" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="g_6">
+  <div class="widget_header">
+    <h4 class="widget_header_title wwIcon i_16_valid">
+      Change Password
+    </h4>
+  </div>
+  <div class="widget_contents noPadding">
+    <%= form_for(@user, :url => update_password_path) do |f| %>
+      <table class="tables">
+        <tr>
+          <td>New Password</td>
+          <td>
+            <%= f.password_field :password, :class => "simple_field", :required => true %>
+          </td>
+        </tr>
+        <tr>
+          <td>New Password Again</td>
+          <td>
+            <%= f.password_field :password_confirmation, :class => "simple_field", :required => true %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <%= f.submit "Update Password", :class => "submitIt simple_buttons" %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
+
+<div class="g_6">
+  <span class="label">
+    <br/>
+    You may edit your profile information at anytime. To view your billing information,
+    add credits or change your account status, please visit the
+    <%= link_to "billing page", billing_path %>.
+    <br/><br/>
+    To request a new RoboCent phone number, please email Info@RoboCent.com with your request.
+  </span>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#profile-edit-button").click(function(){
+      $("#show-profile").hide();
+      $("#edit-profile").show();
+      return false;
+    });
+    $("#profile-close-button").click(function(){
+      $("#edit-profile").hide();
+      $("#show-profile").show();
+      return false;
+    });
+  })
+</script>
+
+<style type="text/css">
+  .simple_field{
+    width: 200px;
+  }
+</style>
