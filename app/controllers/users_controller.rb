@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   require 'twilio-ruby'
-  layout 'public'
+  layout 'publics'
   
   def new
     @step_id = params[:step_id]

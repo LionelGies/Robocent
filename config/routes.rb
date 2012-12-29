@@ -1,7 +1,7 @@
 Robocent::Application.routes.draw do
 
-  put "migrate"           => "subscriptions#migrate", :as => :migrate
-  match "migration"        => "subscriptions#migration", :as => :migration
+  put "migrate"             => "subscriptions#migrate",   :as => :migrate
+  match "migration"         => "subscriptions#migration", :as => :migration
 
   post 'stripe-webhook'       => 'stripe_webhook#create'
 
@@ -40,33 +40,33 @@ Robocent::Application.routes.draw do
   #
   # registration
   #
-  get   'twilionumbers/:code'        => 'users#twilionumbers', :as => :twilionumbers
-  put   'register'                 => 'users#create',     :as => :register_user
-  post  'register'                 => 'users#create',     :as => :register_user
-  get   'register'                 => 'users#new',          :as => :register
-  match 'register/activate/:token' => 'users#activate',     :as => :activate
-  match 'register/confirmation'    => 'users#confirmation', :as => :register_confirmation
+  get   'twilionumbers/:code'      => 'users#twilionumbers',  :as => :twilionumbers
+  put   'register'                 => 'users#create',         :as => :register_user
+  post  'register'                 => 'users#create',         :as => :register_user
+  get   'register'                 => 'users#new',            :as => :register
+  match 'register/activate/:token' => 'users#activate',       :as => :activate
+  match 'register/confirmation'    => 'users#confirmation',   :as => :register_confirmation
 
   resources :users
 
   #
   # public pages
   #
-  match "terms"     => "public#terms",      :as => "terms"
-  match "contact-us"   => "public#contact",    :as => "contact_us"
-  match "guide"     => "public#guide",      :as => "guide"
-  match "tutorials" => "public#tutorials",  :as => "tutorials"
-  match "faq"       => "public#faq",        :as => "faq"
-  match "support"   => "public#support",    :as => "support"
-  match "pricing"   => "public#pricing",    :as => "pricing"
-  match 'solutions' => "public#solutions",  :as => "solutions"
+  match "terms"       => "publics#terms",      :as => "terms"
+  match "contact-us"  => "publics#contact",    :as => "contact_us"
+  match "guide"       => "publics#guide",      :as => "guide"
+  match "tutorials"   => "publics#tutorials",  :as => "tutorials"
+  match "faq"         => "publics#faq",        :as => "faq"
+  match "support"     => "publics#support",    :as => "support"
+  match "pricing"     => "publics#pricing",    :as => "pricing"
+  match 'solutions'   => "publics#solutions",  :as => "solutions"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'public#index'
+  root :to => 'publics#index'
 
   # See how all your routes lay out with "rake routes"
 end
