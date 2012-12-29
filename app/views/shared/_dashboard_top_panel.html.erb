@@ -1,29 +1,20 @@
 <div class="top_panel">
   <div class="wrapper">
     <div class="user">
-      <%#= image_tag("dashboard/user_avatar.png", :class => "user_avatar") %>
-      <img src="/assets/dashboard/user_avatar.png" class="user_avatar" alt=""/>
-      <span class="label">
-        <% if current_user.present? %>
-          <%= current_user.name %>
-        <% end %>
-      </span>
-      <!-- Top Tooltip -->
-      <div class="top_tooltip">
-        <div>
-          <ul class="user_options">
-            <li class="i_16_profile">
-              <%= link_to "", profile_path, :title => "Profile" %>
-            </li>
-            <li class="i_16_tasks"><a href="#" title="Tasks"></a></li>
-            <li class="i_16_notes"><a href="#" title="Notes"></a></li>
-            <li class="i_16_options"><a href="#" title="Options"></a></li>
-            <li class="i_16_logout">
-              <%= link_to "", logout_path, :title => "Log-Out" %>
-            </li>
-          </ul>
-        </div>
-      </div>
+<%#= image_tag("dashboard/user_avatar.png", :class => "user_avatar") %>
+      <%= link_to profile_path do %>
+        <img src="/assets/dashboard/user_avatar.png" class="user_avatar" alt=""/>
+        <span class="label">
+          <% if current_user.present? %>
+            <%= current_user.name %>
+          <% end %>
+        </span>
+      <% end %>
+      <ul class="user_options" style="position: relative;float: right;margin: 8px 33px;">
+        <li class="i_16_logout">
+          <%= link_to "", logout_path, :title => "Log-Out" %>
+        </li>
+      </ul>
     </div>
     <div class="top_links">
       <ul>
@@ -53,7 +44,7 @@
 </div>
 
 <style type="text/css">
-.top_links > ul > li.small > a {
+  .top_links > ul > li.small > a {
     padding-left: 0px;
-}
+  }
 </style>
