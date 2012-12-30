@@ -1,0 +1,30 @@
+<div class="g_6 contents_header">
+  <h3 class="i_16_forms tab_label">Send a Text</h3>
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+<div class="g_12">
+  <h4 class="widget_header_title" style="width:100%;text-align:center">
+    <span class="breadcrumb <%= "active" if @step == "1" %>">Step 1</span>
+    >
+    <span class="breadcrumb <%= "active" if @step == "2" %>">Step 2</span>
+    >
+    <span class="breadcrumb <%= "active" if @step == "3" %>">Step 3</span>
+  </h4>
+</div>
+
+<div class="g_12">
+  <%= render "send_text_step_1" if @step == "1" %>
+  <%= render "send_text_step_2" if @step == "2" %>
+  <%= render "send_text_step_3" if @step == "3" %>
+</div>
+
+<style type="text/css">
+  span.breadcrumb{
+    padding: 0 6px 0 6px;
+  }
+  span.breadcrumb.active{
+    color: #6EA004;
+  }
+</style>

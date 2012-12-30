@@ -41,14 +41,14 @@ class BillingSetting < ActiveRecord::Base
     
   end
 
-  def charge(amount)
+  def charge(amount, memo)
     begin
       response = Stripe::Charge.create(
         :amount => (amount.to_f * 100.0).to_i,
         :currency => "usd",
         :customer => customer,
-        :description => "Manually fundded account.")
-      user.receipts.create!(:credit => amount, :memo => 'Manually funded account', :stripe_charge_id => response.id)
+        :description => "#{memo}.")
+      user.receipts.create!(:credit => amount, :memo => memo, :stripe_charge_id => response.id)
       return true
     rescue => e
       return false

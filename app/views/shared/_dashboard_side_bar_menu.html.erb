@@ -15,8 +15,8 @@
         <span class="tab_label">Contacts</span>
       <% end %>
     </li>
-    <li class="i_32_forms">
-      <%= link_to "#" do %>
+    <li class="i_32_forms <%= "active_tab" if controller_name == "text_messages" %>">
+      <%= link_to send_text_path do %>
         <span class="tab_label">Send a Text</span>
       <% end %>
     </li>

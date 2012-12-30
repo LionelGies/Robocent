@@ -1,0 +1,45 @@
+<%= form_for(@text_message, :url => send_text_path) do |f| %>
+  <%= hidden_field_tag "step", "2" %>
+  <div class="label">
+    Please enter the text of the message you would like broadcast.
+    Each text message is limited to 140 characters. You will have an
+    opportunity to test the message before it is sent.
+  </div>
+  <br/>
+  <div class="widget_contents noPadding">
+    <div class="line_grid">
+      <div class="g_2"><span class="label">Write Message<span class="must">*</span></span></div>
+      <div class="g_10">
+        <%= f.text_area :content, :class => "simple_field twMaxChars", :required => true %>
+      </div>
+    </div>
+    <div class="line_grid">
+      <div class="g_2"><span class="label">Sending Options</span></div>
+      <div class="g_10">
+        <%= f.radio_button :sending_option, "1", :class => "simple_form", :checked => true %>
+        <span class="label ilC">
+          Send Message from <%= current_user.twilio_phone_number.phone_number %>.
+          (Will send at the rate of 60 text/minute)
+        </span>
+        <br/><br/>
+        <%= f.radio_button :sending_option, "2", :class => "simple_form" %>
+        <span class="label ilC">
+          Send Message from {Shortcode}.
+          (Will send at the rate of 2400 texts/minute)
+        </span>
+        <br/><br/>
+        <%= f.radio_button :sending_option, "3", :class => "simple_form" %>
+        <span class="label ilC">
+          Send Message from as many shortcodes as possible.
+          (Will send message as quickly as possible)
+        </span>
+      </div>
+    </div>
+    <div class="line_grid">
+      <div class="g_4"></div>
+      <div class="g_8">
+        <%= f.submit "Next", :class => "submitIt simple_buttons" %>
+      </div>
+    </div>
+  </div>
+<% end %>

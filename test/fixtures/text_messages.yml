@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  sending_option: 1
+  test_send_to: MyString
+  list_id: 1
+
+two:
+  content: MyText
+  sending_option: 1
+  test_send_to: MyString
+  list_id: 1

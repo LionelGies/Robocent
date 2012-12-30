@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221223505) do
+ActiveRecord::Schema.define(:version => 20121230142738) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -118,6 +118,20 @@ ActiveRecord::Schema.define(:version => 20121221223505) do
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "text_messages", :force => true do |t|
+    t.text     "content"
+    t.integer  "sending_option"
+    t.string   "test_send_to"
+    t.integer  "list_id"
+    t.integer  "user_id"
+    t.integer  "number_of_recipients"
+    t.float    "cost_per_text"
+    t.integer  "number_of_texts_required"
+    t.float    "total_cost"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "twilio_phone_numbers", :force => true do |t|

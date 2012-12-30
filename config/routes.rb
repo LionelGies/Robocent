@@ -1,5 +1,13 @@
 Robocent::Application.routes.draw do
 
+  resources :text_messages, :only => [:create]
+
+
+  #
+  # Text
+  #
+  match 'send-text'       => 'text_messages#new',       :as => :send_text
+
   #
   # Profile
   #

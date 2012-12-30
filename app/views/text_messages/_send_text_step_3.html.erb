@@ -1,0 +1,92 @@
+<%= form_for(@text_message) do |f| %>
+  <div class="g_6">
+    <div class="widget_header">
+      <h4 class="widget_header_title wwIcon i_16_valid">
+        Billing Info
+      </h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <table class="tables">
+        <tr>
+          <td>Number of Recipients to be sent to</td>
+          <td>
+            <%= @text_message.number_of_recipients %>
+          </td>
+        </tr>
+        <tr>
+          <td>Cost per Text</td>
+          <td>
+            <%= "%.1f" % (@text_message.cost_per_text * 100) %>&cent;
+          </td>
+        </tr>
+        <tr>
+          <td>Number of Texts required</td>
+          <td>
+            <%= @text_message.number_of_texts_required %>
+          </td>
+        </tr>
+        <% if @charge_difference.present? %>
+          <tr>
+            <td>The total cost will be</td>
+            <td>
+              <%= "$%.3f" % @text_message.total_cost %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="g_6">
+    <div class="widget_header">
+      <h4 class="widget_header_title wwIcon i_16_valid">
+        Balance
+      </h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <table class="tables">
+        <tr>
+          <td>Your current balance</td>
+          <td>
+            <%= "$%.3f" % @current_balance %>
+          </td>
+        </tr>
+        <tr>
+          <td>Estimated cost</td>
+          <td>
+            <%= "$%.3f" % @text_message.total_cost %>
+          </td>
+        </tr>
+        <% if @charge_difference.present? %>
+          <tr>
+            <td colspan="2">
+              Upon submit, it will charge
+              $<%= @charge_difference %>
+              immediately to your card on file.
+            </td>
+          </tr>
+        <% else %>
+          <tr>
+            <td>Ending Balance</td>
+            <td>
+              <%= "$%.3f" % (@current_balance - @text_message.total_cost) %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+  <div class="g_12">
+    <div class="line_grid">
+      <div class="g_3"></div>
+      <div class="g_3">
+        <%= link_to "Back", send_text_path(:step => "2"), :class => "submitIt simple_buttons" %>
+      </div>
+      <div class="g_2"></div>
+      <div class="g_4">
+        <%= f.submit "Submit", :class => "submitIt simple_buttons" %>
+  <%#= link_to "Submit", send_text_path(:step => "finish"), :class => "submitIt simple_buttons" %>
+      </div>
+    </div>
+  </div>
+<% end %>

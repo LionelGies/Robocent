@@ -22,7 +22,7 @@ class BillingController < ApplicationController
     end
     Time.zone = "UTC"
 
-    @transactions = current_user.receipts.by_date_range(@date_from, @date_to).order("created_at desc")
+    @transactions = current_user.receipts.by_date_range(@date_from, @date_to).order("id desc")
     if @transactions.present?
       @beginning_balance = @transactions.last.current_balance - @transactions.last.credit + @transactions.last.debit
       @total_debits = @transactions.sum(:debit)
@@ -33,7 +33,7 @@ class BillingController < ApplicationController
   end
 
   def fund_account
-    if current_user.billing_setting.charge(params[:amount])
+    if current_user.billing_setting.charge(params[:amount], "Manually funded account")
       @current_balance = current_user.current_balance
       @price_per_call_or_text = current_user.subscription.plan.price_per_call_or_text
       @total_call_can = (@current_balance / (@price_per_call_or_text / 100 )).to_i

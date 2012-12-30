@@ -4,6 +4,7 @@ class List < ActiveRecord::Base
   belongs_to  :user
   has_many    :imports,  :dependent => :destroy
   has_many    :contacts, :dependent => :destroy
+  has_many    :text_messages
 
   scope :sum_number_of_contacts, :select => "SUM(number_of_contacts) as total"
   scope :by_call, :conditions => "type_of_list = 'call'"
