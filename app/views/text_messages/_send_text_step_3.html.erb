@@ -23,7 +23,7 @@
             <div class="g_6" style="text-align:center;">
               Number of Texts Sent
             </div>
-            <div class="g_4" style="text-align:right;">x</div>
+            <div class="g_4" style="text-align:right;padding-right: 15px;">x</div>
             <div class="g_2">
               <%= @text_message.number_of_texts_required %>
             </div>
@@ -34,7 +34,7 @@
             <div class="g_6" style="text-align:center;">
               Cost Per Text
             </div>
-            <div class="g_4" style="text-align:right;">x</div>
+            <div class="g_4" style="text-align:right;padding-right: 15px;">x</div>
             <div class="g_2">
               <%= "$%.3f" % @text_message.cost_per_text %>
             </div>
@@ -121,3 +121,11 @@
     </div>
   </div>
 <% end %>
+
+<style type="text/css">
+  .tables .g_2,
+  .tables .g_4,
+  .tables .g_6{
+    border: 1px solid transparent;
+  }
+</style>
