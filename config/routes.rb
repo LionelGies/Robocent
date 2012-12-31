@@ -6,7 +6,8 @@ Robocent::Application.routes.draw do
   #
   # Text
   #
-  match 'send-text'       => 'text_messages#new',       :as => :send_text
+  match 'send-a-test'     => 'text_messages#send_a_test', :as => :send_a_test
+  match 'send-text'       => 'text_messages#new',         :as => :send_text
 
   #
   # Profile

@@ -1,78 +1,109 @@
 <%= form_for(@text_message) do |f| %>
-  <div class="g_6">
+  <div class="g_12">
     <div class="widget_header">
-      <h4 class="widget_header_title wwIcon i_16_valid">
-        Billing Info
+      <h4 class="widget_header_title" style="width: 100%;text-align: center;">
+        Cost of Text
       </h4>
     </div>
     <div class="widget_contents noPadding">
       <table class="tables">
         <tr>
-          <td>Number of Recipients to be sent to</td>
           <td>
-            <%= @text_message.number_of_recipients %>
+            <div class="g_6" style="text-align:center;">
+              Number of Recipients Selected
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              <%= @text_message.number_of_recipients %>
+            </div>
           </td>
         </tr>
         <tr>
-          <td>Cost per Text</td>
           <td>
-            <%= "%.1f" % (@text_message.cost_per_text * 100) %>&cent;
+            <div class="g_6" style="text-align:center;">
+              Number of Texts Sent
+            </div>
+            <div class="g_4" style="text-align:right;">x</div>
+            <div class="g_2">
+              <%= @text_message.number_of_texts_required %>
+            </div>
           </td>
         </tr>
         <tr>
-          <td>Number of Texts required</td>
           <td>
-            <%= @text_message.number_of_texts_required %>
+            <div class="g_6" style="text-align:center;">
+              Cost Per Text
+            </div>
+            <div class="g_4" style="text-align:right;">x</div>
+            <div class="g_2">
+              <%= "$%.3f" % @text_message.cost_per_text %>
+            </div>
           </td>
         </tr>
-        <% if @charge_difference.present? %>
-          <tr>
-            <td>The total cost will be</td>
-            <td>
+        <tr>
+          <td>
+            <div class="g_6 widget_header_title" style="text-align:center;">
+              Total Cost of Text
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
               <%= "$%.3f" % @text_message.total_cost %>
-            </td>
-          </tr>
-        <% end %>
+            </div>
+          </td>
+        </tr>
       </table>
     </div>
   </div>
-  <div class="g_6">
+
+  <div class="g_12">
     <div class="widget_header">
-      <h4 class="widget_header_title wwIcon i_16_valid">
-        Balance
+      <h4 class="widget_header_title" style="width: 100%;text-align: center;">
+        Billing
       </h4>
     </div>
     <div class="widget_contents noPadding">
       <table class="tables">
         <tr>
-          <td>Your current balance</td>
           <td>
-            <%= "$%.3f" % @current_balance %>
+            <div class="g_6" style="text-align:center;">
+              Current Balance
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              <%= "$%.3f" % @current_balance %>
+            </div>
           </td>
         </tr>
         <tr>
-          <td>Estimated cost</td>
           <td>
-            <%= "$%.3f" % @text_message.total_cost %>
+            <div class="g_6" style="text-align:center;">
+              Cost of Text
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              <%= "$(%.3f)" % @text_message.total_cost %>
+            </div>
           </td>
         </tr>
-        <% if @charge_difference.present? %>
-          <tr>
-            <td colspan="2">
-              Upon submit, it will charge
-              $<%= @charge_difference %>
-              immediately to your card on file.
-            </td>
-          </tr>
-        <% else %>
-          <tr>
-            <td>Ending Balance</td>
-            <td>
-              <%= "$%.3f" % (@current_balance - @text_message.total_cost) %>
-            </td>
-          </tr>
-        <% end %>
+        <tr>
+          <td>
+            <div class="g_6 widget_header_title" style="text-align:center;">
+              Ending Balance
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              <%= "$(%.3f)" % (@current_balance - @text_message.total_cost) %>
+            </div>
+          </td>
+        </tr>
       </table>
+    </div>
+  </div>
+
+  <div class="g_12">
+    <div class="label">
+      If the ending balance is negative, the balance will be charged to your card
+      on file by clicking, "Submit".
     </div>
   </div>
 

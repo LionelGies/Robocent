@@ -51,6 +51,7 @@ class BillingSetting < ActiveRecord::Base
       user.receipts.create!(:credit => amount, :memo => memo, :stripe_charge_id => response.id)
       return true
     rescue => e
+      logger.error e.message
       return false
     end
   end

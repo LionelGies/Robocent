@@ -10,7 +10,8 @@
     <div class="line_grid">
       <div class="g_2"><span class="label">Write Message<span class="must">*</span></span></div>
       <div class="g_10">
-        <%= f.text_area :content, :class => "simple_field twMaxChars", :required => true %>
+        <%= f.text_area :content, :class => "simple_field", :required => true %>
+        <div class="field_notice" id="content_length">0 Characters</div>
       </div>
     </div>
     <div class="line_grid">
@@ -43,3 +44,16 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $("#text_message_content").bind("keyup blur",function(){
+        var content = $(this).val();
+        var char_text = content.length == 1 ? " Character, " : " Characters, ";
+        var msg_count = Math.ceil(parseFloat(content.length) / 140.0);
+        var msg_text = msg_count == 1 ? " Text Message Used" : " Text Messages Used";
+        var text = content.length + char_text + msg_count + msg_text;
+        $("#content_length").html(text);
+      })
+    })
+</script>

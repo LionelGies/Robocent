@@ -1,3 +1,6 @@
+<div id="twilio-response"></div>
+<div class="clear"></div>
+
 <%= form_for(@text_message, :url => send_text_path) do |f| %>
   <%= hidden_field_tag "step", "3" %>
   <div class="widget_contents noPadding">
@@ -9,17 +12,32 @@
         </span>
       </div>
     </div>
-    <div class="line_grid">
+    <div class="line_grid" id="send_a_text_container">
       <div class="g_3"><span class="label">Send a Test</span></div>
       <div class="g_9">
-        <%= f.text_area :test_send_to, :class => "simple_field" %>
-        <div class="field_notice">Please enter up to 5 numbers you would like a test message sent to.</div>
+        <%= f.text_field :test_send_to, :class => "simple_field" %>
+        <div class="field_notice">Please enter up to 5 numbers you would like a test message sent to, separated by a comma.</div>
+        <div style="margin-top:10px;">
+          <div class="g_3">
+            <%= link_to "Send a Test", send_a_test_path, :class => "submitIt simple_buttons", :id => "send_a_test" %>
+          </div>
+          <div class="g_9 ajax-loading" style="display:none">
+            <%= image_tag("dashboard/Icons/Load/load-1.gif") %>
+          </div>
+        </div>
       </div>
     </div>
     <div class="line_grid">
       <div class="g_3"><span class="label">Select Recipients</span></div>
       <div class="g_9">
-        <%= f.select :list_id, current_user.lists.collect{|l| ["#{l.name} (#{l.number_of_contacts})",l.id]}, {}, :class => "simple_form" %>
+  <%#= f.select :list_id, current_user.lists.collect{|l| ["#{l.name} (#{l.number_of_contacts})",l.id]}, {}, :class => "simple_form" %>
+        <% current_user.lists.each do |list| %>
+          <%= check_box_tag :"list_ids[]", list.id, (@text_message.list_ids.present? and @text_message.list_ids.include?(list.id.to_s)) ? true : false, :class => "simple_form" %>
+          <span class="label">
+            <%= "#{list.name} (#{list.number_of_contacts})" %>
+          </span>
+          <br/>
+        <% end %>
         <div class="field_notice">Please select the contact list you would like the message sent to.</div>
       </div>
     </div>
@@ -35,3 +53,25 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#send_a_test").click(function(){
+      var numbers = $("#text_message_test_send_to").val();
+      if(numbers.length < 3){
+        alert("Please enter some valid numbers!");
+      }
+      else{
+        var url = $(this).attr("href");
+        $("#send_a_text_container .ajax-loading").show();
+        $.ajax({
+          type: 'GET',
+          url: url,
+          data: {numbers : numbers},
+          dataType: "script"
+        });
+      }
+      return false;
+    })
+  })
+</script>
