@@ -82,7 +82,7 @@
         <% @text_messages.each do |text_msg| %>
           <tr>
             <td>
-              <%= text_msg.created_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
+              <%= text_msg.schedule_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
             </td>
             <td>
               <%= text_msg.number_of_recipients %>
