@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230234126) do
+ActiveRecord::Schema.define(:version => 20130102193934) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20121230234126) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.string   "list_ids"
+    t.datetime "schedule_at"
   end
 
   create_table "twilio_phone_numbers", :force => true do |t|

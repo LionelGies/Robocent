@@ -42,6 +42,13 @@
       </div>
     </div>
     <div class="line_grid">
+      <div class="g_3"><span class="label">Schedule At</span></div>
+      <div class="g_9">
+        <%= datetime_select("text_message", "schedule_at", {:ampm => true, :start_year => 2013, :default => (Time.now + 5.minutes).in_time_zone(current_user.time_zone)}, :class => "simple_form") %>
+        <div class="field_notice"><%= current_user.time_zone %></div>
+      </div>
+    </div>
+    <div class="line_grid">
       <div class="g_3"></div>
       <div class="g_3">
         <%= link_to "Back", send_text_path(:step => "1"), :class => "submitIt simple_buttons" %>
@@ -72,6 +79,27 @@
         });
       }
       return false;
-    })
+    });
+
+    $('form').submit(function(e){
+
+      var year = $("#text_message_schedule_at_1i").val();
+      var month = $("#text_message_schedule_at_2i").val();
+      var day = $("#text_message_schedule_at_3i").val();
+      var hr = $("#text_message_schedule_at_4i").val();
+      var min = $("#text_message_schedule_at_5i").val();
+
+      var dateString = month+" "+day+" "+year+" "+hr+":"+min+":00";
+      var date = new Date(dateString);
+      var now = new Date();
+
+      if(date <= now){
+        alert("Schedule time can't go past!");
+        e.preventDefault();
+        return false;
+      }
+
+    });
+
   })
 </script>

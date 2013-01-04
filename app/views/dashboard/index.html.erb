@@ -79,37 +79,35 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Dec 14, 2012</td>
-          <td>230</td>
-          <td>December Special</td>
-          <td>100</td>
-          <td>$3.400</td>
-          <td>
-            <%= link_to "view", "#" %>
-          </td>
-        </tr>
-        <tr>
-          <td>Dec 15, 2012</td>
-          <td>250</td>
-          <td>Important</td>
-          <td>87</td>
-          <td>$4.400</td>
-          <td>
-            <%= link_to "view", "#" %>
-          </td>
-        </tr>
-        <tr>
-          <td>Dec 16, 2012</td>
-          <td>230</td>
-          <td>Real Time</td>
-          <td>50</td>
-          <td>$3.400</td>
-          <td>
-            <%= link_to "view", "#" %>
-          </td>
-        </tr>
+        <% @text_messages.each do |text_msg| %>
+          <tr>
+            <td>
+              <%= text_msg.created_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
+            </td>
+            <td>
+              <%= text_msg.number_of_recipients %>
+            </td>
+            <td>
+              <% text_msg.lists.collect{|l| l.name }.each do |list_name| %>
+                <%= list_name %> <br/>
+              <% end %>
+            </td>
+            <td>100</td>
+            <td>
+              <%= "$%.3f" % text_msg.total_cost %>
+            </td>
+            <td>
+              <%= link_to "view", "#" %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("table.datatable thead tr th:first").click();
+  })
+</script>

@@ -14,6 +14,8 @@
   </h4>
 </div>
 
+<%= render "shared/show_flash" %>
+
 <div class="g_12">
   <%= render "send_text_step_1" if @step == "1" %>
   <%= render "send_text_step_2" if @step == "2" %>

@@ -17,7 +17,7 @@ class UserSessionsController < ApplicationController
           session[:user_temp_id] = user.id
           redirect_to register_url(:step_id => "3"), :alert => "Please complete your registration to access your dashboard!"
         else
-          redirect_back_or_to dashboard_url, :notice => "Logged in!"
+          redirect_back_or_to dashboard_url
         end
       else
         logout

@@ -1,6 +1,7 @@
 class TextMessage < ActiveRecord::Base
   attr_accessible :content, :list_ids, :sending_option, :test_send_to, :user_id,
-    :number_of_recipients, :cost_per_text, :number_of_texts_required, :total_cost
+    :number_of_recipients, :cost_per_text, :number_of_texts_required, :total_cost,
+    :schedule_at
 
   belongs_to :user
 
@@ -12,6 +13,10 @@ class TextMessage < ActiveRecord::Base
   before_create :charge_difference
   after_create :create_receipt
   after_create :send_text_to_recipients
+
+  def lists
+    List.find(:all, :conditions => ["id in (?)", list_ids.split(",")])
+  end
 
   private
 
