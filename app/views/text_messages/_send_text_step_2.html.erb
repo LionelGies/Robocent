@@ -44,8 +44,9 @@
     <div class="line_grid">
       <div class="g_3"><span class="label">Schedule At</span></div>
       <div class="g_9">
+        <%= f.check_box :schedule_now, :value => 1, :class => "simple_form"  %> <span class="label">Now<br/>or<br/></span>
         <%= datetime_select("text_message", "schedule_at", {:ampm => true, :start_year => 2013, :default => (Time.now + 5.minutes).in_time_zone(current_user.time_zone)}, :class => "simple_form") %>
-        <div class="field_notice"><%= current_user.time_zone %></div>
+        <div class="field_notice">Time Zone : <%= current_user.time_zone %></div>
       </div>
     </div>
     <div class="line_grid">
@@ -83,20 +84,23 @@
 
     $('form').submit(function(e){
 
-      var year = $("#text_message_schedule_at_1i").val();
-      var month = $("#text_message_schedule_at_2i").val();
-      var day = $("#text_message_schedule_at_3i").val();
-      var hr = $("#text_message_schedule_at_4i").val();
-      var min = $("#text_message_schedule_at_5i").val();
+      if($("input#text_message_schedule_now:not(:checked)").length){
 
-      var dateString = month+" "+day+" "+year+" "+hr+":"+min+":00";
-      var date = new Date(dateString);
-      var now = new Date();
+        var year = $("#text_message_schedule_at_1i").val();
+        var month = $("#text_message_schedule_at_2i").val();
+        var day = $("#text_message_schedule_at_3i").val();
+        var hr = $("#text_message_schedule_at_4i").val();
+        var min = $("#text_message_schedule_at_5i").val();
 
-      if(date <= now){
-        alert("Schedule time can't go past!");
-        e.preventDefault();
-        return false;
+        var dateString = month+" "+day+" "+year+" "+hr+":"+min+":00";
+        var date = new Date(dateString);
+        var now = new Date();
+
+        if(date <= now){
+          alert("Schedule time can't go past!");
+          e.preventDefault();
+          return false;
+        }
       }
 
     });

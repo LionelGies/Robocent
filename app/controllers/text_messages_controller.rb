@@ -10,15 +10,19 @@ class TextMessagesController < ApplicationController
       @step = "1"
     end
 
+    puts params[:list_ids].present?
+
     if session[:text_message].present?
       session[:text_message] = session[:text_message].merge(params[:text_message]) if params[:text_message].present?
-      if params[:list_ids].present?
-        if params[:list_ids].size > 0
-          session[:text_message] = session[:text_message].merge({:list_ids => params[:list_ids].join(",")})
-        else
-          flash.now.alert = "Please Select at least one contact list!"
-          @step = "2"
-        end
+      if params[:list_ids].present? and params[:list_ids].size > 0
+        session[:text_message] = session[:text_message].merge({:list_ids => params[:list_ids].join(",")})
+      elsif session[:text_message][:list_ids].blank?
+        flash.now.alert = "Please Select at least one contact list!"
+        @step = "2"
+      elsif @step == "3" and session[:text_message][:list_ids].present? and params[:list_ids].blank?
+        session[:text_message][:list_ids] = nil
+        flash.now.alert = "Please Select at least one contact list!"
+        @step = "2"
       end
       @text_message = current_user.text_messages.new(session[:text_message])
     elsif params[:text_message].present?
