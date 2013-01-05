@@ -19,13 +19,13 @@
           <% end %>
         </li>
         <li class="small">
-          <a href="#" title="">
+          <%= link_to billing_path do %>
             <span class="label">Balance
               <% if current_user.present? %>
                 <%= "$%.3f" % current_user.current_balance %>
               <% end %>
             </span>
-          </a>
+          <% end %>
         </li>
         <li class="i_22_ui">
           <%= link_to contacts_path do %>
