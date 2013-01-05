@@ -1,6 +1,7 @@
 require "bundler/capistrano"
 require "rvm/capistrano"
 require "erb"
+require "delayed/recipes"
 
 set(:rvm_type)          { :system }
 set(:ruby_version)      { '1.9.3-p194' }
@@ -49,7 +50,7 @@ after "deploy", "deploy:cleanup"
 task :link_shared_files, :roles => :app do
   run "rm -rf #{current_path}/tmp/sockets; ln -s #{shared_path}/sockets #{current_path}/tmp/sockets"
   run "rm -rf #{current_path}/public/uploads; ln -s #{shared_path}/uploads #{current_path}/public/uploads"
-  #run "rm -rf #{current_path}/public/assets; ln -s #{shared_path}/assets #{current_path}/public/assets"
+  run "rm -rf #{current_path}/tmp/pids; ln -s #{shared_path}/pids #{current_path}/tmp/pids"
   run "rm -rf #{current_path}/public/.htaccess; rm -rf #{current_path}/public/dispatch.fcgi"
 end
 
@@ -90,5 +91,32 @@ namespace :deploy do
     #    run "sudo mkdir -p #{shared_path}/config/.bundle"
     #    run "sudo mkdir -p #{shared_path}/bundle"
     #    run "sudo mkdir -p #{shared_path}/uploads"
+  end
+
+  namespace :delayed_job do
+    desc "Stop the delayed_job process"
+    task :stop, :roles => :app do
+      run "cd #{current_path};RAILS_ENV=production /usr/local/rvm/rubies/ruby-1.9.3-p194/bin/ruby script/delayed_job stop"
+    end
+
+    desc "Status of existing delayed_job process"
+    task :status, :roles => :app do
+      run "cd #{current_path};RAILS_ENV=production /usr/local/rvm/rubies/ruby-1.9.3-p194/bin/ruby script/delayed_job status"
+    end
+
+    desc "Start the delayed_job process"
+    task :start, :roles => :app do
+      run "cd #{current_path};RAILS_ENV=production /usr/local/rvm/rubies/ruby-1.9.3-p194/bin/ruby script/delayed_job -n 2 start"
+    end
+
+    desc "Restart the delayed_job process"
+    task :restart, :roles => :app do
+      run "cd #{current_path};RAILS_ENV=production /usr/local/rvm/rubies/ruby-1.9.3-p194/bin/ruby script/delayed_job -n 2 restart"
+    end
+
+    desc "Start via rake task"
+    task :start_rake, :roles => :app do
+      run "cd #{current_path};RAILS_ENV=production bundle exec rake jobs:work"
+    end
   end
 end
