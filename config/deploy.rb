@@ -20,7 +20,7 @@ set :rake, 'bundle exec rake'
 set :scm, 'git'
 set :repository, "git@github.com:RoboCent/robocent.git"
 set :git_enable_submodules, 1 # if you have vendored rails
-set :branch, 'master'
+set :branch, 'delayed_job'
 set :git_shallow_clone, 1
 set :scm_verbose, true
 set :repository_cache, "cached_copy"
