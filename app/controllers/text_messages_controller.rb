@@ -14,7 +14,7 @@ class TextMessagesController < ApplicationController
       session[:text_message] = session[:text_message].merge(params[:text_message]) if params[:text_message].present?
       if params[:list_ids].present? and params[:list_ids].size > 0
         session[:text_message] = session[:text_message].merge({:list_ids => params[:list_ids].join(",")})
-      elsif session[:text_message][:list_ids].blank?
+      elsif @step == "3" and session[:text_message][:list_ids].blank?
         flash.now.alert = "Please Select at least one contact list!"
         @step = "2"
       elsif @step == "3" and session[:text_message][:list_ids].present? and params[:list_ids].blank?
