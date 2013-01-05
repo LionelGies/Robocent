@@ -11,7 +11,7 @@
           <span class="label">List Name<span class="must">*</span></span>
         </div>
         <div class="g_9">
-          <%= f.select :list_id, List.all.collect{|l| [l.name, l.id]}, {}, :class => "simple_form", :required => true %>
+          <%= f.select :list_id, current_user.lists.collect{|l| [l.name, l.id]}, {}, :class => "simple_form", :required => true %>
         </div>
       </div>
     <% end %>
