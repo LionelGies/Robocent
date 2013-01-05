@@ -17,7 +17,7 @@ gem "spreadsheet" #parsing xls files
 gem "rubyXL"      #parsing xlsx files
 gem 'nokogiri'
 gem 'rubyzip'
-
+gem 'chronic'
 
 # Gems used only for assets and not required
 # in production environments by default.

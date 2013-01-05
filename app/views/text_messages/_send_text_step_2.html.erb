@@ -42,10 +42,19 @@
       </div>
     </div>
     <div class="line_grid">
-      <div class="g_3"><span class="label">Schedule At</span></div>
+      <div class="g_3"><span class="label">Schedule</span></div>
       <div class="g_9">
-        <%= f.check_box :schedule_now, :value => 1, :class => "simple_form"  %> <span class="label">Now<br/>or<br/></span>
-        <%= datetime_select("text_message", "schedule_at", {:ampm => true, :start_year => 2013, :default => (Time.now + 5.minutes).in_time_zone(current_user.time_zone)}, :class => "simple_form") %>
+        <%= f.check_box :schedule_now, :value => 1, :class => "simple_form"  %>
+        <span class="label">Send Now
+          <br/>
+          Or Schedule For:<br/>
+        </span>
+  <%#= datetime_select("text_message", "schedule_at", {:start_year => Time.now.year, :default => (Time.now + 5.minutes).in_time_zone(current_user.time_zone)}, :class => "simple_form") %>
+        <%= date_select("text_message", "schedule_at", {:start_year => Time.now.in_time_zone(current_user.time_zone).year, :default => Date.today}, :class => "simple_form") %>
+        <span class="label"> At &nbsp;&nbsp;&nbsp;</span>
+        <%= select_tag "text_message[schedule_at(4i)]", options_for_select((1..12).collect{|h| ["#{'%02d' % h}"]}, session[:text_message]["schedule_at(4i)"]), {:class => "simple_form"} %>:
+        <%= select_tag "text_message[schedule_at(5i)]", options_for_select((0..59).collect{|m| ["#{'%02d' % m}"]}, session[:text_message]["schedule_at(5i)"]), {:class => "simple_form"} %>
+        <%= select_tag "text_message[schedule_at(7i)]", options_for_select(['AM', 'PM'], session[:text_message]["schedule_at(7i)"]), {:class => "simple_form"} %>
         <div class="field_notice">Time Zone : <%= current_user.time_zone %></div>
       </div>
     </div>
@@ -89,10 +98,12 @@
         var year = $("#text_message_schedule_at_1i").val();
         var month = $("#text_message_schedule_at_2i").val();
         var day = $("#text_message_schedule_at_3i").val();
-        var hr = $("#text_message_schedule_at_4i").val();
-        var min = $("#text_message_schedule_at_5i").val();
+        var hr = $("#text_message_schedule_at_4i_").val();
+        var min = $("#text_message_schedule_at_5i_").val();
+        var ampm = $("#text_message_schedule_at_7i_").val();
 
-        var dateString = month+" "+day+" "+year+" "+hr+":"+min+":00";
+        var dateString = month+" "+day+" "+year+" "+hr+":"+min+":00 "+ampm;
+
         var date = new Date(dateString);
         var now = new Date();
 

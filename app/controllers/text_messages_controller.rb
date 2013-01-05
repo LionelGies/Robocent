@@ -10,8 +10,6 @@ class TextMessagesController < ApplicationController
       @step = "1"
     end
 
-    puts params[:list_ids].present?
-
     if session[:text_message].present?
       session[:text_message] = session[:text_message].merge(params[:text_message]) if params[:text_message].present?
       if params[:list_ids].present? and params[:list_ids].size > 0
@@ -59,9 +57,9 @@ class TextMessagesController < ApplicationController
 
     @current_balance = current_user.account_balance.current_balance
 
-    #    puts session[:text_message].inspect
-    #    puts @text_message.inspect
-    
+    puts session[:text_message].inspect
+    puts @text_message.inspect
+
     respond_to do |format|
       format.html # new.html.erb
     end
@@ -73,14 +71,20 @@ class TextMessagesController < ApplicationController
     #
     # convert schedule_at time user time zone to utc time zone
     #
+    #    Time.zone = current_user.time_zone
+    #    start_time_string = "#{session[:text_message]["schedule_at(1i)"]}-#{session[:text_message]["schedule_at(2i)"]}-#{session[:text_message]["schedule_at(3i)"]} #{session[:text_message]["schedule_at(4i)"]}:#{session[:text_message]["schedule_at(5i)"]}:00 #{session[:text_message]["schedule_at(7i)"]}"
+    #    start_time = Time.zone.parse(start_time_string)
+    require 'chronic'
     Time.zone = current_user.time_zone
-    start_time_string = "#{session[:text_message]["schedule_at(1i)"]}-#{session[:text_message]["schedule_at(2i)"]}-#{session[:text_message]["schedule_at(3i)"]} #{session[:text_message]["schedule_at(4i)"]}:#{session[:text_message]["schedule_at(5i)"]}:00"
-    start_time = Time.zone.parse(start_time_string)
-
+    Chronic.time_class = Time.zone
+    start_time_string = "#{session[:text_message]["schedule_at(1i)"]}-#{session[:text_message]["schedule_at(2i)"]}-#{session[:text_message]["schedule_at(3i)"]} at #{session[:text_message]["schedule_at(4i)"]}:#{session[:text_message]["schedule_at(5i)"]} #{session[:text_message]["schedule_at(7i)"]}"
+    start_time = Chronic.parse(start_time_string)
+    
     if start_time <= Time.now
       start_time = Time.now + 5.minutes
     end
     Time.zone = "UTC"
+    
     @text_message.schedule_at = start_time.utc
 
     if @text_message.save
