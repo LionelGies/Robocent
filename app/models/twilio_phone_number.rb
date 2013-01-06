@@ -8,6 +8,6 @@ class TwilioPhoneNumber < ActiveRecord::Base
   private
 
   def buy_twilio_number
-    #TwilioRequest::buy_phone_number(phone_number)
+    TwilioRequest::buy_phone_number(phone_number)
   end
 end
