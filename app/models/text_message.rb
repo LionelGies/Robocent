@@ -20,6 +20,26 @@ class TextMessage < ActiveRecord::Base
     List.find(:all, :conditions => ["id in (?)", list_ids.split(",")])
   end
 
+  def percent_completed
+    ((succeeded.to_f / number_of_recipients.to_f) * 100.0).to_i
+  end
+
+  def sending_from
+    if self.sending_option == 1
+      self.user.twilio_phone_number.phone_number
+    else
+      "Shortcode"
+    end
+  end
+
+  def total_unique_contacts
+    numbers = []
+    self.lists.each do |list|
+      numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
+    end
+    numbers.size
+  end
+
   private
 
   def charge_difference

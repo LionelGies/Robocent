@@ -2,6 +2,11 @@ class TextMessagesController < ApplicationController
   before_filter :require_login
 
   layout "dashboard"
+
+  def show
+    @text_message = TextMessage.find(params[:id])
+    render :layout => false
+  end
   
   def new
     if params["step"].present?
@@ -105,15 +110,23 @@ class TextMessagesController < ApplicationController
 
     from = "+15005550006" #valid for Test
 
+
+
+    body_content = @text_message.content
+    body_content = body_content.scan(/.{1,160}/)
+
     count = 0
     numbers.each do |number|
       to = number
-      body = @text_message.content
-      response = TwilioRequest::send_message(from, to, body)
-      count += 1 if response
+
+      body_content.each do |body|
+        response = TwilioRequest::send_message(from, to, body)
+        count += 1 if response == "true"
+      end
+
     end
 
-    if numbers.size == count
+    if numbers.size == (count / body_content.size)
       flash.now.notice = "Your test messages have been successfully sent."
     elsif count > 0
       flash.now.notice = "Your #{count} test messages have been successfully sent."

@@ -60,54 +60,13 @@
   </div>
 </div>
 
-<div class="g_12">
-  <div class="widget_header wwOptions">
-    <h4 class="widget_header_title wwIcon i_16_data">Recent Activity</h4>
-    <div class="w_Options i_16_settings">
-    </div>
-  </div>
-  <div class="widget_contents noPadding">
-    <table class="datatable tables">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Call or Text</th>
-          <th>List Sent to</th>
-          <th>% of Completed</th>
-          <th>Cost</th>
-          <th>View Progress</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @text_messages.each do |text_msg| %>
-          <tr>
-            <td>
-              <%= text_msg.schedule_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
-            </td>
-            <td>
-              <%= text_msg.number_of_recipients %>
-            </td>
-            <td>
-              <% text_msg.lists.collect{|l| l.name }.each do |list_name| %>
-                <%= list_name %> <br/>
-              <% end %>
-            </td>
-            <td>100</td>
-            <td>
-              <%= "$%.3f" % text_msg.total_cost %>
-            </td>
-            <td>
-              <%= link_to "view", "#" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<div id="recent-activity-table">
+  <%= render "recent_activity" %>
 </div>
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $("table.datatable thead tr th:first").click();
+    $(".fancybox").fancybox();
+    $("#recent-activity-table table.datatable thead tr th:first").click();
   })
 </script>

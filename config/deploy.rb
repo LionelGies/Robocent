@@ -106,12 +106,12 @@ namespace :deploy do
 
     desc "Start the delayed_job process"
     task :start, :roles => :app do
-      run "cd #{current_path};RAILS_ENV=production /usr/local/rvm/rubies/ruby-1.9.3-p194/bin/ruby script/delayed_job -n 2 start"
+      run "cd #{current_path};RAILS_ENV=production /usr/local/rvm/rubies/ruby-1.9.3-p194/bin/ruby script/delayed_job start"
     end
 
     desc "Restart the delayed_job process"
     task :restart, :roles => :app do
-      run "cd #{current_path};RAILS_ENV=production /usr/local/rvm/rubies/ruby-1.9.3-p194/bin/ruby script/delayed_job -n 2 restart"
+      run "cd #{current_path};RAILS_ENV=production /usr/local/rvm/rubies/ruby-1.9.3-p194/bin/ruby script/delayed_job restart"
     end
 
     desc "Start via rake task"

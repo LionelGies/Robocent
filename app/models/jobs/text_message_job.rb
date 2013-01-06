@@ -17,20 +17,26 @@ class Jobs::TextMessageJob < Struct.new(:text_message)
       numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
     end
 
+    body_content = text_message.content
+    body_content = body_content.scan(/.{1,160}/)
+
     numbers.each do |number|
-      begin
-        TwilioRequest::send_message(from, number, text_message.content)
-        successes << "#{number}"
-      rescue Exception => e
-        errors << e.to_s
+      body_content.each do |body|
+        response = TwilioRequest::send_message(from, number, body)
+        if response == "true"
+          successes << "#{number}"
+        else
+          errors << response
+        end
       end
+
       count += 1
     end
 
     text_message.total_processed = count
     text_message.succeeded = successes.size
-    text_message.succeeded_numbers = successes.join(",")
-    text_message.failed_alerts = errors.join(",")
+    text_message.succeeded_numbers = successes.uniq.join(",")
+    text_message.failed_alerts = errors.uniq.join(",")
     text_message.save
   end
 end

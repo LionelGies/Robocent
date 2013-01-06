@@ -1,6 +1,6 @@
 Robocent::Application.routes.draw do
 
-  resources :text_messages, :only => [:create]
+  resources :text_messages, :only => [:show, :create]
 
 
   #

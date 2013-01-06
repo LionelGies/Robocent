@@ -1,0 +1,81 @@
+<div style="width:600px;">
+  <div class="g_12">
+    <div class="widget_header">
+      <h4 class="widget_header_title wwIcon i_16_forms ">Text Message Progress</h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <table class="tables">
+        <tbody>
+          <tr>
+            <td colspan="2">
+              <div class="line_grid">
+                <div class="g_3"><span class="label">Sending Progress</span></div>
+                <div class="g_9">
+                  <div class="progress sProgress scBlue"></div>
+                  <div class="field_notice">Succeeded <span class="must paValue"><%= "#{@text_message.percent_completed}%" %></span></div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Content</td> <td><%= @text_message.content %></td>
+          </tr>
+          <tr>
+            <td>Sending From</td> <td><%= @text_message.sending_from %></td>
+          </tr>
+          <tr>
+            <td>Lists</td>
+            <td>
+              <% @text_message.lists.collect{|l| l.name }.each do |list_name| %>
+                <%= "#{list_name}" %><br/>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>Number of Recipients</td>
+            <td><%= @text_message.number_of_recipients %></td>
+          </tr>
+          <tr>
+            <td>Schedule At</td>
+            <td>
+              <%= @text_message.schedule_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
+            </td>
+          </tr>
+          <tr>
+            <td>Total Processed</td>
+            <td><%= @text_message.total_processed %></td>
+          </tr>
+          <tr>
+            <td>Total Succeeded</td>
+            <td>
+              <%= @text_message.succeeded %> &nbsp;&nbsp;&nbsp;
+              <%= link_to "Download csv", "#", :target => "blank", :style => "color:#007BBF;" %>
+            </td>
+          </tr>
+          <tr>
+            <td>Total Failed</td>
+            <td>
+              <%= @text_message.total_processed - @text_message.succeeded %> &nbsp;&nbsp;&nbsp;
+              <%= link_to "Download csv", "#", :target => "blank", :style => "color:#007BBF;" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <% if @text_message.total_unique_contacts != @text_message.number_of_recipients %>
+                May be there is duplicate phone numbers into your lists.
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".sProgress").progressbar({
+      value: <%= @text_message.percent_completed %>
+    });
+  })
+</script>

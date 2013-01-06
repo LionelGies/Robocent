@@ -34,10 +34,9 @@ class TwilioRequest
         :to => to,
         :body => body
       )
-      return true
+      return "true"
     rescue Twilio::REST::RequestError => e
-      puts e.message
-      return false
+      return e.message
     end
   end
 end
