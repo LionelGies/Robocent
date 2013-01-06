@@ -24,7 +24,7 @@
             <td>Sending From</td> <td><%= @text_message.sending_from %></td>
           </tr>
           <tr>
-            <td>Lists</td>
+            <td>List(s)</td>
             <td>
               <% @text_message.lists.collect{|l| l.name }.each do |list_name| %>
                 <%= "#{list_name}" %><br/>
@@ -36,7 +36,7 @@
             <td><%= @text_message.number_of_recipients %></td>
           </tr>
           <tr>
-            <td>Schedule At</td>
+            <td>Scheduled At</td>
             <td>
               <%= @text_message.schedule_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M:%S") %>
             </td>

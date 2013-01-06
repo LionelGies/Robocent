@@ -81,7 +81,7 @@
             </div>
             <div class="g_4"></div>
             <div class="g_2">
-              <%= "$(%.3f)" % @text_message.total_cost %>
+              <%= "$%.3f" % @text_message.total_cost %>
             </div>
           </td>
         </tr>
@@ -92,7 +92,11 @@
             </div>
             <div class="g_4"></div>
             <div class="g_2">
-              <%= "$(%.3f)" % (@current_balance - @text_message.total_cost) %>
+              <% if @current_balance < @text_message.total_cost %>
+                <%= "$(%.3f)" % (@current_balance - @text_message.total_cost) %>
+              <% else %>
+                <%= "$%.3f" % (@current_balance - @text_message.total_cost) %>
+              <% end %>
             </div>
           </td>
         </tr>

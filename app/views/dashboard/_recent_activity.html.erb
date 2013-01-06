@@ -10,8 +10,8 @@
         <tr>
           <th>Date</th>
           <th>Call or Text</th>
-          <th>List Sent to</th>
-          <th>% of Completed</th>
+          <th>List(s)</th>
+          <th>% Completed</th>
           <th>Cost</th>
           <th>View Progress</th>
         </tr>
@@ -22,22 +22,22 @@
             <td>
               <%= text_msg.schedule_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
             </td>
-            <td>
-              <%= text_msg.number_of_recipients %>
+            <td style="text-align: center">
+              Text
             </td>
             <td>
               <% text_msg.lists.collect{|l| l.name }.each do |list_name| %>
                 <%= list_name %> <br/>
               <% end %>
             </td>
-            <td>
+            <td style="text-align: center">
               <%= text_msg.percent_completed %>
             </td>
-            <td>
+            <td style="text-align: right">
               <%= "$%.3f" % text_msg.total_cost %>
             </td>
-            <td>
-              <%= link_to "view", text_msg, :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
+            <td style="text-align: center">
+              <%= link_to "View", text_msg, :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
             </td>
           </tr>
         <% end %>
