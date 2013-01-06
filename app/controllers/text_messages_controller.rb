@@ -103,7 +103,7 @@ class TextMessagesController < ApplicationController
   def send_a_test
     @text_message = current_user.text_messages.new(session[:text_message])
 
-    numbers = params[:numbers].split(/,\s+|[,]|\s+/).reject{|n| n.length < 3 }
+    numbers = params[:numbers].split(/[,]/).reject{|n| n.length < 3 }
 
     #from = current_user.twilio_phone_number.phone_number #if @text_message.sending_option == 1
     #from = "47543" if @text_message.sending_option != 1
@@ -125,6 +125,7 @@ class TextMessagesController < ApplicationController
       body_content.each do |body|
         response = TwilioRequest::send_message(from, to, body)
         count += 1 if response == "true"
+        logger.info response
       end
 
     end
