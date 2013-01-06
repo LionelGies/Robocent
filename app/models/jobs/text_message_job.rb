@@ -37,7 +37,7 @@ class Jobs::TextMessageJob < Struct.new(:text_message)
       
       #update text message sending stats
       text_message.total_processed = count
-      text_message.succeeded = successes.size
+      text_message.succeeded = successes.uniq.size
       text_message.succeeded_numbers = successes.uniq.join(",")
       text_message.failed_alerts = errors.uniq.join(",")
       text_message.save
