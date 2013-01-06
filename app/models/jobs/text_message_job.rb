@@ -7,8 +7,11 @@ class Jobs::TextMessageJob < Struct.new(:text_message)
     #from = text_message.user.twilio_phone_number.phone_number # if text_message.sending_option == 1
     #from = "47543" if text_message.sending_option != 1
 
-    from = "+15005550006" #valid for Test
-
+    if(Rails.env == 'development')
+      from = "+15005550006" #valid for Test
+    elsif(Rails.env == 'production')
+      from = text_message.user.twilio_phone_number.phone_number
+    end
     successes = []
     errors = []
     count = 0

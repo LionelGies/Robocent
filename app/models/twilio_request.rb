@@ -1,10 +1,11 @@
 class TwilioRequest
-
-  #  @account_sid = 'AC2ba64a6ec3824a9da645efee9f7346d4' # live credentials
-  #  @auth_token = 'f88f86dd6b179379e4a00abedd1d970f'    # live credentials
-
-  @account_sid = 'AC9737c64cd9988bfdac3b059ed3f8a0f9' # test credentials
-  @auth_token = 'f0a84c03212696b630283b6094925c33'    # test credentials
+  if(Rails.env == 'development')
+    @account_sid = 'AC9737c64cd9988bfdac3b059ed3f8a0f9' # test credentials
+    @auth_token = 'f0a84c03212696b630283b6094925c33'    # test credentials
+  elsif(Rails.env == 'production')
+    @account_sid = 'AC2ba64a6ec3824a9da645efee9f7346d4' # live credentials
+    @auth_token = 'f88f86dd6b179379e4a00abedd1d970f'    # live credentials
+  end
 
   @client = Twilio::REST::Client.new @account_sid, @auth_token
   @account = @client.account

@@ -108,8 +108,11 @@ class TextMessagesController < ApplicationController
     #from = current_user.twilio_phone_number.phone_number #if @text_message.sending_option == 1
     #from = "47543" if @text_message.sending_option != 1
 
-    from = "+15005550006" #valid for Test
-
+    if(Rails.env == 'development')
+      from = "+15005550006" #valid for Test
+    elsif(Rails.env == 'production')
+      from = current_user.twilio_phone_number.phone_number
+    end
 
 
     body_content = @text_message.content
