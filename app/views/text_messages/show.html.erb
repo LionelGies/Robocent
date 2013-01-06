@@ -71,14 +71,14 @@
             <td>Total Succeeded</td>
             <td>
               <%= @text_message.succeeded %> &nbsp;&nbsp;&nbsp;
-              <%= link_to "Download csv", "#", :target => "blank", :style => "color:#007BBF;" if @text_message.succeeded > 0 %>
+              <%= link_to "Download csv", send_text_succeeded_numbers_text_message_path(@text_message, :format => "csv"), :target => "blank", :style => "color:#007BBF;" if @text_message.succeeded > 0 %>
             </td>
           </tr>
           <tr>
             <td>Total Failed</td>
             <td>
               <%= @text_message.failed %> &nbsp;&nbsp;&nbsp;
-              <%= link_to "Download csv", "#", :target => "blank", :style => "color:#007BBF;" if @text_message.failed > 0 %>
+              <%= link_to "Download csv", send_text_errors_text_message_path(@text_message, :format => "csv"), :target => "blank", :style => "color:#007BBF;" if @text_message.failed > 0 %>
             </td>
           </tr>
           <tr>

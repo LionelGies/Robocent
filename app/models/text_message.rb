@@ -44,6 +44,24 @@ class TextMessage < ActiveRecord::Base
     self.total_processed - self.succeeded
   end
 
+  def to_csv_succeeded_numbers
+    require 'csv'
+    CSV.generate do |csv|
+      self.succeeded_numbers.split(",").each do |number|
+        csv << [number]
+      end
+    end
+  end
+
+  def to_csv_errors
+    require 'csv'
+    CSV.generate do |csv|
+      self.failed_alerts.split(",").each do |text|
+        csv << [text]
+      end
+    end
+  end
+
   private
 
   def charge_difference

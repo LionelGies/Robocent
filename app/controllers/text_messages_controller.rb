@@ -138,4 +138,32 @@ class TextMessagesController < ApplicationController
       format.js
     end
   end
+
+  def send_text_succeeded_numbers
+    @text_message = TextMessage.find(params[:id])
+    
+    respond_to do |format|
+      if @text_message.present? and @text_message.user_id == current_user.id
+        format.html { render text: @text_message.to_csv_succeeded_numbers }
+        format.csv { render text: @text_message.to_csv_succeeded_numbers }
+      else
+        format.html { redirect_to dashboard_path }
+        format.csv { redirect_to dashboard_path, :alert => "You are not authorized to download this file!" }
+      end
+    end
+  end
+
+  def send_text_errors
+    @text_message = TextMessage.find(params[:id])
+
+    respond_to do |format|
+      if @text_message.present? and @text_message.user_id == current_user.id
+        format.html { render text: @text_message.to_csv_errors }
+        format.csv { render text: @text_message.to_csv_errors }
+      else
+        format.html { redirect_to dashboard_path }
+        format.csv { redirect_to dashboard_path, :alert => "You are not authorized to download this file!" }
+      end
+    end
+  end
 end

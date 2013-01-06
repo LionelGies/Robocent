@@ -1,6 +1,11 @@
 Robocent::Application.routes.draw do
 
-  resources :text_messages, :only => [:show, :create]
+  resources :text_messages, :only => [:show, :create] do
+    member do
+      get :send_text_succeeded_numbers
+      get :send_text_errors
+    end
+  end
 
 
   #
