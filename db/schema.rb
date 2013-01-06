@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130105193055) do
+ActiveRecord::Schema.define(:version => 20130105234103) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -145,10 +145,14 @@ ActiveRecord::Schema.define(:version => 20130105193055) do
     t.float    "cost_per_text"
     t.integer  "number_of_texts_required"
     t.float    "total_cost"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.string   "list_ids"
     t.datetime "schedule_at"
+    t.integer  "total_processed",          :default => 0
+    t.integer  "succeeded",                :default => 0
+    t.text     "succeeded_numbers"
+    t.text     "failed_alerts"
   end
 
   create_table "twilio_phone_numbers", :force => true do |t|

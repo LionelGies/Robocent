@@ -2,7 +2,8 @@ class TextMessage < ActiveRecord::Base
   attr_accessor :schedule_now
   attr_accessible :content, :list_ids, :sending_option, :test_send_to, :user_id,
     :number_of_recipients, :cost_per_text, :number_of_texts_required, :total_cost,
-    :schedule_at, :schedule_now
+    :schedule_at, :schedule_now, :total_processed, :succeeded, :succeeded_numbers,
+    :failed_alerts
 
   belongs_to :user
 
@@ -35,6 +36,8 @@ class TextMessage < ActiveRecord::Base
   end
 
   def send_text_to_recipients
-    
+    delay_time = ((Time.parse(self.schedule_at.to_s) - Time.parse((DateTime.now).to_s))).to_i
+    delay_time = 5 if delay_time < 5
+    Delayed::Job.enqueue Jobs::TextMessageJob.new(self), 0 , delay_time.seconds.from_now
   end
 end

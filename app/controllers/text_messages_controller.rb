@@ -81,7 +81,7 @@ class TextMessagesController < ApplicationController
     start_time = Chronic.parse(start_time_string)
     
     if start_time <= Time.now or session[:text_message][:schedule_now] == "1"
-      start_time = Time.zone.now + 1.minutes
+      start_time = Time.zone.now + 5.seconds
     end
     Time.zone = "UTC"
     
