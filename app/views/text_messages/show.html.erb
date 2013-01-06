@@ -38,9 +38,31 @@
           <tr>
             <td>Schedule At</td>
             <td>
-              <%= @text_message.schedule_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
+              <%= @text_message.schedule_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M:%S") %>
             </td>
           </tr>
+          <tr>
+            <td>Started At</td>
+            <td>
+              <% if @text_message.started_at.present? %>
+                <%= @text_message.started_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M:%S") %>
+              <% else %>
+                Not Yet Started
+              <% end %>
+            </td>
+          </tr>
+          <% if @text_message.started_at.present? %>
+            <tr>
+              <td>Finished At</td>
+              <td>
+                <% if @text_message.finished_at.present? %>
+                  <%= @text_message.finished_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M:%S") %>
+                <% else %>
+                  Processing...
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
           <tr>
             <td>Total Processed</td>
             <td><%= @text_message.total_processed %></td>
@@ -49,14 +71,14 @@
             <td>Total Succeeded</td>
             <td>
               <%= @text_message.succeeded %> &nbsp;&nbsp;&nbsp;
-              <%= link_to "Download csv", "#", :target => "blank", :style => "color:#007BBF;" %>
+              <%= link_to "Download csv", "#", :target => "blank", :style => "color:#007BBF;" if @text_message.succeeded > 0 %>
             </td>
           </tr>
           <tr>
             <td>Total Failed</td>
             <td>
-              <%= @text_message.total_processed - @text_message.succeeded %> &nbsp;&nbsp;&nbsp;
-              <%= link_to "Download csv", "#", :target => "blank", :style => "color:#007BBF;" %>
+              <%= @text_message.failed %> &nbsp;&nbsp;&nbsp;
+              <%= link_to "Download csv", "#", :target => "blank", :style => "color:#007BBF;" if @text_message.failed > 0 %>
             </td>
           </tr>
           <tr>

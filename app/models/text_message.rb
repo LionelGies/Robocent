@@ -3,7 +3,7 @@ class TextMessage < ActiveRecord::Base
   attr_accessible :content, :list_ids, :sending_option, :test_send_to, :user_id,
     :number_of_recipients, :cost_per_text, :number_of_texts_required, :total_cost,
     :schedule_at, :schedule_now, :total_processed, :succeeded, :succeeded_numbers,
-    :failed_alerts
+    :failed_alerts, :started_at, :finished_at
 
   belongs_to :user
 
@@ -38,6 +38,10 @@ class TextMessage < ActiveRecord::Base
       numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
     end
     numbers.size
+  end
+
+  def failed
+    self.total_processed - self.succeeded
   end
 
   private

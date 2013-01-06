@@ -31,12 +31,28 @@ class Jobs::TextMessageJob < Struct.new(:text_message)
       end
 
       count += 1
+      
+      #update text message sending stats
+      text_message.total_processed = count
+      text_message.succeeded = successes.size
+      text_message.succeeded_numbers = successes.uniq.join(",")
+      text_message.failed_alerts = errors.uniq.join(",")
+      text_message.save
     end
+  end
 
-    text_message.total_processed = count
-    text_message.succeeded = successes.size
-    text_message.succeeded_numbers = successes.uniq.join(",")
-    text_message.failed_alerts = errors.uniq.join(",")
+  def before(job)
+    text_message.started_at = Time.zone.now
+    text_message.save
+  end
+
+  def after(job)
+    text_message.finished_at = Time.zone.now
+    text_message.save
+  end
+
+  def failure(job)
+    text_message.finished_at = Time.zone.now
     text_message.save
   end
 end
