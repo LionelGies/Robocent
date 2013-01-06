@@ -29,9 +29,14 @@ Robocent::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  config.serve_static_assets = true
   # Do not compress assets
-  config.assets.compress = false
+  config.assets.compress = true
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
+
+  config.assets.compile = false
+
+   config.assets.digest = true
 end
