@@ -1,5 +1,5 @@
 <% if @current_balance.present? %>
- $("#current-balance").html("<%= "%.3f" % @current_balance %>");
+ $("#current-balance").html("<%= "$%.3f" % @current_balance %>");
  $("#total-call-can").html("<%= @total_call_can %>");
 <% end %>
 
