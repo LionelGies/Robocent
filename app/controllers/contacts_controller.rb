@@ -14,6 +14,8 @@ class ContactsController < ApplicationController
       @search_contacts = current_user.contacts.by_phone_number(key)
       key = params[:search].split(/\W/).join("")
       @search_contacts = current_user.contacts.by_phone_number(key) if @search_contacts.empty?
+      key = formatted_number(params[:search])
+      @search_contacts = current_user.contacts.by_phone_number(key) if @search_contacts.empty?
     end
 
     respond_to do |format|

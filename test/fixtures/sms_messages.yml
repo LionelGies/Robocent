@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  sms_sid: MyString
+  body: MyText
+  from: MyString
+  from_state: MyString
+  from_city: MyString
+  from_country: MyString
+  from_zip: MyString
+  to: MyString
+  status: MyString
+  contact_id: 1
+
+two:
+  user_id: 1
+  sms_sid: MyString
+  body: MyText
+  from: MyString
+  from_state: MyString
+  from_city: MyString
+  from_country: MyString
+  from_zip: MyString
+  to: MyString
+  status: MyString
+  contact_id: 1

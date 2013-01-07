@@ -5,8 +5,8 @@
         <span class="tab_label">Dashboard</span>
       <% end %>
     </li>
-    <li class="i_32_inbox">
-      <%= link_to "#" do %>
+    <li class="i_32_inbox <%= "active_tab" if current_page?(inbox_path) %>">
+      <%= link_to inbox_path do %>
         <span class="tab_label">Inbox</span>
       <% end %>
     </li>

@@ -1,5 +1,11 @@
 Robocent::Application.routes.draw do
 
+  post "notifications/adaptive_ipn" => "notifications#adaptive_ipn"
+
+  get "inbox"   => "sms_messages#inbox", :as => :inbox
+
+  resources :sms_messages
+
   resources :text_messages, :only => [:show, :create] do
     member do
       get :send_text_succeeded_numbers

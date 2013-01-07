@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130106055705) do
+ActiveRecord::Schema.define(:version => 20130107030826) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -126,6 +126,22 @@ ActiveRecord::Schema.define(:version => 20130106055705) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
     t.string   "stripe_charge_id"
+  end
+
+  create_table "sms_messages", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "sms_sid"
+    t.text     "body"
+    t.string   "from"
+    t.string   "from_state"
+    t.string   "from_city"
+    t.string   "from_country"
+    t.string   "from_zip"
+    t.string   "to"
+    t.string   "status"
+    t.integer  "contact_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "subscriptions", :force => true do |t|

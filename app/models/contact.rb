@@ -6,6 +6,7 @@ class Contact < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :list
+  has_many   :sms_messages
 
   validates :user_id, :presence => true
   validates :list_id, :presence => true
