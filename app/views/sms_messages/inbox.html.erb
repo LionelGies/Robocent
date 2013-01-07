@@ -4,9 +4,14 @@
 
 <div class="g_12 separator"><span></span></div>
 
+<div id="flash-notice"></div>
+
 <div class="g_12" id="inbox-table">
   <div class="widget_header wwOptions">
     <h4 class="widget_header_title wwIcon i_16_chats">Inbox</h4>
+    <div class="ajax-loading" style="display:none;float:right;margin-right: 20px;">
+      <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
+    </div>
   </div>
   <div class="widget_contents noPadding">
     <table class="datatable tables">
@@ -15,7 +20,7 @@
           <th>Date and Time</th>
           <th>Message Preview</th>
           <th>From</th>
-          <th>View/Reply</th>
+          <th>View / Reply</th>
         </tr>
       </thead>
       <tbody>
@@ -31,7 +36,7 @@
               <%= sms.from %>
             </td>
             <td style="text-align: center">
-              view/reply
+              <%= link_to "View/reply", sms, :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
             </td>
           </tr>
         <% end %>
@@ -44,5 +49,13 @@
   $(document).ready(function(){
     $(".fancybox").fancybox();
     $("#inbox-table table.datatable thead tr th:first").click();
+    $("#sms_message_body").live("keyup blur",function(){
+      var content = $(this).val();
+      var char_text = content.length == 1 ? " Character, " : " Characters, ";
+      var msg_count = Math.ceil(parseFloat(content.length) / 140.0);
+      var msg_text = msg_count == 1 ? " Text Message Used" : " Text Messages Used";
+      var text = content.length + char_text + msg_count + msg_text;
+      $("#content_length").html(text);
+    })
   })
 </script>

@@ -4,4 +4,9 @@ class SmsMessage < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :contact
+
+  validates :from,  :presence => true
+  validates :to,    :presence => true
+  validates :body,  :presence => true
+  
 end

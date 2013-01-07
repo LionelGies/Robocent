@@ -92,4 +92,62 @@ class SmsMessagesController < ApplicationController
     @sms_messages = current_user.sms_messages.where(:status => "received")
   end
 
+  def show
+    @sms_message = SmsMessage.find(params[:id])
+    @new_sms = SmsMessage.new
+    if @sms_message.user == current_user
+      render :layout => false
+    else
+      render :text => "You are not authorized to view this page!"
+    end
+  end
+
+  def create
+    @sms_message = current_user.sms_messages.new(params[:sms_message])
+
+    if @sms_message.save
+      number_of_text_required = (@sms_message.body.length.to_f / 140.0).ceil
+      
+      # make charge user account
+      cost_per_text = current_user.subscription.plan.price_per_call_or_text.to_f / 100.0
+      cost = cost_per_text * number_of_text_required.to_f
+      r = Receipt.new(:memo => "To send #{number_of_text_required} text message(s)",
+        :debit => cost)
+      current_user.receipts << r
+
+      #
+      # Send message to twilio
+      #
+      # Split Message
+      body_content = @sms_message.body
+      body_content = body_content.scan(/.{1,160}/)
+
+      if(Rails.env == 'development')
+        from = "+15005550006" #valid for Test
+      elsif(Rails.env == 'production')
+        from = @sms_message.from
+      end
+      to = @sms_message.to
+      count = 0
+      body_content.each do |body|
+        response = TwilioRequest::send_message(from, to, body)
+        if response == "true"
+          count += 1
+        else
+          logger.info response
+          flash.now.alert = response
+        end
+      end
+      if count == body_content.size
+        flash.now.notice = "Successfully sent your message!"
+        @sms_message.status = "sent"
+      else
+        @sms_message.status = "failed"
+      end
+      @sms_message.save
+    else
+      flash.now.alert = "Something went wrong! Please contact Info@RoboCent.com"
+    end
+  end
+
 end
