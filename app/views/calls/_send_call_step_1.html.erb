@@ -59,14 +59,10 @@
   </div>
 </div>
 
-<%= hidden_field_tag "last_loaded_rec" %>
+<%= hidden_field_tag "last_loaded_rec", @recordings.present? ? @recordings.first.id : 0 %>
 
 <script type="text/javascript">
   $(document).ready(function(){
-    var last_loaded_rec = $("#recordings-table table tbody tr:first-child").attr("id");
-    last_loaded_rec = last_loaded_rec.replace("recording_row_", "");
-    $("#last_loaded_rec").val(last_loaded_rec);
-    
     setInterval(function()
     {
       var last_loaded_rec = $("#last_loaded_rec").val();
