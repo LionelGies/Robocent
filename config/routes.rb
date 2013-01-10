@@ -5,7 +5,8 @@ Robocent::Application.routes.draw do
   resources :incoming_calls
   resources :recordings
 
-  match 'send-call'   => 'calls#new', :as => :send_call
+  match 'send-call'      => 'calls#new',            :as => :send_call
+  match 'send-test-call' => 'calls#send_test_call', :as => :send_test_call
 
   resources :calls
 

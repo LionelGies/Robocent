@@ -5,4 +5,8 @@ class Call < ActiveRecord::Base
     :total_cost, :user_id, :schedule_now
 
   belongs_to :user
+
+  def lists
+    List.find(:all, :conditions => ["id in (?)", list_ids.split(",")])
+  end
 end

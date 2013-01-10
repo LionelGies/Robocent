@@ -1,6 +1,123 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
+<%= form_for(@call) do |f| %>
+  <div class="g_12">
+    <div class="widget_header">
+      <h4 class="widget_header_title" style="width: 100%;text-align: center;">
+        Cost of Call
+      </h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <table class="tables">
+        <tr>
+          <td>
+            <div class="g_6" style="text-align:center;">
+              Number of Unique Recipients Selected
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              <%= @call.number_of_recipients %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="g_6" style="text-align:center;">
+              Cost Per Call
+            </div>
+            <div class="g_4" style="text-align:right;padding-right: 15px;">x</div>
+            <div class="g_2">
+              <%= "$%.3f" % @call.cost_per_call %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="g_6 widget_header_title" style="text-align:center;">
+              Total Cost of Call
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              <%= "$%.3f" % @call.total_cost %>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-<%= "_send_call_step_4.html" %>
+  <div class="g_12">
+    <div class="widget_header">
+      <h4 class="widget_header_title" style="width: 100%;text-align: center;">
+        Billing
+      </h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <table class="tables">
+        <tr>
+          <td>
+            <div class="g_6" style="text-align:center;">
+              Current Balance
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              <%= "$%.3f" % @current_balance %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="g_6" style="text-align:center;">
+              Cost of Call
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              <%= "$%.3f" % @call.total_cost %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="g_6 widget_header_title" style="text-align:center;">
+              Ending Balance
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              <% if @current_balance < @call.total_cost %>
+                <%= "$(%.3f)" % (@current_balance - @call.total_cost) %>
+              <% else %>
+                <%= "$%.3f" % (@current_balance - @call.total_cost) %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="g_12">
+    <div class="label">
+      If the ending balance is negative, the balance will be charged to your card
+      on file by clicking, "Submit".
+    </div>
+  </div>
+
+  <div class="g_12">
+    <div class="line_grid">
+      <div class="g_3"></div>
+      <div class="g_3">
+        <%= link_to "Back", send_call_path(:step => "3"), :class => "submitIt simple_buttons" %>
+      </div>
+      <div class="g_2"></div>
+      <div class="g_4">
+        <%= f.submit "Submit", :class => "submitIt simple_buttons" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<style type="text/css">
+  .tables .g_2,
+  .tables .g_4,
+  .tables .g_6{
+    border: 1px solid transparent;
+  }
+</style>

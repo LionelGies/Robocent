@@ -1,6 +1,55 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
+<div id="twilio-response"></div>
+<div class="clear"></div>
 
-<%= "_send_call_step_3.html" %>
+<%= form_for(@call, :url => send_call_path) do |f| %>
+  <%= hidden_field_tag "step", "4" %>
+  <div class="widget_contents noPadding">
+    <div class="line_grid" id="send_text_call_container">
+      <div class="g_3"><span class="label">Send a Test</span></div>
+      <div class="g_9">
+        <%= f.text_field :test_send_to, :class => "simple_field" %>
+        <div class="field_notice">Please enter up to 5 numbers to which you would like to send a test call, separated by a comma.</div>
+        <div style="margin-top:10px;">
+          <div class="g_3">
+            <%= link_to "Send a Test", send_test_call_path, :class => "submitIt simple_buttons", :id => "send_test_call" %>
+          </div>
+          <div class="g_9 ajax-loading" style="display:none">
+            <%= image_tag("dashboard/Icons/Load/load-1.gif") %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="line_grid">
+      <div class="g_3"></div>
+      <div class="g_3">
+        <%= link_to "Back", send_call_path(:step => "2"), :class => "submitIt simple_buttons" %>
+      </div>
+      <div class="g_2"></div>
+      <div class="g_4">
+        <%= f.submit "Next", :class => "submitIt simple_buttons" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#send_test_call").click(function(){
+      var numbers = $("#call_test_send_to").val();
+      if(numbers.length < 3){
+        alert("Please enter some valid numbers!");
+      }
+      else{
+        var url = $(this).attr("href");
+        $("#send_text_call_container .ajax-loading").show();
+        $.ajax({
+          type: 'GET',
+          url: url,
+          data: {numbers : numbers},
+          dataType: "script"
+        });
+      }
+      return false;
+    });
+  })
+</script>

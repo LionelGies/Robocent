@@ -37,10 +37,10 @@ class TextMessagesController < ApplicationController
 
     if params["step"] == "3" and params[:text_message].present?
       begin
-        number_of_contacts = 0
-        @text_message.lists.each do |list|
-          number_of_contacts += list.number_of_contacts
-        end
+        #        number_of_contacts = 0
+        #        @text_message.lists.each do |list|
+        #          number_of_contacts += list.number_of_contacts
+        #        end
 
         numbers = []
         @text_message.lists.each do |list|
