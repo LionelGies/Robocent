@@ -34,9 +34,9 @@
         <div style="margin-top: 10px;">
           <%= date_select("call", "schedule_at", {:start_year => Time.now.in_time_zone(current_user.time_zone).year, :default => Date.today}, :class => "simple_form") %>
           <span class="label"> At &nbsp;&nbsp;&nbsp;</span>
-          <%= select_tag "call[schedule_at(4i)]", options_for_select((1..12).collect{|h| ["#{'%02d' % h}"]}, session[:text_message]["schedule_at(4i)"]), {:class => "simple_form"} %>:
-          <%= select_tag "call[schedule_at(5i)]", options_for_select((0..59).collect{|m| ["#{'%02d' % m}"]}, session[:text_message]["schedule_at(5i)"]), {:class => "simple_form"} %>
-          <%= select_tag "call[schedule_at(7i)]", options_for_select(['AM', 'PM'], session[:text_message]["schedule_at(7i)"]), {:class => "simple_form"} %>
+          <%= select_tag "call[schedule_at(4i)]", options_for_select((1..12).collect{|h| ["#{'%02d' % h}"]}, session[:call]["schedule_at(4i)"]), {:class => "simple_form"} %>:
+          <%= select_tag "call[schedule_at(5i)]", options_for_select((0..59).collect{|m| ["#{'%02d' % m}"]}, session[:call]["schedule_at(5i)"]), {:class => "simple_form"} %>
+          <%= select_tag "call[schedule_at(7i)]", options_for_select(['AM', 'PM'], session[:call]["schedule_at(7i)"]), {:class => "simple_form"} %>
           <div class="field_notice">
             Time Zone : <%= current_user.time_zone %>
             <br/>Please select the time you would like the message sent.
