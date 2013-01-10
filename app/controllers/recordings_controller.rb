@@ -36,6 +36,7 @@ class RecordingsController < ApplicationController
             r.Say "We didn't receive any input. Goodbye!"
           end
         elsif params["Digits"].present? and params["Digits"] == "2"
+          puts "face 2"
           response = Twilio::TwiML::Response.new do |r|
             r.Say "Please leave a message after the beep. Press hash when finished."
             r.Record(:method => "GET", :playBeep => true, :finishOnKey => "#")

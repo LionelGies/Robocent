@@ -1,0 +1,58 @@
+<%= form_for(@call, :url => send_call_path) do |f| %>
+  <%= hidden_field_tag "step", "3" %>
+  <div class="widget_contents noPadding">
+    <div class="line_grid">
+      <div class="g_3"><span class="label">Select Recipients</span></div>
+      <div class="g_9">
+        <% current_user.lists.each do |list| %>
+          <%= check_box_tag :"list_ids[]", list.id, (@call.list_ids.present? and @call.list_ids.include?(list.id.to_s)) ? true : false, :class => "simple_form" %>
+          <span class="label">
+            <%= "#{list.name} (#{list.number_of_contacts})" %>
+          </span>
+          <br/>
+        <% end %>
+        <div class="field_notice">Please select the list(s) you would like to receive the call.</div>
+      </div>
+    </div>
+    <div class="line_grid">
+      <div class="g_3"><span class="label">Caller Id Number</span></div>
+      <div class="g_9">
+        <%= f.text_field :caller_id_number, :class => "simple_field", :required => true, :value => current_user.twilio_phone_number.phone_number, :style => "width:250px;" %>
+        <div class="field_notice">Please enter the Caller ID number you would like displayed to the recipients.<br/>You may use your RoboCent number if you wish
+          <%= current_user.twilio_phone_number.phone_number %>
+        </div>
+      </div>
+    </div>
+    <div class="line_grid">
+      <div class="g_3"><span class="label">Schedule</span></div>
+      <div class="g_9">
+        <%= f.check_box :schedule_now, :value => 1, :class => "simple_form"  %>
+        <span class="label">Send Now
+          <br/>
+          Or Schedule a Future Time<br/>
+        </span>
+        <div style="margin-top: 10px;">
+          <%= date_select("call", "schedule_at", {:start_year => Time.now.in_time_zone(current_user.time_zone).year, :default => Date.today}, :class => "simple_form") %>
+          <span class="label"> At &nbsp;&nbsp;&nbsp;</span>
+          <%= select_tag "call[schedule_at(4i)]", options_for_select((1..12).collect{|h| ["#{'%02d' % h}"]}, session[:text_message]["schedule_at(4i)"]), {:class => "simple_form"} %>:
+          <%= select_tag "call[schedule_at(5i)]", options_for_select((0..59).collect{|m| ["#{'%02d' % m}"]}, session[:text_message]["schedule_at(5i)"]), {:class => "simple_form"} %>
+          <%= select_tag "call[schedule_at(7i)]", options_for_select(['AM', 'PM'], session[:text_message]["schedule_at(7i)"]), {:class => "simple_form"} %>
+          <div class="field_notice">
+            Time Zone : <%= current_user.time_zone %>
+            <br/>Please select the time you would like the message sent.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="line_grid">
+      <div class="g_3"></div>
+      <div class="g_3">
+        <%= link_to "Back", send_call_path(:step => "1"), :class => "submitIt simple_buttons" %>
+      </div>
+      <div class="g_2"></div>
+      <div class="g_4">
+        <%= f.submit "Next", :class => "submitIt simple_buttons" %>
+      </div>
+    </div>
+  </div>
+<% end %>

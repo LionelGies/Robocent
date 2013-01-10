@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :text_messages,        :dependent => :destroy
   has_many :sms_messages,         :dependent => :destroy
   has_many :recordings,           :dependent => :destroy
+  has_many :calls,                :dependent => :destroy
 
   validates :name, :presence => true
   validates :email, :format =>  { :with => /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/ }

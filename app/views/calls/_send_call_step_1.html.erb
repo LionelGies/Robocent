@@ -1,63 +1,75 @@
-
-<div class="g_12">
-  <div class="label">
-    Please select the recording you would like to send. To record a message by phone,
-    please follow the instructions below. You will have an opportunity to test
-    the message before it is sent on the next step.
-  </div>
-</div>
-<div class="g_2"></div>
-<div class="g_8">
-  <div class="widget_header">
-    <h4 class="widget_header_title wwIcon i_16_valid">
-      Record by Phone
-    </h4>
-  </div>
-  <div class="widget_contents noPadding">
-    <table class="tables">
-      <tr>
-        <td>
-          To record a message by phone, please dial 757.349.8601 and enter pin
-          <%= current_user.twilio_phone_number.pin_number %>
-          . Record your message and then hit the # to listen to the recording.
-          You may then press 1 to save (and it will automatically post to the table below)
-          or press 2 to re-record.
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-<div class="g_2"></div>
-<div class="clear"></div>
-
-<div class="g_12" id="recordings-table">
-  <div class="widget_header">
-    <h4 class="widget_header_title wwIcon i_16_valid">
-      Recordings
-    </h4>
-    <div class="ajax-loading" style="display:none;float:right;margin-right: 20px;">
-      <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
+<%= form_for(@call, :url => send_call_path) do |f| %>
+  <%= hidden_field_tag "step", "2" %>
+  <div class="g_12">
+    <div class="label">
+      Please select the recording you would like to send. To record a message by phone,
+      please follow the instructions below. You will have an opportunity to test
+      the message before it is sent on the next step.
     </div>
   </div>
-  <div class="widget_contents noPadding">
-    <table class="tables">
-      <thead>
+  <div class="g_2"></div>
+  <div class="g_8">
+    <div class="widget_header">
+      <h4 class="widget_header_title wwIcon i_16_valid">
+        Record by Phone
+      </h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <table class="tables">
         <tr>
-          <th>Select One</th>
-          <th>Title</th>
-          <th>Duration</th>
-          <th>Recorded</th>
-          <th>Edit</th>
+          <td>
+            To record a message by phone, please dial 757.349.8601 and enter pin
+            <%= current_user.twilio_phone_number.pin_number %>
+            . Record your message and then hit the # to listen to the recording.
+            You may then press 1 to save (and it will automatically post to the table below)
+            or press 2 to re-record.
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% @recordings.each do |rec| %>
-          <%= render :partial => "recordings/recording_tiny", :locals => {:rec => rec} %>
-        <% end %>
-      </tbody>
-    </table>
+      </table>
+    </div>
   </div>
-</div>
+  <div class="g_2"></div>
+  <div class="clear"></div>
+
+  <div class="g_12" id="recordings-table">
+    <div class="widget_header">
+      <h4 class="widget_header_title wwIcon i_16_valid">
+        Recordings
+      </h4>
+      <div class="ajax-loading" style="display:none;float:right;margin-right: 20px;">
+        <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
+      </div>
+    </div>
+    <div class="widget_contents noPadding">
+      <table class="tables">
+        <thead>
+          <tr>
+            <th>Select One</th>
+            <th>Title</th>
+            <th>Duration</th>
+            <th>Recorded</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recordings.each do |rec| %>
+            <% unless @call.new_record? and @call.recording_id.blank? %>
+              <%= render :partial => "recordings/recording_tiny", :locals => {:rec => rec, :selected_rec => @call.recording_id } %>
+            <% else %>
+              <%= render :partial => "recordings/recording_tiny", :locals => {:rec => rec} %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="line_grid">
+    <div class="g_4"></div>
+    <div class="g_8">
+      <%= f.submit "Next", :class => "submitIt simple_buttons" %>
+    </div>
+  </div>
+<% end %>
 
 <%= hidden_field_tag "last_loaded_rec", @recordings.present? ? @recordings.first.id : 0 %>
 

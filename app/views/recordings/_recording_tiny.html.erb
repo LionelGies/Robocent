@@ -1,6 +1,10 @@
 <tr id="recording_row_<%= rec.id %>">
   <td align="center">
-    <%= radio_button_tag "recording_id", rec.id %>
+    <% if defined?(selected_rec) and rec.id == selected_rec %>
+      <%= radio_button_tag "call[recording_id]", rec.id, :selected => true %>
+    <% else %>
+      <%= radio_button_tag "call[recording_id]", rec.id %>
+    <% end %>
   </td>
   <td>
     <%= rec.title %>

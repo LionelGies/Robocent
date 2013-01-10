@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  recording_id: 1
+  caller_id_number: MyString
+  list_ids: MyString
+  test_send_to: MyString
+  number_of_recipients: 1
+  cost_per_call: 1.5
+  total_cost: 1.5
+  schedule_at: 2013-01-10 13:21:14
+
+two:
+  user_id: 1
+  recording_id: 1
+  caller_id_number: MyString
+  list_ids: MyString
+  test_send_to: MyString
+  number_of_recipients: 1
+  cost_per_call: 1.5
+  total_cost: 1.5
+  schedule_at: 2013-01-10 13:21:14
