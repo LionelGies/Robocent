@@ -1,0 +1,42 @@
+<div style="width:600px;">
+  <div class="g_12">
+    <div class="widget_header">
+      <h4 class="widget_header_title wwIcon i_16_forms ">Edit Recording</h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <%= form_for(@recording) do |f| %>
+        <div class="line_grid">
+          <div class="g_3">
+            <span class="label">Title</span>
+          </div>
+          <div class="g_9">
+            <%= f.text_field :title, :class => "simple_field"%>
+          </div>
+        </div>
+        <div class="line_grid">
+          <div class="g_3"></div>
+          <div class="g_9">
+            <%= f.submit :class => "submitIt simple_buttons" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $("form.edit_recording").submit(function(){
+    var action = $(this).attr('action');
+    $.ajax({
+      type: 'POST',
+      url: action,
+      data: $(this).serialize(),
+      dataType: "script"
+    });
+    $("#recordings-table .ajax-loading").show();
+    $.fancybox.close();
+    return false;
+  });
+  });
+</script>

@@ -1,0 +1,5 @@
+$("#recordings-table .ajax-loading").hide();
+
+<% if @recording.present? %>
+  $("#recordings-table tr#recording_row_<%= @recording.id %>").replaceWith("<%= escape_javascript(render :partial => "recording_tiny", :locals => {:rec => @recording}).html_safe %>");
+<% end %>

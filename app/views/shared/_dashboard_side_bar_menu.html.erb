@@ -20,8 +20,8 @@
         <span class="tab_label">Send a Text</span>
       <% end %>
     </li>
-    <li class="i_32_ui">
-      <%= link_to "#" do %>
+    <li class="i_32_ui <%= "active_tab" if controller_name == "calls" %>">
+      <%= link_to send_call_path do %>
         <span class="tab_label">Send a Call</span>
       <% end %>
     </li>

@@ -1,5 +1,14 @@
 Robocent::Application.routes.draw do
 
+  match "find-new-recording" => 'recordings#find_new_recording'
+
+  resources :incoming_calls
+  resources :recordings
+
+  match 'send-call'   => 'calls#new', :as => :send_call
+
+  resources :calls
+
   post "notifications/adaptive_ipn" => "notifications#adaptive_ipn"
 
   get "inbox"   => "sms_messages#inbox", :as => :inbox
@@ -12,7 +21,6 @@ Robocent::Application.routes.draw do
       get :send_text_errors
     end
   end
-
 
   #
   # Text

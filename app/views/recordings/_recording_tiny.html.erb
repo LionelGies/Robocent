@@ -1,0 +1,17 @@
+<tr id="recording_row_<%= rec.id %>">
+  <td align="center">
+    <%= radio_button_tag "recording_id", rec.id %>
+  </td>
+  <td>
+    <%= rec.title %>
+  </td>
+  <td>
+    <%= "#{rec.duration} sec" %>
+  </td>
+  <td>
+    <%= rec.created_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
+  </td>
+  <td>
+    <%= link_to "Edit", edit_recording_path(rec), :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
+  </td>
+</tr>
