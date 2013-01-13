@@ -140,6 +140,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     ruby-hmac (0.4.0)
+    ruby-mp3info (0.7.2)
     ruby-ole (1.2.11.6)
     rubyXL (1.2.10)
     rubyzip (0.9.9)
@@ -202,6 +203,7 @@ DEPENDENCIES
   mysql2
   nokogiri
   rails (= 3.2.9)
+  ruby-mp3info
   rubyXL
   rubyzip
   rvm-capistrano (>= 1.1.0)

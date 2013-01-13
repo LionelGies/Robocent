@@ -1,4 +1,4 @@
-<%= form_for(@call, :url => send_call_path) do |f| %>
+<%= form_for(@call, :url => send_call_path, :html => {:multipart => true}) do |f| %>
   <%= hidden_field_tag "step", "2" %>
   <div class="g_12">
     <div class="label">
@@ -44,11 +44,12 @@
       <table class="tables">
         <thead>
           <tr>
-            <th>Select One</th>
+            <th>Select</th>
             <th>Title</th>
             <th>Duration</th>
+            <th>File Name</th>
             <th>Recorded</th>
-            <th>Edit</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -63,6 +64,38 @@
       </table>
     </div>
   </div>
+
+  <div class="g_12">
+    <div class="label">
+      Please select one recording from above list or Upload a mp3 recorded file below.
+    </div>
+  </div>
+
+  <%= fields_for @recording ||= Recording.new do |r| %>
+    <div class="g_12">
+      <div class="widget_header">
+        <h4 class="widget_header_title wwIcon i_16_valid">
+          Upload Recording
+        </h4>
+      </div>
+      <div class="widget_contents noPadding">
+        <div class="line_grid">
+          <div class="g_3"><span class="label">Title</span></div>
+          <div class="g_9">
+            <%= r.text_field :title, :class => "simple_field" %>
+          </div>
+        </div>
+        <div class="line_grid">
+          <div class="g_3"><span class="label">Upload</span></div>
+          <div class="g_9">
+            <%= r.file_field :file, :class => "simple_form" %>
+            <div class="field_notice">You can upload a mp3/wav recorded file.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <div class="line_grid">
     <div class="g_4"></div>
     <div class="g_8">

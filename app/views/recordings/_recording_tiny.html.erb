@@ -13,9 +13,17 @@
     <%= "#{rec.duration} sec" %>
   </td>
   <td>
+    <%= (rec.file_identifier.present? and rec.file_identifier.length > 18) ? "#{rec.file_identifier[0, 8] + '....' + rec.file_identifier[-8, 8]}" : rec.file_identifier %>
+  </td>
+  <td>
     <%= rec.created_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
   </td>
   <td>
-    <%= link_to "Edit", edit_recording_path(rec), :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
+    <%= link_to "Rename", edit_recording_path(rec), :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
+    /
+    <%= link_to "Play", '#', :style => "color:#007BBF;" %>
+    /
+    <%= link_to "Delete", '#', :style => "color:#007BBF;" %>
+
   </td>
 </tr>

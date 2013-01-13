@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_many :billing_events,       :dependent => :destroy
   has_many :text_messages,        :dependent => :destroy
   has_many :sms_messages,         :dependent => :destroy
-  has_many :recordings,           :dependent => :destroy
+  has_many :recordings,           :dependent => :destroy, :foreign_key => "userID"
   has_many :calls,                :dependent => :destroy
 
   validates :name, :presence => true

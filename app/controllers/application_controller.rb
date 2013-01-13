@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-
+  helper_method :formatted_number
 
   def not_authenticated
     redirect_to login_url, :alert => "First login to access this page."

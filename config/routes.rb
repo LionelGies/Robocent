@@ -1,6 +1,8 @@
 Robocent::Application.routes.draw do
 
   match "find-new-recording" => 'recordings#find_new_recording'
+  match "replay"          => 'recordings#replay', :as => :replay
+  match "save-or-record"  => 'recordings#save_or_record', :as => :save_or_record
 
   resources :incoming_calls
   resources :recordings

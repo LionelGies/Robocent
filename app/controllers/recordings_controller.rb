@@ -1,5 +1,5 @@
 class RecordingsController < ApplicationController
-  before_filter :require_login, :except => [:new]
+  before_filter :require_login, :except => [:new, :replay, :save_or_record]
 
   require 'twilio-ruby'
 
@@ -16,63 +16,26 @@ class RecordingsController < ApplicationController
       end
     end
 
-    user = User.find(session[:new_record_user_id]) if user.blank? and session[:new_record_user_id].present?
+    #  user = User.find(session[:new_record_user_id]) if user.blank? and session[:new_record_user_id].present?
 
     if user.present?
-      if (params["Digits"].present? and params["Digits"].length == 1) or params["RecordingUrl"].present?
-        if params["RecordingUrl"].present?
-          url = params["RecordingUrl"]
-          duration = params["RecordingDuration"]
-          sid = params["RecordingSid"]
-          session[:new_recording] = {:url => url, :duration => duration, :sid => sid}
-        end
-
-        if params["Digits"].present? and params["Digits"] == "#" and  session[:new_recording].present?
-          response = Twilio::TwiML::Response.new do |r|
-            r.Play "#{url}"
-            r.Gather(:timeout => "10", :numDigits => "1", :method => "GET") do |g|
-              r.Say "You may press 1 to save or press 2 to re-record."
-            end
-            r.Say "We didn't receive any input. Goodbye!"
-          end
-        elsif params["Digits"].present? and params["Digits"] == "2"
-          puts "face 2"
-          response = Twilio::TwiML::Response.new do |r|
-            r.Say "Please leave a message after the beep. Press hash when finished."
-            r.Record(:method => "GET", :playBeep => true, :finishOnKey => "#")
-            r.Say "We didn't receive any voice. Goodbye!"
-          end
-        elsif session[:new_recording].present? and params["Digits"] == "1"
-          #saving.......
-          recording = user.recordings.new(session[:new_recording])
-          recording.save
-          response = Twilio::TwiML::Response.new do |r|
-            r.Say "Your recording is successfully completed. Thank You"
-          end
-        else
-          response = Twilio::TwiML::Response.new do |r|
-            r.Gather(:timeout => "10", :numDigits => "1", :method => "GET") do |g|
-              r.Say "You may press 1 to save or press 2 to re-record."
-            end
-            r.Say "We didn't receive any input. Goodbye!"
-          end
-        end
-
-      else
-        response = Twilio::TwiML::Response.new do |r|
-          r.Say "Please leave a message after the beep. Press hash when finished."
-          r.Record(:method => "GET", :playBeep => true, :finishOnKey => "#")
-          r.Say "We didn't receive any voice. Goodbye!"
-        end
+      #After Pin Validation
+      response = Twilio::TwiML::Response.new do |r|
+        r.Play "#{root_url}ivr/RobocentRecording-556.mp3"
+        r.Record(:action => replay_path(:user_id => user.id), :method => "GET", :playBeep => true, :finishOnKey => "#", :maxLength => "90")
+        r.Say "We didn't receive any voice. Goodbye!", :voice => "woman"
       end
     else
-      # First time or if pin in wrong
+      #First Time or if Pin is wrong
       response = Twilio::TwiML::Response.new do |r|
-        r.Gather(:timeout => "10", :numDigits => "6", :method => "GET") do |g|
-          g.Say "This pin number is wrong." if pin_error.present?
-          g.Say "Please enter your pin number."
+        r.Gather(:timeout => "10", :finishOnKey => "*", :method => "GET") do |g|
+          if pin_error.present?
+            g.Play "#{root_url}ivr/RobocentRecording-557.mp3"
+          else
+            g.Play "#{root_url}ivr/RobocentRecording-559.mp3"
+          end
         end
-        r.Say "We didn't receive any input. Goodbye!"
+        r.Say "We didn't receive any input. Goodbye!", :voice => "woman"
       end
     end
 
@@ -82,9 +45,55 @@ class RecordingsController < ApplicationController
     render :text => response.text
   end
 
+  def replay
+    user = User.find(params["user_id"])
+    url = params["RecordingUrl"]
+    duration = params["RecordingDuration"]
+    
+    response = Twilio::TwiML::Response.new do |r|
+      r.Gather(:action => save_or_record_path(:user_id => user.id, :url => url, :duration => duration), :timeout => "10", :finishOnKey => "*", :method => "GET") do |g|
+        g.Play "#{root_url}ivr/RobocentRecording-558.mp3"
+        g.Play "#{url}.wav"
+      end
+      r.Say "We didn't receive any voice. Goodbye!", :voice => "woman"
+    end
+    logger.info response.text
+
+    # print the result
+    render :text => response.text
+  end
+
+  def save_or_record
+    user = User.find(params["user_id"])
+
+    if(params["Digits"] == "1")
+      url = params["url"]
+      duration = params["duration"]
+
+      recording = user.recordings.new({:url => url, :duration => duration })
+      recording.save
+
+      response = Twilio::TwiML::Response.new do |r|
+        r.Play "#{root_url}ivr/RobocentRecording-560.mp3"
+      end
+
+    elsif(params["Digits"] == "2")
+      response = Twilio::TwiML::Response.new do |r|
+        r.Play "#{root_url}ivr/RobocentRecording-556.mp3"
+        r.Record(:action => replay_path(:user_id => user.id), :method => "GET", :playBeep => true, :finishOnKey => "#", :maxLength => "90")
+        r.Say "We didn't receive any voice. Goodbye!", :voice => "woman"
+      end
+    end
+
+    logger.info response.text
+
+    # print the result
+    render :text => response.text
+  end
+
   def edit
     @recording = Recording.find(params[:id])
-    if @recording.user_id == current_user.id
+    if @recording.userID == current_user.id
       render :layout => false
     else
       render :text => "You are not authorized to edit this record!"
@@ -110,7 +119,7 @@ class RecordingsController < ApplicationController
 
     puts last_loaded_rec
 
-    @recordings = current_user.recordings.where("id > #{last_loaded_rec}").order("created_at ASC")
+    @recordings = current_user.recordings.where("id > #{last_loaded_rec} and file IS NOT NULL").order("created_at ASC")
 
     respond_to do |format|
       format.js

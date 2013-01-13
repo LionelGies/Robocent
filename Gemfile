@@ -18,6 +18,7 @@ gem "rubyXL"      #parsing xlsx files
 gem 'nokogiri'
 gem 'rubyzip'
 gem 'chronic'
+gem 'ruby-mp3info'
 
 gem 'delayed_job_active_record'
 gem "daemons"
