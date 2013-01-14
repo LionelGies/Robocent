@@ -11,6 +11,14 @@ class Recording < ActiveRecord::Base
   after_create :update_length, :if => Proc.new{ self.duration.blank? }
   after_create :download_and_save, :if => Proc.new{ self.url.present? and self.file.blank? }
 
+  validate :file_or_url
+
+  def file_or_url
+     if file.blank? and url.blank?
+      errors.add(:file, "File must be attached to upload!")
+    end
+  end
+
   def download_and_save
     self.remote_file_url = "#{self.url}.wav"
     self.save

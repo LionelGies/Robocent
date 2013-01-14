@@ -10,7 +10,6 @@ class RecordingsController < ApplicationController
       tpn = TwilioPhoneNumber.find_by_pin_number(params["Digits"])
       if tpn.present?
         user = tpn.user
-        session[:new_record_user_id] = user.id
       else
         pin_error = true
       end
@@ -85,10 +84,24 @@ class RecordingsController < ApplicationController
       end
     end
 
-    logger.info response.text
+    #logger.info response.text
 
     # print the result
     render :text => response.text
+  end
+
+  def create
+    @recording = current_user.recordings.new(params[:recording])
+    if @recording.save
+      redirect_to send_call_path, :notice => "Successfully Uploaded"
+    else
+      if @recording.file.blank?
+        flash[:alert] = @recording.errors.messages[:file].first
+      else
+        flash[:alert] = "Something went wrong, please try again!"
+      end
+      redirect_to send_call_path
+    end
   end
 
   def edit

@@ -1,36 +1,67 @@
-<%= form_for(@call, :url => send_call_path, :html => {:multipart => true}) do |f| %>
-  <%= hidden_field_tag "step", "2" %>
-  <div class="g_12">
-    <div class="label">
-      Please select the recording you would like to send. To record a message by phone,
-      please follow the instructions below. You will have an opportunity to test
-      the message before it is sent on the next step.
-    </div>
+<div class="g_12">
+  <div class="label">
+    Please select the recording you would like to send. To record a message by phone,
+    please follow the instructions below. You will have an opportunity to test
+    the message before it is sent on the next step.
   </div>
-  <div class="g_2"></div>
-  <div class="g_8">
+</div>
+
+<div class="g_6">
+  <div class="widget_header">
+    <h4 class="widget_header_title wwIcon i_16_valid">
+      Record by Phone
+    </h4>
+  </div>
+  <div class="widget_contents noPadding">
+    <table class="tables">
+      <tr>
+        <td style="height:217px;">
+          To record a message by phone, please dial 757.349.8601 and enter pin
+          <%= current_user.twilio_phone_number.pin_number %>
+          . Record your message and then hit the # to listen to the recording.
+          You may then press 1 to save (and it will automatically post to the table below)
+          or press 2 to re-record.
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="g_6">
+  <%= form_for @recording ||= Recording.new do |r| %>
     <div class="widget_header">
       <h4 class="widget_header_title wwIcon i_16_valid">
-        Record by Phone
+        Upload Recording
       </h4>
     </div>
     <div class="widget_contents noPadding">
-      <table class="tables">
-        <tr>
-          <td>
-            To record a message by phone, please dial 757.349.8601 and enter pin
-            <%= current_user.twilio_phone_number.pin_number %>
-            . Record your message and then hit the # to listen to the recording.
-            You may then press 1 to save (and it will automatically post to the table below)
-            or press 2 to re-record.
-          </td>
-        </tr>
-      </table>
+      <div class="line_grid">
+        <div class="g_3"><span class="label">Title</span></div>
+        <div class="g_9">
+          <%= r.text_field :title, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3"><span class="label">Upload</span></div>
+        <div class="g_9">
+          <%= r.file_field :file, :class => "simple_form" %>
+          <div class="field_notice">You can upload a mp3/wav recorded file.</div>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3"></div>
+        <div class="g_9">
+          <%= r.submit "Upload", :class => "submitIt simple_buttons"  %>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="g_2"></div>
-  <div class="clear"></div>
+  <% end %>
+</div>
 
+<div class="clear"></div>
+
+<%= form_for(@call, :url => send_call_path, :html => {:multipart => true}) do |f| %>
+  <%= hidden_field_tag "step", "2" %>
   <div class="g_12" id="recordings-table">
     <div class="widget_header">
       <h4 class="widget_header_title wwIcon i_16_valid">
@@ -67,39 +98,16 @@
 
   <div class="g_12">
     <div class="label">
-      Please select one recording from above list or Upload a mp3 recorded file below.
+      Please select one recording from above list.
     </div>
   </div>
 
-  <%= fields_for @recording ||= Recording.new do |r| %>
-    <div class="g_12">
-      <div class="widget_header">
-        <h4 class="widget_header_title wwIcon i_16_valid">
-          Upload Recording
-        </h4>
+  <div class="g_12">
+    <div class="line_grid">
+      <div class="g_4"></div>
+      <div class="g_8">
+        <%= f.submit "Next", :class => "submitIt simple_buttons" %>
       </div>
-      <div class="widget_contents noPadding">
-        <div class="line_grid">
-          <div class="g_3"><span class="label">Title</span></div>
-          <div class="g_9">
-            <%= r.text_field :title, :class => "simple_field" %>
-          </div>
-        </div>
-        <div class="line_grid">
-          <div class="g_3"><span class="label">Upload</span></div>
-          <div class="g_9">
-            <%= r.file_field :file, :class => "simple_form" %>
-            <div class="field_notice">You can upload a mp3/wav recorded file.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-  <div class="line_grid">
-    <div class="g_4"></div>
-    <div class="g_8">
-      <%= f.submit "Next", :class => "submitIt simple_buttons" %>
     </div>
   </div>
 <% end %>
