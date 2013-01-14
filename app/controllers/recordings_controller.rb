@@ -138,4 +138,15 @@ class RecordingsController < ApplicationController
       format.js
     end
   end
+
+  def destroy
+    @recording = Recording.find(params[:id])
+    @recording.destroy
+    redirect_to send_call_path
+  end
+
+  def play
+    @recording = Recording.find(params[:id])
+    render :layout => false
+  end
 end

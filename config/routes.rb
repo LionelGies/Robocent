@@ -5,7 +5,11 @@ Robocent::Application.routes.draw do
   match "save-or-record"  => 'recordings#save_or_record', :as => :save_or_record
 
   resources :incoming_calls
-  resources :recordings
+  resources :recordings do
+    member do
+      get :play
+    end
+  end
 
   match 'send-call'      => 'calls#new',            :as => :send_call
   match 'send-test-call' => 'calls#send_test_call', :as => :send_test_call

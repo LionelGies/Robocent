@@ -27,7 +27,7 @@ class MediaFileUploader < CarrierWave::Uploader::Base
   end
 
   def url
-    "/#{store_dir}/#{model.user.id}_#{model.file_before_type_cast}"
+    "/#{store_dir}/#{model.file_before_type_cast}"
   end
 
   #  def process_uri(uri)

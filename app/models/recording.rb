@@ -21,7 +21,7 @@ class Recording < ActiveRecord::Base
   end
 
   def download_and_save
-    self.remote_file_url = "#{self.url}.wav"
+    self.remote_file_url = "#{self.url}.mp3"
     self.save
   end
 

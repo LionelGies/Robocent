@@ -21,9 +21,9 @@
   <td>
     <%= link_to "Rename", edit_recording_path(rec), :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
     /
-    <%= link_to "Play", '#', :style => "color:#007BBF;" %>
+    <%= link_to "Play", play_recording_path(rec), :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
     /
-    <%= link_to "Delete", '#', :style => "color:#007BBF;" %>
+    <%= link_to "Delete", rec, :method => :delete, :style => "color:#007BBF;" %>
 
   </td>
 </tr>

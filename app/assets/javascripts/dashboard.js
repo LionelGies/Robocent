@@ -20,6 +20,8 @@
 //= require dhtmlxcalendar
 //= require dashboard/kanrisha
 //= require stripe
+//= require jquery_ujs
+//= require swfobject
 
 // Contacts
 $(function() {
