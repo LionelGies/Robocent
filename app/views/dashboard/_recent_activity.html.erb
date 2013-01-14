@@ -41,6 +41,30 @@
             </td>
           </tr>
         <% end %>
+        <% @calls.each do |call| %>
+          <tr>
+            <td>
+              <%= call.schedule_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
+            </td>
+            <td style="text-align: center">
+              Call
+            </td>
+            <td>
+              <% call.lists.collect{|l| l.name }.each do |list_name| %>
+                <%= list_name %> <br/>
+              <% end %>
+            </td>
+            <td style="text-align: center">
+              <%= call.percent_completed %>
+            </td>
+            <td style="text-align: right">
+              <%= "$%.3f" % call.total_cost %>
+            </td>
+            <td style="text-align: center">
+              <%= link_to "View", call, :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

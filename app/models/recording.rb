@@ -5,6 +5,7 @@ class Recording < ActiveRecord::Base
   :remote_file_url
 
   belongs_to :user, :foreign_key => "userID"
+  has_many :call
 
   mount_uploader :file, MediaFileUploader
 

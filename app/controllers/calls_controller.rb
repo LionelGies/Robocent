@@ -3,6 +3,11 @@ class CallsController < ApplicationController
 
   layout "dashboard"
 
+  def show
+     @call = Call.find(params[:id])
+    render :layout => false
+  end
+
   def new
     @step = params["step"].present? ? params["step"] : "1"
 
