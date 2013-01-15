@@ -10,9 +10,11 @@ class Call < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :recording
+  has_many :call_queues, :foreign_key => "order"
 
   before_create :charge_difference
   after_create :create_receipt
+  after_create :send_call_to_queue
 
   def lists
     List.find(:all, :conditions => ["id in (?)", list_ids.split(",")])
@@ -36,5 +38,11 @@ class Call < ActiveRecord::Base
   def create_receipt
     r = Receipt.new(:memo => "Call to #{number_of_recipients} contacts", :debit => total_cost)
     user.receipts << r
+  end
+
+  def send_call_to_queue
+    delay_time = ((Time.parse(self.schedule_at.to_s) - Time.parse((DateTime.now).to_s))).to_i
+    delay_time = 5 if delay_time < 5
+    Delayed::Job.enqueue Jobs::CallJob.new(self), 0 , delay_time.seconds.from_now, :queue => "call"
   end
 end

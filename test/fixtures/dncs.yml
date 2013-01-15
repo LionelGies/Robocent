@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  phone: MyString
+  account: 1
+  global: false
+
+two:
+  phone: MyString
+  account: 1
+  global: false

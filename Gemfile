@@ -20,6 +20,7 @@ gem 'rubyzip'
 gem 'chronic'
 gem 'ruby-mp3info'
 gem 'jw_player_helper'
+gem 'enum_column3'
 
 gem 'delayed_job_active_record'
 gem "daemons"

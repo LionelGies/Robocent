@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  call_id: 
+  orderID: 1
+  phone: MyString
+  pass: MyString
+  dial_start: MyString
+  dial_dur: MyString
+  call_result: MyString
+  call_start: MyString
+  call_dur: MyString
+  on_time: 1
+
+two:
+  call_id: 
+  orderID: 1
+  phone: MyString
+  pass: MyString
+  dial_start: MyString
+  dial_dur: MyString
+  call_result: MyString
+  call_start: MyString
+  call_dur: MyString
+  on_time: 1

@@ -49,7 +49,9 @@ class SmsMessagesController < ApplicationController
       elsif contact.blank? and params["Body"].downcase == "stop"
         reply_text = "You are opted out from RoboCent's alerts. No more messages will be sent. Reply HELP for help or email Info@RoboCent.com. Msg&Data rates may apply."
         # Add to global dnc list
-
+        dnc = Dnc.new(:phone => params["From"], :global => true, :account => user.id)
+        dnc.save
+        
       elsif params["Body"].downcase == "help"
         reply_text = "Thank you for contacting us! Please contact Info@RoboCent.com or 888-849-6231 for assistance. Reply STOP to cancel. Msg&Data rates may apply. Frequency of msgs depends on user."
         

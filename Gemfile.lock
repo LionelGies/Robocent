@@ -58,6 +58,7 @@ GEM
     delayed_job_active_record (0.3.3)
       activerecord (>= 2.1.0, < 4)
       delayed_job (~> 3.0)
+    enum_column3 (0.1.4)
     erubis (2.7.0)
     eventmachine (1.0.0)
     excon (0.16.10)
@@ -199,6 +200,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   daemons
   delayed_job_active_record
+  enum_column3
   execjs
   jquery-rails
   jw_player_helper

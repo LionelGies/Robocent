@@ -4,7 +4,7 @@ class CallsController < ApplicationController
   layout "dashboard"
 
   def show
-     @call = Call.find(params[:id])
+    @call = Call.find(params[:id])
     render :layout => false
   end
 
@@ -97,8 +97,27 @@ class CallsController < ApplicationController
   end
 
   def send_test_call
-    puts params.inspect
-    render :js => ""
+    session[:call][:test_send_to] = params[:numbers] if params[:numbers].present?
+    
+    @call = current_user.calls.new(session[:call])
+    
+    numbers = params[:numbers].split(/[,]/).reject{|n| n.length < 3 }
+
+    numbers.each do |number|
+      test_call = current_user.test_calls.new(
+        :phone => number,
+        :calleridnum => @call.caller_id_number,
+        :recordingname => @call.recording.file_identifier)
+      test_call.save
+    end
+
+    if numbers.size > 0
+      flash.now.notice = "Successfully placed into queue!"
+    end
+
+    respond_to do |format|
+      format.js
+    end
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110072114) do
+ActiveRecord::Schema.define(:version => 20130115005352) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(:version => 20130110072114) do
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end
+
+  create_table "call_queue", :force => true do |t|
+    t.integer "order"
+    t.string  "phone",         :limit => 20
+    t.enum    "status",        :limit => [:NOT_DIALED, :DIALING, :DIALED, :CACHED]
+    t.string  "calleridname",  :limit => 50
+    t.string  "calleridnum",   :limit => 30
+    t.string  "recordingname", :limit => 200
+    t.string  "dialingserver", :limit => 50
+  end
+
+  add_index "call_queue", ["dialingserver"], :name => "dialingserver"
 
   create_table "calls", :force => true do |t|
     t.integer  "user_id"
@@ -94,6 +106,14 @@ ActiveRecord::Schema.define(:version => 20130110072114) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "dnc", :force => true do |t|
+    t.string   "phone"
+    t.integer  "account"
+    t.boolean  "global"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "imports", :force => true do |t|
     t.integer  "user_id"
     t.integer  "list_id"
@@ -143,13 +163,28 @@ ActiveRecord::Schema.define(:version => 20130110072114) do
   end
 
   create_table "recordings", :force => true do |t|
-    t.integer  "user_id"
     t.string   "title"
-    t.integer  "duration"
     t.string   "sid"
     t.text     "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "userID"
+    t.string   "file"
+    t.string   "duration"
+    t.string   "file_length"
+  end
+
+  create_table "results", :force => true do |t|
+    t.integer "call_id",     :limit => 8,   :null => false
+    t.integer "orderID"
+    t.string  "phone",       :limit => 20
+    t.string  "pass",        :limit => 15
+    t.string  "dial_start",  :limit => 100
+    t.string  "dial_dur",    :limit => 15
+    t.string  "call_result", :limit => 100
+    t.string  "call_start",  :limit => 100
+    t.string  "call_dur",    :limit => 15
+    t.integer "on_time"
   end
 
   create_table "sms_messages", :force => true do |t|
@@ -175,6 +210,18 @@ ActiveRecord::Schema.define(:version => 20130110072114) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "test_calls", :force => true do |t|
+    t.integer "userID"
+    t.string  "phone",         :limit => 10
+    t.enum    "status",        :limit => [:NOT_DIALED, :DIALING, :DIALED, :CACHED]
+    t.string  "calleridname",  :limit => 50,                                        :default => "ROBOCENT"
+    t.string  "calleridnum",   :limit => 30,                                        :default => "7578212121"
+    t.string  "recordingname", :limit => 200
+    t.string  "dialingserver", :limit => 50
+  end
+
+  add_index "test_calls", ["dialingserver"], :name => "dialingserver"
 
   create_table "text_messages", :force => true do |t|
     t.text     "content"

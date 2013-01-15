@@ -80,6 +80,6 @@ class TextMessage < ActiveRecord::Base
   def send_text_to_recipients
     delay_time = ((Time.parse(self.schedule_at.to_s) - Time.parse((DateTime.now).to_s))).to_i
     delay_time = 5 if delay_time < 5
-    Delayed::Job.enqueue Jobs::TextMessageJob.new(self), 0 , delay_time.seconds.from_now
+    Delayed::Job.enqueue Jobs::TextMessageJob.new(self), 0 , delay_time.seconds.from_now, :queue => "text"
   end
 end
