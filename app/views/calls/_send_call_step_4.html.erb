@@ -31,6 +31,18 @@
         </tr>
         <tr>
           <td>
+            <div class="g_6" style="text-align:center;">
+              Call Duration : <%=  @duration %> seconds (<%= "#{@call.number_of_recipients} x #{"$%.3f" % @per_extra_cost}" %>)<br/>
+              ($0.003 for each 15 seconds, if longer than 45 seconds)
+            </div>
+            <div class="g_4" style="text-align:right;padding-right: 15px;">+</div>
+            <div class="g_2">
+              <%= "$%.3f" % @extra_cost %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
             <div class="g_6 widget_header_title" style="text-align:center;">
               Total Cost of Call
             </div>

@@ -53,11 +53,24 @@ class CallsController < ApplicationController
         end
         number_of_contacts = numbers.size
         cost_per_call = current_user.subscription.plan.price_per_call_or_text / 100.0
+        @duration = @call.recording.duration.to_f.ceil
+        
+        if @duration > 45
+          @extra_segment = ((@duration - 45.0) / 15.0).ceil
+          @per_extra_cost = @extra_segment.to_f * 0.003
+          @extra_cost = @per_extra_cost * number_of_contacts
+        else
+          @per_extra_cost = 0.0
+          @extra_cost = 0.0
+        end
+
+        total_cost = number_of_contacts * cost_per_call
+        total_cost = total_cost + @extra_cost
       
         new_hash = {
           :number_of_recipients => number_of_contacts,
           :cost_per_call => cost_per_call,
-          :total_cost => number_of_contacts * cost_per_call
+          :total_cost => total_cost
         }
 
         session[:call] = session[:call].merge(new_hash)
