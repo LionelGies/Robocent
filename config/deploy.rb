@@ -2,60 +2,42 @@ require "bundler/capistrano"
 require "rvm/capistrano"
 require "erb"
 require "delayed/recipes"
+require 'capistrano/ext/multistage'
+
+set :stages, %w(staging production)
+set :default_stage, "staging"
 
 set(:rvm_type)          { :system }
-set(:ruby_version)      { '1.9.3-p194' }
 set(:user)              { 'ubuntu' }
-set(:rvm_ruby_string)   { "1.9.3-p194" }
 set(:rvm_path)          { "/usr/local/rvm" }
 
 default_run_options[:pty] = true
 
-set :application, "ec2-50-112-5-90.us-west-2.compute.amazonaws.com"
-set :deploy_via, :remote_cache #:export | :remote_cache
-set :deploy_to, "/vol/apps/robocent"
+set :deploy_via, :remote_cache
 set :repository_cache, "cached_copy" 
-set :rails_env, "production --trace"
 set :rake, 'bundle exec rake'
 
 set :scm, 'git'
 set :repository, "git@github.com:RoboCent/robocent.git"
 set :git_enable_submodules, 1 # if you have vendored rails
-set :branch, 'master'
 set :git_shallow_clone, 1
 set :scm_verbose, true
 set :repository_cache, "cached_copy"
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 #the user of the server which will run commands on server
 ssh_options[:port] = 22
 ssh_options[:username] = 'ubuntu'
 ssh_options[:host_key] = 'ssh-dss'
 ssh_options[:paranoid] = false
-set :use_sudo, true
+set :use_sudo, false
 ssh_options[:keys] = %w(~/ssh-keys/robocent/robocent.pem)
 ssh_options[:forward_agent] = true
 
-role :web, "ec2-50-112-5-90.us-west-2.compute.amazonaws.com" # Your HTTP server, Apache/etc
-role :app, "ec2-50-112-5-90.us-west-2.compute.amazonaws.com" # This may be the same as your `Web` server
-role :db, "ec2-50-112-5-90.us-west-2.compute.amazonaws.com", :primary => true # This is where Rails migrations will run
-role :db, "ec2-50-112-5-90.us-west-2.compute.amazonaws.com"
+after "deploy:setup", :"deploy:create_shared_directories"
 
-after "deploy:setup", :"deploy:create_shared_files_and_directories"
-
-after "deploy:create_symlink", :link_shared_files
+after "deploy:create_symlink", :"deploy:link_shared_files"
 after "deploy:create_symlink", :"deploy:install_bundle"
 after "deploy", "deploy:cleanup"
-
-task :link_shared_files, :roles => :app do
-  run "rm -rf #{current_path}/tmp/sockets; ln -s #{shared_path}/sockets #{current_path}/tmp/sockets"
-  run "rm -rf #{current_path}/public/uploads; ln -s #{shared_path}/uploads #{current_path}/public/uploads"
-  run "rm -rf #{current_path}/tmp/pids; ln -s #{shared_path}/pids #{current_path}/tmp/pids"
-  run "rm -rf #{current_path}/public/.htaccess; rm -rf #{current_path}/public/dispatch.fcgi"
-end
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
 
 #If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
@@ -83,14 +65,21 @@ namespace :deploy do
     run "cd #{current_path}; RAILS_ENV=production bundle exec rake db:reset"
   end
 
-  #
-  # Need to Test
-  #
-  task :create_shared_files_and_directories, :role => :app do
-    #    run "sudo mkdir -p #{shared_path}/sockets"
-    #    run "sudo mkdir -p #{shared_path}/config/.bundle"
-    #    run "sudo mkdir -p #{shared_path}/bundle"
-    #    run "sudo mkdir -p #{shared_path}/uploads"
+  task :create_shared_directories, :role => :app do
+    run "mkdir -p #{shared_path}/sockets"
+    run "mkdir -p #{shared_path}/uploads"
+    run "mkdir -p #{shared_path}/pids"
+    run "mkdir -p #{shared_path}/log"
+    run "mkdir -p #{shared_path}/bundle"
+    run "mkdir -p #{shared_path}/recordings"
+  end
+
+  task :link_shared_files, :roles => :app do
+    run "rm -rf #{current_path}/tmp/sockets; ln -s #{shared_path}/sockets #{current_path}/tmp/sockets"
+    run "rm -rf #{current_path}/public/uploads; ln -s #{shared_path}/uploads #{current_path}/public/uploads"
+    run "rm -rf #{current_path}/tmp/pids; ln -s #{shared_path}/pids #{current_path}/tmp/pids"
+    run "rm -rf #{current_path}/public/recordings; ln -s #{shared_path}/recordings #{current_path}/public/recordings"
+    run "rm -rf #{current_path}/public/.htaccess; rm -rf #{current_path}/public/dispatch.fcgi"
   end
 
   namespace :delayed_job do
