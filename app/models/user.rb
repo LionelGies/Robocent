@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_one :billing_setting,       :dependent => :destroy
   has_one :subscription,          :dependent => :destroy
+  has_one :plan_migration,        :dependent => :destroy
   has_one :twilio_phone_number,   :dependent => :destroy
   has_one :account_balance,       :dependent => :destroy
   has_many :receipts,             :dependent => :destroy

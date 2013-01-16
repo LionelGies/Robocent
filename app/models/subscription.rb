@@ -21,10 +21,12 @@ class Subscription < ActiveRecord::Base
       self.save!
     else
       # Downgrade
-      user.billing_setting.customer.update_subscription(:plan => new_plan.stripe_id)
-      self.plan_id = new_plan.id
-      self.status = "pending"
-      self.save!
+      user.billing_setting.customer.update_subscription(:plan => new_plan.stripe_id,
+        :prorate => false)
+      schedule_at = Time.at(user.billing_setting.customer.subscription.current_period_end).utc
+      user.build_plan_migration(:new_plan_id => new_plan.id,
+        :schedule_at => schedule_at)
+      user.plan_migration.save
     end
   end
 

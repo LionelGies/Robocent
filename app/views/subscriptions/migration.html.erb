@@ -16,7 +16,16 @@
 <div class="g_12 separator"><span></span></div>
 
 <%= render "shared/show_flash" %>
-
+<div class="g_12">
+  <h4 class="widget_header_title">
+    Downgrade will be effective at the end of the current billing cycle.<br/>
+    Your current billing cycle (
+    <%= Time.at(@customer.subscription.current_period_start).in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
+    to
+    <%= Time.at(@customer.subscription.current_period_end).in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
+    )
+  </h4>
+</div>
 <div class="g_12">
   <div class="widget_contents noPadding">
     <%= form_for(@subscription, :url => migrate_path) do |f| %>
@@ -54,14 +63,25 @@
               </td>
             <% else %>
               <td>
-                <%= f.radio_button :plan_id, p.id %>
+                <% if @plan_migration.present? %>
+                  <%= f.radio_button :plan_id, p.id, :disabled => true %>
+                <% else %>
+                  <%= f.radio_button :plan_id, p.id %>
+                <% end %>
               </td>
             <% end %>
           <% end %>
         </tr>
         <tr>
           <td colspan="6" style="text-align: center">
-            <%= f.submit "Change Now", :class => "submitIt simple_buttons" %>
+            <% if @plan_migration.present? %>
+              You have one pending migration. Your account will be downgrade to
+              <%= @plan_migration.plan.name %>
+              at
+              <%= @plan_migration.schedule_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
+            <% else %>
+              <%= f.submit "Change Now", :class => "submitIt simple_buttons" %>
+            <% end %>
           </td>
         </tr>
       </table>
