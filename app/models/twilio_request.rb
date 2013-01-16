@@ -25,7 +25,13 @@ class TwilioRequest
   end
 
   def self.buy_phone_number(phone_number)
-    return @account.incoming_phone_numbers.create({:phone_number => phone_number}) if phone_number.present?
+    application_sid = if Rails.env.production?
+      "AP52acf39a4521e055a36e77163f996cc4"
+    elsif Rails.env.staging?
+      "APca63f28ef4513a21188f878fac3354d0"
+    end
+    return @account.incoming_phone_numbers.create({:phone_number => phone_number,
+        :sms_application_sid => "#{application_sid}"}) if phone_number.present?
   end
 
   def self.send_message(from, to, body)
