@@ -23,6 +23,7 @@ class Recording < ActiveRecord::Base
   def download_and_save
     self.remote_file_url = "#{self.url}.mp3"
     self.save
+    Notification.recording_succeeded(self).deliver
   end
 
   handle_asynchronously :download_and_save

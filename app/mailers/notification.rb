@@ -61,4 +61,15 @@ class Notification < ActionMailer::Base
     mail(:to => @user.email,
       :subject => "Monthly Subscription Fee!")
   end
+
+  def recording_succeeded(recording)
+    @user = recording.user
+    rec_url = recording.file.url
+    rec_url[0] = ''
+    @rec_url = "#{root_url}#{rec_url}"
+
+    headers['X-SMTPAPI'] = "{\"category\" : \"Recording\"}"
+    mail(:to => @user.email,
+      :subject => "New Robocent Recording")
+  end
 end
