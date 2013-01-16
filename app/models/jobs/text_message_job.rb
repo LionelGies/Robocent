@@ -9,7 +9,7 @@ class Jobs::TextMessageJob < Struct.new(:text_message)
 
     if(Rails.env == 'development')
       from = "+15005550006" #valid for Test
-    elsif(Rails.env == 'production')
+    elsif(Rails.env == 'production' or Rails.env == 'staging')
       from = text_message.user.twilio_phone_number.phone_number
     end
     successes = []
