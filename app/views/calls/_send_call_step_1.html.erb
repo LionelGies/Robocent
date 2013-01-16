@@ -16,7 +16,11 @@
     <table class="tables">
       <tr>
         <td style="height:217px;">
-          To record a message by phone, please dial 757.349.8601 and enter pin
+          To record a message by phone, please dial
+          <%= "757.517.3882" if Rails.env.development? %>
+          <%= "757.349.8601" if Rails.env.staging? %>
+          <%= "757.215.4781" if Rails.env.production? %>
+          and enter pin
           <%= current_user.twilio_phone_number.pin_number %>
           . Record your message and then hit the # to listen to the recording.
           You may then press 1 to save (and it will automatically post to the table below)
