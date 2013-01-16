@@ -5,9 +5,11 @@ CarrierWave.configure do |config|
     :aws_secret_access_key  => 'sGKwOTyL0qu9zOhI0dtQatbkNb24eJrTlnq2Z9YI'       # required
   }
 
-  if(Rails.env == 'development')
+  if Rails.env.development?
     config.fog_directory  = 'robocent.dev' # required
-  elsif(Rails.env == "production")
+  elsif Rails.env.staging?
+    config.fog_directory  = 'robocent.staging' # required
+  elsif Rails.env.production?
     config.fog_directory  = 'robocent.production' # required
   end
   

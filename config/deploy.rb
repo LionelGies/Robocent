@@ -57,14 +57,6 @@ namespace :deploy do
     run "rm -rf #{current_path}/public/assets/*; cd #{current_path}; RAILS_ENV=production bundle exec rake assets:precompile"
   end
 
-  task :db_seed, :roles => :app do
-    run "cd #{current_path}; RAILS_ENV=production bundle exec rake db:seed"
-  end
-
-  task :db_reset, :roles => :app do
-    run "cd #{current_path}; RAILS_ENV=production bundle exec rake db:reset"
-  end
-
   task :create_shared_directories, :role => :app do
     run "mkdir -p #{shared_path}/sockets"
     run "mkdir -p #{shared_path}/uploads"
@@ -80,6 +72,38 @@ namespace :deploy do
     run "rm -rf #{current_path}/tmp/pids; ln -s #{shared_path}/pids #{current_path}/tmp/pids"
     run "rm -rf #{current_path}/public/recordings; ln -s #{shared_path}/recordings #{current_path}/public/recordings"
     run "rm -rf #{current_path}/public/.htaccess; rm -rf #{current_path}/public/dispatch.fcgi"
+  end
+
+  namespace :db do
+    desc "Create Production Database"
+    task :create do
+      puts "\n\n=== Creating the Production Database! ===\n\n"
+      run "cd #{current_path}; RAILS_ENV=production bundle exec rake db:create"
+    end
+
+    desc "Migrate Production Database"
+    task :migrate do
+      puts "\n\n=== Migrating the Production Database! ===\n\n"
+      run "cd #{current_path}; RAILS_ENV=production bundle exec rake db:migrate"
+    end
+
+    desc "Resets Production Database"
+    task :migrate_reset do
+      puts "\n\n=== Resetting the Production Database! ===\n\n"
+      run "cd #{current_path}; RAILS_ENV=production bundle exec rake db:migrate:reset"
+    end
+
+    desc "Populates the Production Database"
+    task :seed, :roles => :app do
+      puts "\n\n=== Populating the Production Database! ===\n\n"
+      run "cd #{current_path}; RAILS_ENV=production bundle exec rake db:seed"
+    end
+
+    desc "Destroys Production Database"
+    task :drop do
+      puts "\n\n=== Destroying the Production Database! ===\n\n"
+      run "cd #{current_path}; RAILS_ENV=production rake db:drop"
+    end
   end
 
   namespace :delayed_job do
