@@ -93,6 +93,7 @@ Robocent::Application.routes.draw do
   #
   # public pages
   #
+  match 'contact-us-submit' => "publics#contact_us_submit" , :as => :contact_us_submit
   match "terms"       => "publics#terms",      :as => "terms"
   match "contact-us"  => "publics#contact",    :as => "contact_us"
   match "guide"       => "publics#guide",      :as => "guide"

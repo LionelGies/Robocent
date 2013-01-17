@@ -38,33 +38,49 @@
       <div class="add-comment contact-form">
         <h3>Leave us a message</h3>
 
-        <div class="comment-form">
-          <form action= "#" method="post" id="contactForm" class="ajax_form">
+        <div id="results" style="padding-left: 20px;color:#FF0000;">
+          <% if @contact_us.errors.any? %>
+            <span style="color:#FF0000;">
+              <%= pluralize(@contact_us.errors.count, "error") %> prohibited this message from being saved:
+              <br/>
+              <% @contact_us.errors.full_messages.each do |msg| %>
+                <%= msg %><br/>
+              <% end %>
+            </span>
+          <% end %>
+          <% if flash.present? %>
+            <span style="color:#FF0000;">
+              <%= flash.now[:alert] %>
+            </span>
+          <% end %>
+        </div>
 
+        <div class="comment-form">
+          <%= form_for(@contact_us, :url => contact_us_submit_path) do |f| %>
             <div class="row alignleft">
               <label><strong>Name</strong></label>
-              <input type="text" name="yourname" id="name" value="" class="inputtext input_middle required" />
+              <%= f.text_field :name, :class => "inputtext input_middle required" %>
             </div>
 
             <div class="space"></div>
 
             <div class="row  alignleft">
               <label><strong>Email</strong> (never published)</label>
-              <input type="text" id="email" name="email" value="" class="inputtext input_middle required" />
+              <%= f.text_field :email, :class => "inputtext input_middle required" %>
             </div>
 
             <div class="clear"></div>
 
             <div class="row">
               <label><strong>Message</strong></label>
-              <textarea cols="30" rows="10" id="message" name="message" class="textarea textarea_middle required"></textarea>
+              <%= f.text_area :content, :class => "textarea textarea_middle required", :size => "30x10" %>
             </div>
 
             <div class="row rowSubmit">
               <input type="submit" id="send" value="SEND MESSAGE" class="btn-submit" />
               <a onclick="document.getElementById('contactForm').reset();return false" href="#" class="link-reset">reset all fields</a>
             </div>
-          </form>
+          <% end %>
         </div>
       </div>
       <!--/add comment -->

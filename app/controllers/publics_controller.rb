@@ -22,8 +22,20 @@ class PublicsController < ApplicationController
   end
 
   def contact
+    @contact_us = ContactUs.new
   end
 
   def terms
+  end
+
+  def contact_us_submit
+    @contact_us = ContactUs.new(params[:contact_us])
+    if @contact_us.valid?
+      Notification.delay.contact_us_submit(@contact_us)
+      flash[:alert] = "Message sent! Thank you for contacting us."
+      redirect_to contact_us_path
+    else
+      render :action => :contact
+    end
   end
 end

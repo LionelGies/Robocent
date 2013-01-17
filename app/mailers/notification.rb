@@ -72,4 +72,12 @@ class Notification < ActionMailer::Base
     mail(:to => @user.email,
       :subject => "New Robocent Recording")
   end
+
+  def contact_us_submit(contact_us)
+    @contact_us = contact_us
+
+    mail(:to => "info@robocent.com",
+      :from => @contact_us.email,
+      :subject => "New Contact Us Message")
+  end
 end
