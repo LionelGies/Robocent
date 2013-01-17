@@ -1,7 +1,7 @@
 class Notification < ActionMailer::Base
 
   # set global/default values for all mail types
-  default :from => %|Robocent.com <welcome@robocent.com>|
+  default :from => "\"RoboCent\" <Info@RoboCent.com>"
   if Rails.env.production?
     default_url_options[:host] = "robocent.mhbweb.com"
   else
@@ -75,9 +75,9 @@ class Notification < ActionMailer::Base
 
   def contact_us_submit(contact_us)
     @contact_us = contact_us
-
-    mail(:to => "info@robocent.com",
-      :from => @contact_us.email,
+    to = "info@robocent.com"
+    
+    mail(:to => to,
       :subject => "New Contact Us Message")
   end
 end

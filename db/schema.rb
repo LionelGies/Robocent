@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117114245) do
+ActiveRecord::Schema.define(:version => 20130117183352) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -258,6 +258,15 @@ ActiveRecord::Schema.define(:version => 20130117114245) do
     t.text     "failed_alerts"
     t.datetime "started_at"
     t.datetime "finished_at"
+  end
+
+  create_table "tmp_messages", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "twilio_phone_numbers", :force => true do |t|
