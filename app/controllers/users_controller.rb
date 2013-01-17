@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_login, :only => [:new, :create, :confirmation, :activate, :twilionumbers]
+  before_filter :require_login, :except => [:new, :create, :confirmation, :activate, :twilionumbers]
   require 'twilio-ruby'
   layout 'publics'
   

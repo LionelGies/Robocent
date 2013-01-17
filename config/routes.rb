@@ -35,11 +35,6 @@ Robocent::Application.routes.draw do
   match 'send-a-test'     => 'text_messages#send_a_test', :as => :send_a_test
   match 'send-text'       => 'text_messages#new',         :as => :send_text
 
-  #
-  # Profile
-  #
-  put 'update-password'    => 'users#update_password',   :as => :update_password
-
   put "migrate"             => "subscriptions#migrate",   :as => :migrate
   match "migration"         => "subscriptions#migration", :as => :migration
 
@@ -81,15 +76,20 @@ Robocent::Application.routes.draw do
   #
   # registration
   #
-  get   'twilionumbers/:code'      => 'users#twilionumbers',  :as => :twilionumbers
-  put   'register'                 => 'users#create',         :as => :register_user
-  post  'register'                 => 'users#create',         :as => :register_user
-  get   'register'                 => 'users#new',            :as => :register
+  #get   'twilionumbers/:code'      => 'users#twilionumbers',  :as => :twilionumbers
+  #put   'register'                 => 'users#create',         :as => :register_user
+  #post  'register'                 => 'users#create',         :as => :register_user
+  #get   'register'                 => 'users#new',            :as => :register
   match 'register/activate/:token' => 'users#activate',       :as => :activate
-  match 'register/confirmation'    => 'users#confirmation',   :as => :register_confirmation
+  #match 'register/confirmation'    => 'users#confirmation',   :as => :register_confirmation
+  put 'update-password'    => 'users#update_password',   :as => :update_password
+  #resources :users
 
-  resources :users
-
+  # for demo
+  resources :temp_users, :only => [:new, :create]
+  get   'register'                 => 'temp_users#new',        :as => :register
+  resources :users, :only => [:update]
+  
   #
   # public pages
   #
