@@ -55,6 +55,7 @@ Robocent::Application.configure do
   config.assets.precompile += %w( dashboard.js )
   config.assets.precompile += %w( dashboard/Flot/excanvas.js )
   config.assets.precompile += %w( ie.css )
+  config.assets.precompile += %w( active_admin.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

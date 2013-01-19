@@ -1,5 +1,9 @@
 Robocent::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   match "find-new-recording" => 'recordings#find_new_recording'
   match "replay"          => 'recordings#replay', :as => :replay
   match "save-or-record"  => 'recordings#save_or_record', :as => :save_or_record
