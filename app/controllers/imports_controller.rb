@@ -15,6 +15,8 @@ class ImportsController < ApplicationController
 
   def map_column
     @import = Import.find(params[:id])
+    @import.hold = false
+    @import.uploaded = false
     sheet1 = @import.get_sheet
     @import.number_of_contacts = sheet1.count
     @import.hold = true if @import.number_of_contacts > 499
@@ -51,24 +53,12 @@ class ImportsController < ApplicationController
     if @import.hold
       redirect_to new_contact_path, :alert => "Your list is currently pending administrator approval."
     elsif((@total_contacts_count + @import.number_of_contacts) > @allowed_contacts_count)
+      @import.hold = true
+      @import.save
       redirect_to new_contact_path, :alert => "Your list is currently pending administrator approval. Please upgrade your account in order to add more subscribers to the system."
     else
-      require "yaml"
-      map = HashWithIndifferentAccess.new(YAML.load @import.mapping)
-      sheet = @import.get_sheet
-      count = 0
-      sheet.each_with_index do |row, index|
-          contact = current_user.contacts.new
-          contact.list_id = @import.list_id
-          for i in 0..map.size.to_i - 1 do
-            contact.set_value(map["#{i}"], row[i])
-          end
-          count += 1 if contact.save
-      end
-    
-      @import.uploaded = true
-      @import.save
-      redirect_to new_contact_path, :notice => "successfully uploaded #{count} contacts."
+      Delayed::Job.enqueue Jobs::ImportJob.new(@import), 0 , 2.seconds.from_now, :queue => "import"
+      redirect_to new_contact_path, :notice => "Your uploads successfully placed into queue."
     end
   end
 end
