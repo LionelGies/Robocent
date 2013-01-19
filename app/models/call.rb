@@ -10,7 +10,8 @@ class Call < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :recording
-  has_many :call_queues, :foreign_key => "order"
+  has_many :call_queues, :dependent => :destroy, :foreign_key => "order"
+  has_many :results, :dependent => :destroy, :foreign_key => "orderID"
 
   before_create :charge_difference
   after_create :create_receipt

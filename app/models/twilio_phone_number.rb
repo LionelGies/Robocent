@@ -1,10 +1,12 @@
 class TwilioPhoneNumber < ActiveRecord::Base
-  attr_accessible :area_code, :phone_number, :user_id, :pin_number
+  attr_accessible :area_code, :phone_number, :user_id, :pin_number, :sid
 
   belongs_to :user
 
   before_create :buy_twilio_number
   after_create :issue_pin_number
+
+  before_destroy :release_twilio_number
 
   def issue_pin_number
     begin
@@ -19,6 +21,11 @@ class TwilioPhoneNumber < ActiveRecord::Base
   private
 
   def buy_twilio_number
-    TwilioRequest::buy_phone_number(phone_number)
+    number = TwilioRequest::buy_phone_number(phone_number)
+    self.sid = number.sid
+  end
+
+  def release_twilio_number
+    TwilioRequest::release_number(self.sid)
   end
 end

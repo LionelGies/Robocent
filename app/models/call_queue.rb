@@ -4,5 +4,5 @@ class CallQueue < ActiveRecord::Base
     :recordingname, :status
 
   belongs_to :call, :foreign_key => "order"
-  
+  has_one :result, :foreign_key => "call_id"
 end

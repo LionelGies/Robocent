@@ -1,8 +1,16 @@
 ActiveAdmin.register User do
+  filter :organization_name
+  filter :organization_type
   filter :name
+  filter :phone
+  filter :email
+  filter :address
+  filter :state, :as => :select, :collection => UsState::NAMES
+  filter :time_zone, :as => :select, :collection => UsState::TIME_ZONES
 
   index do
     selectable_column
+    column :id
     column :organization_name
     column :organization_type
     column :name
@@ -47,7 +55,22 @@ ActiveAdmin.register User do
       row :last_activity_at
       row :created_at
       row :updated_at
+      row "Manage" do |user|
+        link_to 'Cancel Account', cancel_admin_user_path(user), :confirm => "It will delete all the associated data with this user! Are you sure to cancel this account?"
+      end
     end
     active_admin_comments
+  end
+
+  member_action :cancel do
+    @user = User.find(params[:id])
+    if @user.present?
+      flash[:notice] = "User account id : #{params[:id]} cancellation is in queue!"
+      @user.delay.destroy
+      redirect_to :action => :index
+    else
+      flash[:notice] = "User was not found by id : #{params[:id]}"
+      redirect_to :action => :index
+    end
   end
 end

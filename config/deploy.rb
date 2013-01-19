@@ -92,7 +92,7 @@ namespace :deploy do
 
     desc "Restart the delayed_job process"
     task :restart, :roles => :app do
-      run "cd #{current_path};RAILS_ENV=#{rails_env} #{ruby_path} script/delayed_job restart"
+      run "cd #{current_path};RAILS_ENV=#{rails_env} #{ruby_path} script/delayed_job -n 2 restart"
     end
 
     desc "Start via rake task"

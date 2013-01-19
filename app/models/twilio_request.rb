@@ -46,4 +46,14 @@ class TwilioRequest
       return e.message
     end
   end
+
+  def self.release_number(sid)
+    begin
+      @number = @account.incoming_phone_numbers.get(sid)
+      @response = @number.delete
+      return true
+    rescue 
+      return true
+    end
+  end
 end
