@@ -106,6 +106,10 @@ Robocent::Application.routes.draw do
   match "support"     => "publics#support",    :as => "support"
   match "pricing"     => "publics#pricing",    :as => "pricing"
   match 'solutions'   => "publics#solutions",  :as => "solutions"
+  match "SMSTerms"    => "publics#sms_terms",   :as => "sms_terms"
+  match "SMSPrivacy"  => "publics#sms_privacy", :as => "sms_privacy"
+  match "smsterms"    => "publics#sms_terms"
+  match "smsprivacy"  => "publics#sms_privacy"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

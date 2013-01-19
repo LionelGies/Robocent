@@ -38,4 +38,10 @@ class PublicsController < ApplicationController
       render :action => :contact
     end
   end
+
+  def sms_terms
+  end
+
+  def sms_privacy
+  end
 end
