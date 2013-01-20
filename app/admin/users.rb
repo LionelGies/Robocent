@@ -6,8 +6,7 @@ ActiveAdmin.register User do
   filter :name
   filter :phone
   filter :email
-  filter :address
-  filter :state, :as => :select, :collection => UsState::NAMES
+  filter :activation_state
   filter :time_zone, :as => :select, :collection => UsState::TIME_ZONES
 
   index do
@@ -18,8 +17,7 @@ ActiveAdmin.register User do
     column :name
     column :phone
     column :email
-    column :address
-    column :state
+    column :activation_state
     column :time_zone
     column :created_at
     column :updated_at
@@ -33,8 +31,6 @@ ActiveAdmin.register User do
       f.input :name
       f.input :phone
       f.input :email
-      f.input :address
-      f.input :state, :as => :select, :collection => UsState::NAMES
       f.input :time_zone, :as => :select, :collection => UsState::TIME_ZONES
     end
     f.buttons
@@ -47,8 +43,6 @@ ActiveAdmin.register User do
       row :name
       row :phone
       row :email
-      row :address
-      row :state
       row :time_zone
       row :activation_state
       row :activation_token
