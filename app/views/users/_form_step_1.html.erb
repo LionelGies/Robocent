@@ -35,22 +35,22 @@
 
 <div class="row alignleft">
   <label><strong>Time Zone</strong></label>
-  <%= f.select :time_zone, UsState::TIME_ZONES, { :prompt => "Select one | (Not sure? Left blank)" }, :class => "select-uniform" %>
+  <%= f.select :time_zone, UsState::TIME_ZONES, { :prompt => "Select one" }, :class => "select-uniform required" %>
 </div>
 
-<div class="clear"></div>
+<%#*<div class="clear"></div>%>
 
-<div class="row alignleft">
-  <label><strong>Address</strong></label>
-  <%= f.text_field :address, :class => "inputtext input_middle required" %>
-</div>
+<%#*<div class="row alignleft">%>
+<%#*<label><strong>Address</strong></label>%>
+<%#= f.text_field :address, :class => "inputtext input_middle required" %>
+<%#*</div>%>
 
-<div class="space"></div>
+<%#*<div class="space"></div>%>
 
-<div class="row alignleft">
-  <label><strong>State</strong></label>
-  <%= f.select :state, UsState::NAMES, { :prompt => "Select one" }, :class => "select-uniform"%>
-</div>
+<%#*<div class="row alignleft">%>
+<%#*<label><strong>State</strong></label>%>
+<%#= f.select :state, UsState::NAMES, { :prompt => "Select one" }, :class => "select-uniform"%>
+<%#*</div>%>
 
 <div class="clear"></div>
 

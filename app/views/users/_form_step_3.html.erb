@@ -21,7 +21,7 @@
 
 <p>
   Please enter the billing information you would like to keep on file.
-  You may cancel your account anytime during the 30 day free trial and
+  You may cancel your account anytime during the 14 day free trial and
   your account will not be billed.
 </p>
 
@@ -47,15 +47,15 @@
       <% end %>
     </tr>
     <tr>
-      <td>Cost per Month</td>
-      <% @plans.each do |p| %>
-        <td>$<%= p.amount/100 %></td>
-      <% end %>
-    </tr>
-    <tr>
       <td>Cost per Message</td>
       <% @plans.each do |p| %>
         <td><%= p.price_per_call_or_text %>&cent;</td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Cost per Month</td>
+      <% @plans.each do |p| %>
+        <td>$<%= p.amount/100 %></td>
       <% end %>
     </tr>
     <tr>

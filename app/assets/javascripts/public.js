@@ -21,7 +21,8 @@ $(document).ready(function(){
     var organization_name = $("#user_organization_name").val();
     var phone = $("#user_phone").val();
     var organization_type = $("#user_organization_type").val();
-    var state = $("#user_state").val();
+    //var state = $("#user_state").val();
+    var time_zone = $("#user_time_zone").val();
     var password = $("#user_password").val();
     var password_confirmation = $("#user_password_confirmation").val();
 
@@ -31,7 +32,8 @@ $(document).ready(function(){
     if(organization_name == "") error += "Company/Organization can't be blank.<br/>";
     if(phone == "") error += "Phone can't be blank.<br/>";
     if(organization_type == "") error += "Organization type can't be blank.<br/>";
-    if(state == "") error += "State can't be blank.<br/>";
+    //if(state == "") error += "State can't be blank.<br/>";
+    if(time_zone == "") error += "Time Zone can't be blank.<br/>";
 
     if($(".comment-form form").attr("id") == "new_user"){
       if(password.length < 6) error += "Password is too short (minimum is 6 characters).<br/>";

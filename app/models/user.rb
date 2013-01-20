@@ -28,7 +28,8 @@ class User < ActiveRecord::Base
   validates :organization_name, :presence => true
   validates :phone, :presence => true
   validates :organization_type, :presence => true
-  validates :state, :presence => true
+  validates :time_zone, :presence => true
+  #validates :state, :presence => true
   validates_confirmation_of :password
   validates :password, :presence => true, :on => :create
   validates_uniqueness_of :email
@@ -37,7 +38,7 @@ class User < ActiveRecord::Base
   # scopes
   scope :active, :conditions => {:activation_state => 'active'}
 
-  before_save :update_time_zone
+  #before_save :update_time_zone
 
   after_create :add_free_balance
 

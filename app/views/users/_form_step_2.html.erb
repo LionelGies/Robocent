@@ -1,8 +1,6 @@
 <p>
-  Select a Phone Number<br/>
-  Subscribers can text a keyword to this number to subscribe to your text notifications,
-  call this number to subscribe to your voice notifications and
-  you may use it as a text comment line in which you can communicate with your customers!
+Please enter the area code in which you would like to create your RoboCent number.
+You may use this number to send texts and receive feedback from your customers.
 </p>
 
 <% if @user.twilio_phone_number.present? %>
@@ -13,12 +11,6 @@
     </strong>
   </p>
 <% else %>
-
-  <p>
-    The area code in which you'd like a new incoming phone number.
-    Any three digit, US area code is valid.
-    Select phone number will auto populate within this area code for you.
-  </p>
 
   <%= fields_for @twilio_phone_number ||= TwilioPhoneNumber.new do |t| %>
 
@@ -50,10 +42,10 @@
 <% end %>
 
 <p>
-  What if I want to use a short code like 41257 instead?<br/>
-  You will have that option on the dashboard once you create an account.
-  For now, please select a phone number (they are free and you don't have to use it
-  if you don't want to).
+  What if I want to use a short code like 47543 instead?<br/>
+  You will have the option to use a short code once you create an account.
+  For now, please select a phone number (they are free and you don't have to use
+  it if you don't want to).
 </p>
 
 

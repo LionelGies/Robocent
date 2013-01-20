@@ -19,20 +19,19 @@
       <div class="post-item post-detail">
 
         <div class="post-title">
-          <h1>Confirmation Email!</h1>
+          <h1>Please Confirm Your Email!</h1>
         </div>
 
         <div class="entry">
           <p>
             <% if @user.present? %>
-              Welcome
+              Welcome,
               <strong>
-                <%= @user.name %>
+                <%= "#{@user.name}!" %>
               </strong>
               <br/>
-              Email: <%= @user.email %><br/>
+              Please check <%= @user.email %> to confirm your account.
             <% end %>
-            Please check your email to confirm your account.
           </p>
           <div class="clear"></div>
         </div>
