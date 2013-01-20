@@ -2,11 +2,6 @@ class Notification < ActionMailer::Base
 
   # set global/default values for all mail types
   default :from => "\"RoboCent\" <Info@RoboCent.com>"
-  if Rails.env.production?
-    default_url_options[:host] = "robocent.mhbweb.com"
-  else
-    default_url_options[:host] = "localhost:3000"
-  end
 
   def activation_needed_email(user)
     @user = user
