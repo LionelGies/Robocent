@@ -74,6 +74,10 @@ namespace :deploy do
     run "rm -rf #{current_path}/public/.htaccess; rm -rf #{current_path}/public/dispatch.fcgi"
   end
 
+  task :db_seed, :roles => :app do
+    run "cd #{current_path};RAILS_ENV=#{rails_env} bundle exec rake db:seed"
+  end
+
   namespace :delayed_job do
     desc "Stop the delayed_job process"
     task :stop, :roles => :app do

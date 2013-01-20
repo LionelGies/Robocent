@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+  config.per_page = 50
+  
   filter :organization_name
   filter :organization_type
   filter :name

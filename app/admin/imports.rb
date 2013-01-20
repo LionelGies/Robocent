@@ -1,4 +1,5 @@
 ActiveAdmin.register Import do
+  config.per_page = 50
   actions :all, :except => [:edit]
 
   filter :user

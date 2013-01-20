@@ -3,6 +3,7 @@ class Plan < ActiveRecord::Base
     :minimum_numbers, :name, :price_per_call_or_text, :trial_period_days
 
   has_many :subscriptions
+  has_many :users, :through => :subscriptions
 
   def details
     "#{minimum_numbers}-#{maximum_numbers} Numbers, $#{amount/100}/#{interval.capitalize}, #{price_per_call_or_text}&cent;/Call or Text".html_safe
