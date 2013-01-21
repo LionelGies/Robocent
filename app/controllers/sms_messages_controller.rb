@@ -94,8 +94,19 @@ class SmsMessagesController < ApplicationController
     @sms_messages = current_user.sms_messages.where(:status => "received")
   end
 
+  def inbox_read
+    @sms_messages = current_user.sms_messages.find(:all, :conditions => ["sms_messages.read = ? and status = ?", false, "received"])
+    @sms_messages.each do |sms|
+      sms.read = true
+      sms.save
+    end
+    render :js => ""
+  end
+  
   def show
     @sms_message = SmsMessage.find(params[:id])
+    @contact = current_user.contacts.find_by_phone_number(@sms_message.from)
+    @contact = current_user.contacts.find_by_phone_number(formatted_number(@sms_message.from)) if @contact.blank?
     @new_sms = SmsMessage.new
     if @sms_message.user == current_user
       render :layout => false
@@ -126,6 +137,8 @@ class SmsMessagesController < ApplicationController
 
       if(Rails.env == 'development')
         from = "+15005550006" #valid for Test
+      elsif(Rails.env == 'staging')
+        from = @sms_message.from
       elsif(Rails.env == 'production')
         from = @sms_message.from
       end

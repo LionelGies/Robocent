@@ -1,10 +1,49 @@
 <div style="width:600px;">
   <div class="g_12">
     <div class="widget_header">
+      <h4 class="widget_header_title wwIcon i_16_message">View Message</h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">
+            <% if @contact.present? and (@contact.first_name.present? or @contact.last_name.present?)%>
+               <%= @contact.name %>
+            <% else %>
+              <%= formatted_number(@sms_message.from) %>
+            <% end %>
+          </span>
+        </div>
+        <div class="g_9">
+          <span class="label">
+            <%= @sms_message.body %>
+          </span>
+        </div>
+      </div>
+      <% @sms_message.replied_messages.each do |sms| %>
+        <div class="line_grid">
+          <div class="g_3">
+            <span class="label">
+              <%= current_user.name %>
+            </span>
+          </div>
+          <div class="g_9">
+            <span class="label">
+              <%= sms.body %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="g_12">
+    <div class="widget_header">
       <h4 class="widget_header_title wwIcon i_16_message">Send Message</h4>
     </div>
     <div class="widget_contents noPadding">
       <%= form_for @new_sms do |f| %>
+        <%= f.hidden_field :replied_to_id, :value => @sms_message.id %>
         <div class="line_grid">
           <div class="g_3">
             <span class="label">To<span class="must">*</span></span>

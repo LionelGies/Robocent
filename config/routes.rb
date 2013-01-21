@@ -23,6 +23,7 @@ Robocent::Application.routes.draw do
   post "notifications/adaptive_ipn" => "notifications#adaptive_ipn"
 
   get "inbox"   => "sms_messages#inbox", :as => :inbox
+  get "inbox-read" => "sms_messages#inbox_read"
 
   resources :sms_messages
 

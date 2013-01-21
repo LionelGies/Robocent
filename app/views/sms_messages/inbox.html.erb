@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="widget_contents noPadding">
-    <table class="datatable tables">
+    <table class="datatable_inbox tables">
       <thead>
         <tr>
           <th>Date and Time</th>
@@ -33,10 +33,20 @@
               <%= sms.body %>
             </td>
             <td>
-              <%= sms.from %>
+              <%= formatted_number(sms.from) %>
             </td>
             <td style="text-align: center">
-              <%= link_to "Reply", sms, :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
+              <% unless sms.read %>
+                <span class="new_tag">
+                  new
+                </span>
+              <% end %>
+
+              <% if sms.replied_messages.present? %>
+                <%= link_to "Reply", sms, :class => "fancybox fancybox.ajax", :style => "color:#666666;" %>
+              <% else %>
+                <%= link_to "Reply", sms, :class => "fancybox fancybox.ajax", :style => "color:#007BBF;" %>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -47,8 +57,25 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+    $(".datatable_inbox").dataTable({
+      "sDom": "<'dtTop'<'dtShowPer'l><'dtFilter'f>><'dtTables't><'dtBottom'<'dtInfo'i><'dtPagination'p>>",
+      "oLanguage": {
+        "sLengthMenu": "Show entries _MENU_",
+        "sEmptyTable": "No Inbox Messages to Display"
+      },
+      "sPaginationType": "full_numbers",
+      "fnInitComplete": function(){
+        $(".dtShowPer select").uniform();
+        $(".dtFilter input").addClass("simple_field").css({
+          "width": "auto",
+          "margin-left": "15px"
+        });
+      }
+    });
+
+
     $(".fancybox").fancybox();
-    $("#inbox-table table.datatable thead tr th:first").click();
+    $("#inbox-table table.datatable_inbox thead tr th:first").click();
     $("#sms_message_body").live("keyup blur",function(){
       var content = $(this).val();
       var char_text = content.length == 1 ? " Character, " : " Characters, ";
@@ -56,6 +83,37 @@
       var msg_text = msg_count == 1 ? " Text Message Used" : " Text Messages Used";
       var text = content.length + char_text + msg_count + msg_text;
       $("#content_length").html(text);
-    })
-  })
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: '/inbox-read',
+      dataType: "script"
+    });
+    
+  });
 </script>
+
+<style type="text/css">
+  .dataTables_empty{
+    text-align: center;
+  }
+  .new_tag{
+    background: url("/assets/dashboard/Textures/small_count.png") repeat-x scroll 0 0 #F77E0B;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 2px #F47517 inset, 0 1px 0 rgba(255, 255, 255, 0.75);
+    height: 13px;
+    line-height: 13px;
+    text-align: center;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-bottom: 2px;
+    color: #FAFAFA;
+    font-family: "Droid Sans";
+    font-size: 10px;
+    text-shadow: 0 1px 0 #F68710;
+    margin-top: 10px;
+    position: absolute;
+    right: 8px;
+  }
+</style>

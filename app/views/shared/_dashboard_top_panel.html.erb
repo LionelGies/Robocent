@@ -33,10 +33,13 @@
           <% end %>
         </li>
         <li class="i_22_inbox top_inbox">
-          <a href="#" title="">
+          <%= link_to inbox_path do %>
             <span class="label lasCount">Inbox</span>
-            <span class="small_count">3</span>
-          </a>
+            <% @unread_messages_count = current_user.sms_messages.count(:all, :conditions => ["sms_messages.read = ? and status = ?", false, "received"])  %>
+            <span class="small_count">
+              <%= @unread_messages_count %>
+            </span>
+          <% end %>
         </li>
       </ul>
     </div>
