@@ -8,8 +8,8 @@ class DashboardController < ApplicationController
     @call_contacts_count = current_user.lists.sum_number_of_contacts.by_call.first.total.to_i
     @text_contacts_count = current_user.lists.sum_number_of_contacts.by_text.first.total.to_i
     @price_per_call_or_text = current_user.subscription.plan.price_per_call_or_text
-    @cost_for_text = (@text_contacts_count.to_f * @price_per_call_or_text) / 100
-    @cost_for_call = (@call_contacts_count.to_f * @price_per_call_or_text) / 100
+
+    @total_text_or_call_can_send = ((current_user.current_balance * 100.0) / @price_per_call_or_text).to_i
 
     @text_messages = current_user.text_messages
     @calls = current_user.calls

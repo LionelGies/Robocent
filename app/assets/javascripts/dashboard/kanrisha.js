@@ -295,6 +295,7 @@ $(function () {
         "sDom": "<'dtTop'<'dtShowPer'l><'dtFilter'f>><'dtTables't><'dtBottom'<'dtInfo'i><'dtPagination'p>>",
         "oLanguage": {
             "sLengthMenu": "Show entries _MENU_",
+            "sEmptyTable": "No Recent Texts or Calls to Display",
         },
         "sPaginationType": "full_numbers",
         "fnInitComplete": function(){
