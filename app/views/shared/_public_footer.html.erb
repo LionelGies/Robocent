@@ -27,7 +27,10 @@
             <%= link_to content_tag(:span, "Pricing"), pricing_path %>
           </li>
           <li>
-            <%= link_to content_tag(:span, "Support"), support_path %>
+            <%= link_to content_tag(:span, "SMS Terms"), sms_terms_path %>
+          </li>
+          <li>
+            <%= link_to content_tag(:span, "SMS Privacy"), sms_privacy_path %>
           </li>
         </ul>
       </div>
@@ -36,6 +39,9 @@
       <div class="widget-container widget_nav_menu">
         <h3 class="widget-title">SUPPORT</h3>
         <ul>
+          <li>
+            <%= link_to content_tag(:span, "Support"), support_path %>
+          </li>
           <li>
             <%= link_to content_tag(:span, "FAQs"), faq_path %>
           </li>
