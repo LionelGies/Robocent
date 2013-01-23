@@ -1,7 +1,10 @@
 <div class="g_6 contents_header">
   <h3 class="i_16_ui tab_label">Contacts</h3>
 </div>
-<div class="g_4"></div>
+<div class="g_2"></div>
+<div class="g_2">
+  <%= link_to "Add New List", new_list_path, :class => "simple_buttons contact-button", :id => "new_list_link_1" %>
+</div>
 <div class="g_2">
   <%= link_to "Add Contacts", new_contact_path, :class => "simple_buttons contact-button" %>
 </div>
@@ -9,8 +12,9 @@
 <div class="g_12 separator"><span></span></div>
 
 <div class="g_6" style="padding-top:12px;">
-  <%= image_tag("dashboard/Icons/16/i_16_ui.png") %>
-  <%= pluralize(@contacts.count, "Contact") %>
+    <h4 class="widget_header_title ">
+      <%= pluralize(@contacts.count, "Contact") %>
+    </h4>
 </div>
 <div class="g_6">
   <form>
@@ -47,11 +51,11 @@
               <%= render :partial => "contact_tiny", :locals => {:contact => contact} %>
             <% end %>
           <% else %>
-          <tr>
-            <td colspan="5" style="text-align:center">
-              No Records Found.
-            </td>
-          </tr>
+            <tr>
+              <td colspan="5" style="text-align:center">
+                No Records Found.
+              </td>
+            </tr>
           <% end %>
         </tbody>
       </table>
@@ -114,32 +118,5 @@
 <script type="text/javascript">
   $(function() {
     $(".fancybox").fancybox();
-
-    $("form#list_delete_link").live("submit", function(){
-      if (confirm('By deleting this list, all contacts within this list will be erased. Do you want to proceed?')) {
-        var action = $(this).attr("action");
-        $.ajax({
-          type: 'DELETE',
-          url: action,
-          data: $(this).serialize(),
-          dataType: "script"
-        });
-        $("#contact-lists-table .ajax-loading").show();
-      }
-      return false;
-    });
-    $("form#contact_delete_link").live("submit", function(){
-      if (confirm('Are you sure to delete!')) {
-        var action = $(this).attr("action");
-        $.ajax({
-          type: 'DELETE',
-          url: action,
-          data: $(this).serialize(),
-          dataType: "script"
-        });
-        $("#contacts-table .ajax-loading").show();
-      }
-      return false;
-    });
   });
 </script>

@@ -37,6 +37,11 @@ $(function() {
     $(".w_Options.i_16_add").trigger('click');
     return false;
   });
+  
+  $( "#new_list_link_1" ).click(function() {
+    $( "#dialog" ).dialog( "open" );
+    return false;
+  });
 
   $("form#new_list").submit(function(){
     var action = $(this).attr('action');
@@ -49,5 +54,60 @@ $(function() {
     $("#contact-lists-table .ajax-loading").show();
     $("#dialog").dialog("close");
     return false;
+  });
+
+  $("form#list_delete_link").live("submit", function(){
+    if (confirm('By deleting this list, all contacts within this list will be erased. Do you want to proceed?')) {
+      var action = $(this).attr("action");
+      $.ajax({
+        type: 'DELETE',
+        url: action,
+        data: $(this).serialize(),
+        dataType: "script"
+      });
+      $("#contact-lists-table .ajax-loading").show();
+    }
+    return false;
+  });
+
+  $("form#contact_delete_link").live("submit", function(){
+    if (confirm('Are you sure to delete!')) {
+      var action = $(this).attr("action");
+      $.ajax({
+        type: 'DELETE',
+        url: action,
+        data: $(this).serialize(),
+        dataType: "script"
+      });
+      $("#contacts-table .ajax-loading").show();
+    }
+    return false;
+  });
+});
+
+//Fix file uploader click event
+$(function(){
+  $(".uploader span.action").click(function(){
+    $(this).parent(".uploader").children(".simple_form").click();
+  });
+});
+
+//Import Contacts
+$(function(){
+  $('#import_file_name').change(function(){
+    var ext = $('#import_file_name').val().split('.').pop().toLowerCase();
+    if($.inArray(ext, ['xls','xlsx','csv']) == -1) {
+      alert('You may only upload an xls, xlsx, or csv file');
+    }
+  });
+
+  $("#new_import").submit(function(){
+    var ext = $('#import_file_name').val().split('.').pop().toLowerCase();
+    if($.inArray(ext, ['xls','xlsx','csv']) == -1) {
+      alert('You may only upload an xls, xlsx, or csv file');
+      return false;
+    }else {
+      return true;
+    }
   });
 });

@@ -29,22 +29,3 @@
     <% end %>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(function(){
-    $('#import_file_name').change(function(){
-      var ext = $('#import_file_name').val().split('.').pop().toLowerCase();
-      if($.inArray(ext, ['xls','xlsx','csv']) == -1) {
-        alert('You may only upload an xls, xlsx, or csv file');
-      }
-    });
-
-    $("#new_import").submit(function(){
-      var ext = $('#import_file_name').val().split('.').pop().toLowerCase();
-      if($.inArray(ext, ['xls','xlsx','csv']) == -1) {
-        alert('You may only upload an xls, xlsx, or csv file');
-        return false;
-      }else { return true; }
-    });
-  });
-</script>
