@@ -68,9 +68,6 @@ class TextMessagesController < ApplicationController
 
     @current_balance = current_user.account_balance.current_balance
 
-    puts session[:text_message].inspect
-    puts @text_message.inspect
-
     respond_to do |format|
       format.html # new.html.erb
     end

@@ -14,8 +14,16 @@ class SmsMessagesController < ApplicationController
     twilio_phone_number = TwilioPhoneNumber.find_by_phone_number(params["To"])
     user = twilio_phone_number.user if twilio_phone_number.present?
 
+    if user.blank?
+      short_code = ShortCode.find_by_number(params["To"])
+      if short_code.present?
+        list = List.find_by_shortcode_keyword(params["Body"])
+        user = list.user if list.present?
+      end
+    end
+
     if user.present?
-      list = List.find_by_keyword_and_user_id(params["Body"], user.id)
+      list = List.find_by_keyword_and_user_id(params["Body"], user.id) unless short_code.present? and list.present?
 
       if list.present?
         contact = Contact.find_by_phone_number_and_user_id_and_list_id(from_phone_number,user.id,list.id)
