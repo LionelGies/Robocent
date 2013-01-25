@@ -15,68 +15,88 @@
 
 /* Dashboard Index */
 .widget_contents .banner-box{
-  background-color: #E6F3D8;
-  border: 1px solid #CCDDBA;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  padding: 10px;
-  height: 30px;
+    background-color: #E6F3D8;
+    border: 1px solid #CCDDBA;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 10px;
+    height: 30px;
 }
 .widget_contents .banner-box span.highlight-number{
-  color: #5E8238;
-  font-size: 25px;
-  font-weight: bold;
-  float: left;
+    color: #5E8238;
+    font-size: 25px;
+    font-weight: bold;
+    float: left;
 }
 .widget_contents .banner-box span.small-text{
-  color: #748265;
-  float: left;
-  font-size: 8px;
-  line-height: 10px;
-  margin-left: 5px;
-  margin-top: 6px;
+    color: #748265;
+    float: left;
+    font-size: 8px;
+    line-height: 10px;
+    margin-left: 5px;
+    margin-top: 6px;
 }
 .widget_contents .banner-box .balance{
-  font-size: 14px;
-  padding-top: 8px;
-  text-align: center;
-  font-weight: bold;
+    font-size: 14px;
+    padding-top: 8px;
+    text-align: center;
+    font-weight: bold;
 }
 .widget_contents .contacts-stat{
-  font-size: 17px;
-  line-height: 29px;
-  padding-left: 10px;
-  padding-top: 8px;
+    font-size: 17px;
+    line-height: 29px;
+    padding-left: 10px;
+    padding-top: 8px;
 }
 .widget_contents .link{
-  margin-top: 10px;
-  padding-left: 5px;
+    margin-top: 10px;
+    padding-left: 5px;
 }
 .widget_contents .link img{
-  float: left;
+    float: left;
 }
 .widget_contents .link a{
-  color: #007BBF;
-  font-size: 13px;
-  text-decoration: underline;
-  margin-left: 8px;
-  float: left;
+    color: #007BBF;
+    font-size: 13px;
+    text-decoration: underline;
+    margin-left: 8px;
+    float: left;
 }
 .widget_contents .balance-stat{
-  font-size: 12px;
-  line-height: 16px;
-  padding-left: 8px;
-  padding-top: 3px;
+    font-size: 12px;
+    line-height: 16px;
+    padding-left: 8px;
+    padding-top: 3px;
 }
 
 
 /* Contacts */
 a.contact-button{
-  width: 100%;
-  text-align: center;
-  opacity: 0.8;
-  filter: opacity(0.8);
+    width: 100%;
+    text-align: center;
+    opacity: 0.8;
+    filter: opacity(0.8);
 }
 .dialog{
-  width: 500px;
+    width: 500px;
+}
+
+
+/* form */
+.line_grid .filed_error{
+    font-size: 11px;
+    font-family: "Droid Sans";
+    color: #AF3020;
+    padding-bottom: 6px;
+    position: absolute;
+    top: -18px;
+}
+
+.line_grid .ok{
+    background-image: url("/assets/dashboard/Icons/16/i_16_checked.png");
+    height: 10px;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 16px;
 }

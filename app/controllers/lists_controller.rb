@@ -3,10 +3,17 @@ class ListsController < ApplicationController
 
   layout 'dashboard'
 
+  def new
+    session[:referer] = request.referer
+    @list = List.new
+  end
+
   # GET /lists/1/edit
   def edit
     @list = List.find(params[:id])
-    render :layout => false
+    respond_to do |format|
+      format.html
+    end
   end
 
   # POST /lists
@@ -16,12 +23,35 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.save
-        format.html { redirect_to contacts_path }
+        format.html { redirect_to session[:referer].present? ? session[:referer] : contacts_path }
         format.js
       else
-        format.html { redirect_to contacts_path }
+        format.html { render :action => :new }
         format.js
       end
+    end
+  end
+
+  def check_validation
+    @error = {}
+    if params[:list_id].present?
+      @list = List.find(params[:list_id])
+      list = List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.name = ? and lists.type_of_list = ?", @list.id, current_user.id, params[:list][:name], @list.type_of_list])
+      @error[:name] = "You have already used this list name for list type #{@list.type_of_list} !" if list.present?
+      puts list.inspect
+      puts @error[:name]
+      list = List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.keyword = ?", @list.id, current_user.id, params[:list][:keyword]])
+      @error[:keyword] = "You have already used this keyword!" if list.present?
+      list = List.find(:first, :conditions => ["lists.id <> ? and lists.shortcode_keyword = ?", @list.id, params[:list][:shortcode_keyword]])
+      @error[:shortcode_keyword]= "This keyword is not available!" if list.present?
+    else
+      @list = current_user.lists.new(params[:list])
+      list = List.find_by_user_id_and_name_and_type_of_list(current_user.id, @list.name, @list.type_of_list)
+      @error[:name] = "You have already used this list name for list type #{@list.type_of_list} !" if list.present?
+      list = List.find_by_user_id_and_keyword(current_user.id, @list.keyword)
+      @error[:keyword] = "You have already used this keyword!" if list.present?
+      list = List.find_by_shortcode_keyword(@list.shortcode_keyword)
+      @error[:shortcode_keyword]= "This keyword is not available!" if list.present?
     end
   end
 

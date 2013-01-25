@@ -1,0 +1,39 @@
+$(".ajax-loading").hide();
+<% if @error[:name].present?  %>
+  $("#error_list_name").removeClass("ok");
+  $("#error_list_name").html("<%= @error[:name] %>");
+<% elsif @list.name.present? %>
+  $("#error_list_name").html("");
+  $("#error_list_name").addClass("ok");
+<% else %>
+  $("#error_list_name").removeClass("ok");
+  $("#error_list_name").html("");
+<% end %>
+
+<% if @error[:keyword].present?  %>
+  $("#error_list_keyword").removeClass("ok");
+  $("#error_list_keyword").html("<%= @error[:keyword] %>");
+<% elsif @list.keyword.present? %>
+  $("#error_list_keyword").html("");
+  $("#error_list_keyword").addClass("ok");
+<% else %>
+  $("#error_list_keyword").removeClass("ok");
+  $("#error_list_keyword").html("");
+<% end %>
+
+<% if @error[:shortcode_keyword].present?  %>
+  $("#error_list_shortcode_keyword").removeClass("ok");
+  $("#error_list_shortcode_keyword").html("<%= @error[:shortcode_keyword] %>");
+<% elsif @list.shortcode_keyword.present? %>
+  $("#error_list_shortcode_keyword").html("");
+  $("#error_list_shortcode_keyword").addClass("ok");
+<% else %>
+  $("#error_list_shortcode_keyword").removeClass("ok");
+  $("#error_list_shortcode_keyword").html("");
+<% end %>
+
+<% if @error.size == 0 and @list.name.present? and @list.keyword.present? and @list.shortcode_keyword.present?  %>
+  $("form.list_form input[type=submit]").attr("disabled", false);
+<% else %>
+  $("form.list_form input[type=submit]").attr("disabled", true);
+<% end %>

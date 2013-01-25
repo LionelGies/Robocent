@@ -1,4 +1,4 @@
-<div style="width: 600px;">
+<div class="g_12">
   <div class="g_6 contents_header">
     <h3 class="i_16_ui tab_label">Edit List</h3>
   </div>
@@ -8,20 +8,3 @@
   <%= render "form" %>
 
 </div>
-
-<script type="text/javascript">
-  $(".edit_list .simple_form").uniform();
-
-  $("form.edit_list").submit(function(){
-    var action = $(this).attr('action');
-    $.ajax({
-      type: 'POST',
-      url: action,
-      data: $(this).serialize(),
-      dataType: "script"
-    });
-    $("#contact-lists-table .ajax-loading").show();
-    $.fancybox.close();
-    return false;
-  });
-</script>

@@ -62,7 +62,11 @@ Robocent::Application.routes.draw do
 
   resources :contacts
 
-  resources :lists
+  resources :lists do
+    collection do
+      match :check_validation
+    end
+  end
 
   #
   # Dashboard

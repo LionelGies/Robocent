@@ -38,14 +38,14 @@ Robocent::Application.configure do
   # config.assets.debug = true
 
   #need to refactor
-  config.serve_static_assets = true
+  config.serve_static_assets = false
   # Do not compress assets
-  config.assets.compress = true
+  config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = false
+  config.assets.debug = true
 
-  config.assets.compile = false
+  config.assets.compile = true
 
-  config.assets.digest = true
+  config.assets.digest = false
 end

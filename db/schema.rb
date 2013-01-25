@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130121160020) do
+ActiveRecord::Schema.define(:version => 20130124130317) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20130121160020) do
     t.string   "keyword"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
+    t.string   "shortcode_keyword"
   end
 
   create_table "plan_migrations", :force => true do |t|
@@ -205,13 +206,13 @@ ActiveRecord::Schema.define(:version => 20130121160020) do
 
   create_table "recordings", :force => true do |t|
     t.string   "title"
+    t.integer  "duration"
     t.string   "sid"
     t.text     "url"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "userID"
     t.string   "file"
-    t.string   "duration"
     t.string   "file_length"
   end
 
