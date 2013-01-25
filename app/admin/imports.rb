@@ -21,6 +21,9 @@ ActiveAdmin.register Import do
       import.mapping.present? ? "Yes" : "No"
     end
     column :created_at
+    column "Download" do |import|
+      link_to 'Download', import.file_name.url
+    end
     column "Manage" do |import|
       link_to 'Approve', approve_admin_import_path(import), :confirm => "Are you sure to approve?"
     end
@@ -52,6 +55,9 @@ ActiveAdmin.register Import do
       end
       row "Remaining Contacts" do |import|
         import.user.subscription.plan.maximum_numbers.to_i - import.user.lists.sum_number_of_contacts.first.total.to_i
+      end
+      row "Download" do |import|
+        link_to 'Click Here', import.file_name.url
       end
       row "Manage" do |import|
         link_to 'Approve', approve_admin_import_path(import), :confirm => "Are you sure to approve?"
