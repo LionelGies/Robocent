@@ -8,14 +8,24 @@ class Contact < ActiveRecord::Base
   belongs_to :list
   has_many   :sms_messages
 
+  validate :phone_number_format
+
   validates :user_id, :presence => true
   validates :list_id, :presence => true
-  validates :phone_number, :presence => true
 
   scope :by_phone_number, lambda{ |phone| {:conditions => ["contacts.phone_number LIKE ?", "%#{phone}%"]} }
 
   after_create :update_number_of_contacts
   after_destroy :decrease_number_of_contacts
+
+  def phone_number_format
+    ph = formatted_number(self.phone_number)
+    if ph.present?
+      self.phone_number = ph
+    else
+     errors.add(:phone_number, "is Invalid")
+    end
+  end
 
   def name
     "#{first_name} #{last_name}"
@@ -49,6 +59,22 @@ class Contact < ActiveRecord::Base
     self.custom_3 = value if(col == "custom_3")
     self.custom_4 = value if(col == "custom_4")
     self.custom_5 = value if(col == "custom_5")
+  end
+
+  def formatted_number(number)
+    digits = number.gsub(/\D/, '').split(//)
+
+    if (digits.length == 11 and digits[0] == '1')
+      # Strip leading 1
+      digits.shift
+    end
+
+    if (digits.length == 10)
+      digits = '(%s) %s-%s' % [ digits[0,3].join, digits[3,3].join, digits[6,4].join ]
+    else
+      return false
+    end
+    return digits.to_s
   end
 
   private

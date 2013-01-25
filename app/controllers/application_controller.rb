@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
 
     if (digits.length == 10)
       digits = '(%s) %s-%s' % [ digits[0,3].join, digits[3,3].join, digits[6,4].join ]
+    else
+      return false
     end
     return digits.to_s
   end
