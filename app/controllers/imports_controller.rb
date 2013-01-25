@@ -22,9 +22,6 @@ class ImportsController < ApplicationController
     @import.hold = true if @import.number_of_contacts > 499
     @import.save
 
-    if @import.uploaded
-      redirect_to new_contact_path, :alert => "This File is already uploaded."
-    end
     @data = []
     sheet1 = @import.get_sheet
     sheet1.each_with_index do |row, index|
@@ -36,7 +33,13 @@ class ImportsController < ApplicationController
         d << " " if col.blank?
       end
       @data << d
-    end   
+    end
+    
+    if @import.uploaded
+      redirect_to new_contact_path, :alert => "This File is already uploaded."
+    elsif @columns_count == 1
+      redirect_to insert_into_db_import_path(@import, :"row[0]" => "phone_number")
+    end
   end
 
   def insert_into_db

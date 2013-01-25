@@ -56,7 +56,7 @@ Robocent::Application.routes.draw do
     end
     member do
       get :map_column
-      post :insert_into_db
+      match :insert_into_db
     end
   end
 
