@@ -100,3 +100,15 @@ a.contact-button{
     top: 5px;
     width: 16px;
 }
+
+.form-error{
+    background: linear-gradient(to bottom, #EAE874 0%, #D0D05F 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #D3D268;
+    color: #898905;
+    text-shadow: 0 1px 0 #F1F078;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px #CCCCCC;
+    font-family: Oswald;
+    padding: 10px;
+    font-size: 12px;
+}

@@ -38,8 +38,6 @@ class ListsController < ApplicationController
       @list = List.find(params[:list_id])
       list = List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.name = ? and lists.type_of_list = ?", @list.id, current_user.id, params[:list][:name], @list.type_of_list])
       @error[:name] = "You have already used this list name for list type #{@list.type_of_list} !" if list.present?
-      puts list.inspect
-      puts @error[:name]
       list = List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.keyword = ?", @list.id, current_user.id, params[:list][:keyword]])
       @error[:keyword] = "You have already used this keyword!" if list.present?
       list = List.find(:first, :conditions => ["lists.id <> ? and lists.shortcode_keyword = ?", @list.id, params[:list][:shortcode_keyword]])
@@ -65,7 +63,7 @@ class ListsController < ApplicationController
         format.html { redirect_to contacts_path, notice: 'List was successfully updated.' }
         format.js
       else
-        format.html { redirect_to contacts_path }
+        format.html { render :action => :edit }
         format.js
       end
     end

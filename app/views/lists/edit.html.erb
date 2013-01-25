@@ -5,6 +5,17 @@
 
   <div class="g_12 separator"><span></span></div>
 
+  <% if @list.errors.any? %>
+    <div class="g_12">
+      <div class="form-error">
+        Please correct these <%= pluralize(@list.errors.full_messages.count, "error") %>:<br/>
+        <% @list.errors.full_messages.each do |msg| %>
+          * <%= msg %><br/>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <%= render "form" %>
 
 </div>

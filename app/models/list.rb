@@ -6,16 +6,28 @@ class List < ActiveRecord::Base
   has_many    :imports,  :dependent => :destroy
   has_many    :contacts, :dependent => :destroy
 
+  validate :name_uniqueness
+  validate :keyword_uniqueness
+
   validates :name, :presence => true
   validates :type_of_list, :presence => true
   validates :keyword, :presence => true
   validates :shortcode_keyword, :presence => true, :uniqueness => true
 
-  validate :keyword_uniqueness
+
+  def name_uniqueness
+    if self.new_record? and List.find_by_user_id_and_name_and_type_of_list(user.id, name, type_of_list).present?
+      errors.add(:name, "has already been taken")
+    elsif List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.name = ? and lists.type_of_list = ?", self.id, user.id, self.name, self.type_of_list]).present?
+      errors.add(:name, "has already been taken")
+    end
+  end
 
   def keyword_uniqueness
-    if List.find_by_user_id_and_keyword(user.id, self.keyword).present?
-      errors.add(:keyword, "You have already used this keyword!")
+    if self.new_record? and List.find_by_user_id_and_keyword(user.id, keyword).present?
+      errors.add(:keyword, "has already been taken")
+    elsif List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.keyword = ?", id, user.id, self.keyword]).present?
+      errors.add(:keyword, "has already been taken")
     end
   end
 

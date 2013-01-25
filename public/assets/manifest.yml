@@ -3097,8 +3097,8 @@ active_admin.css: active_admin-60cf8e1029b716dcb1516591573f3143.css
 active_admin/index.css: active_admin-60cf8e1029b716dcb1516591573f3143.css
 application.css: application-1b13569e9620782f423d4cd3ce931750.css
 application/index.css: application-1b13569e9620782f423d4cd3ce931750.css
-dashboard.css: dashboard-1e7ae0c66d65cd9ad5d5392558702d39.css
-dashboard/index.css: dashboard-1e7ae0c66d65cd9ad5d5392558702d39.css
+dashboard.css: dashboard-e4ea5cf771cb2ee8f15bde3635b1d42e.css
+dashboard/index.css: dashboard-e4ea5cf771cb2ee8f15bde3635b1d42e.css
 ie.css: ie-fa487239f805a089ee55ec3a3b274182.css
 ie/index.css: ie-fa487239f805a089ee55ec3a3b274182.css
 public.css: public-0ad8336cad5bef79a929a7102dfe806f.css
