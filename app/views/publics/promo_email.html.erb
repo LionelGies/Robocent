@@ -5,12 +5,19 @@
   </head>
   <body style="background-color: #eaeaea">
     <div style="width: 650px;margin: auto;">
+<%#*<div style="display: inline-block;text-align: center;width: 650px;margin: 20px 0;">%>
+<%#*<span style="font: 12px arial;color: #777777;">%>
+<%#*Email not displaying correctly?%>
+<%#= link_to "View it in your browser", promo_email_url %>
+<%#*.%>
+<%#*</span>%>
+<%#*</div>%>
       <div style="display: inline-block; border: 1px solid #ffffff;width: 650px;border-radius:7px;box-shadow:0px 2px #cfcfcf;background-color: #ffffff ">
-        <%= link_to image_tag("promo_email/icon.png", :style => "margin: 23px 0 0 6px"), root_url %>
+        <%= link_to absolute_image_tag("promo_email/icon.png", :style => "margin: 23px 0 0 6px"), root_url %>
         <span style="display: inline-block; font-family: Arial; font-weight: bold; font-size: 18px; color: #a6a2a2;margin-top: -10px;margin-left: 20px;margin-bottom: 10px;">Call and Text Notifications for 1.3 - 2.0¢ per Message!</span>
       </div>
       <div style="display: inline-block;text-align: center;width: 650px;margin: 17px 0 17px 0;">
-        <%= image_tag("promo_email/slogan.png") %>
+        <%= absolute_image_tag("promo_email/slogan.png") %>
       </div>
       <div style="display: inline-block; border: 1px solid #ffffff;width: 650px;border-radius:7px;box-shadow:0px 2px #cfcfcf;background-color: #ffffff; margin: 0 0 17px;">
         <div style="display: inline-block;width: 421px; float: left;margin: 26px 0 26px 20px;">
@@ -20,7 +27,7 @@
           </span>
         </div>
         <div style="display: inline-block;width: 161px; float: left;margin:23px 0 0 17px;">
-          <%= link_to image_tag("promo_email/button_learn_more.png"), root_url %>
+          <%= link_to absolute_image_tag("promo_email/button_learn_more.png"), solutions_url %>
         </div>
         <div style="clear: both"></div>
       </div>
@@ -28,7 +35,7 @@
       <div style="display: inline-block; border: 1px solid #ffffff;width: 650px;border-radius:7px;box-shadow:0px 2px #cfcfcf;background-color: #ffffff; margin: 0 0 31px;">
         <div style="display: inline-block;width: 188px; float: left;margin: 0 0 0 21px;margin-top: 27px;">
           <div>
-            <%= image_tag("promo_email/icon_clock.png", :style => "display: inline-block;float: left") %>
+            <%= absolute_image_tag("promo_email/icon_clock.png", :style => "display: inline-block;float: left") %>
             <span style="display: inline-block;float: left; font: bold 14px arial; color: #f15a23;margin: 0 0 0 13px;">
               Real-Time<br /> Analytics
             </span>
@@ -44,7 +51,7 @@
         </div>
         <div style="display: inline-block;width: 167px; float: left;margin: 0 0 0 21px;margin-top: 27px;">
           <div>
-            <%= image_tag("promo_email/icon_engine.png", :style => "display: inline-block;float: left") %>
+            <%= absolute_image_tag("promo_email/icon_engine.png", :style => "display: inline-block;float: left") %>
             <span style="display: inline-block;float: left; font: bold 14px arial; color: #f15a23;margin: 0 0 0 13px;">
               Streamlined <br /> Dashboard
             </span>
@@ -59,7 +66,7 @@
         </div>
         <div style="display: inline-block;width: 200px; float: left;margin: 0 0 0 37px;margin-top: 27px;">
           <div>
-            <%= image_tag("promo_email/icon_question.png", :style => "display: inline-block;float: left") %>
+            <%= absolute_image_tag("promo_email/icon_question.png", :style => "display: inline-block;float: left") %>
             <span style="display: inline-block;float: left; font: bold 14px arial; color: #f15a23;margin: 0 0 0 13px;">
               Live Client Support
             </span>
@@ -76,7 +83,7 @@
 
         <div style="display: inline-block;width: 188px; float: left;margin: 17px 0 0 21px">
           <div>
-            <%= image_tag("promo_email/icon_hand.png", :style => "display: inline-block;float: left") %>
+            <%= absolute_image_tag("promo_email/icon_hand.png", :style => "display: inline-block;float: left") %>
             <span style="display: inline-block;float: left; font: bold 14px arial; color: #f15a23;margin: 0 0 0 13px;">
               Text to Join
             </span>
@@ -91,7 +98,7 @@
         </div>
         <div style="display: inline-block;width: 167px; float: left;margin: 17px 0 0 21px">
           <div>
-            <%= image_tag("promo_email/icon_phone.png", :style => "display: inline-block;float: left") %>
+            <%= absolute_image_tag("promo_email/icon_phone.png", :style => "display: inline-block;float: left") %>
             <span style="display: inline-block;float: left; font: bold 14px arial; color: #f15a23;margin: 0 0 0 13px;">
               Receive <br /> Feedback
             </span>
@@ -107,7 +114,7 @@
         </div>
         <div style="display: inline-block;width: 156px; float: left;margin: 17px 0 0 21px">
           <div>
-            <%= image_tag("promo_email/icon_cloud_up.png", :style => "display: inline-block;float: left") %>
+            <%= absolute_image_tag("promo_email/icon_cloud_up.png", :style => "display: inline-block;float: left") %>
             <span style="display: inline-block;float: left; font: bold 14px arial; color: #f15a23;margin: 0 0 0 13px;">
               Try it for Free!
             </span>
@@ -283,13 +290,13 @@
 
           </div>
           <div style="text-align: center;width: 130px;padding: 12px 0 0;display: inline-block;float: left; font: 14px arial;color: #f15a23">
-            <%= link_to image_tag("promo_email/button_start_free_trial.png"), register_url %>
+            <%= link_to absolute_image_tag("promo_email/button_start_free_trial.png"), register_url %>
           </div>
           <div style="text-align: center;width: 140px;padding: 12px 0 0;display: inline-block;float: left; font: 14px arial;color: #f15a23">
-            <%= link_to image_tag("promo_email/button_start_free_trial.png"), register_url %>
+            <%= link_to absolute_image_tag("promo_email/button_start_free_trial.png"), register_url %>
           </div>
           <div style="text-align: center;width: 130px;padding: 12px 0 0;display: inline-block;float: left; font: 14px arial;color: #f15a23">
-            <%= link_to image_tag("promo_email/button_start_free_trial.png"), register_url %>
+            <%= link_to absolute_image_tag("promo_email/button_start_free_trial.png"), register_url %>
           </div>
         </div>
         <div style="font: 18px arial;color: #fa632c;display: inline-block;margin: 14px 0 28px 102px;" >
@@ -314,20 +321,20 @@
           your business thrive. Contact us anytime!
         </div>
         <br />
-        <%= link_to image_tag("promo_email/button_small_learn_more.png", :style => "margin: 10px 0 10px 274px;"), solutions_url %>
+        <%= link_to absolute_image_tag("promo_email/button_small_learn_more.png", :style => "margin: 10px 0 10px 274px;"), solutions_url %>
       </div>
 
       <div style="display: inline-block; border: 1px solid #ffffff;width: 650px;border-radius:7px;box-shadow:0px 2px #cfcfcf;background-color: #ffffff;margin: 0 0 26px 0;">
         <div style="display: inline-block; float: left;width: 442px;">
           <div style="display: inline-block; float: left;width: 168px;margin: 10px 0;">
-            <%= image_tag("promo_email/icon_mail.png", :style => "float: left; margin-left: 20px;") %>
+            <%= absolute_image_tag("promo_email/icon_mail.png", :style => "float: left; margin-left: 20px;") %>
             <span style="display: inline-block; float: left;margin: 0 0 0 10px; font: 12px arial;color: #777777">
               info@robocent.com
             </span>
             <div style="clear: both"></div>
           </div>
           <div style="display: inline-block; float: left;width: 230px;margin: 10px 0 10px 43px;">
-            <%= image_tag("promo_email/icon_pin.png", :style => "float: left;") %>
+            <%= absolute_image_tag("promo_email/icon_pin.png", :style => "float: left;") %>
             <span style="display: inline-block; float: left;margin: 0 0 0 10px; font: 12px arial;color: #777777">
               111 Granby Street, Norfolk, VA 23510
             </span>
@@ -335,14 +342,14 @@
           </div>
           <div style="clear: both"></div>
           <div style="display: inline-block; float: left;width: 168px;margin: 10px 0;">
-            <%= image_tag("promo_email/icon_globe.png", :style => "float: left; margin-left: 20px;") %>
+            <%= absolute_image_tag("promo_email/icon_globe.png", :style => "float: left; margin-left: 20px;") %>
             <span style="display: inline-block; float: left;margin: 0 0 0 10px; font: 12px arial;color: #777777">
               RoboCent.com
             </span>
             <div style="clear: both"></div>
           </div>
           <div style="display: inline-block; float: left;width: 230px;margin: 10px 0 10px 43px;">
-            <%= image_tag("promo_email/icon_phone_orange.png", :style => "float: left;") %>
+            <%= absolute_image_tag("promo_email/icon_phone_orange.png", :style => "float: left;") %>
             <span style="display: inline-block; float: left;margin: 0 0 0 10px; font: 12px arial;color: #777777">
               757.821.2121
             </span>
@@ -351,11 +358,8 @@
           <div style="clear: both"></div>
         </div>
         <div style="display: inline-block; float: left;width: 200px;margin-top: 30px;">
-          <%= link_to image_tag("promo_email/icon_skype.png", :style => "float: left"), '#' %>
-          <%= link_to image_tag("promo_email/icon_facebook.png", :style => "float: left;margin: 0 0 0 8px;"), '#' %>
-          <%= link_to image_tag("promo_email/icon_vimio.png", :style => "float: left;margin: 0 0 0 8px;"), '#' %>
-          <%= link_to image_tag("promo_email/icon_linkedin.png", :style => "float: left;margin: 0 0 0 8px;"), '#' %>
-          <%= link_to image_tag("promo_email/icon_twitter.png", :style => "float: left;margin: 0 0 0 8px;"), '#' %>
+          <%= link_to absolute_image_tag("promo_email/icon_facebook.png", :style => "float: left;"), 'https://www.facebook.com/RoboCent' %>
+          <%= link_to absolute_image_tag("promo_email/icon_twitter.png", :style => "float: left;margin: 0 0 0 8px;"), 'https://twitter.com/robocent' %>
           <div style="clear: both"></div>
         </div>
         <div style="clear: both"></div>
@@ -363,7 +367,7 @@
 
       <div style="text-align: center;margin: 0 0 20px 0;">
         <span style="font: 12px arial;color: #777777;">&copy;2012 RoboCent. All rights reserved. </span><br />
-        <%= link_to "Unsubscribe", unsubscribe_email_url(:email => params[:email]), :style => "font: 12px arial; color: #f15a23;" %>
+        <%= link_to "Unsubscribe", '#', :style => "font: 12px arial; color: #f15a23;" %>
       </div>
 
     </div>

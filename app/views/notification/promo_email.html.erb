@@ -1,9 +1,9 @@
-<div style="background-color: #eaeaea; width: 100%;">
+<div style="background-color: #eaeaea; width: 100%; padding-bottom: 10px;">
   <div style="width: 650px;margin: auto;">
     <div style="display: inline-block;text-align: center;width: 650px;margin: 20px 0;">
       <span style="font: 12px arial;color: #777777;">
         Email not displaying correctly?
-        <%= link_to "View it in your browser", promo_email_url(:email => @to) %>
+        <%= link_to "View it in your browser", promo_email_url %>
         .
       </span>
     </div>
@@ -22,7 +22,7 @@
         </span>
       </div>
       <div style="display: inline-block;width: 161px; float: left;margin:23px 0 0 17px;">
-        <%= link_to absolute_image_tag("promo_email/button_learn_more.png"), root_url %>
+        <%= link_to absolute_image_tag("promo_email/button_learn_more.png"), solutions_url %>
       </div>
       <div style="clear: both"></div>
     </div>
@@ -353,11 +353,8 @@
         <div style="clear: both"></div>
       </div>
       <div style="display: inline-block; float: left;width: 200px;margin-top: 30px;">
-        <%= link_to absolute_image_tag("promo_email/icon_skype.png", :style => "float: left"), '#' %>
-        <%= link_to absolute_image_tag("promo_email/icon_facebook.png", :style => "float: left;margin: 0 0 0 8px;"), '#' %>
-        <%= link_to absolute_image_tag("promo_email/icon_vimio.png", :style => "float: left;margin: 0 0 0 8px;"), '#' %>
-        <%= link_to absolute_image_tag("promo_email/icon_linkedin.png", :style => "float: left;margin: 0 0 0 8px;"), '#' %>
-        <%= link_to absolute_image_tag("promo_email/icon_twitter.png", :style => "float: left;margin: 0 0 0 8px;"), '#' %>
+        <%= link_to absolute_image_tag("promo_email/icon_facebook.png", :style => "float: left;"), 'https://www.facebook.com/RoboCent' %>
+        <%= link_to absolute_image_tag("promo_email/icon_twitter.png", :style => "float: left;margin: 0 0 0 8px;"), 'https://twitter.com/robocent' %>
         <div style="clear: both"></div>
       </div>
       <div style="clear: both"></div>
@@ -365,7 +362,7 @@
 
     <div style="text-align: center;margin: 0 0 20px 0;">
       <span style="font: 12px arial;color: #777777;">&copy;2012 RoboCent. All rights reserved. </span><br />
-      <%= link_to "Unsubscribe", unsubscribe_email_url(:email => @to), :style => "font: 12px arial; color: #f15a23;margin-bottom:10px;" %>
+      <%= link_to "Unsubscribe", '#', :style => "font: 12px arial; color: #f15a23;margin-bottom:10px;" %>
     </div>
   </div>
 </div>
