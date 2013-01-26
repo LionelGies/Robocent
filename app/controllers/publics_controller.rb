@@ -48,4 +48,8 @@ class PublicsController < ApplicationController
   def promo_email
     render :layout => false
   end
+
+  def email_code
+    render :layout => false
+  end
 end
