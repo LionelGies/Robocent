@@ -12,7 +12,7 @@
       <span style="display: inline-block; font-family: Arial; font-weight: bold; font-size: 18px; color: #a6a2a2;margin-top: -10px;margin-left: 20px;margin-bottom: 10px;">Call and Text Notifications for 1.3 - 2.0¢ per Message!</span>
     </div>
     <div style="display: inline-block;text-align: center;width: 650px;margin: 17px 0 17px 0;">
-      <%= image_tag("promo_email/slogan.png") %>
+      <%= absolute_image_tag("promo_email/slogan.png") %>
     </div>
     <div style="display: inline-block; border: 1px solid #ffffff;width: 650px;border-radius:7px;box-shadow:0px 2px #cfcfcf;background-color: #ffffff; margin: 0 0 17px;">
       <div style="display: inline-block;width: 421px; float: left;margin: 26px 0 26px 20px;">
@@ -365,8 +365,7 @@
 
     <div style="text-align: center;margin: 0 0 20px 0;">
       <span style="font: 12px arial;color: #777777;">&copy;2012 RoboCent. All rights reserved. </span><br />
-      <%= link_to "Unsubscribe", unsubscribe_email_url(:email => @to), :style => "font: 12px arial; color: #f15a23;" %>
+      <%= link_to "Unsubscribe", unsubscribe_email_url(:email => @to), :style => "font: 12px arial; color: #f15a23;margin-bottom:10px;" %>
     </div>
-
   </div>
 </div>
