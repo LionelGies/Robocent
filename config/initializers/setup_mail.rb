@@ -1,4 +1,4 @@
-if Rails.env.production? or Rails.env.staging?
+#if Rails.env.production? or Rails.env.staging?
   ActionMailer::Base.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
@@ -8,4 +8,4 @@ if Rails.env.production? or Rails.env.staging?
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
-end
+#end

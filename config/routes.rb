@@ -109,6 +109,8 @@ Robocent::Application.routes.draw do
   #
   # public pages
   #
+  match "email-unsubscribe"       => 'publics#unsubscribe_email', :as => :unsubscribe_email
+  match "email"       => 'publics#promo_email', :as => :promo_email
   match 'contact-us-submit' => "publics#contact_us_submit" , :as => :contact_us_submit
   match "terms"       => "publics#terms",      :as => "terms"
   match "contact-us"  => "publics#contact",    :as => "contact_us"

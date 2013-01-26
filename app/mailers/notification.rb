@@ -1,5 +1,5 @@
 class Notification < ActionMailer::Base
-
+  helper MailerHelper
   # set global/default values for all mail types
   default :from => "\"RoboCent\" <Info@RoboCent.com>"
 
@@ -74,5 +74,11 @@ class Notification < ActionMailer::Base
     
     mail(:to => to,
       :subject => "New Contact Us Message")
+  end
+
+  def promo_email(to)
+    @to = to
+    mail(:to => to,
+      :subject => "RoboCent")
   end
 end

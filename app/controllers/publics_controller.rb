@@ -44,4 +44,12 @@ class PublicsController < ApplicationController
 
   def sms_privacy
   end
+
+  def promo_email
+    render :layout => false
+  end
+
+  def unsubscribe_email
+    @email = params[:email]
+  end
 end
