@@ -50,18 +50,6 @@
           </td>
         </tr>
         <tr>
-          <td>Address</td>
-          <td>
-            <%= @user.address %>
-          </td>
-        </tr>
-        <tr>
-          <td>State</td>
-          <td>
-            <%= "#{@user.state} (#{UsState::state_expansion(@user.state)})" %>
-          </td>
-        </tr>
-        <tr>
           <td>Time Zone</td>
           <td>
             <%= @user.time_zone %>
@@ -70,7 +58,7 @@
         <tr>
           <td>Your RoboCent Phone Number</td>
           <td>
-            <%= @user.twilio_phone_number.phone_number %>
+            <%= formatted_number @user.twilio_phone_number.phone_number %>
           </td>
         </tr>
       </table>
@@ -120,21 +108,9 @@
             </td>
           </tr>
           <tr>
-            <td>Address</td>
-            <td>
-              <%= f.text_field :address, :class => "simple_field", :required => true %>
-            </td>
-          </tr>
-          <tr>
-            <td>State</td>
-            <td>
-              <%= f.select :state, UsState::NAMES, { }, :class => "simple_form"%>
-            </td>
-          </tr>
-          <tr>
             <td>Time Zone</td>
             <td>
-              <%= f.select :time_zone, UsState::TIME_ZONES, { }, :class => "simple_form" %>
+              <%= f.select :time_zone, UsState::TIME_ZONES, { }, :class => "simple_form", :required => true %>
             </td>
           </tr>
           <tr>
