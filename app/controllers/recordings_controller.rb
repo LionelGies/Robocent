@@ -50,7 +50,7 @@ class RecordingsController < ApplicationController
     duration = params["RecordingDuration"]
     
     response = Twilio::TwiML::Response.new do |r|
-      r.Gather(:action => save_or_record_path(:user_id => user.id, :url => url, :duration => duration), :timeout => "10", :finishOnKey => "*", :method => "GET") do |g|
+      r.Gather(:action => save_or_record_path(:user_id => user.id, :url => url, :duration => duration), :timeout => "5", :finishOnKey => "*", :method => "GET") do |g|
         g.Play "#{root_url}ivr/RobocentRecording-558.mp3"
         g.Play "#{url}.wav"
       end
