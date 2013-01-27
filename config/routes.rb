@@ -1,5 +1,7 @@
 Robocent::Application.routes.draw do
 
+  resources :password_resets
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
