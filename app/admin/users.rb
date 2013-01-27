@@ -21,6 +21,9 @@ ActiveAdmin.register User do
     column :time_zone
     column :created_at
     column :updated_at
+    column "Login" do |user|
+      link_to "Login", login_admin_user_path(user), :target => "_blank"
+    end
     default_actions
   end
 
@@ -68,5 +71,11 @@ ActiveAdmin.register User do
       flash[:notice] = "User was not found by id : #{params[:id]}"
       redirect_to :action => :index
     end
+  end
+
+  member_action :login do
+    @user = User.find(params[:id])
+    auto_login @user
+    redirect_to dashboard_path
   end
 end
