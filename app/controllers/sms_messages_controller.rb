@@ -127,7 +127,7 @@ class SmsMessagesController < ApplicationController
     @sms_message = current_user.sms_messages.new(params[:sms_message])
 
     if @sms_message.save
-      number_of_text_required = (@sms_message.body.length.to_f / 140.0).ceil
+      number_of_text_required = (@sms_message.body.length.to_f / 160.0).ceil
       
       # make charge user account
       cost_per_text = current_user.subscription.plan.price_per_call_or_text.to_f / 100.0

@@ -154,3 +154,16 @@ $(function(){
         }
     });
 });
+
+
+//Send a Test
+$(function(){
+    $("#text_message_content").bind("keyup blur",function(){
+        var content = $(this).val();
+        var char_text = content.length == 1 ? " Character, " : " Characters, ";
+        var msg_count = Math.ceil(parseFloat(content.length) / 160.0);
+        var msg_text = msg_count == 1 ? " Text Message Used" : " Text Messages Used";
+        var text = content.length + char_text + msg_count + msg_text;
+        $("#content_length").html(text);
+    });
+});

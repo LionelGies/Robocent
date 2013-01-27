@@ -37,11 +37,6 @@ class TextMessagesController < ApplicationController
 
     if params["step"] == "3" and params[:text_message].present?
       begin
-        #        number_of_contacts = 0
-        #        @text_message.lists.each do |list|
-        #          number_of_contacts += list.number_of_contacts
-        #        end
-
         numbers = []
         @text_message.lists.each do |list|
           numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
@@ -49,7 +44,7 @@ class TextMessagesController < ApplicationController
         number_of_contacts = numbers.size
       
         cost_per_text = current_user.subscription.plan.price_per_call_or_text / 100.0
-        message_size = (@text_message.content.length.to_f / 140.0).ceil
+        message_size = (@text_message.content.length.to_f / 160.0).ceil
 
         new_hash = {
           :number_of_recipients => number_of_contacts,
