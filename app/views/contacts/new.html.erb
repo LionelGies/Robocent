@@ -29,6 +29,16 @@
 
 
 <div class="g_12">
+  <% if @contact.present? and @contact.errors.any? %>
+    <div class="g_12">
+      <div class="form-error">
+        Please correct these <%= pluralize(@contact.errors.full_messages.count, "error") %>:<br/>
+        <% @contact.errors.full_messages.each do |msg| %>
+          * <%= msg %><br/>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
   <div class="g_6">
     <%= render 'form' %>
   </div>
