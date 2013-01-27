@@ -130,8 +130,6 @@ class RecordingsController < ApplicationController
   def find_new_recording
     last_loaded_rec = params["last_rec"]
 
-    puts last_loaded_rec
-
     @recordings = current_user.recordings.where("id > #{last_loaded_rec} and file IS NOT NULL").order("created_at ASC")
 
     respond_to do |format|
@@ -148,5 +146,17 @@ class RecordingsController < ApplicationController
   def play
     @recording = Recording.find(params[:id])
     render :layout => false
+  end
+
+  def download
+    id = params[:file_name].split("_").first
+    user = User.find(id)
+    if current_user.id == user.id
+    file_name = params[:file_name]
+    path = "#{Rails.root}/public/recordings/#{file_name}.mp3"
+    send_file(path, :disposition => 'attachment')
+    else
+      redirect_to dashboard_path, :alert => "You are not authorized to download this file!"
+    end
   end
 end

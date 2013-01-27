@@ -9,7 +9,10 @@ Robocent::Application.routes.draw do
   match "save-or-record"  => 'recordings#save_or_record', :as => :save_or_record
 
   resources :incoming_calls
-  resources :recordings do
+
+  match 'recordings/:file_name' => 'recordings#download'
+
+  resources :recordings, :except => [:show] do
     member do
       get :play
     end
