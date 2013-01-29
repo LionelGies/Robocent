@@ -31,7 +31,7 @@ class RecordingsController < ApplicationController
           if pin_error.present?
             g.Play "#{root_url}ivr/RobocentRecording-557.mp3"
           else
-            g.Play "#{root_url}ivr/RobocentRecording-559.mp3"
+            g.Play "#{root_url}ivr/NewPrompt.mp3"
           end
         end
         r.Say "We didn't receive any input. Goodbye!", :voice => "woman"
