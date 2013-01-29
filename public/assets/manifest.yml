@@ -2953,6 +2953,14 @@ public_images/temp/map.gif: public_images/temp/map-860be6a73dda05953d5329b3216d7
 public_images/temp/map/index.gif: public_images/temp/map-860be6a73dda05953d5329b3216d7e0c.gif
 public_images/temp/map.png: public_images/temp/map-3375960042792a17b1310f0597a80689.png
 public_images/temp/map/index.png: public_images/temp/map-3375960042792a17b1310f0597a80689.png
+public_images/temp/new_slide_1.png: public_images/temp/new_slide_1-4c9b6b8ad1b6842a62aa7c22f1e1a70b.png
+public_images/temp/new_slide_1/index.png: public_images/temp/new_slide_1-4c9b6b8ad1b6842a62aa7c22f1e1a70b.png
+public_images/temp/new_slide_2.png: public_images/temp/new_slide_2-d65c60111a0072f2ab1c1ade006a61cc.png
+public_images/temp/new_slide_2/index.png: public_images/temp/new_slide_2-d65c60111a0072f2ab1c1ade006a61cc.png
+public_images/temp/new_slide_3.png: public_images/temp/new_slide_3-17eb8058894ad0f0dfa3326e6e3d931b.png
+public_images/temp/new_slide_3/index.png: public_images/temp/new_slide_3-17eb8058894ad0f0dfa3326e6e3d931b.png
+public_images/temp/new_slide_4.png: public_images/temp/new_slide_4-5e7f208a4a1a117536d2819d676c6429.png
+public_images/temp/new_slide_4/index.png: public_images/temp/new_slide_4-5e7f208a4a1a117536d2819d676c6429.png
 public_images/temp/post_thumb_1.jpg: public_images/temp/post_thumb_1-d5f2130a3adbb7d03c0867c5c5dd59f1.jpg
 public_images/temp/post_thumb_1/index.jpg: public_images/temp/post_thumb_1-d5f2130a3adbb7d03c0867c5c5dd59f1.jpg
 public_images/temp/post_thumb_2.jpg: public_images/temp/post_thumb_2-1f46399e390f53897860ae8b114fa6be.jpg
