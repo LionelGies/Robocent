@@ -1,5 +1,5 @@
 class RecordingsController < ApplicationController
-  before_filter :require_login, :except => [:new, :replay, :save_or_record]
+  before_filter :require_login, :except => [:new, :replay, :save_or_record, :show]
 
   require 'twilio-ruby'
 
@@ -148,15 +148,9 @@ class RecordingsController < ApplicationController
     render :layout => false
   end
 
-  def download
-    id = params[:file_name].split("_").first
-    user = User.find(id)
-    if current_user.id == user.id
-    file_name = params[:file_name]
+  def show
+    file_name = params[:id]
     path = "#{Rails.root}/public/recordings/#{file_name}.mp3"
     send_file(path, :disposition => 'attachment')
-    else
-      redirect_to dashboard_path, :alert => "You are not authorized to download this file!"
-    end
   end
 end

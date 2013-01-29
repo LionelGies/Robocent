@@ -12,9 +12,7 @@ Robocent::Application.routes.draw do
 
   resources :incoming_calls
 
-  match 'recordings/:file_name' => 'recordings#download'
-
-  resources :recordings, :except => [:show] do
+  resources :recordings do
     member do
       get :play
     end
