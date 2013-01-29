@@ -68,7 +68,7 @@ class TextMessage < ActiveRecord::Base
     if user.account_balance.current_balance < total_cost
       charge_difference = ((total_cost - user.account_balance.current_balance) * 100).ceil.to_f / 100.0
       charge_difference = 0.5 if charge_difference < 0.5
-      user.billing_setting.charge(charge_difference, "Automatically fundded account")
+      user.billing_setting.charge(charge_difference, "Automatically funded account")
     end
   end
 
