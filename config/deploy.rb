@@ -35,8 +35,8 @@ ssh_options[:forward_agent] = true
 
 after "deploy:setup", :"deploy:create_shared_directories"
 
-after "deploy:create_symlink", :"deploy:link_shared_files"
-after "deploy:create_symlink", :"deploy:install_bundle"
+after "deploy:symlink", :"deploy:link_shared_files"
+after "deploy:symlink", :"deploy:install_bundle"
 after "deploy", "deploy:cleanup"
 
 #If you are using Passenger mod_rails uncomment this:
@@ -69,9 +69,9 @@ namespace :deploy do
   task :link_shared_files, :roles => :app do
     run "rm -rf #{current_path}/tmp/sockets; ln -s #{shared_path}/sockets #{current_path}/tmp/sockets"
     run "rm -rf #{current_path}/public/uploads; ln -s #{shared_path}/uploads #{current_path}/public/uploads"
-    run "rm -rf #{current_path}/tmp/pids; ln -s #{shared_path}/pids #{current_path}/tmp/pids"
+    #run "rm -rf #{current_path}/tmp/pids; ln -s #{shared_path}/pids #{current_path}/tmp/pids"
     run "rm -rf #{current_path}/public/recordings; ln -s #{shared_path}/recordings #{current_path}/public/recordings"
-    run "rm -rf #{current_path}/public/.htaccess; rm -rf #{current_path}/public/dispatch.fcgi"
+    #run "rm -rf #{current_path}/public/.htaccess; rm -rf #{current_path}/public/dispatch.fcgi"
   end
 
   task :db_seed, :roles => :app do
