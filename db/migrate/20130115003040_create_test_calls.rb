@@ -17,7 +17,7 @@ class CreateTestCalls < ActiveRecord::Migration
   `id` int(25) NOT NULL auto_increment,
   `userID` int(11) default NULL,
   `phone` varchar(10) default NULL,
-  `status` enum('NOT_DIALED','DIALING','DIALED','CACHED') default NULL,
+  `status` enum('NOT_DIALED','DIALING','DIALED','CACHED') default 'NOT_DIALED',
   `calleridname` varchar(50) default 'ROBOCENT',
   `calleridnum` varchar(30) default '7578212121',
   `recordingname` varchar(200) default NULL,

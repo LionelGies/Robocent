@@ -18,7 +18,7 @@ class CreateCallQueue < ActiveRecord::Migration
   `id` bigint(20) NOT NULL auto_increment,
   `order` int(11) default NULL,
   `phone` varchar(20) default NULL,
-  `status` enum('NOT_DIALED','DIALING','DIALED','CACHED') default NULL,
+  `status` enum('NOT_DIALED','DIALING','DIALED','CACHED') default 'NOT_DIALED',
   `calleridname` varchar(50) default NULL,
   `calleridnum` varchar(30) default NULL,
   `recordingname` varchar(200) default NULL,
