@@ -1,8 +1,7 @@
 class Recording < ActiveRecord::Base
   require "mp3info"
   
-  attr_accessible :sid, :title, :url, :user_id, :file, :userID, :duration
-  :remote_file_url
+  attr_accessible :sid, :title, :url, :user_id, :file, :userID, :duration, :remote_file_url
 
   belongs_to :user, :foreign_key => "userID"
   has_many :call
