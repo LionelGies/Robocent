@@ -12,15 +12,6 @@ class CallsController < ApplicationController
     @step = params["step"].present? ? params["step"] : "1"
 
     @recordings = current_user.recordings.where("file IS NOT NULL").order("created_at DESC")
-
-    #    if @step == "2" and params[:recording].present? and params[:recording][:file].present?
-    #      @recording = current_user.recordings.new(params[:recording])
-    #      if @recording.save
-    #        session[:call] = {} if session[:call].blank?
-    #        session[:call]["recording_id"] = "#{@recording.id}"
-    #        params[:call].delete("recording_id") if params[:call].present?
-    #      end
-    #    end
     
     if @step == "2" and session[:call].blank? and params[:call].blank?
       flash.now.alert = "Please Select at least one recording!"
@@ -120,7 +111,7 @@ class CallsController < ApplicationController
       test_call = current_user.test_calls.new(
         :phone => number,
         :calleridnum => @call.caller_id_number,
-        :recordingname => @call.recording.file_identifier)
+        :recordingname => @call.recording.file_identifier.gsub(".mp3", ""))
       test_call.save
     end
 
