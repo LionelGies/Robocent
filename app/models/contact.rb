@@ -62,6 +62,7 @@ class Contact < ActiveRecord::Base
   end
 
   def formatted_number(number)
+    number = number.to_s
     digits = number.gsub(/\D/, '').split(//)
 
     if (digits.length == 11 and digits[0] == '1')
