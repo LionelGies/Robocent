@@ -12,7 +12,7 @@ class Jobs::CallJob < Struct.new(:call)
 
     numbers.each do |number|
       call_queue = call.call_queues.new(
-        :phone => number,
+        :phone => number.to_s.gsub(/\D/, ''),
         :calleridname => call.caller_id_number,
         :calleridnum => call.caller_id_number,
         :recordingname => call.recording.file_identifier.gsub(".mp3", ""))

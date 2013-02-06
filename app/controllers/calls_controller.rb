@@ -108,8 +108,9 @@ class CallsController < ApplicationController
     numbers = params[:numbers].split(/[,]/).reject{|n| n.length < 3 }
 
     numbers.each do |number|
+      phone_number = formatted_number(number)
       test_call = current_user.test_calls.new(
-        :phone => number,
+        :phone => phone_number.to_s.gsub(/\D/, ''),
         :calleridnum => @call.caller_id_number,
         :recordingname => @call.recording.file_identifier.gsub(".mp3", ""))
       test_call.save
