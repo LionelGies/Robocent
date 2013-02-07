@@ -69,7 +69,11 @@ ActiveAdmin.register Import do
   member_action :approve do
     @import = Import.find(params[:id])
     if @import.mapping.present?
-      Delayed::Job.enqueue Jobs::ImportJob.new(@import), 0 , 2.seconds.from_now, :queue => "import"
+      if @import.hold
+        @import.hold = false
+        @import.save
+        Delayed::Job.enqueue Jobs::ImportJob.new(@import), 0 , 2.seconds.from_now, :queue => "import"
+      end
       flash[:notice] = "Successfully placed into queue."
       redirect_to :action => :index
     else
