@@ -43,10 +43,10 @@ class SmsMessagesController < ApplicationController
         contact.custom_1 = params["FromCountry"]
         contact.source = "sms by keyword"
         contact.save
-        reply_text = "Welcome to #{user.organization_name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency of msgs depends on user."
+        reply_text = "Welcome to #{user.organization_name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
     
       elsif contact.present? and list.present? and contact.list_id == list.id
-        reply_text = "Welcome to #{user.organization_name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency of msgs depends on user."
+        reply_text = "Welcome to #{user.organization_name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
 
       elsif contact.present? and params["Body"].downcase == "stop"
         contacts = Contact.find(:all,
