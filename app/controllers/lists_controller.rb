@@ -38,18 +38,18 @@ class ListsController < ApplicationController
       @list = List.find(params[:list_id])
       list = List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.name = ? and lists.type_of_list = ?", @list.id, current_user.id, params[:list][:name], @list.type_of_list])
       @error[:name] = "You have already used this list name for list type #{@list.type_of_list} !" if list.present?
-      list = List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.keyword = ?", @list.id, current_user.id, params[:list][:keyword]])
-      @error[:keyword] = "You have already used this keyword!" if list.present?
-      list = List.find(:first, :conditions => ["lists.id <> ? and lists.shortcode_keyword = ?", @list.id, params[:list][:shortcode_keyword]])
-      @error[:shortcode_keyword]= "This keyword is not available!" if list.present?
+      list1 = List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.keyword = ?", @list.id, current_user.id, params[:list][:keyword]]) if params[:list][:keyword].present?
+      @error[:keyword] = "You have already used this keyword!" if list1.present?
+      list2 = List.find(:first, :conditions => ["lists.id <> ? and lists.shortcode_keyword = ?", @list.id, params[:list][:shortcode_keyword]]) if params[:list][:shortcode_keyword].present?
+      @error[:shortcode_keyword]= "This keyword is not available!" if list2.present?
     else
       @list = current_user.lists.new(params[:list])
       list = List.find_by_user_id_and_name_and_type_of_list(current_user.id, @list.name, @list.type_of_list)
       @error[:name] = "You have already used this list name for list type #{@list.type_of_list} !" if list.present?
-      list = List.find_by_user_id_and_keyword(current_user.id, @list.keyword)
-      @error[:keyword] = "You have already used this keyword!" if list.present?
-      list = List.find_by_shortcode_keyword(@list.shortcode_keyword)
-      @error[:shortcode_keyword]= "This keyword is not available!" if list.present?
+      list1 = List.find_by_user_id_and_keyword(current_user.id, @list.keyword) if @list.keyword.present?
+      @error[:keyword] = "You have already used this keyword!" if list1.present?
+      list2 = List.find_by_shortcode_keyword(@list.shortcode_keyword) if @list.shortcode_keyword.present?
+      @error[:shortcode_keyword]= "This keyword is not available!" if list2.present?
     end
   end
 

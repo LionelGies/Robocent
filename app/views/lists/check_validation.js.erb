@@ -32,7 +32,7 @@ $(".ajax-loading").hide();
   $("#error_list_shortcode_keyword").html("");
 <% end %>
 
-<% if @error.size == 0 and @list.name.present? and @list.keyword.present? and (@list.shortcode_keyword.present? or params[:list][:shortcode_keyword].present?) %>
+<% if @error.size == 0 and @list.name.present? %>
   $("form.list_form input[type=submit]").attr("disabled", false);
 <% else %>
   $("form.list_form input[type=submit]").attr("disabled", true);

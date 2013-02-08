@@ -69,6 +69,19 @@ $(function() {
     });
 
     $("form.list_form select").live("change", function(){
+
+        var type_of_list = $("#list_type_of_list").val();
+        if(type_of_list == "text"){
+            $("#row-keyword").show();
+            $("#row-shortcode-keyword").show();
+        }
+        else if(type_of_list == "call"){
+            $("#list_keyword").val("");
+            $("#list_shortcode_keyword").val("");
+            $("#row-keyword").hide();
+            $("#row-shortcode-keyword").hide();
+        }
+
         delay(function(){
             if(typeof window.xhr != 'undefined'){
                 window.xhr.abort();

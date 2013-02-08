@@ -11,8 +11,7 @@ class List < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :type_of_list, :presence => true
-  validates :keyword, :presence => true
-  validates :shortcode_keyword, :presence => true, :uniqueness => true
+  validates :shortcode_keyword, :uniqueness => true, :if => Proc.new{|list| list.shortcode_keyword.present? }
 
 
   def name_uniqueness
@@ -24,10 +23,12 @@ class List < ActiveRecord::Base
   end
 
   def keyword_uniqueness
-    if self.new_record? and List.find_by_user_id_and_keyword(user.id, keyword).present?
-      errors.add(:keyword, "has already been taken")
-    elsif List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.keyword = ?", id, user.id, self.keyword]).present?
-      errors.add(:keyword, "has already been taken")
+    if self.keyword.present?
+      if self.new_record? and List.find_by_user_id_and_keyword(user.id, keyword).present?
+        errors.add(:keyword, "has already been taken")
+      elsif List.find(:first, :conditions => ["lists.id <> ? and lists.user_id = ? and lists.keyword = ?", id, user.id, self.keyword]).present?
+        errors.add(:keyword, "has already been taken")
+      end
     end
   end
 

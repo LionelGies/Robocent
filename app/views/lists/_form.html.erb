@@ -1,7 +1,7 @@
 <div class="g_12">
   <div class="widget_contents noPadding">
     <%= form_for(@list ||= List.new, :html => {:class => "list_form"}) do |f| %>
-     <%= hidden_field_tag :list_id, @list.id unless @list.new_record? %>
+      <%= hidden_field_tag :list_id, @list.id unless @list.new_record? %>
       <div class="line_grid">
         <div class="g_3">
           <span class="label">List Name<span class="must">*</span></span>
@@ -17,36 +17,40 @@
             <span class="label">Type of List<span class="must">*</span></span>
           </div>
           <div class="g_9">
-            <%= f.select :type_of_list, [['Call', 'call'],['Text', 'text']], {}, :class => "simple_form", :required => true %>
+            <%= f.select :type_of_list, [['Text', 'text'],['Call', 'call']], {}, :class => "simple_form", :required => true %>
           </div>
         </div>
       <% end %>
-      <div class="line_grid">
-        <div class="g_3">
-          <span class="label">Keyword for Your RoboCent Number<span class="must">*</span></span>
-        </div>
-        <div class="g_9">
-          <div class="filed_error" id="error_list_keyword"></div>
-          <%= f.text_field :keyword, :class => "simple_field", :required => true %>
-          <div class="field_notice">
-            When subscribers will text that key word to your RoboCent number,
-            application will automatically add them to the list.
+
+      <% if @list.new_record? or @list.type_of_list == "text" %>
+        <div class="line_grid" id="row-keyword">
+          <div class="g_3">
+            <span class="label">Keyword for Your RoboCent Number</span>
+          </div>
+          <div class="g_9">
+            <div class="filed_error" id="error_list_keyword"></div>
+            <%= f.text_field :keyword, :class => "simple_field" %>
+            <div class="field_notice">
+              When subscribers will text that key word to your RoboCent number,
+              application will automatically add them to the list.
+            </div>
           </div>
         </div>
-      </div>
-      <div class="line_grid">
-        <div class="g_3">
-          <span class="label">Keyword for ShortCode<span class="must">*</span></span>
-        </div>
-        <div class="g_9">
-          <div class="filed_error" id="error_list_shortcode_keyword"></div>
-          <%= f.text_field :shortcode_keyword, :class => "simple_field", :required => true %>
-          <div class="field_notice">
-            When subscribers will text that key word to RoboCent ShortCode,
-            application will automatically add them to the list.
+        <div class="line_grid" id="row-shortcode-keyword">
+          <div class="g_3">
+            <span class="label">Keyword for ShortCode</span>
+          </div>
+          <div class="g_9">
+            <div class="filed_error" id="error_list_shortcode_keyword"></div>
+            <%= f.text_field :shortcode_keyword, :class => "simple_field" %>
+            <div class="field_notice">
+              When subscribers will text that key word to RoboCent ShortCode,
+              application will automatically add them to the list.
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
+
       <div class="line_grid">
         <div class="g_3"></div>
         <div class="g_3">
