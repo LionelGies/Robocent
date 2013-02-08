@@ -3,9 +3,11 @@ class TextMessage < ActiveRecord::Base
   attr_accessible :content, :list_ids, :sending_option, :test_send_to, :user_id,
     :number_of_recipients, :cost_per_text, :number_of_texts_required, :total_cost,
     :schedule_at, :schedule_now, :total_processed, :succeeded, :succeeded_numbers,
-    :failed_alerts, :started_at, :finished_at
+    :failed_alerts, :started_at, :finished_at, :status
 
   belongs_to :user
+  has_many :queue_texts
+  has_one :scheduled_job, :class_name => "DelayedJob"
 
   validates :content,         :presence => true
   validates :list_ids,        :presence => true
@@ -78,8 +80,17 @@ class TextMessage < ActiveRecord::Base
   end
 
   def send_text_to_recipients
+    numbers = []
+    lists.each do |list|
+      numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
+    end
+
+    numbers.each do |number|
+      self.queue_texts.create(:phone_number => number)
+    end
+
     delay_time = ((Time.parse(self.schedule_at.to_s) - Time.parse((DateTime.now).to_s))).to_i
     delay_time = 5 if delay_time < 5
-    Delayed::Job.enqueue Jobs::TextMessageJob.new(self), 0 , delay_time.seconds.from_now, :queue => "text"
+    Delayed::Job.enqueue Jobs::TextMessageJob.new(self), :priority => 0 , :run_at => delay_time.seconds.from_now, :queue => "text", :text_message_id => self.id
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125215046) do
+ActiveRecord::Schema.define(:version => 20130208034324) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20130125215046) do
   create_table "call_queue", :force => true do |t|
     t.integer "order"
     t.string  "phone",         :limit => 20
-    t.enum    "status",        :limit => [:NOT_DIALED, :DIALING, :DIALED, :CACHED]
+    t.enum    "status",        :limit => [:NOT_DIALED, :DIALING, :DIALED, :CACHED], :default => :NOT_DIALED
     t.string  "calleridname",  :limit => 50
     t.string  "calleridnum",   :limit => 30
     t.string  "recordingname", :limit => 200
@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(:version => 20130125215046) do
   end
 
   create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
+    t.integer  "priority",        :default => 0
+    t.integer  "attempts",        :default => 0
     t.text     "handler"
     t.text     "last_error"
     t.datetime "run_at"
@@ -133,8 +133,9 @@ ActiveRecord::Schema.define(:version => 20130125215046) do
     t.datetime "failed_at"
     t.string   "locked_by"
     t.string   "queue"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "text_message_id"
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -190,6 +191,14 @@ ActiveRecord::Schema.define(:version => 20130125215046) do
     t.float    "price_per_call_or_text"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+  end
+
+  create_table "queue_texts", :force => true do |t|
+    t.integer  "text_message_id"
+    t.string   "phone_number"
+    t.boolean  "paused",          :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "receipts", :force => true do |t|
@@ -272,7 +281,7 @@ ActiveRecord::Schema.define(:version => 20130125215046) do
   create_table "test_calls", :force => true do |t|
     t.integer "userID"
     t.string  "phone",         :limit => 10
-    t.enum    "status",        :limit => [:NOT_DIALED, :DIALING, :DIALED, :CACHED]
+    t.enum    "status",        :limit => [:NOT_DIALED, :DIALING, :DIALED, :CACHED], :default => :NOT_DIALED
     t.string  "calleridname",  :limit => 50,                                        :default => "ROBOCENT"
     t.string  "calleridnum",   :limit => 30,                                        :default => "7578212121"
     t.string  "recordingname", :limit => 200
@@ -300,6 +309,7 @@ ActiveRecord::Schema.define(:version => 20130125215046) do
     t.text     "failed_alerts"
     t.datetime "started_at"
     t.datetime "finished_at"
+    t.string   "status"
   end
 
   create_table "tmp_messages", :force => true do |t|
