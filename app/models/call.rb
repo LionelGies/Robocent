@@ -26,6 +26,14 @@ class Call < ActiveRecord::Base
     ((dialed.to_f / self.number_of_recipients.to_f) * 100.0).to_i
   end
 
+  def total_dialed
+    self.call_queues.where(:status => "DIALED").count
+  end
+
+  def total_answered
+    self.results.where(:call_result => "ANSWERED").count
+  end
+
   private
 
   def charge_difference

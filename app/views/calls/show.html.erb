@@ -12,7 +12,7 @@
                 <div class="g_3"><span class="label">Sending Progress</span></div>
                 <div class="g_9">
                   <div class="progress sProgress scBlue"></div>
-                  <div class="field_notice">Succeeded
+                  <div class="field_notice">Dialed
                     <span class="must paValue">
                       <%= "#{@call.percent_completed}%" %>
                     </span>
@@ -45,48 +45,18 @@
               <%= @call.schedule_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M:%S") %>
             </td>
           </tr>
-<%#*<tr>%>
-<%#*<td>Started At</td>%>
-<%#*<td>%>
-<%# if @call.started_at.present? %>
-<%#= @call.started_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M:%S") %>
-<%# else %>
-<%#*Not Yet Started%>
-<%# end %>
-<%#*</td>%>
-<%#*</tr>%>
-<%# if @call.started_at.present? %>
-<%#*<tr>%>
-<%#*<td>Finished At</td>%>
-<%#*<td>%>
-<%# if @call.finished_at.present? %>
-<%#= @call.finished_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M:%S") %>
-<%# else %>
-<%#*Processing...%>
-<%# end %>
-<%#*</td>%>
-<%#*</tr>%>
-<%# end %>
-<%#*<tr>%>
-<%#*<td>Total Processed</td>%>
-<%#*<td>%>
-<%#= @call.total_processed %>
-<%#*</td>%>
-<%#*</tr>%>
-<%#*<tr>%>
-<%#*<td>Total Succeeded</td>%>
-<%#*<td>%>
-<%#= @call.succeeded %> &nbsp;&nbsp;&nbsp;
-<%#= link_to "Download csv", send_text_succeeded_numbers_text_message_path(@call, :format => "csv"), :target => "blank", :style => "color:#007BBF;" if @call.succeeded > 0 %>
-<%#*</td>%>
-<%#*</tr>%>
-<%#*<tr>%>
-<%#*<td>Total Failed</td>%>
-<%#*<td>%>
-<%#= @call.failed %> &nbsp;&nbsp;&nbsp;
-<%#= link_to "Download csv", send_text_errors_text_message_path(@call, :format => "csv"), :target => "blank", :style => "color:#007BBF;" if @call.failed > 0 %>
-<%#*</td>%>
-<%#*</tr>%>
+          <tr>
+            <td>Total Dialed</td>
+            <td>
+              <%= @call.total_dialed %>
+            </td>
+          </tr>
+          <tr>
+            <td>Total Answered</td>
+            <td>
+              <%= @call.total_answered %>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
