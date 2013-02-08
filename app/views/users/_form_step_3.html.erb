@@ -61,7 +61,7 @@
     <tr>
       <td>Free Credits</td>
       <% @plans.each do |p| %>
-        <td>$10.00</td>
+        <td>$<%= p.free_credit %></td>
       <% end %>
     </tr>
     <tr>

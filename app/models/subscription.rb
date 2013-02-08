@@ -8,6 +8,8 @@ class Subscription < ActiveRecord::Base
 
   before_destroy :deactivate_stripe_subscription
 
+  after_create :add_free_balance
+
   def create_or_update_subscription
     user.billing_setting.customer.update_subscription(:plan => plan.stripe_id)
     self.save
@@ -38,6 +40,12 @@ class Subscription < ActiveRecord::Base
     rescue
       return true
     end
+  end
+
+  def add_free_balance
+    payment = self.plan.free_credit
+    r = Receipt.new(:memo => 'New account free balance', :credit => payment, :free => true)
+    self.user.receipts << r
   end
 
 end

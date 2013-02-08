@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 
   #before_save :update_time_zone
 
-  after_create :add_free_balance
+  after_create :create_account_balance
 
 
   def current_balance
@@ -53,10 +53,7 @@ class User < ActiveRecord::Base
     self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank? or self.state != self.state_was
   end
 
-  def add_free_balance
+  def create_account_balance
     AccountBalance.create!(:user_id => self.id)
-    payment = 10.0
-    r = Receipt.new(:memo => 'New account free balance', :credit => payment, :free => true)
-    receipts << r
   end
 end
