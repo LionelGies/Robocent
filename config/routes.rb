@@ -1,5 +1,11 @@
 Robocent::Application.routes.draw do
 
+  match 'inbox-support'       => 'support#inbox',       :as => :inbox_support
+  match 'send-a-call-support' => 'support#send_a_call', :as => :send_a_call_support
+  match 'send-a-text-support' => 'support#send_a_text', :as => :send_a_text_support
+  match 'contacts-support'    => 'support#contacts',    :as => :contacts_support
+  match 'dashboard-support'   => 'support#index',       :as => :dashboard_support
+
   resources :password_resets
 
   ActiveAdmin.routes(self)
