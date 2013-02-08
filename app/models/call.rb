@@ -22,8 +22,8 @@ class Call < ActiveRecord::Base
   end
 
   def percent_completed
-    # ((succeeded.to_f / number_of_recipients.to_f) * 100.0).to_i
-    0
+    dialed = self.call_queues.where(:status => "DIALED").count
+    ((dialed.to_f / self.number_of_recipients.to_f) * 100.0).to_i
   end
 
   private
