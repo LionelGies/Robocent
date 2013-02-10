@@ -10,18 +10,24 @@ class Recording < ActiveRecord::Base
 
   after_create :update_length, :if => Proc.new{ self.duration.blank? }
   after_create :download_and_save, :if => Proc.new{ self.url.present? and self.file.blank? }
+  after_create :convert_media, :if => Proc.new{ self.file.present? }
 
   validate :file_or_url
 
   def file_or_url
-     if file.blank? and url.blank?
+    if file.blank? and url.blank?
       errors.add(:file, "File must be attached to upload!")
     end
+  end
+
+  def convert_media
+    system "sox #{Rails.root}/public/uploads/recordings/#{self.file_identifier} -r 8000 -c 1 #{Rails.root}/public/recordings/#{self.file_identifier.gsub(".mp3", "")}.wav"
   end
 
   def download_and_save
     self.remote_file_url = "#{self.url}.mp3"
     self.save
+    system "sox #{Rails.root}/public/uploads/recordings/#{self.file_identifier} -r 8000 -c 1 #{Rails.root}/public/recordings/#{self.file_identifier.gsub(".mp3", "")}.wav"
     Notification.recording_succeeded(self).deliver
   end
 

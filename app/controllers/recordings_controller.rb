@@ -150,7 +150,7 @@ class RecordingsController < ApplicationController
 
   def show
     file_name = params[:id]
-    path = "#{Rails.root}/public/recordings/#{file_name}.mp3"
+    path = "#{Rails.root}/public/recordings/#{file_name}.wav"
     send_file(path, :disposition => 'attachment')
   end
 end

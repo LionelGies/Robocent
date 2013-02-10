@@ -17,7 +17,7 @@ class MediaFileUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    model.class.to_s.underscore.pluralize
+    "uploads/#{model.class.to_s.underscore.pluralize}"
   end
 
   def filename
