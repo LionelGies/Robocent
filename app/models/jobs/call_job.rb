@@ -4,6 +4,10 @@ require 'net/http'
 class Jobs::CallJob < Struct.new(:call)
 
   def perform
+    if call.recording.uploaded == false and call.recording.file.present?
+      call.recording.upload_to_ftp
+    end
+
     count = 0
     numbers = []
     call.lists.each do |list|
