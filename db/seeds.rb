@@ -12,7 +12,7 @@ Plan.all.each{ |p| p.destroy }
 Plan.create([
     {stripe_id: "robocent_temp", amount: "500", currency: "usd", interval: "month",
       name: "Basic", trial_period_days: "14", minimum_numbers: "0",
-      maximum_numbers: "500", price_per_call_or_text: "1.5", free_credit: "7.5"}
+      maximum_numbers: "50000", price_per_call_or_text: "1.5", free_credit: "7.5"}
   ])
 
 #Plan.create([

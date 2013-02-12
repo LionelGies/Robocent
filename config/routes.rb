@@ -94,24 +94,25 @@ Robocent::Application.routes.draw do
   #
   # registration
   #
-  #get   'twilionumbers/:code'      => 'users#twilionumbers',  :as => :twilionumbers
-  #put   'register'                 => 'users#create',         :as => :register_user
-  #post  'register'                 => 'users#create',         :as => :register_user
-  #get   'register'                 => 'users#new',            :as => :register
-  #match 'register/activate/:token' => 'users#activate',       :as => :activate
-  #match 'register/confirmation'    => 'users#confirmation',   :as => :register_confirmation
+  get   'twilionumbers/:code'      => 'users#twilionumbers',  :as => :twilionumbers
+  put   'register'                 => 'users#create',         :as => :register_user
+  post  'register'                 => 'users#create',         :as => :register_user
+  get   'register'                 => 'users#new',            :as => :register
+  match 'register/activate/:token' => 'users#activate',       :as => :activate
+  match 'register/confirmation'    => 'users#confirmation',   :as => :register_confirmation
   put 'update-password'    => 'users#update_password',   :as => :update_password
-  #resources :users
+  resources :users
 
   # for demo
-  get   'twilionumbers/:code'      => 'users#twilionumbers',   :as => :twilionumbers
-  put   'register2'                 => 'users#create',         :as => :register_user
-  post  'register2'                 => 'users#create',         :as => :register_user
-  get   'register2'                 => 'users#new',            :as => :register2
-  match 'register2/activate/:token' => 'users#activate',       :as => :activate
-  match 'register2/confirmation'    => 'users#confirmation',   :as => :register_confirmation
-  get   'register'                 => 'temp_users#new',        :as => :register
-  resources :users
+  #  get   'twilionumbers/:code'      => 'users#twilionumbers',   :as => :twilionumbers
+  #  put   'register2'                 => 'users#create',         :as => :register_user
+  #  post  'register2'                 => 'users#create',         :as => :register_user
+  #  get   'register2'                 => 'users#new',            :as => :register2
+  #  match 'register2/activate/:token' => 'users#activate',       :as => :activate
+  #  match 'register2/confirmation'    => 'users#confirmation',   :as => :register_confirmation
+  #  get   'register'                 => 'temp_users#new',        :as => :register
+  #  put 'update-password'    => 'users#update_password',   :as => :update_password
+  #  resources :users
 
   resources :temp_users, :only => [:new, :create]
   

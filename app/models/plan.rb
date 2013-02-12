@@ -13,7 +13,7 @@ class Plan < ActiveRecord::Base
     @stripe_plan ||= Stripe::Plan.retrieve(self.stripe_id) rescue nil
   end
 
-  #  before_create :create_stripe_plan
+  before_create :create_stripe_plan
   #  before_save :update_stripe_plan
   #  before_destroy :delete_stripe_plan
   #
