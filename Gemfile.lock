@@ -48,6 +48,7 @@ GEM
       sass (>= 3.2)
       thor
     builder (3.0.4)
+    cancan (1.6.9)
     capistrano (2.9.0)
       highline
       net-scp (>= 1.0.0)
@@ -241,6 +242,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  cancan
   capistrano-ext
   carrierwave
   carrierwave_direct

@@ -13,7 +13,7 @@ $(".ajax-loading").hide();
 <% if @error[:keyword].present?  %>
   $("#error_list_keyword").removeClass("ok");
   $("#error_list_keyword").html("<%= @error[:keyword] %>");
-<% elsif @list.keyword.present? %>
+<% elsif @list.keyword.present? or params[:list][:keyword].present? %>
   $("#error_list_keyword").html("");
   $("#error_list_keyword").addClass("ok");
 <% else %>

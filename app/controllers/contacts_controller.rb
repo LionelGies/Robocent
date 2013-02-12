@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   before_filter :require_login
+  load_and_authorize_resource
 
   layout 'dashboard'
 

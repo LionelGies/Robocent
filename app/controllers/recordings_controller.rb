@@ -1,5 +1,6 @@
 class RecordingsController < ApplicationController
   before_filter :require_login, :except => [:new, :replay, :save_or_record, :show]
+  load_and_authorize_resource :recording, :except => [:new, :replay, :save_or_record, :show]
 
   require 'twilio-ruby'
 

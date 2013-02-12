@@ -5,6 +5,7 @@ class CallsController < ApplicationController
 
   def show
     @call = Call.find(params[:id])
+    authorize! :read, @call
     render :layout => false
   end
 

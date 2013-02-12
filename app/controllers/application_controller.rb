@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to dashboard_url, :alert => exception.message
+  end
+
   helper_method :formatted_number
 
   def not_authenticated
