@@ -22,18 +22,18 @@
           Send Message from <%= current_user.twilio_phone_number.phone_number %>.
           (Will send at the rate of 60 text/minute)
         </span>
-        <br/><br/>
-        <%= f.radio_button :sending_option, "2", :class => "simple_form" %>
-        <span class="label ilC">
-          Send Message from {Shortcode}.
-          (Will send at the rate of 2400 texts/minute)
-        </span>
-        <br/><br/>
-        <%= f.radio_button :sending_option, "3", :class => "simple_form" %>
-        <span class="label ilC">
-          Send Message from as many shortcodes as possible.
-          (Will send message as quickly as possible)
-        </span>
+  <%#*<br/><br/>%>
+  <%#= f.radio_button :sending_option, "2", :class => "simple_form" %>
+  <%#*<span class="label ilC">%>
+  <%#*Send Message from {Shortcode}.%>
+  <%#*(Will send at the rate of 2400 texts/minute)%>
+  <%#*</span>%>
+  <%#*<br/><br/>%>
+  <%#= f.radio_button :sending_option, "3", :class => "simple_form" %>
+  <%#*<span class="label ilC">%>
+  <%#*Send Message from as many shortcodes as possible.%>
+  <%#*(Will send message as quickly as possible)%>
+  <%#*</span>%>
       </div>
     </div>
     <div class="line_grid">
