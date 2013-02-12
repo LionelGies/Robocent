@@ -3974,3 +3974,100 @@ a.link-author:hover,
 
 .valid{border:1px solid #70A41B!important; overflow:hide;} /*#70A41B*/
 .error {overflow:hide; border:1px solid red!important; }	
+
+
+/* New Pricing */
+  .pricing-headline-font {
+    font: bold 28px Arial;
+    color: #ffffff;
+  }
+
+  .description-font {
+    font: 14px Arial;
+    color: #696868;
+  }
+
+  div.pricing_container {
+    width: 778px;
+    height: 410px;
+    background: url(/assets/public_images/pricing_bg.png) transparent no-repeat;
+    font-family: Arial;
+    margin: 0 auto;
+  }
+
+  div.pricing_container div.single-headline {
+    display: inline-block;
+    width: 257px;
+    /*border: 1px solid red;*/
+    float: left;
+    margin: 47px 0 0;
+    text-align: center;
+  }
+
+  div.pricing_container div.headlilnes div.first-headline {
+    margin-left: 10px;
+    width: 246px;
+  }
+
+  div.pricing_container div.headlilnes div.second-headline {
+    padding: 0;
+    width: 269px;
+  }
+
+  div.pricing_container div.headlilnes div.third-headline {
+    padding: 0;
+    width: 235px;
+  }
+
+  div.pricing_container div.single-description {
+    display: inline-block;
+    float: left;
+    /*border: 1px solid red;*/
+    padding: 0;
+    margin: 63px 0 0;
+    text-align: center;
+  }
+
+  div.pricing_container div.descriptions div.first-description {
+    margin-left: 70px;
+    width: 186px;
+    text-align: left;
+  }
+
+  div.pricing_container div.descriptions div.second-description {
+    padding: 0;
+    width: 269px;
+    font-size: 19px;
+    line-height: 171%;
+    margin-top: 90px;
+  }
+
+  a.button-free-trial {
+    width: 177px;
+    height: 39px;
+    display: inline-block;
+    background: url('/assets/public_images/button_free_trial.png') transparent no-repeat;
+    text-decoration: none;
+    margin-top: 43px;
+  }
+
+
+  div.pricing_container div.descriptions div.second-description span {
+    font-size: 32px;
+  }
+
+  div.pricing_container div.descriptions div.third-description {
+    padding: 0 15px;
+    width: 205px;
+    line-height: 184%;
+  }
+
+  div.pricing_container div.single-description ul.feature-listing {
+    padding: 0;
+    margin: 3px 0 0;
+    list-style-type: none;
+  }
+
+  div.pricing_container div.single-description ul.feature-listing li {
+    margin-bottom: 19px;
+  }

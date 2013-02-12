@@ -603,6 +603,8 @@ public_images/btn_sprite.png: public_images/btn_sprite-025c6eeaa42635149d0605b09
 public_images/btn_sprite/index.png: public_images/btn_sprite-025c6eeaa42635149d0605b092f03de0.png
 public_images/bullet.png: public_images/bullet-93aa1735ffd1eafcf84bd6391fe4a9f7.png
 public_images/bullet/index.png: public_images/bullet-93aa1735ffd1eafcf84bd6391fe4a9f7.png
+public_images/button_free_trial.png: public_images/button_free_trial-00d8410c85bb3bb89933d6eb22b58453.png
+public_images/button_free_trial/index.png: public_images/button_free_trial-00d8410c85bb3bb89933d6eb22b58453.png
 public_images/button_styled_bg.png: public_images/button_styled_bg-bf1c21025d8ffea9c991c7740348ce81.png
 public_images/button_styled_bg/index.png: public_images/button_styled_bg-bf1c21025d8ffea9c991c7740348ce81.png
 public_images/buttons_link_bg.png: public_images/buttons_link_bg-b1ebf0243dede8b5b893119c91d7c427.png
@@ -2759,6 +2761,8 @@ public_images/priceplan.png: public_images/priceplan-ba891f6cdb312b9ac6a29d6746a
 public_images/priceplan/index.png: public_images/priceplan-ba891f6cdb312b9ac6a29d6746a74b75.png
 public_images/pricing-top.jpg: public_images/pricing-top-4d35a132a2efb7998c0bf4fae00efdb2.jpg
 public_images/pricing-top/index.jpg: public_images/pricing-top-4d35a132a2efb7998c0bf4fae00efdb2.jpg
+public_images/pricing_bg.png: public_images/pricing_bg-8226761805bf7f03037148250fe613d6.png
+public_images/pricing_bg/index.png: public_images/pricing_bg-8226761805bf7f03037148250fe613d6.png
 public_images/pricing_foot_bg.png: public_images/pricing_foot_bg-fe4bb54846e0d5a91df5015eba2e3f63.png
 public_images/pricing_foot_bg/index.png: public_images/pricing_foot_bg-fe4bb54846e0d5a91df5015eba2e3f63.png
 public_images/pricing_head.png: public_images/pricing_head-e4a4020a230efc6c151f2d676a29a99d.png
@@ -3159,8 +3163,8 @@ dashboard.css: dashboard-e4ea5cf771cb2ee8f15bde3635b1d42e.css
 dashboard/index.css: dashboard-e4ea5cf771cb2ee8f15bde3635b1d42e.css
 ie.css: ie-fa487239f805a089ee55ec3a3b274182.css
 ie/index.css: ie-fa487239f805a089ee55ec3a3b274182.css
-public.css: public-0ad8336cad5bef79a929a7102dfe806f.css
-public/index.css: public-0ad8336cad5bef79a929a7102dfe806f.css
+public.css: public-53a75a078de94c1da6e4e2ff518efa4d.css
+public/index.css: public-53a75a078de94c1da6e4e2ff518efa4d.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/admin_notes_icon/index.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/datepicker/datepicker-header-bg.png: active_admin/datepicker/datepicker-header-bg-6f0baad739953cb1a0413c031841e82f.png
