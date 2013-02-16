@@ -32,11 +32,14 @@ class UsersController < ApplicationController
       #twilio integration
       
       if session[:user_temp_id].present? && @user.present?
+        @step_id = "3"
         if @user.twilio_phone_number.blank?
           @twilio_phone_number = @user.build_twilio_phone_number(params[:twilio_phone_number])
           @twilio_phone_number.save
         end
-        @step_id = "3"
+        unless @user.update_attributes(params[:user])
+         @step_id = "2"
+        end
       else
         @step_id = "1"
       end

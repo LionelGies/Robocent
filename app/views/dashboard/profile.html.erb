@@ -86,7 +86,7 @@
           <tr>
             <td>Organization Type</td>
             <td>
-              <%= f.select :organization_type, Organization::NAMES, {}, :class => "simple_form" %>
+              <%= f.select :organization_type, Organization::NAMES, {:prompt => "Select"}, :class => "simple_form" %>
             </td>
           </tr>
           <tr>

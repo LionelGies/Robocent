@@ -1,18 +1,26 @@
+<div class="row alignleft">
+  <label><strong>Time Zone</strong></label>
+  <%= f.select :time_zone, UsState::TIME_ZONES, { :prompt => "Select one" }, :class => "select-uniform required" %>
+</div>
+
+<div class="clear"></div>
+
 <p>
-Please enter the area code in which you would like to create your RoboCent number.
-You may use this number to send texts and receive feedback from your customers.
+  Please enter the area code in which you would like to create your RoboCent number.
+  You may use this number to send texts and receive feedback from your customers.
 </p>
 
-<% if @user.twilio_phone_number.present? %>
-  <p>
-    Your Selected Number:
-    <strong>
-      <%= @user.twilio_phone_number.phone_number %>
-    </strong>
-  </p>
-<% else %>
+<%= fields_for @twilio_phone_number ||= TwilioPhoneNumber.new do |t| %>
 
-  <%= fields_for @twilio_phone_number ||= TwilioPhoneNumber.new do |t| %>
+  <% if @user.twilio_phone_number.present? %>
+    <p>
+      Your Selected Number:
+      <strong>
+        <%= @user.twilio_phone_number.phone_number %>
+      </strong>
+    </p>
+    <%= t.hidden_field :phone_number, :value => @user.twilio_phone_number.phone_number %>
+  <% else %>
 
     <div class="row alignleft">
       <label><strong>Enter Area Code</strong></label>

@@ -25,10 +25,10 @@ class User < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :email, :format =>  { :with => /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/ }
-  validates :organization_name, :presence => true
-  validates :phone, :presence => true
-  validates :organization_type, :presence => true
-  validates :time_zone, :presence => true
+  #validates :organization_name, :presence => true
+  #validates :phone, :presence => true
+  #validates :organization_type, :presence => true
+  validates :time_zone, :presence => true, :on => :update
   #validates :state, :presence => true
   validates_confirmation_of :password
   validates :password, :presence => true, :on => :create

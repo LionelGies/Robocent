@@ -10,7 +10,7 @@
   </div>
 </div>
 
-<div class="middle cols2">
+<div class="middle full_width">
   <div class="container_12">
 
     <!-- content -->
@@ -18,52 +18,52 @@
 
       <div class="post-item post-detail">
 
-        <div class="post-title">
-          <h1>Create an Account</h1>
+        <div class="post-title" style="text-align:center">
+          <h2>Create an Account</h2>
         </div>
 
-        <div class="entry">
-          <p>
-            To create an account, simply fill out the information below. 
-            All accounts come standard with 14 day free trial and
-            $10 in free texts and calls. If you have any questions, 
-            don't hesitate to ask.
-          </p>
-          <div class="clear"></div>
-        </div>
+        <%#*<div class="entry">%>
+          <%#*<p>%>
+            <%#*To create an account, simply fill out the information below.%>
+            <%#*All accounts come standard with 14 day free trial and%>
+            <%#*$10 in free texts and calls. If you have any questions,%>
+            <%#*don't hesitate to ask.%>
+          <%#*</p>%>
+          <%#*<div class="clear"></div>%>
+        <%#*</div>%>
       </div>
       <!--/ post item -->
 
 
       <!-- add comment -->
-      <div class="add-comment contact-form">
-        <h3>
-          <% if @step_id == "3" %>
-            Billing Information
-          <% elsif @step_id == "2" %>
-            Your RoboCent Phone Number
-          <% else %>
-            Account Details
-          <% end %>
+      <div class="add-comment contact-form" style="width:620px;margin: auto">
+        <%#*<h3>%>
+          <%# if @step_id == "3" %>
+            <%#*Billing Information%>
+          <%# elsif @step_id == "2" %>
+            <%#*Your RoboCent Phone Number%>
+          <%# else %>
+            <%#*Account Details%>
+          <%# end %>
 
-          <div class="breadcrumbs" style="font-size:12px;">
-            <% if @step_id == "3" %>
-              Step 1
-              <span class="separator">&nbsp;</span> Step 2
-              <span class="separator">&nbsp;</span>
-              <%= link_to "Step 3", "#" %>
-            <% elsif @step_id == "2" %>
-              Step 1
-              <span class="separator">&nbsp;</span>
-              <%= link_to "Step 2", "#" %>
-              <span class="separator">&nbsp;</span> Step 3
-            <% else %>
-              <%= link_to "Step 1", "#" %>
-              <span class="separator">&nbsp;</span> Step 2
-              <span class="separator">&nbsp;</span> Step 3
-            <% end %>
-          </div>
-        </h3>
+          <%#*<div class="breadcrumbs" style="font-size:12px;">%>
+            <%# if @step_id == "3" %>
+              <%#*Step 1%>
+              <%#*<span class="separator">&nbsp;</span> Step 2%>
+              <%#*<span class="separator">&nbsp;</span>%>
+              <%#= link_to "Step 3", "#" %>
+            <%# elsif @step_id == "2" %>
+              <%#*Step 1%>
+              <%#*<span class="separator">&nbsp;</span>%>
+              <%#= link_to "Step 2", "#" %>
+              <%#*<span class="separator">&nbsp;</span> Step 3%>
+            <%# else %>
+              <%#= link_to "Step 1", "#" %>
+              <%#*<span class="separator">&nbsp;</span> Step 2%>
+              <%#*<span class="separator">&nbsp;</span> Step 3%>
+            <%# end %>
+          <%#*</div>%>
+        <%#*</h3>%>
 
         <div id="results" style="padding-left: 20px;color:#FF0000;">
           <% if @user.errors.any? %>
@@ -102,7 +102,7 @@
     <!--/ content -->
 
     <!-- sidebar -->
-    <%= render "shared/location" %>
+    <%#= render "shared/location" %>
     <!--/ sidebar -->
 
     <div class="clear"></div>

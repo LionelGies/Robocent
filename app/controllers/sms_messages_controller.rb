@@ -43,16 +43,16 @@ class SmsMessagesController < ApplicationController
         contact.custom_1 = params["FromCountry"]
         contact.source = "sms by keyword"
         contact.save
-        reply_text = "Welcome to #{user.organization_name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
+        reply_text = "Welcome to #{user.organization_name.present? ? user.organization_name : user.name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
     
       elsif contact.present? and list.present? and contact.list_id == list.id
-        reply_text = "Welcome to #{user.organization_name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
+        reply_text = "Welcome to #{user.organization_name.present? ? user.organization_name : user.name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
 
       elsif contact.present? and params["Body"].downcase == "stop"
         contacts = Contact.find(:all,
           :conditions => ["(phone_number = ? or phone_number = ?) and user_id = ?",params["From"],from_phone_number, user.id])
         contacts.each{ |c| c.destroy }
-        reply_text = "You are opted out from #{user.organization_name}'s alerts. No more messages will be sent. Reply HELP for help or email Info@RoboCent.com. Msg&Data rates may apply."
+        reply_text = "You are opted out from #{user.organization_name.present? ? user.organization_name : user.name}'s alerts. No more messages will be sent. Reply HELP for help or email Info@RoboCent.com. Msg&Data rates may apply."
     
       elsif contact.blank? and params["Body"].downcase == "stop"
         reply_text = "You are opted out from RoboCent's alerts. No more messages will be sent. Reply HELP for help or email Info@RoboCent.com. Msg&Data rates may apply."
