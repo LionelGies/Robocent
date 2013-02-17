@@ -1,0 +1,4 @@
+<% @meta_contents = MetaContent.order("created_at") %>
+<% @meta_contents.each do |meta| %>
+  <meta name="<%= meta.name %>" content="<%= meta.content.html_safe %>"/>
+<% end %>
