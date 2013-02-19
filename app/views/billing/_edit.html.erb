@@ -18,36 +18,40 @@
     <%= f.hidden_field :card_exp_year %>
     <%= f.hidden_field :card_type %>
 
-    <table class="tables" id="credit-card">
-      <tr>
-        <td>Card Holder Name<span class="must">*</span></td>
-        <td>
-          <%= f.text_field :card_holder_name, :class => "simple_field", :required => true %>
-        </td>
-      </tr>
-      <tr>
-        <td>Card Number<span class="must">*</span></td>
-        <td>
-          <%= text_field_tag :credit_card_number, "", :class => "simple_field", :disabled => true, :required => true %>
-        </td>
-      </tr>
-      <tr>
-        <td>Card Security Code<span class="must">*</span></td>
-        <td>
-          <%= text_field_tag :cvv, "", :class => "simple_field", :disabled => true, :required => true %>
-        </td>
-      </tr>
-      <tr>
-        <td>Expiration Date<span class="must">*</span></td>
-        <td>
-          <%= date_select "", :expiry_date, {:discard_day => true, :order => [:month, :year], :use_month_numbers => true, :start_year => Date.today.year, :end_year => Date.today.year + 25, :disabled => true}, {:class => 'small'} %>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2" align="center">
-          <%= f.submit :class => "submitIt simple_buttons" %>
-        </td>
-      </tr>
+    <table class="tables">
+      <thead>
+        <tr>
+          <td>Card Holder Name<span class="must">*</span></td>
+          <td>
+            <%= f.text_field :card_holder_name, :class => "simple_field", :required => true %>
+          </td>
+        </tr>
+      </thead>
+      <tbody id="credit-card">
+        <tr>
+          <td>Card Number<span class="must">*</span></td>
+          <td>
+            <%= text_field_tag :credit_card_number, "", :class => "simple_field", :disabled => true, :required => true %>
+          </td>
+        </tr>
+        <tr>
+          <td>Card Security Code<span class="must">*</span></td>
+          <td>
+            <%= text_field_tag :cvv, "", :class => "simple_field", :disabled => true, :required => true %>
+          </td>
+        </tr>
+        <tr>
+          <td>Expiration Date<span class="must">*</span></td>
+          <td>
+            <%= date_select "", :expiry_date, {:discard_day => true, :order => [:month, :year], :use_month_numbers => true, :start_year => Date.today.year, :end_year => Date.today.year + 25, :disabled => true}, {:class => 'small'} %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <%= f.submit :class => "submitIt simple_buttons" %>
+          </td>
+        </tr>
+      </tbody>
     </table>
   <% end %>
 </div>

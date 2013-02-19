@@ -24,6 +24,11 @@ class UsersController < ApplicationController
     if @step_id == "1"
       # create or update user
       if @user.update_attributes(params[:user])
+        #create trailing stripe customer
+        @billing_setting = @user.build_billing_setting
+        @billing_setting.save
+        @subscription = @user.build_subscription(:plan_id => Plan.first.id)
+        @subscription.save
         session[:user_temp_id] = @user.id
         @step_id = "2"
       end
@@ -32,7 +37,7 @@ class UsersController < ApplicationController
       #twilio integration
       
       if session[:user_temp_id].present? && @user.present?
-        @step_id = "3"
+        @step_id = "finish"
         if @user.twilio_phone_number.blank?
           @twilio_phone_number = @user.build_twilio_phone_number(params[:twilio_phone_number])
           @twilio_phone_number.save
@@ -50,7 +55,7 @@ class UsersController < ApplicationController
         @billing_setting = @user.build_billing_setting(params[:billing_setting])
         @billing_setting.save
         @subscription = @user.build_subscription(:plan_id => params[:billing_setting][:plan_id])
-        @subscription.create_or_update_subscription
+        #@subscription.create_or_update_subscription
         @step_id = "finish"
       else
         @step_id = "1"
@@ -83,9 +88,9 @@ class UsersController < ApplicationController
       if @user.twilio_phone_number.blank?
         session[:user_temp_id] = @user.id
         redirect_to register_url(:step_id => "2"), :alert => "Please complete your registration to access your dashboard!"
-      elsif @user.billing_setting.blank?
-        session[:user_temp_id] = @user.id
-        redirect_to register_url(:step_id => "3"), :alert => "Please complete your registration to access your dashboard!"
+        #      elsif @user.billing_setting.blank?
+        #        session[:user_temp_id] = @user.id
+        #        redirect_to register_url(:step_id => "3"), :alert => "Please complete your registration to access your dashboard!"
       else
         auto_login(@user)
         redirect_back_or_to dashboard_url, :notice => "User was successfully activated."

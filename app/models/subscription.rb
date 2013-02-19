@@ -9,9 +9,13 @@ class Subscription < ActiveRecord::Base
   before_destroy :deactivate_stripe_subscription
 
   after_create :add_free_balance
+  after_create :create_or_update_subscription
 
   def create_or_update_subscription
-    user.billing_setting.customer.update_subscription(:plan => plan.stripe_id)
+    subscription = user.billing_setting.customer.update_subscription(:plan => plan.stripe_id)
+    self.status = subscription.status if subscription.status.present?
+    self.trial_start = Time.at(subscription.trial_start) if subscription.trial_start.present?
+    self.trial_end = Time.at(subscription.trial_end) if subscription.trial_end.present?
     self.save
   end
 

@@ -60,7 +60,7 @@ $(document).ready(function(){
             $("#ajax-loader img").show();
             $("#twilio_phone_number_phone_number").attr('disabled', true).end();
             $("#twilio_phone_number_select").load("/twilionumbers/"+area_code, function(){
-                $("select").uniform();
+                $("select#twilio_phone_number_phone_number").uniform();
                 $("#ajax-loader img").hide();
             });
         }

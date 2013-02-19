@@ -1,10 +1,3 @@
-<div class="row alignleft">
-  <label><strong>Time Zone</strong></label>
-  <%= f.select :time_zone, UsState::TIME_ZONES, { :prompt => "Select one" }, :class => "select-uniform required" %>
-</div>
-
-<div class="clear"></div>
-
 <p>
   Please enter the area code in which you would like to create your RoboCent number.
   You may use this number to send texts and receive feedback from your customers.
@@ -49,6 +42,20 @@
   <br/>
 <% end %>
 
+<div class="row alignleft">
+  <label><strong>Promo Code</strong></label>
+  <%= f.text_field :promo_code, :maxlength => "3", :class => "inputtext", :style => "width:150px;" %>
+</div>
+
+<div class="space" style="width:113px;"></div>
+
+<div class="row alignleft">
+  <label><strong>Time Zone</strong></label>
+  <%= f.select :time_zone, UsState::TIME_ZONES, { :prompt => "Select one" }, :class => "select-uniform required" %>
+</div>
+
+<div class="clear"></div>
+
 <%#*<p>%>
 <%#*What if I want to use a short code like 47543 instead?<br/>%>
 <%#*You will have the option to use a short code once you create an account.%>
@@ -66,7 +73,7 @@
 <div class="space"></div>
 
 <div class="row alignleft">
-  <%= f.submit "NEXT", :class => "btn-submit", :id => "user_form_step_2_submit" %>
+  <%= f.submit "CREATE ACCOUNT", :class => "btn-submit", :id => "user_form_step_2_submit" %>
 </div>
 
 <div class="clear"></div>

@@ -12,10 +12,10 @@ class UserSessionsController < ApplicationController
           logout
           session[:user_temp_id] = user.id
           redirect_to register_url(:step_id => "2"), :alert => "Please complete your registration to access your dashborad!"
-        elsif user.billing_setting.blank?
-          logout
-          session[:user_temp_id] = user.id
-          redirect_to register_url(:step_id => "3"), :alert => "Please complete your registration to access your dashboard!"
+          #        elsif user.billing_setting.blank?
+          #          logout
+          #          session[:user_temp_id] = user.id
+          #          redirect_to register_url(:step_id => "3"), :alert => "Please complete your registration to access your dashboard!"
         else
           redirect_back_or_to dashboard_url
         end

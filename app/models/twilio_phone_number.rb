@@ -3,6 +3,8 @@ class TwilioPhoneNumber < ActiveRecord::Base
 
   belongs_to :user
 
+  validates :phone_number, :presence => true
+
   before_create :buy_twilio_number
   after_create :issue_pin_number
 

@@ -37,6 +37,15 @@ class BillingSetting < ActiveRecord::Base
       end
 
       self.stripe_token = nil
+
+    else
+      if stripe_id.nil?
+        customer = Stripe::Customer.create(
+          :description => self.user.name,
+          :email => self.user.email
+        )
+        self.stripe_id = customer.id
+      end
     end
     
   end

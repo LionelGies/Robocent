@@ -18,13 +18,13 @@
     <tr>
       <td>Card Number</td>
       <td>
-        <%= "*********#{@billing_setting.card_last_four_digits}" %>
+        <%= "*********#{@billing_setting.card_last_four_digits}" if @billing_setting.card_last_four_digits.present? %>
       </td>
     </tr>
     <tr>
       <td>Card Expiration</td>
       <td>
-        <%= @billing_setting.card_expiry_date.strftime("%B %d, %Y") %>
+        <%= @billing_setting.card_expiry_date.strftime("%B %d, %Y") if @billing_setting.card_expiry_date.present? %>
       </td>
     </tr>
     <tr>
@@ -35,7 +35,7 @@
     </tr>
     <tr>
       <td>Last Updated</td>
-      <td><%= @billing_setting.updated_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %></td>
+      <td><%= @billing_setting.updated_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") if @billing_setting.card_last_four_digits.present? %></td>
     </tr>
   </table>
 </div>

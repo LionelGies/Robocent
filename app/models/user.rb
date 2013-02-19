@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :organization_name, :organization_type, :name, :phone, :email,
     :time_zone, :password, :password_confirmation, :activation_state, :activation_token,
-    :terms_and_conditions
-  attr_accessor :terms_and_conditions
+    :terms_and_conditions, :promo_code
+  attr_accessor :terms_and_conditions, :promo_code
 
   has_one :billing_setting,       :dependent => :destroy
   has_one :subscription,          :dependent => :destroy

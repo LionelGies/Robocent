@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130217182758) do
+ActiveRecord::Schema.define(:version => 20130219123907) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -275,8 +275,10 @@ ActiveRecord::Schema.define(:version => 20130217182758) do
     t.integer  "user_id"
     t.integer  "plan_id"
     t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.datetime "trial_start"
+    t.datetime "trial_end"
   end
 
   create_table "temp_users", :force => true do |t|
