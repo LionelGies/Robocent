@@ -12,6 +12,7 @@ class Call < ActiveRecord::Base
   belongs_to :recording
   has_many :call_queues, :dependent => :destroy, :foreign_key => "order"
   has_many :results, :dependent => :destroy, :foreign_key => "orderID"
+  has_many :tmp_queue_calls, :dependent => :destroy
 
   before_create :charge_difference
   after_create :create_receipt
@@ -50,6 +51,15 @@ class Call < ActiveRecord::Base
   end
 
   def send_call_to_queue
+    numbers = []
+    lists.each do |list|
+      numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
+    end
+
+    numbers.each do |number|
+      self.tmp_queue_calls.create(:phone_number => number)
+    end
+
     delay_time = ((Time.parse(self.schedule_at.to_s) - Time.parse((DateTime.now).to_s))).to_i
     delay_time = 5 if delay_time < 5
     Delayed::Job.enqueue Jobs::CallJob.new(self), 0 , delay_time.seconds.from_now, :queue => "call"

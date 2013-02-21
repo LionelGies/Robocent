@@ -9,14 +9,14 @@ class Jobs::CallJob < Struct.new(:call)
     end
 
     count = 0
-    numbers = []
-    call.lists.each do |list|
-      numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
-    end
+    #    numbers = []
+    #    call.lists.each do |list|
+    #      numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
+    #    end
 
-    numbers.each do |number|
+    call.tmp_queue_calls.each do |q|
       call_queue = call.call_queues.new(
-        :phone => number.to_s.gsub(/\D/, ''),
+        :phone => q.phone_number.to_s.gsub(/\D/, ''),
         :calleridname => call.caller_id_number,
         :calleridnum => call.caller_id_number,
         :recordingname => call.recording.file_identifier.gsub(".mp3", ""))
