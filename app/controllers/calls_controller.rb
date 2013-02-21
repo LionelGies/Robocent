@@ -92,12 +92,16 @@ class CallsController < ApplicationController
     Time.zone = "UTC"
 
     @call.schedule_at = start_time.utc
-    
-    if @call.save
-      session.delete(:call)
-      redirect_to dashboard_path, :notice => "Successfully placed the call into queue!"
+
+    if current_user.billing_setting.card
+      if @call.save
+        session.delete(:call)
+        redirect_to dashboard_path, :notice => "Successfully placed the call into queue!"
+      else
+        redirect_to send_call_path
+      end
     else
-      redirect_to send_call_path
+      redirect_to billing_path, :alert => "You must have a Card on file to perform this task!"
     end
   end
 
