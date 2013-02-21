@@ -3,7 +3,9 @@
   <td><%= list.type_of_list.capitalize %></td>
   <td><%= list.number_of_contacts %></td>
   <td><%= list.keyword %></td>
-  <td><%= list.shortcode_keyword %></td>
+  <%#*<td>%>
+    <%#= list.shortcode_keyword %>
+  <%#*</td>%>
   <td>
     <div style="float: left">
       <%= link_to "Edit", edit_list_path(list), :class => "simple_buttons", :style => "padding: 0 10px 0 10px;" %>

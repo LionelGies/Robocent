@@ -25,7 +25,7 @@
       <% if @list.new_record? or @list.type_of_list == "text" %>
         <div class="line_grid" id="row-keyword">
           <div class="g_3">
-            <span class="label">Keyword for Your RoboCent Number</span>
+            <span class="label">Keyword</span>
           </div>
           <div class="g_9">
             <div class="filed_error" id="error_list_keyword"></div>
@@ -36,19 +36,19 @@
             </div>
           </div>
         </div>
-        <div class="line_grid" id="row-shortcode-keyword">
-          <div class="g_3">
-            <span class="label">Keyword for ShortCode</span>
-          </div>
-          <div class="g_9">
-            <div class="filed_error" id="error_list_shortcode_keyword"></div>
-            <%= f.text_field :shortcode_keyword, :class => "simple_field" %>
-            <div class="field_notice">
-              When subscribers will text that key word to RoboCent ShortCode,
-              application will automatically add them to the list.
-            </div>
-          </div>
-        </div>
+    <%#*<div class="line_grid" id="row-shortcode-keyword">%>
+    <%#*<div class="g_3">%>
+    <%#*<span class="label">Keyword for ShortCode</span>%>
+    <%#*</div>%>
+    <%#*<div class="g_9">%>
+    <%#*<div class="filed_error" id="error_list_shortcode_keyword"></div>%>
+    <%#= f.text_field :shortcode_keyword, :class => "simple_field" %>
+    <%#*<div class="field_notice">%>
+    <%#*When subscribers will text that key word to RoboCent ShortCode,%>
+    <%#*application will automatically add them to the list.%>
+    <%#*</div>%>
+    <%#*</div>%>
+    <%#*</div>%>
       <% end %>
 
       <div class="line_grid">
