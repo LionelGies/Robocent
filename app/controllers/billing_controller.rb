@@ -40,6 +40,23 @@ class BillingController < ApplicationController
     end
   end
 
+  def create
+    begin
+      @billing_setting = current_user.billing_setting
+      if @billing_setting.present?
+        @billing_setting.update_attributes(params[:billing_setting])
+        flash[:notice] = "Successfully updated your billing information"
+      else
+         @billing_setting = current_user.build_billing_setting(params[:billing_setting])
+         flash[:notice] = "Successfully updated your billing information" if @billing_setting.save
+      end
+    rescue Stripe::StripeError => e
+      logger.error e.message
+      flash[:alert] = e.message
+    end
+    redirect_to request.referer
+  end
+
   def edit
     @billing_setting = BillingSetting.find(params[:id])
     render :layout => false

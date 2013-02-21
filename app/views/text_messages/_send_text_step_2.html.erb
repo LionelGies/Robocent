@@ -1,7 +1,7 @@
 <div id="twilio-response"></div>
 <div class="clear"></div>
 
-<%= form_for(@text_message, :url => send_text_path) do |f| %>
+<%= form_for(@text_message, :url => send_text_path(:step => "3")) do |f| %>
   <%= hidden_field_tag "step", "3" %>
   <div class="widget_contents noPadding">
     <div class="line_grid">

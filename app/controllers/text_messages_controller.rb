@@ -20,12 +20,12 @@ class TextMessagesController < ApplicationController
       session[:text_message] = session[:text_message].merge(params[:text_message]) if params[:text_message].present?
       if params[:list_ids].present? and params[:list_ids].size > 0
         session[:text_message] = session[:text_message].merge({:list_ids => params[:list_ids].join(",")})
-      elsif @step == "3" and session[:text_message][:list_ids].blank?
-        flash.now.alert = "Please Select at least one contact list!"
+      elsif @step == "3" and session[:text_message][:number_of_recipients].blank?
+        flash[:alert] = "Please Select at least one contact list!"
         @step = "2"
-      elsif @step == "3" and session[:text_message][:list_ids].present? and params[:list_ids].blank?
+      elsif @step == "3" and request.post? and session[:text_message][:list_ids].present? and params[:list_ids].blank?
         session[:text_message][:list_ids] = nil
-        flash.now.alert = "Please Select at least one contact list!"
+        flash[:alert] = "Please Select at least one contact list!"
         @step = "2"
       end
       @text_message = current_user.text_messages.new(session[:text_message])
@@ -91,11 +91,15 @@ class TextMessagesController < ApplicationController
     
     @text_message.schedule_at = start_time.utc
 
-    if @text_message.save
-      session.delete(:text_message)
-      redirect_to dashboard_path, :notice => "Successfully placed the text messages into queue!"
+    if current_user.billing_setting.card
+      if @text_message.save
+        session.delete(:text_message)
+        redirect_to dashboard_path, :notice => "Successfully placed the text messages into queue!"
+      else
+        redirect_to send_text_path
+      end
     else
-      redirect_to send_text_path
+      redirect_to billing_path, :alert => "You must have a Card on file to perform this task!"
     end
   end
 

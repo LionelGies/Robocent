@@ -11,6 +11,10 @@ class Subscription < ActiveRecord::Base
   after_create :add_free_balance
   after_create :create_or_update_subscription
 
+  def trial
+    Time.now < self.trial_end ? true : false
+  end
+
   def create_or_update_subscription
     subscription = user.billing_setting.customer.update_subscription(:plan => plan.stripe_id)
     self.status = subscription.status if subscription.status.present?

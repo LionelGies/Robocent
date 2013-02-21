@@ -16,6 +16,10 @@ class BillingSetting < ActiveRecord::Base
     end
   end
 
+  def card
+    self.card_last_four_digits.present? ? true : false
+  end
+
   def create_or_update_stripe_customer
 
     if stripe_token.present?

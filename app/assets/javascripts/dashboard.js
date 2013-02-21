@@ -51,6 +51,11 @@ $(function() {
         return false;
     });
 
+    $("#provide_card_link").click(function(){
+        $( "#dialog" ).dialog( "open" );
+        return false;
+    })
+
     $("form.list_form input").live("keyup", function(){
         delay(function(){
             if(typeof window.xhr != 'undefined'){

@@ -119,11 +119,24 @@
       </div>
       <div class="g_2"></div>
       <div class="g_4">
-        <%= f.submit "Submit", :class => "submitIt simple_buttons" %>
+        <% unless current_user.billing_setting.card %>
+          <%= link_to "Submit", "javascript:;", :class => "submitIt simple_buttons", :id => "provide_card_link" %>
+        <% else %>
+          <%= f.submit "Submit", :class => "submitIt simple_buttons" %>
+        <% end %>
       </div>
     </div>
   </div>
 <% end %>
+
+<% unless current_user.billing_setting.card %>
+  <div id="dialog" title="<%= current_user.subscription.trial ? "You Must Have a Card on FIle!" : "Your Free Trial has Ended!" %>">
+    <div class="dialog">
+      <%= render "billing/form" %>
+    </div>
+  </div>
+<% end %>
+
 
 <style type="text/css">
   .tables .g_2,

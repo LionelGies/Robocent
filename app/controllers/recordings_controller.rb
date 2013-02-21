@@ -7,6 +7,7 @@ class RecordingsController < ApplicationController
   layout "dashboard"
   
   def new
+    root_url = "http://robocent.com/"
     if params["Digits"].present? and params["Digits"].length == 6
       tpn = TwilioPhoneNumber.find_by_pin_number(params["Digits"])
       if tpn.present?
