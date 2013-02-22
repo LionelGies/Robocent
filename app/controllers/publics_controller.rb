@@ -52,4 +52,8 @@ class PublicsController < ApplicationController
   def email_code
     render :layout => false
   end
+
+  def privacy_policy
+    
+  end
 end
