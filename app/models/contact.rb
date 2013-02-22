@@ -23,7 +23,7 @@ class Contact < ActiveRecord::Base
     if ph.present?
       self.phone_number = ph
     else
-     errors.add(:phone_number, "is Invalid")
+      errors.add(:phone_number, "is Invalid")
     end
   end
 
@@ -86,7 +86,9 @@ class Contact < ActiveRecord::Base
   end
 
   def decrease_number_of_contacts
-    list.number_of_contacts -= 1
-    list.save
+    if list.present?
+      list.number_of_contacts -= 1
+      list.save
+    end
   end
 end
