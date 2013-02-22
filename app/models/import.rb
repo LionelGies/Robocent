@@ -6,6 +6,9 @@ class Import < ActiveRecord::Base
   belongs_to :user
   belongs_to :list
 
+  validates :user_id, :presence => true
+  validates :list_id, :presence => true
+
   def get_sheet
     au = ExcelUploader.new
     au.download!(self.file_name.url.to_s)
