@@ -135,6 +135,7 @@ Robocent::Application.routes.draw do
   match "SMSPrivacy"  => "publics#sms_privacy", :as => "sms_privacy"
   match "smsterms"    => "publics#sms_terms", :as => :sms_terms
   match "smsprivacy"  => "publics#sms_privacy", :as => :sms_privacy
+  match "privacy-policy" => "publics#privacy_policy", :as => :privacy_policy
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
