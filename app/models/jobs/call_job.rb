@@ -21,7 +21,11 @@ class Jobs::CallJob < Struct.new(:call)
         :calleridnum => call.caller_id_number,
         :recordingname => call.recording.file_identifier.gsub(".mp3", ""))
 
-      count += 1 if call_queue.save
+      if call_queue.save
+        count += 1
+        q.destroy
+      end
+
     end
   end
 
