@@ -78,6 +78,16 @@ class Contact < ActiveRecord::Base
     return digits.to_s
   end
 
+  class << self
+    def destroy_unlinked_contacts
+      Contact.all.each do |contact|
+        contact.destroy if contact.list.blank?
+      end
+    end
+
+    handle_asynchronously :destroy_unlinked_contacts
+  end
+
   private
 
   def update_number_of_contacts
