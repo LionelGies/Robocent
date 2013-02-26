@@ -6,6 +6,9 @@
   <%#*<td>%>
     <%#= list.shortcode_keyword %>
   <%#*</td>%>
+  <td align="center">
+    <%= link_to "View", list, :class => "submitIt simple_buttons"  %>
+  </td>
   <td>
     <div style="float: left">
       <%= link_to "Edit", edit_list_path(list), :class => "simple_buttons", :style => "padding: 0 10px 0 10px;" %>

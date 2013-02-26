@@ -73,6 +73,9 @@ Robocent::Application.routes.draw do
   resources :contacts
 
   resources :lists do
+    member do
+      get :export_contacts
+    end
     collection do
       match :check_validation
     end

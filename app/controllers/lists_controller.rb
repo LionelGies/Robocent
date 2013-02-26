@@ -4,6 +4,12 @@ class ListsController < ApplicationController
 
   layout 'dashboard'
 
+  def show
+    session[:list_contacts] = true
+    @list = List.find(params[:id])
+    @contacts = @list.contacts
+  end
+
   def new
     session[:referer] = request.referer
     @list = List.new
@@ -79,6 +85,13 @@ class ListsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to contacts_url }
       format.js
+    end
+  end
+
+  def export_contacts
+    @contacts = Contact.where(:list_id => params[:id]).includes(:list)
+    respond_to do |format|
+      format.csv { send_data @contacts.to_csv }
     end
   end
 end

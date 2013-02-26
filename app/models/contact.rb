@@ -31,6 +31,19 @@ class Contact < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def address
+    "#{address_1} #{address_2} #{city}"
+  end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << ['Id', 'List', 'Phone Number', 'Name', 'Email', 'Address', 'State', 'Zip', 'Source']
+      all.each do |c|
+        csv << [c.id, c.list.name, c.phone_number, c.name, c.email, c.address, c.state, c.zip, c.source]
+      end
+    end
+  end
+
   def self.get_column_array
     column = Contact.column_names
     column.delete_at(column.index('id') || column.length)

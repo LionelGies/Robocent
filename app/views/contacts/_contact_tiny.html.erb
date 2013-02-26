@@ -1,8 +1,15 @@
 <tr id="contact_row_<%= contact.id %>">
-  <td><%= contact.list.name %></td>
-  <td><%= contact.phone_number %></td>
-  <td><%= contact.name %></td>
-  <td><%= contact.email %></td>
+  <% if session[:list_contacts].present? %>
+    <td><%= contact.phone_number %></td>
+    <td><%= contact.name %></td>
+    <td><%= contact.email %></td>
+    <td><%= contact.state %></td>
+  <% else %>
+    <td><%= contact.list.name %></td>
+    <td><%= contact.phone_number %></td>
+    <td><%= contact.name %></td>
+    <td><%= contact.email %></td>
+  <% end %>
   <td>
     <div style="float: left">
       <%= link_to "Edit", edit_contact_path(contact), :class => "fancybox fancybox.ajax simple_buttons", :style => "padding: 0 10px 0 10px;" %>

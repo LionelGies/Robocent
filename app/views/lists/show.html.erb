@@ -1,0 +1,53 @@
+<div class="g_6 contents_header">
+  <h3 class="i_16_ui tab_label">Contacts (<%= @list.name %>)</h3>
+</div>
+<div class="g_2"></div>
+<div class="g_2">
+  <%= link_to "Back to Contacts", contacts_path, :class => "simple_buttons contact-button" %>
+</div>
+<div class="g_2">
+  <%= link_to "Add Contacts", new_contact_path, :class => "simple_buttons contact-button" %>
+</div>
+
+<div class="g_12 separator"><span></span></div>
+
+<div class="g_12">
+  <div class="widget_header wwOptions">
+    <h4 class="widget_header_title wwIcon i_16_tables">
+      View and Edit Contacts
+    </h4>
+  </div>
+  <div class="widget_contents noPadding">
+    <table class="tables" id="contacts-table">
+      <thead>
+      <th>Phone</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>
+        <div class="ajax-loading" style="display:none">
+          <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
+        </div>
+      </th>
+      </thead>
+      <tbody>
+        <% if @contacts.present? %>
+          <% @contacts.each do |contact| %>
+            <%= render :partial => "contacts/contact_tiny", :locals => {:contact => contact} %>
+          <% end %>
+        <tr>
+          <td colspan="6" align="center">
+              <%= link_to "Export List as CSV", export_contacts_list_path(@list, :format => "csv"), :style => "color:#696969" %>
+          </td>
+        </tr>
+        <% else %>
+          <tr>
+            <td colspan="5" style="text-align:center">
+              No Records Found.
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

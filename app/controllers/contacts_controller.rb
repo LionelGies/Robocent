@@ -7,6 +7,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
+    session.delete(:list_contacts) if session[:list_contacts].present?
     @contacts = current_user.contacts.all
     @lists = current_user.lists.order("created_at desc")
 
