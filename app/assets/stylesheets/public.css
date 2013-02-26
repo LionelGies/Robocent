@@ -8,6 +8,207 @@
 */
 
 .btn-link.btn-submit{
-  height: 40px;
-  margin-top: 10px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+
+#home-banner div,
+#home-banner span,
+#home-banner h1,
+#home-banner h5,
+#home-banner p,
+#home-banner a,
+#home-banner article,
+#home-banner hgroup
+{
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+#home-banner {
+    background: url("/assets/public_images/blue/home-mountain-bg.png") no-repeat scroll center bottom #1461A2;
+    font-family: 'Lato',sans-serif;
+    color: #F7F0E4;
+    margin: -25px 0 0;
+    min-height: 740px;
+    position: relative;
+    font-weight: normal;
+    line-height: 1;
+}
+
+
+#home-banner.content{
+    margin-top: -89px;
+    padding: 90px 0 0;
+    float: left;
+    width: 100%;
+}
+
+#home-banner .pattern {
+    background: url("/assets/public_images/blue/crosslines-pattern.png") repeat scroll 0 0 transparent !important;
+    float: left;
+    min-height: 540px;
+    padding: 50px 0 90px;
+    width: 100%;
+}
+
+#home-banner.content .pattern {
+    background: url("/assets/public_images/blue/pattern1.png") repeat-x scroll center top transparent;
+    clear: both;
+    margin: 0;
+}
+
+
+#home-banner .container {
+    margin: 0 auto;
+    width: 940px;
+}
+
+
+#home-banner .main-title {
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    background: url("/assets/public_images/blue/title-border.png") no-repeat scroll center bottom transparent;
+    clear: both;
+    float: left;
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+#home-banner h1 {
+    line-height: normal;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#home-banner h6 {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+#home-banner h5 {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    height: 50px;
+}
+
+#home-banner h1,
+#home-banner h5,
+#home-banner h6 {
+    color: #F8F3E9;
+}
+
+#home-banner .main-title h1,
+#home-banner .main-title h2 {
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
+#home-banner .main-title h6{
+    font-style: italic;
+}
+
+#home-banner .hr-invisible {
+    clear: both;
+    display: block;
+    float: left;
+    margin: 20px 0;
+    width: 100%;
+}
+
+#home-banner .one-fourth {
+    width: 23.4%;
+}
+
+#home-banner .column {
+    float: left;
+    margin: 0 2% 0 0;
+    min-height: 1px;
+    position: relative;
+}
+
+
+#home-banner .column.last {
+    margin-right: 0;
+}
+
+#home-banner  .work-flow {
+    background: url("/assets/public_images/blue/workflow-sep.png") no-repeat scroll 182px 60px transparent;
+    margin: 0;
+    overflow: visible;
+    padding: 0 57px 0 0;
+    text-align: center;
+    width: 100%;
+}
+
+#home-banner .column.last .work-flow {
+    background: none repeat scroll 0 0 transparent;
+    padding-right: 0;
+}
+
+#home-banner .rounded-icon {
+    display: inline-block;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+
+#home-banner .rounded-icon span {
+    background: url("/assets/public_images/blue/home-icons.png") no-repeat scroll 0 0 transparent;
+    background-color: #FFFFFF;
+    border-radius: 118px 118px 118px 118px;
+    display: inline-block;
+    height: 118px;
+    max-height: 118px;
+    max-width: 118px;
+    transition: all 1s ease 0s;
+    width: 118px;
+    position: relative;
+    z-index: 1;
+    border: 5px solid #11538B;
+}
+
+#home-banner .rounded-icon span.write-icon {
+    background-position: left top;
+}
+
+#home-banner .rounded-icon span.clock-icon {
+    background-position: -118px top;
+}
+
+#home-banner .rounded-icon span.pen-icon {
+    background-position: -236px top;
+}
+
+#home-banner .rounded-icon span.mail-icon {
+    background-position: -354px top;
+}
+
+#home-banner .rounded-icon span:hover{
+    transform: scale(1.05) rotate(360deg) translate(0px);
+}
+
+#home-banner p {
+    line-height: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+#home-banner .home-shadow {
+    background: url("/assets/public_images/blue/home-bg-shadow.png") repeat-x scroll 0 0 transparent;
+    bottom: 0;
+    height: 109px;
+    position: absolute;
+    width: 100%;
 }
