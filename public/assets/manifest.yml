@@ -455,6 +455,8 @@ fancybox/fancybox_sprite.png: fancybox/fancybox_sprite-6db739144c51af76aea8960fc
 fancybox/fancybox_sprite/index.png: fancybox/fancybox_sprite-6db739144c51af76aea8960fc35dbda7.png
 next-logo.png: next-logo-edc4c03094ed15aa4734ede5065bcf6d.png
 next-logo/index.png: next-logo-edc4c03094ed15aa4734ede5065bcf6d.png
+promo_email/button-orange-register-now.png: promo_email/button-orange-register-now-799af63d20b5e4cb577c9bc5b58ec57a.png
+promo_email/button-orange-register-now/index.png: promo_email/button-orange-register-now-799af63d20b5e4cb577c9bc5b58ec57a.png
 promo_email/button_learn_more.png: promo_email/button_learn_more-039382c042120a63ef7375b1e86c2d37.png
 promo_email/button_learn_more/index.png: promo_email/button_learn_more-039382c042120a63ef7375b1e86c2d37.png
 promo_email/button_orange_free_trial.png: promo_email/button_orange_free_trial-c38f1884ea99185dabed06246b79c7a3.png
@@ -621,6 +623,8 @@ public_images/btn_sprite.png: public_images/btn_sprite-025c6eeaa42635149d0605b09
 public_images/btn_sprite/index.png: public_images/btn_sprite-025c6eeaa42635149d0605b092f03de0.png
 public_images/bullet.png: public_images/bullet-93aa1735ffd1eafcf84bd6391fe4a9f7.png
 public_images/bullet/index.png: public_images/bullet-93aa1735ffd1eafcf84bd6391fe4a9f7.png
+public_images/button-green-register-nowbutton.png: public_images/button-green-register-nowbutton-9f1d109aee2b77b8a9c5d4f04c54f721.png
+public_images/button-green-register-nowbutton/index.png: public_images/button-green-register-nowbutton-9f1d109aee2b77b8a9c5d4f04c54f721.png
 public_images/button_free_trial.png: public_images/button_free_trial-00d8410c85bb3bb89933d6eb22b58453.png
 public_images/button_free_trial/index.png: public_images/button_free_trial-00d8410c85bb3bb89933d6eb22b58453.png
 public_images/button_styled_bg.png: public_images/button_styled_bg-bf1c21025d8ffea9c991c7740348ce81.png
@@ -3181,8 +3185,8 @@ dashboard.css: dashboard-e4ea5cf771cb2ee8f15bde3635b1d42e.css
 dashboard/index.css: dashboard-e4ea5cf771cb2ee8f15bde3635b1d42e.css
 ie.css: ie-fa487239f805a089ee55ec3a3b274182.css
 ie/index.css: ie-fa487239f805a089ee55ec3a3b274182.css
-public.css: public-96ddfe666e77d754a96100be9b0e6269.css
-public/index.css: public-96ddfe666e77d754a96100be9b0e6269.css
+public.css: public-7707df13cd8a9e4b5800ba0c994b921a.css
+public/index.css: public-7707df13cd8a9e4b5800ba0c994b921a.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/admin_notes_icon/index.png: active_admin/admin_notes_icon-25b05cd8197f7a271d0624853a6dbdd5.png
 active_admin/datepicker/datepicker-header-bg.png: active_admin/datepicker/datepicker-header-bg-6f0baad739953cb1a0413c031841e82f.png

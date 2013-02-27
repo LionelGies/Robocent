@@ -4,12 +4,19 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan
 
-  before_create {|s| s.status = "pending"}
+  #before_create {|s| s.status = "pending"}
 
-  before_destroy :deactivate_stripe_subscription
+  #before_destroy :deactivate_stripe_subscription
 
   after_create :add_free_balance
-  after_create :create_or_update_subscription
+  #after_create :create_or_update_subscription
+  before_create :set_trial
+
+  def set_trial
+    self.trial_start = Time.now
+    self.trial_end = Time.now + 14.days
+    self.status = "trailing"
+  end
 
   def trial
     Time.now < self.trial_end ? true : false
