@@ -623,8 +623,8 @@ public_images/btn_sprite.png: public_images/btn_sprite-025c6eeaa42635149d0605b09
 public_images/btn_sprite/index.png: public_images/btn_sprite-025c6eeaa42635149d0605b092f03de0.png
 public_images/bullet.png: public_images/bullet-93aa1735ffd1eafcf84bd6391fe4a9f7.png
 public_images/bullet/index.png: public_images/bullet-93aa1735ffd1eafcf84bd6391fe4a9f7.png
-public_images/button-green-register-nowbutton.png: public_images/button-green-register-nowbutton-9f1d109aee2b77b8a9c5d4f04c54f721.png
-public_images/button-green-register-nowbutton/index.png: public_images/button-green-register-nowbutton-9f1d109aee2b77b8a9c5d4f04c54f721.png
+public_images/button-green-register-now.png: public_images/button-green-register-now-9f1d109aee2b77b8a9c5d4f04c54f721.png
+public_images/button-green-register-now/index.png: public_images/button-green-register-now-9f1d109aee2b77b8a9c5d4f04c54f721.png
 public_images/button_free_trial.png: public_images/button_free_trial-00d8410c85bb3bb89933d6eb22b58453.png
 public_images/button_free_trial/index.png: public_images/button_free_trial-00d8410c85bb3bb89933d6eb22b58453.png
 public_images/button_styled_bg.png: public_images/button_styled_bg-bf1c21025d8ffea9c991c7740348ce81.png
