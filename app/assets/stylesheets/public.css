@@ -172,11 +172,18 @@
     height: 118px;
     max-height: 118px;
     max-width: 118px;
-    transition: all 1s ease 0s;
     width: 118px;
     position: relative;
     z-index: 1;
     border: 5px solid #11538B;
+}
+
+#home-banner .rounded-icon span{
+    -webkit-transition: all 1s ease 0s;
+    -moz-transition: all 1s ease 0s;
+    -o-transition: all 1s ease 0s;
+    -ms-transition: all 1s ease 0s;
+    /* transition: all 1s ease 0s;*/
 }
 
 #home-banner .rounded-icon span.write-icon {
@@ -196,7 +203,12 @@
 }
 
 #home-banner .rounded-icon span:hover{
-    transform: scale(1.05) rotate(360deg) translate(0px);
+    -webkit-transition-duration: 1s;
+    -webkit-transform: rotate(360deg) scale(1.05) translate(0px);
+    -moz-transform: rotate(360deg) scale(1.05) translate(0px);
+    -o-transform: rotate(360deg) scale(1.05) translate(0px);
+    -ms-transform: rotate(360deg) scale(1.05) translate(0px);
+    /* transform: scale(1.05) rotate(360deg) translate(0px);*/
 }
 
 #home-banner p {
