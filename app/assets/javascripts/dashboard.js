@@ -1,4 +1,4 @@
-// This is a manifest file that'll be compiled into public.js, which will include all the files
+// This is a manifest file that'll be compiled into dashboard.js, which will include all the files
 //= require dashboard/jQuery/jquery-1.7.2.min
 //= require dashboard/Flot/jquery.flot
 //= require dashboard/Flot/jquery.flot.resize
@@ -22,6 +22,7 @@
 //= require stripe
 //= require jquery_ujs
 //= require swfobject
+//= require jquery.joyride-2.0.3
 
 // Contacts
 $(function() {

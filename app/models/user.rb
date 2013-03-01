@@ -47,6 +47,10 @@ class User < ActiveRecord::Base
     account_balance.current_balance
   end
 
+  def first_login?
+    self.last_login_at.blank? and self.last_logout_at.blank?
+  end
+
   private
 
   def update_time_zone

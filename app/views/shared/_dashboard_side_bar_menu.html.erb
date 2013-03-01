@@ -2,37 +2,37 @@
   <ul class="tab_nav">
     <li class="i_32_dashboard <%= "active_tab" if current_page?(dashboard_path) %>">
       <%= link_to dashboard_path do %>
-        <span class="tab_label">Dashboard</span>
+        <span class="tab_label walk-point-1">Dashboard</span>
       <% end %>
     </li>
     <li class="i_32_inbox <%= "active_tab" if current_page?(inbox_path) %>">
       <%= link_to inbox_path do %>
-        <span class="tab_label">Inbox</span>
+        <span class="tab_label walk-point-2">Inbox</span>
       <% end %>
     </li>
     <li class="i_32_ui <%= "active_tab" if controller_name == "contacts" %>">
       <%= link_to contacts_path do %>
-        <span class="tab_label">Contacts</span>
+        <span class="tab_label walk-point-3">Contacts</span>
       <% end %>
     </li>
     <li class="i_32_forms <%= "active_tab" if controller_name == "text_messages" %>">
       <%= link_to send_text_path do %>
-        <span class="tab_label">Send a Text</span>
+        <span class="tab_label walk-point-4">Send a Text</span>
       <% end %>
     </li>
     <li class="i_32_ui <%= "active_tab" if controller_name == "calls" %>">
       <%= link_to send_call_path do %>
-        <span class="tab_label">Send a Call</span>
+        <span class="tab_label walk-point-5">Send a Call</span>
       <% end %>
     </li>
     <li class="i_32_tables <%= "active_tab" if controller_name == "billing" %>">
       <%= link_to billing_path do %>
-        <span class="tab_label">Billing</span>
+        <span class="tab_label walk-point-6">Billing</span>
       <% end %>
     </li>
     <li class="i_32_tables <%= "active_tab" if controller_name == "support" %>">
       <%= link_to dashboard_support_path do %>
-        <span class="tab_label">Support</span>
+        <span class="tab_label walk-point-7">Support</span>
       <% end %>
     </li>
   </ul>
