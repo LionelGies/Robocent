@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :calls,                :dependent => :destroy
   has_many :recordings,           :dependent => :destroy, :foreign_key => "userID"
   has_many :test_calls,           :dependent => :destroy, :foreign_key => "userID"
+  has_many :dnc,                  :dependent => :destroy, :foreign_key => "account"
   
 
   validates :name, :presence => true

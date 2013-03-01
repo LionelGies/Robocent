@@ -18,6 +18,24 @@
     <%= form_tag contact_path(contact), :method => "delete", :id => "contact_delete_link", :style => "float:left;margin-left:5px;" do %>
       <%= submit_tag "Delete", :class => "submitIt simple_buttons" %>
     <% end %>
+    <div style="float: left; margin-left: 5px;">/</div>
+    <% 
+    if @dnc_list.include? formatted_number(contact.phone_number)
+      show_add_dnc = "none"
+      show_remove_dnc = "block"
+    else
+      show_add_dnc = "block"
+      show_remove_dnc = "none" 
+    end
+    %>
+    <%= form_for :dnc, :url => user_dnc_index_path(@user), :remote => true, :html =>{:method => "post", :id => "dnc_add_link_#{contact.phone_number.parameterize}", :style => "float:left;margin-left:5px; display: #{show_add_dnc};"} do |f| %>
+      <%= f.hidden_field :phone, :value => contact.phone_number %>
+      <%= submit_tag "Add to Dnc", :class => "submitIt simple_buttons" %>
+    <% end %>
+    <div id="dnc_remove_link_<%= contact.phone_number.parameterize %>" style="float: left; display:<%= show_remove_dnc %>;">
+      <%= link_to "Remove from Dnc", user_dnc_path(@user, contact.phone_number), :class => "simple_buttons", :style => "padding: 0 10px 0 10px;", :remote => true, :method => :delete %>
+    </div>
+
     <div class="clear"></div>
   </td>
 </tr>

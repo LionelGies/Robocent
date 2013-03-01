@@ -10,6 +10,8 @@ class ContactsController < ApplicationController
     session.delete(:list_contacts) if session[:list_contacts].present?
     @contacts = current_user.contacts.all
     @lists = current_user.lists.order("created_at desc")
+    @user = current_user
+    @dnc_list = @user.dnc.map{|dnc| dnc.phone}
 
     if params[:search].present?
       key = params[:search]

@@ -1,0 +1,4 @@
+<% unless @dnc.new_record? %>
+	$("#dnc_add_link_<%= (params[:dnc][:phone]).parameterize %>").hide();
+	$("#dnc_remove_link_<%= (params[:dnc][:phone]).parameterize %>").show();
+<% end %>

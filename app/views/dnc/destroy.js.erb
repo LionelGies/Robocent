@@ -1,0 +1,4 @@
+<% if @dnc.blank? %>
+	$("#dnc_add_link_<%= (params[:id]).parameterize %>").show();
+	$("#dnc_remove_link_<%= (params[:id]).parameterize %>").hide();
+<% end %>

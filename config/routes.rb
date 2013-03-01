@@ -105,7 +105,9 @@ Robocent::Application.routes.draw do
   match 'register/activate/:token' => 'users#activate',       :as => :activate
   match 'register/confirmation'    => 'users#confirmation',   :as => :register_confirmation
   put 'update-password'    => 'users#update_password',   :as => :update_password
-  resources :users
+  resources :users do
+    resources :dnc, :only => [:index, :create, :destroy]
+  end
 
   # for demo
   #  get   'twilionumbers/:code'      => 'users#twilionumbers',   :as => :twilionumbers
