@@ -29,14 +29,16 @@ class Recording < ActiveRecord::Base
           
         path = "#{Rails.root}/public/recordings/#{new_file_name}"
 
-        url = "68.71.38.138"
-        username = "ftprobocent"
-        password = "ftprobocent9865"
+        (1..3).each do |i|
+          url = "192.95.8.6#{i}"
+          username = "ftprobocent"
+          password = "ftprobocent9865"
 
-        Net::FTP.open(url) do |ftp|
-          ftp.passive = true
-          ftp.login(username, password)
-          ftp.storbinary("STOR #{new_file_name}", open(path, 'rb'), Net::FTP::DEFAULT_BLOCKSIZE)
+          Net::FTP.open(url) do |ftp|
+            #ftp.passive = true
+            ftp.login(username, password)
+            ftp.storbinary("STOR #{new_file_name}", open(path, 'rb'), Net::FTP::DEFAULT_BLOCKSIZE)
+          end
         end
     
         self.uploaded = true
