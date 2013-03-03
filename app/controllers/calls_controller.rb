@@ -12,7 +12,7 @@ class CallsController < ApplicationController
   def new
     @step = params["step"].present? ? params["step"] : "1"
 
-    @recordings = current_user.recordings.where("file IS NOT NULL").order("created_at DESC")
+    @recordings = current_user.recordings.where("file IS NOT NULL and uploaded = 1").order("created_at DESC")
     
     if @step == "2" and session[:call].blank? and params[:call].blank?
       flash.now.alert = "Please Select at least one recording!"

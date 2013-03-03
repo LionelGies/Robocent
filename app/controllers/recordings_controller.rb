@@ -132,7 +132,7 @@ class RecordingsController < ApplicationController
   def find_new_recording
     last_loaded_rec = params["last_rec"]
 
-    @recordings = current_user.recordings.where("id > #{last_loaded_rec} and file IS NOT NULL").order("created_at ASC")
+    @recordings = current_user.recordings.where("id > #{last_loaded_rec} and file IS NOT NULL and uploaded = 1").order("created_at ASC")
 
     respond_to do |format|
       format.js

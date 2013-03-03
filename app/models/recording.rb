@@ -9,16 +9,19 @@ class Recording < ActiveRecord::Base
 
   mount_uploader :file, MediaFileUploader
 
-  after_create :update_length, :if => Proc.new{ self.duration.blank? }
-  after_create :download_and_save, :if => Proc.new{ self.url.present? and self.file.blank? }
-  after_save :upload_to_ftp, :if => Proc.new{ self.file.present? and self.uploaded == false }
-
+  after_create :process_recording
+  
   validate :file_or_url
 
   def file_or_url
     if file.blank? and url.blank?
       errors.add(:file, "File must be attached to upload!")
     end
+  end
+
+  def process_recording
+    delay_time = 2
+    Delayed::Job.enqueue Jobs::RecordingJob.new(self), :priority => 0 , :run_at => delay_time.seconds.from_now, :queue => "new_recording"
   end
 
   def upload_to_ftp
@@ -51,23 +54,21 @@ class Recording < ActiveRecord::Base
     end
   end
 
-  def download_and_save
-    self.remote_file_url = "#{self.url}.mp3"
-    self.save
-    Notification.recording_succeeded(self).deliver
-  end
-
-  handle_asynchronously :download_and_save
-
   def update_length
-    info = []
-    Mp3Info.open(self.file.path) do |mp3info|
-      info << mp3info
+    if self.file_identifier.include? ".mp3"
+      info = []
+      Mp3Info.open(self.file.path) do |mp3info|
+        info << mp3info
+      end
+      info_str = info.first.to_s
+      index = info_str.index("length")
+      length = info_str[(index + 7)..(index+10)]
+      self.duration = length
+      self.save
+    elsif self.file_identifier.include? ".wav"
+      d = %x(soxi -D #{Rails.root}/public#{self.file_url})
+      self.duration = d.to_f.ceil
+      self.save
     end
-    info_str = info.first.to_s
-    index = info_str.index("length")
-    length = info_str[(index + 7)..(index+10)]
-    self.duration = length
-    self.save
   end
 end
