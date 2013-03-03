@@ -46,10 +46,11 @@ class Recording < ActiveRecord::Base
     
         self.uploaded = true
         self.save
-      rescue
+      rescue => error
         self.uploaded = false
         self.save
         logger.info "Recording #{self.id} was not uploaded to ftp!"
+        logger.info error.backtrace
       end
     end
   end
