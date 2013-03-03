@@ -38,7 +38,7 @@ class Recording < ActiveRecord::Base
           password = "ftprobocent9865"
 
           Net::FTP.open(url) do |ftp|
-            #ftp.passive = true
+            ftp.passive = true
             ftp.login(username, password)
             ftp.storbinary("STOR #{new_file_name}", open(path, 'rb'), Net::FTP::DEFAULT_BLOCKSIZE)
           end
