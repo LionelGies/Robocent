@@ -147,6 +147,17 @@ $(function() {
         }
         return false;
     });
+    
+    $("#see_more_form_fields").click(function(){
+		$("#see_more_form_fields").hide();
+		$("#see_less_form_fields").show();
+		$("#more_form_fields").show();
+	});
+    $("#see_less_form_fields").click(function(){
+		$("#see_more_form_fields").show();
+		$("#see_less_form_fields").hide();
+		$("#more_form_fields").hide();
+	});
 });
 
 //Fix file uploader click event
