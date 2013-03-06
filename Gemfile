@@ -59,4 +59,7 @@ gem 'rvm-capistrano', '>= 1.1.0'
 gem 'capistrano-ext'
 
 # To use debugger
+group :development do
+  gem 'debugger'
+end
 # gem 'debugger'
