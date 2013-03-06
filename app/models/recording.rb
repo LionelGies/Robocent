@@ -68,7 +68,7 @@ class Recording < ActiveRecord::Base
       self.save
     elsif self.file_identifier.include? ".wav"
       d = %x(soxi -D #{Rails.root}/public#{self.file_url})
-      self.duration = d.to_f.ceil
+      self.duration = d.to_i
       self.save
     end
   end
