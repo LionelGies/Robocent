@@ -53,6 +53,10 @@ $(function() {
         $( "#dialog" ).dialog( "open" );
         return false;
     });
+	$( ".add_new_list_trigger" ).click(function() {
+        $( "#dialog" ).dialog( "open" );
+        return false;
+    });
 
     $("#provide_card_link").click(function(){
         $( "#dialog" ).dialog( "open" );

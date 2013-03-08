@@ -2,6 +2,7 @@
   <div class="widget_contents noPadding">
     <%= form_for(@list ||= List.new, :html => {:class => "list_form"}) do |f| %>
       <%= hidden_field_tag :list_id, @list.id unless @list.new_record? %>
+      <%= hidden_field_tag "page_from", controller.controller_name + "/" + controller.action_name %>
       <div class="line_grid">
         <div class="g_3">
           <span class="label">List Name<span class="must">*</span></span>
