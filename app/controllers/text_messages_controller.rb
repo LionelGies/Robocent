@@ -35,7 +35,7 @@ class TextMessagesController < ApplicationController
     else
       @text_message = TextMessage.new
     end
-
+	#debugger
     if params["step"] == "3" and params[:text_message].present?
       begin
         numbers = []

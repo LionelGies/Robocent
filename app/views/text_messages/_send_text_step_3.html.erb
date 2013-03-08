@@ -103,6 +103,42 @@
       </table>
     </div>
   </div>
+   <!-- ----->
+  <div class="g_12">
+    <div class="widget_header">
+      <h4 class="widget_header_title" style="width: 100%;text-align: center;">
+        Estimated Time for Delivery
+      </h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <table class="tables">
+        <tr>
+          <td>
+            <div class="g_6" style="text-align:center;">
+              Estimated Approval Time
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              2 Minutes
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="g_6" style="text-align:center;">
+              Estimated Delivery Time
+            </div>
+            <div class="g_4"></div>
+            <div class="g_2">
+              <%#TODO output of [# of recipients]/2400 : minute or seconds ? After finding the answar the we can show correct format %>
+              <%= (@text_message.number_of_recipients.to_f/2400.to_f).to_s + " Minutes" %>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!-- ----->
 
   <div class="g_12">
     <div class="label">
@@ -119,7 +155,7 @@
       </div>
       <div class="g_2"></div>
       <div class="g_4">
-        <% unless current_user.billing_setting.card %>
+        <% if (@current_balance < @text_message.total_cost) || !current_user.billing_setting.card %>
           <%= link_to "Submit", "javascript:;", :class => "submitIt simple_buttons", :id => "provide_card_link" %>
         <% else %>
           <%= f.submit "Submit", :class => "submitIt simple_buttons" %>

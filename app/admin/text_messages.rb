@@ -25,6 +25,9 @@ ActiveAdmin.register TextMessage do
     column "Cancel" do |msg|
       link_to "cancel", cancel_admin_text_message_path(msg), :confirm => "Are you sure?" if msg.queue_texts.present?
     end
+    column "Approve" do |msg|
+	  link_to 'Approve', approve_admin_text_message_path(msg), :confirm => "Are you sure to approve?"
+	end
   end
 
   controller do
@@ -77,5 +80,13 @@ ActiveAdmin.register TextMessage do
       end
     end
     redirect_to :action => :index
+  end
+  
+  member_action :approve do
+	#debugger
+	@text_message = TextMessage.find(params[:id])
+	if @text_message.present?
+		@text_message.send_text_to_recipients
+	end
   end
 end

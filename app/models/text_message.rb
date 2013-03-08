@@ -16,7 +16,7 @@ class TextMessage < ActiveRecord::Base
 
   before_create :charge_difference
   after_create :create_receipt
-  after_create :send_text_to_recipients
+  #after_create :send_text_to_recipients
 
   def lists
     List.find(:all, :conditions => ["id in (?)", list_ids.split(",")])
@@ -63,6 +63,21 @@ class TextMessage < ActiveRecord::Base
       end
     end
   end
+  
+  def send_text_to_recipients
+    numbers = []
+    lists.each do |list|
+      numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
+    end
+
+    numbers.each do |number|
+      self.queue_texts.create(:phone_number => number)
+    end
+
+    delay_time = ((Time.parse(self.schedule_at.to_s) - Time.parse((DateTime.now).to_s))).to_i
+    delay_time = 5 if delay_time < 5
+    Delayed::Job.enqueue Jobs::TextMessageJob.new(self), :priority => 0 , :run_at => delay_time.seconds.from_now, :queue => "text", :text_message_id => self.id
+  end
 
   private
 
@@ -79,18 +94,5 @@ class TextMessage < ActiveRecord::Base
     user.receipts << r
   end
 
-  def send_text_to_recipients
-    numbers = []
-    lists.each do |list|
-      numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
-    end
 
-    numbers.each do |number|
-      self.queue_texts.create(:phone_number => number)
-    end
-
-    delay_time = ((Time.parse(self.schedule_at.to_s) - Time.parse((DateTime.now).to_s))).to_i
-    delay_time = 5 if delay_time < 5
-    Delayed::Job.enqueue Jobs::TextMessageJob.new(self), :priority => 0 , :run_at => delay_time.seconds.from_now, :queue => "text", :text_message_id => self.id
-  end
 end
