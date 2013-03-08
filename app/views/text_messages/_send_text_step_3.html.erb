@@ -155,7 +155,7 @@
       </div>
       <div class="g_2"></div>
       <div class="g_4">
-        <% if (@current_balance < @text_message.total_cost) || !current_user.billing_setting.card %>
+        <% if (@current_balance < @text_message.total_cost) && !current_user.billing_setting.card %>
           <%= link_to "Submit", "javascript:;", :class => "submitIt simple_buttons", :id => "provide_card_link" %>
         <% else %>
           <%= f.submit "Submit", :class => "submitIt simple_buttons" %>
