@@ -22,7 +22,7 @@
             </td>
           </tr>
           <tr>
-            <td>Recording</td> <td><%= @call.recording.file_identifier %></td>
+            <td>Recording</td> <td><%= @call.recording.file_identifier if @call.recording.present? %></td>
           </tr>
           <tr>
             <td>Sending From</td> <td><%= @call.caller_id_number %></td>
