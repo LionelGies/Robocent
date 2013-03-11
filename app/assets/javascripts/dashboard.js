@@ -53,7 +53,7 @@ $(function() {
         $( "#dialog" ).dialog( "open" );
         return false;
     });
-	$( ".add_new_list_trigger" ).click(function() {
+    $( ".add_new_list_trigger" ).click(function() {
         $( "#dialog" ).dialog( "open" );
         return false;
     });
@@ -120,6 +120,8 @@ $(function() {
             dataType: "script"
         });
         $("#contact-lists-table .ajax-loading").show();
+        $("#contact_list .ajax-loading").show();
+        $("#import_form_contact_list .ajax-loading").show();
         $("#dialog").dialog("close");
         return false;
     });
@@ -152,16 +154,21 @@ $(function() {
         return false;
     });
     
-    $("#see_more_form_fields").click(function(){
-		$("#see_more_form_fields").hide();
-		$("#see_less_form_fields").show();
-		$("#more_form_fields").show();
-	});
-    $("#see_less_form_fields").click(function(){
-		$("#see_more_form_fields").show();
-		$("#see_less_form_fields").hide();
-		$("#more_form_fields").hide();
-	});
+    $("#see_more_form_fields").live('click', function(){
+        $("#see_more_form_fields").hide();
+        $("#see_less_form_fields").show();
+        $("#more_form_fields").show();
+    });
+    $("#see_less_form_fields").live('click', function(){
+        $("#see_more_form_fields").show();
+        $("#see_less_form_fields").hide();
+        $("#more_form_fields").hide();
+    });
+
+    $(".dnc-link").live('click', function(){
+        $("#contacts-table .ajax-loading").show();
+        $("#dnc-table .ajax-loading").show();
+    });
 });
 
 //Fix file uploader click event

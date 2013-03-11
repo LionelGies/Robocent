@@ -1,5 +1,7 @@
 Robocent::Application.routes.draw do
 
+  resources :dnc, :only => [:index, :create, :destroy]
+
   match 'inbox-support'       => 'support#inbox',       :as => :inbox_support
   match 'send-a-call-support' => 'support#send_a_call', :as => :send_a_call_support
   match 'send-a-text-support' => 'support#send_a_text', :as => :send_a_text_support
@@ -105,9 +107,7 @@ Robocent::Application.routes.draw do
   match 'register/activate/:token' => 'users#activate',       :as => :activate
   match 'register/confirmation'    => 'users#confirmation',   :as => :register_confirmation
   put 'update-password'    => 'users#update_password',   :as => :update_password
-  resources :users do
-    resources :dnc, :only => [:index, :create, :destroy]
-  end
+  resources :users
 
   # for demo
   #  get   'twilionumbers/:code'      => 'users#twilionumbers',   :as => :twilionumbers

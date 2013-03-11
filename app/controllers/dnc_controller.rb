@@ -1,18 +1,32 @@
 class DncController < ApplicationController
-  def create  	
-  	@dnc = current_user.dnc.new(params[:dnc])
-  	@dnc.phone = formatted_number(params[:dnc][:phone])
-  	
+  before_filter :require_login
+  load_and_authorize_resource
+  
+  layout "dashboard"
+  
+  def index
+    @dnc = current_user.dnc
+  end
+
+  def create
+    @contact = Contact.find(params[:contact_id])
+  	@dnc = current_user.dnc.new(:contact_id => @contact.id)
+  	@dnc.phone = @contact.phone_number
+    @dnc.save
+
   	respond_to do |format|
-	    @dnc.save
 		  format.js
-  	end  	
+  	end
   end
 
   def destroy
-    @dnc = current_user.dnc.find_by_phone(formatted_number(params[:id]))
+    @dnc = Dnc.find(params[:id])
+    @contact = @dnc.contact
+
+    @dnc_list = true if params[:dnc_list].present?
+    
     respond_to do |format|
-      if @dnc.blank? or @dnc.destroy
+      if @dnc.destroy
         @destroyed = true
       end
       format.js

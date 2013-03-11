@@ -10,8 +10,8 @@
         <div class="g_3">
           <span class="label">List Name<span class="must">*</span></span>
         </div>
-        <div id="contact_list" class="g_9">			
-			<%= render :partial => "select_list" %>
+        <div id="contact_list" class="g_9">
+          <%= render :partial => "select_list" %>
         </div>
       </div>
     <% end %>
@@ -24,130 +24,130 @@
       </div>
     </div>
     <div class="field_notice line_grid"  >
-		<a id="see_more_form_fields" href="javascript:void(0);" style="float:right; cursor:pointer;">See more..</a>
-		<a id="see_less_form_fields" href="javascript:void(0);" style="float:right; cursor:pointer; display:none;">See less..</a>
+      <a id="see_more_form_fields" href="javascript:void(0);" style="float:right; cursor:pointer;">See More Fields</a>
+      <a id="see_less_form_fields" href="javascript:void(0);" style="float:right; cursor:pointer; display:none;">See Less Fields</a>
     </div>
     <div id="more_form_fields" style="display:none;">
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Unique Identifier</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :unique_identifier, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">First Name</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :first_name, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Last Name</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :last_name, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Email</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :email, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Company Name</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :company_name, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Address 1</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :address_1, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Address 2</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :address_2, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">City</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :city, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">State</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.select :state, UsState::NAMES, {:prompt => "Select One"}, :class => "simple_form" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Zip</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :zip, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Custom 1</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :custom_1, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Custom 2</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :custom_2, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Custom 3</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :custom_3, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Custom 4</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :custom_4, :class => "simple_field" %>
-		  </div>
-		</div>
-		<div class="line_grid">
-		  <div class="g_3">
-			<span class="label">Custom 5</span>
-		  </div>
-		  <div class="g_9">
-			<%= f.text_field :custom_5, :class => "simple_field" %>
-		  </div>
-		</div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Unique Identifier</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :unique_identifier, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">First Name</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :first_name, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Last Name</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :last_name, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Email</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :email, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Company Name</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :company_name, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Address 1</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :address_1, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Address 2</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :address_2, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">City</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :city, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">State</span>
+        </div>
+        <div class="g_9">
+          <%= f.select :state, UsState::NAMES, {:prompt => "Select One"}, :class => "simple_form" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Zip</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :zip, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Custom 1</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :custom_1, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Custom 2</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :custom_2, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Custom 3</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :custom_3, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Custom 4</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :custom_4, :class => "simple_field" %>
+        </div>
+      </div>
+      <div class="line_grid">
+        <div class="g_3">
+          <span class="label">Custom 5</span>
+        </div>
+        <div class="g_9">
+          <%= f.text_field :custom_5, :class => "simple_field" %>
+        </div>
+      </div>
     </div>
     <div class="line_grid">
       <div class="g_3"></div>

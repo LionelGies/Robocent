@@ -130,8 +130,7 @@
             </div>
             <div class="g_4"></div>
             <div class="g_2">
-              <%#TODO output of [# of recipients]/2400 : minute or seconds ? After finding the answar the we can show correct format %>
-              <%= (@text_message.number_of_recipients.to_f/2400.to_f).to_s + " Minutes" %>
+              <%= "%.4f" % (@text_message.number_of_recipients.to_f/2400.to_f) + " Minutes" %>
             </div>
           </td>
         </tr>
@@ -155,7 +154,7 @@
       </div>
       <div class="g_2"></div>
       <div class="g_4">
-        <% if (@current_balance < @text_message.total_cost) && !current_user.billing_setting.card %>
+        <% if (@current_balance < @text_message.total_cost) and !current_user.billing_setting.card %>
           <%= link_to "Submit", "javascript:;", :class => "submitIt simple_buttons", :id => "provide_card_link" %>
         <% else %>
           <%= f.submit "Submit", :class => "submitIt simple_buttons" %>
@@ -165,7 +164,7 @@
   </div>
 <% end %>
 
-<% unless current_user.billing_setting.card %>
+<% if (@current_balance < @text_message.total_cost) and !current_user.billing_setting.card %>
   <div id="dialog" title="<%= current_user.subscription.trial ? "You Must Have a Card on FIle!" : "Your Free Trial has Ended!" %>">
     <div class="dialog">
       <%= render "billing/form" %>

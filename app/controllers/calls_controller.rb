@@ -78,6 +78,7 @@ class CallsController < ApplicationController
 
   def create
     @call = current_user.calls.new(session[:call])
+    @current_balance = current_user.account_balance.current_balance
     #
     # convert schedule_at time user time zone to utc time zone
     require 'chronic'
@@ -93,7 +94,7 @@ class CallsController < ApplicationController
 
     @call.schedule_at = start_time.utc
 
-    if current_user.billing_setting.card
+    if current_user.billing_setting.card or @current_balance > @call.total_cost
       if @call.save
         session.delete(:call)
         redirect_to dashboard_path, :notice => "Successfully placed the call into queue!"

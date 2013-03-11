@@ -1,8 +1,11 @@
 <% if current_user.lists.present? %>
-	<%= f.select :list_id, current_user.lists.collect{|l| [l.name, l.id]}, {}, :class => "simple_form", :style=>"opacity: 0;", :required => true %>
+  <%= f.select :list_id, current_user.lists.collect{|l| [l.name, l.id]}, {}, :class => "simple_form", :style=>"opacity: 0;", :required => true %>
 <% else %>
-	<%= f.select :list_id, current_user.lists.collect{|l| [l.name, l.id]}, {:prompt => "No Available List"}, :class => "simple_form", :required => true %>
+  <%= f.select :list_id, current_user.lists.collect{|l| [l.name, l.id]}, {:prompt => "No Available List"}, :class => "simple_form", :required => true %>
 <% end %>
+<div class="ajax-loading" style="display:none;float:right;">
+  <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
+</div>
 <div class="field_notice line_grid"  >
-	<%= link_to "Add New List", new_list_path, :class => "add_new_list_trigger"%>
+  <%= link_to "Create A List", new_list_path, :class => "add_new_list_trigger" %>
 </div>

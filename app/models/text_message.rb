@@ -16,7 +16,8 @@ class TextMessage < ActiveRecord::Base
 
   before_create :charge_difference
   after_create :create_receipt
-  #after_create :send_text_to_recipients
+  before_create {|t| t.status = "pending" }
+  #after_create :send_text_to_queue
 
   def lists
     List.find(:all, :conditions => ["id in (?)", list_ids.split(",")])
@@ -64,7 +65,7 @@ class TextMessage < ActiveRecord::Base
     end
   end
   
-  def send_text_to_recipients
+  def send_text_to_queue
     numbers = []
     lists.each do |list|
       numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq

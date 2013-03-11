@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221190516) do
+ActiveRecord::Schema.define(:version => 20130310220028) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20130221190516) do
     t.boolean  "global"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "contact_id"
   end
 
   create_table "imports", :force => true do |t|

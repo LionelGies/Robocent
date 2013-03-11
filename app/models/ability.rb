@@ -19,5 +19,7 @@ class Ability
 
     can :read, TextMessage, :user_id => user.id
     can :manage, TextMessage, :user_id => user.id
+
+    can :manage, Dnc, :account => user.id
   end
 end
