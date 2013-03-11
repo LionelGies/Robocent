@@ -1,0 +1,3 @@
+<%= fields_for(@contact ||= Contact.new) do |f| %>
+  <%= render :partial => "shared/select_list", :locals => {:f => f}%>
+<% end %>

@@ -35,7 +35,7 @@ class TextMessagesController < ApplicationController
     else
       @text_message = TextMessage.new
     end
-
+	#debugger
     if params["step"] == "3" and params[:text_message].present?
       begin
         numbers = []
@@ -71,13 +71,10 @@ class TextMessagesController < ApplicationController
 
   def create
     @text_message = current_user.text_messages.new(session[:text_message])
+    @current_balance = current_user.account_balance.current_balance
 
     #
     # convert schedule_at time user time zone to utc time zone
-    #
-    #    Time.zone = current_user.time_zone
-    #    start_time_string = "#{session[:text_message]["schedule_at(1i)"]}-#{session[:text_message]["schedule_at(2i)"]}-#{session[:text_message]["schedule_at(3i)"]} #{session[:text_message]["schedule_at(4i)"]}:#{session[:text_message]["schedule_at(5i)"]}:00 #{session[:text_message]["schedule_at(7i)"]}"
-    #    start_time = Time.zone.parse(start_time_string)
     require 'chronic'
     Time.zone = current_user.time_zone
     Chronic.time_class = Time.zone
@@ -91,12 +88,12 @@ class TextMessagesController < ApplicationController
     
     @text_message.schedule_at = start_time.utc
 
-    if current_user.billing_setting.card
+    if current_user.billing_setting.card or @current_balance > @text_message.total_cost
       if @text_message.save
         session.delete(:text_message)
         redirect_to dashboard_path, :notice => "Successfully placed the text messages into queue!"
       else
-        redirect_to send_text_path
+        redirect_to send_text_path, :alert => "Something went wrong! Please try again!"
       end
     else
       redirect_to billing_path, :alert => "You must have a Card on file to perform this task!"

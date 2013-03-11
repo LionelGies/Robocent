@@ -1,0 +1,11 @@
+<tr id="dnc_row_<%= dnc.id %>">
+  <td>
+    <%= dnc.phone %>
+  </td>
+  <td>
+    <%= dnc.contact.name if dnc.contact.present? %>
+  </td>
+  <td>
+    <%= link_to "Remove from Dnc", dnc_path(dnc, :dnc_list => true), :class => "simple_buttons dnc-link", :style => "padding: 0 10px 0 10px;", :remote => true, :method => :delete %>
+  </td>
+</tr>

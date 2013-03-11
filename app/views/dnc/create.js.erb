@@ -1,0 +1,4 @@
+<% unless @dnc.new_record? %>
+  $("#contacts-table tbody tr#contact_row_<%= @contact.id %>").replaceWith("<%= escape_javascript(render :partial => "contacts/contact_tiny", :locals => {:contact => @contact}).html_safe %>");
+<% end %>
+$("#contacts-table .ajax-loading").hide();

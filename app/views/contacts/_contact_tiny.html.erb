@@ -18,6 +18,15 @@
     <%= form_tag contact_path(contact), :method => "delete", :id => "contact_delete_link", :style => "float:left;margin-left:5px;" do %>
       <%= submit_tag "Delete", :class => "submitIt simple_buttons" %>
     <% end %>
+    
+    <div style="float: left; margin-left: 5px;margin-right: 5px;">/</div>
+
+    <% if contact.dnc.blank? %>
+      <%= link_to "Add to Dnc", dnc_index_path(:contact_id => contact.id), :class => "simple_buttons dnc-link", :style => "padding: 0 10px 0 10px;", :remote => true, :method => :post %>
+    <% else %>
+      <%= link_to "Remove from Dnc", dnc_path(contact.dnc), :class => "simple_buttons dnc-link", :style => "padding: 0 10px 0 10px;", :remote => true, :method => :delete %>
+    <% end %>
+
     <div class="clear"></div>
   </td>
 </tr>

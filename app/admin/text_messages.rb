@@ -14,9 +14,9 @@ ActiveAdmin.register TextMessage do
     column :succeeded
     column :schedule_at
     column :started_at
-    column :finished_at
+    column :status
     column "manage" do |msg|
-      if msg.queue_texts.present? and msg.status != "paused"
+      if msg.queue_texts.present? and msg.status == "started"
         link_to "Pause", pause_admin_text_message_path(msg), :confirm => "Are you sure?"
       elsif msg.queue_texts.present? and msg.status == "paused"
         link_to "Resume", resume_admin_text_message_path(msg), :confirm => "Are you sure?"
@@ -25,11 +25,14 @@ ActiveAdmin.register TextMessage do
     column "Cancel" do |msg|
       link_to "cancel", cancel_admin_text_message_path(msg), :confirm => "Are you sure?" if msg.queue_texts.present?
     end
+    column "Approve" do |msg|
+      link_to 'Approve', approve_admin_text_message_path(msg), :confirm => "Are you sure to approve?" if msg.status == "pending"
+    end
   end
 
   controller do
     def scoped_collection
-      TextMessage.where("status <> ? or status is null", "finished")
+      TextMessage.where("status <> 'finished'")
     end
   end
 
@@ -75,6 +78,16 @@ ActiveAdmin.register TextMessage do
         delay_time = 2
         Delayed::Job.enqueue Jobs::TextMessageJob.new(@msg), :priority => 0 , :run_at => delay_time.seconds.from_now, :queue => "text", :text_message_id => @msg.id
       end
+    end
+    redirect_to :action => :index
+  end
+  
+  member_action :approve do
+    @text_message = TextMessage.find(params[:id])
+    if @text_message.present?
+      @text_message.send_text_to_queue
+      @text_message.status = "approved"
+      @text_message.save
     end
     redirect_to :action => :index
   end

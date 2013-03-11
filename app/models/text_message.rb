@@ -16,7 +16,8 @@ class TextMessage < ActiveRecord::Base
 
   before_create :charge_difference
   after_create :create_receipt
-  after_create :send_text_to_recipients
+  before_create {|t| t.status = "pending" }
+  #after_create :send_text_to_queue
 
   def lists
     List.find(:all, :conditions => ["id in (?)", list_ids.split(",")])
@@ -63,23 +64,8 @@ class TextMessage < ActiveRecord::Base
       end
     end
   end
-
-  private
-
-  def charge_difference
-    if user.account_balance.current_balance < total_cost
-      charge_difference = ((total_cost - user.account_balance.current_balance) * 100).ceil.to_f / 100.0
-      charge_difference = 0.5 if charge_difference < 0.5
-      user.billing_setting.charge(charge_difference, "Automatically funded account")
-    end
-  end
-
-  def create_receipt
-    r = Receipt.new(:memo => "To send #{number_of_texts_required} text messages", :debit => total_cost)
-    user.receipts << r
-  end
-
-  def send_text_to_recipients
+  
+  def send_text_to_queue
     numbers = []
     lists.each do |list|
       numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
@@ -93,4 +79,21 @@ class TextMessage < ActiveRecord::Base
     delay_time = 5 if delay_time < 5
     Delayed::Job.enqueue Jobs::TextMessageJob.new(self), :priority => 0 , :run_at => delay_time.seconds.from_now, :queue => "text", :text_message_id => self.id
   end
+
+  private
+
+  def charge_difference
+    if user.account_balance.current_balance < total_cost
+      charge_difference = ((total_cost - user.account_balance.current_balance) * 100).ceil.to_f / 100.0
+      charge_difference = 5 if charge_difference < 5
+      user.billing_setting.charge(charge_difference, "Automatically funded account")
+    end
+  end
+
+  def create_receipt
+    r = Receipt.new(:memo => "To send #{number_of_texts_required} text messages", :debit => total_cost)
+    user.receipts << r
+  end
+
+
 end

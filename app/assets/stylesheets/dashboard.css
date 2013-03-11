@@ -113,3 +113,8 @@ a.contact-button{
     padding: 10px;
     font-size: 12px;
 }
+
+.field_notice a{
+    color: #007BBF;
+    font-family: Oswald;
+}

@@ -1,6 +1,12 @@
-<% unless @list.new_record? %>
-  $("#no-records-row").remove();
-  $("#contact-lists-table tbody").prepend("<%= escape_javascript(render :partial => "list_tiny", :locals => {:list => @list}).html_safe %>");
+<% if params[:page_from] == "contacts/new" %>
+  $("#contact_list").html("<%= escape_javascript(render :partial => "contacts/select_list").html_safe %>");
+  $("#import_form_contact_list").html("<%= escape_javascript(render :partial => "imports/select_list").html_safe %>");
+  $("select#contact_list_id").uniform();
+  $("select#import_list_id").uniform();
+<% else %>
+  <% unless @list.new_record? %>
+    $("#no-records-row").remove();
+    $("#contact-lists-table tbody").prepend("<%= escape_javascript(render :partial => "list_tiny", :locals => {:list => @list}).html_safe %>");
+  <% end %>
+  $("#contact-lists-table .ajax-loading").hide();
 <% end %>
-
-$("#contact-lists-table .ajax-loading").hide();

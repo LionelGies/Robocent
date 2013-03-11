@@ -1,5 +1,7 @@
 Robocent::Application.routes.draw do
 
+  resources :dnc, :only => [:index, :create, :destroy]
+
   match 'inbox-support'       => 'support#inbox',       :as => :inbox_support
   match 'send-a-call-support' => 'support#send_a_call', :as => :send_a_call_support
   match 'send-a-text-support' => 'support#send_a_text', :as => :send_a_text_support

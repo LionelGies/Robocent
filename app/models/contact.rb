@@ -7,6 +7,7 @@ class Contact < ActiveRecord::Base
   belongs_to :user
   belongs_to :list
   has_many   :sms_messages
+  has_one    :dnc,          :dependent => :destroy
 
   validate :phone_number_format
 

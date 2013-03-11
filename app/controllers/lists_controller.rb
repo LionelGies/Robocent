@@ -8,6 +8,8 @@ class ListsController < ApplicationController
     session[:list_contacts] = true
     @list = List.find(params[:id])
     @contacts = @list.contacts
+    @user = current_user
+    @dnc_list = @user.dnc.map{|dnc| dnc.phone}
   end
 
   def new
