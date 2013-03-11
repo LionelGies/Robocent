@@ -123,6 +123,11 @@ class SmsMessagesController < ApplicationController
     end
   end
 
+  def start_conversation
+    @new_sms = SmsMessage.new
+    render :layout => false
+  end
+
   def create
     @sms_message = current_user.sms_messages.new(params[:sms_message])
 
