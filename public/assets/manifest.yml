@@ -3171,8 +3171,8 @@ active_admin.js: active_admin-ce5ca0287661742cd73a0cab42cb95f1.js
 active_admin/index.js: active_admin-ce5ca0287661742cd73a0cab42cb95f1.js
 application.js: application-2fd83499aa79d9d2cbd2d1b756036559.js
 application/index.js: application-2fd83499aa79d9d2cbd2d1b756036559.js
-dashboard.js: dashboard-991ef98ac2a136bab1b3c888a225e881.js
-dashboard/index.js: dashboard-991ef98ac2a136bab1b3c888a225e881.js
+dashboard.js: dashboard-c84d1974cc47c7385f786cb46bdb46e4.js
+dashboard/index.js: dashboard-c84d1974cc47c7385f786cb46bdb46e4.js
 dashboard/Flot/excanvas.js: dashboard/Flot/excanvas-5e6d75c7b564806ccb01cabffbb4e58b.js
 dashboard/Flot/excanvas/index.js: dashboard/Flot/excanvas-5e6d75c7b564806ccb01cabffbb4e58b.js
 public.js: public-ebb0d1a037c017dbfa1dac8494f0e4c2.js
@@ -3181,8 +3181,8 @@ active_admin.css: active_admin-60cf8e1029b716dcb1516591573f3143.css
 active_admin/index.css: active_admin-60cf8e1029b716dcb1516591573f3143.css
 application.css: application-1b13569e9620782f423d4cd3ce931750.css
 application/index.css: application-1b13569e9620782f423d4cd3ce931750.css
-dashboard.css: dashboard-0ce6f5a73e42693668e6fe71169ed61d.css
-dashboard/index.css: dashboard-0ce6f5a73e42693668e6fe71169ed61d.css
+dashboard.css: dashboard-007993ab4cdabd074858a4559bb3d7bf.css
+dashboard/index.css: dashboard-007993ab4cdabd074858a4559bb3d7bf.css
 ie.css: ie-fa487239f805a089ee55ec3a3b274182.css
 ie/index.css: ie-fa487239f805a089ee55ec3a3b274182.css
 public.css: public-0793e2b085d5f9fd806120b408916724.css
