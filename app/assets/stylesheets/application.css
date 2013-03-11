@@ -8,5 +8,11 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require smarthost/css/smarthost
+ *= require smarthost/fonts/stylesheet
+ *= require smarthost/css/editable_buttons.css
+ *= require smarthost/css/drop_menu.css
+ *= require smarthost/front.css
+ *= require smarthost/css/styles.css
  *= require_self
  */

@@ -1,4 +1,6 @@
 class PublicsController < ApplicationController
+  layout "application"
+
   def index
     redirect_to dashboard_path if current_user.present?
   end
@@ -56,4 +58,9 @@ class PublicsController < ApplicationController
   def privacy_policy
     
   end
+
+  def about
+
+  end
+
 end

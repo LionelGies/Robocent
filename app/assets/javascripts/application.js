@@ -12,3 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require smarthost/js/shBrushXml
+//= require smarthost/js/jquery.bxslider2.min
+//= require smarthost/js/custom
+//= require smarthost/js/scripts.js
