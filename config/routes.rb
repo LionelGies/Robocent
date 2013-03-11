@@ -35,6 +35,7 @@ Robocent::Application.routes.draw do
 
   get "inbox"   => "sms_messages#inbox", :as => :inbox
   get "inbox-read" => "sms_messages#inbox_read"
+  get "start-conversation" => 'sms_messages#start_conversation', :as => :start_conversation
 
   resources :sms_messages
 
