@@ -70,7 +70,7 @@ class TextMessage < ActiveRecord::Base
     lists.each do |list|
       numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
     end
-
+	numbers = numbers - Dnc.where(:account => self.user_id).pluck(:phone).uniq
     numbers.each do |number|
       self.queue_texts.create(:phone_number => number)
     end

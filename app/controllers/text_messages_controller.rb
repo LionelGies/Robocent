@@ -42,8 +42,7 @@ class TextMessagesController < ApplicationController
         @text_message.lists.each do |list|
           numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
         end
-        number_of_contacts = numbers.size
-      
+        number_of_contacts = (numbers - current_user.dnc.pluck(:phone).uniq).size
         cost_per_text = current_user.subscription.plan.price_per_call_or_text / 100.0
         message_size = (@text_message.content.length.to_f / 160.0).ceil
 
