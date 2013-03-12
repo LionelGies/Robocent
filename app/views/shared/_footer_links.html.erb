@@ -1,0 +1,64 @@
+<div class="footer_bot">
+    <div class="container">
+      <div class="links double-link">
+        <h3>About RoboCent</h3>
+        <div class="shade-color">
+          RoboCent is one of the nation's largest providers of call and text
+          notification systems. Small businesses, schools, non-profits and
+          political campaigns across the U.S. rely on RoboCent's notification
+          systems on a daily basis -- delivering millions of calls and texts to
+          their subscribers. For more information,
+          <%= link_to "contact us", contact_us_path %>
+        </div>
+      </div>
+
+      <div class="links">
+        <h3>RoboCent</h3>
+        <ul>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "About Us", about_us_path %></li>
+          <li><%= link_to "Cloud Server", "#"   %></li>
+          <li><%= link_to "Domain", "#"   %></li>
+          <li><%= link_to "Contact Us", contact_us_path %></li>
+        </ul>
+      </div>
+
+      <div class="links">
+        <h3>Social Connection</h3>
+        <div class="social">
+          <ul>
+            <li class="fb"><a href="http://www.facebook.com/RoboCent" target="_blank">Facebook</a></li>
+            <li class="tw"><a href="http://www.twitter.com/RoboCent">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="links last">
+        <h3>Get in Touch</h3>
+        <div class="get_touch">
+          <ul>
+            <li class="mb"><a>757.821.2121</a></li>
+            <li class="email"><a>Info@RoboCent.com</a></li>
+            <li class="address"><a>111 Granby Street <br/>Norfolk, VA 23510</a></li>
+            <%= image_tag "smarthost/paypal.png", :alt => "", :border => "0" %>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <div class="copyright">
+    <div class="container">
+      <p>Copyright &copy; 2012 RoboCent, Inc. All Rights Reserved.
+        <small>A <%= link_to "MassRoots, LLC", "http://www.massroots.com/", :target => "_blank"  %> Company</small></p>
+      <div class="privacy">
+        <ul>
+          <li><%= link_to "Privacy Policy", privacy_policy_path %><a href="#."></a></li>
+          <li class="last"><%= link_to "Terms & Condition", terms_path %></li>
+        </ul>
+      </div>
+    </div>
+  </div>

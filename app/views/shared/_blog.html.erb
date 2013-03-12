@@ -1,0 +1,21 @@
+<div class="detail">
+  <div class="container">
+    <div class="blog">
+      <%= image_tag "smarthost/blog_img.jpg", :alt => "", :border => "0", :class => "blog_img" %>
+      <div class="text">
+<%#*<span>FROM OUR BLOG <span class="date">Nov 26, 2012</span></span>%>
+        <div class="clear"></div>
+        <a href="http://markets.cbsnews.com/cbsnews/news/read/23453798/RoboCent_Gives_500_Text_Alerts_to_Every_Organization_in_America" target = "_blank">
+          <span class="title">RoboCent Gives 500 Text Alerts to Every Organization in America</span>
+        </a>
+        <p>In times of emergency, being able to communicate in a fast and reliable manner is of the highest importance. Through RoboCent's online platform, every organization and small business in America now has the ability to send a text and call alert to their members[...]</p>
+      </div>
+    </div>
+
+    <div class="email">
+      <%= text_field_tag "email", nil, :placeholder => "Email Address" %>
+      <%= submit_tag "submit" %>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>

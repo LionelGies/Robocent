@@ -1,45 +1,51 @@
-<div class="header header_top">
-  <div class="container_12">
+<div id="header">
+    <div class="top_sec">
+      <div class="container">
+        <ul>
+          <li class="number">757 821 2121</li>
+        </ul>
+        <div class="buttons">
+          <%= link_to "", "", :class => "chat", :onClick => "return SnapABug.startLink();" %>
+          <div id="container">
+            <div id="topnav" class="topnav">
+              <%= link_to login_path, :class => "signin" do %>
+                <span></span>
+              <% end %>
+            </div>
+            <fieldset id="signin_menu">
+              <form method="post" id="signin" action="https://twitter.com/sessions">
+                <label for="username">Username or email</label>
+                <input id="username" name="username" value="" title="username" tabindex="4" type="text">
+                </p>
+                <p>
+                  <label for="password">Password</label>
+                  <input id="password" name="password" value="" title="password" tabindex="5" type="password">
+                </p>
+                <p class="remember">
+                  <input id="signin_submit" value="Sign in" tabindex="6" type="submit">
+                  <input id="remember" name="remember_me" value="1" tabindex="7" type="checkbox">
+                  <label for="remember">Remember me</label>
+                </p>
+                <p class="forgot"> <a href="#" id="resend_password_link">Forgot your password?</a> </p>
 
-    <div class="logo">
-      <%= link_to image_tag("next-logo.png", :style => "margin-top:10px"), root_path %>
+              </form>
+            </fieldset>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="topmenu">
-      <ul class="dropdown">
-        <li class="menu-item-home">
-          <%= link_to content_tag(:span), root_path %>
-        </li>
-        <li>
-          <%= link_to content_tag(:span, "Solutions"), solutions_path %>
-        </li>
-        <li>
-          <%= link_to content_tag(:span, "Pricing"), pricing_path %>
-        </li>
-        <%#*<li>%>
-          <%#= link_to content_tag(:span, "Support"), support_path %>
-          <%#*<ul>%>
-            <%#*<li>%>
-              <%#= link_to content_tag(:span, "FAQs"), faq_path %>
-            <%#*</li>%>
-            <%#*<li>%>
-              <%#= link_to content_tag(:span, "Video Tutorials"), tutorials_path %>
-            <%#*</li>%>
-            <%#*<li><a href="#" onClick="return SnapABug.startLink();"><span>Live Chat</span></a></li>%>
-          <%#*</ul>%>
-        <%#*</li>%>
-        <li>
-          <%= link_to content_tag(:span, "Contact"), contact_us_path %>
-        </li>
-        <li>
-          <%= link_to content_tag(:span, "Login"), login_path %>
-        </li>
-        <li>
-          <%= link_to content_tag(:span, "Register"), register_path %>
-        </li>
-      </ul>
+    <div class="main_bar">
+      <div class="container">
+        <%= link_to image_tag("next-logo.png", :alt => "", :border => "0", :class => "logo"), root_path %>
+        <div class="navi">
+          <ul id="menu">
+            <li class="<%= 'selected' if current_page?(root_path) %>"><%= link_to "Home", root_path, :class => "#{'selected' if current_page?(root_path)}" %></li>
+            <li class="<%= 'selected' if current_page?(about_us_path) %>"><%= link_to "About Us", about_us_path, :class => "#{'selected' if current_page?(about_us_path)}" %></li>
+            <li class="<%= 'selected' if current_page?(solutions_path) %>"><%= link_to "Solutions", solutions_path, :class => "#{'selected' if current_page?(solutions_path)}" %></li>
+            <li class="last <%= 'selected' if current_page?(contact_us_path) %>"><%= link_to "Contact Us", contact_us_path, :class => "#{'selected' if current_page?(contact_us_path)}" %></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <!--/ topmenu -->
-
   </div>
-</div>
+  <div class="clear"></div>

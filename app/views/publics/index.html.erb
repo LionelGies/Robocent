@@ -1,307 +1,49 @@
 <% title " - Texting & Calling Solutions" %>
 
-<div id="wrap">
-  <div id="header">
-    <div class="top_sec">
-      <div class="container">
-        <ul>
-          <li class="number">757 821 2121</li>
-        </ul>
-        <div class="buttons">
-          <a class="chat" href="#."></a>
-          <div id="container">
-            <div id="topnav" class="topnav"> <a href="login" class="signin"><span></span></a> </div>
-            <fieldset id="signin_menu">
-              <form method="post" id="signin" action="https://twitter.com/sessions">
-                <label for="username">Username or email</label>
-                <input id="username" name="username" value="" title="username" tabindex="4" type="text">
-                </p>
-                <p>
-                  <label for="password">Password</label>
-                  <input id="password" name="password" value="" title="password" tabindex="5" type="password">
-                </p>
-                <p class="remember">
-                  <input id="signin_submit" value="Sign in" tabindex="6" type="submit">
-                  <input id="remember" name="remember_me" value="1" tabindex="7" type="checkbox">
-                  <label for="remember">Remember me</label>
-                </p>
-                <p class="forgot"> <a href="#" id="resend_password_link">Forgot your password?</a> </p>
+<%= render "shared/banner" %>
 
-              </form>
-            </fieldset>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="main_bar">
-      <div class="container">
-        <a href="index.html"><img class="logo" src="/assets/smarthost/logo.jpg" alt="" border="0" /></a>
-        <div class="navi">
-          <ul id="menu">
-            <li class="<%= 'selected' if current_page?(root_path) %>"><%= link_to "Home", root_path, :class => "#{'selected' if current_page?(root_path)}" %></li>
-            <li class="<%= 'selected' if current_page?(about_us_path) %>"><%= link_to "About Us", about_us_path, :class => "#{'selected' if current_page?(about_us_path)}" %></li>
-            <li class="<%= 'selected' if current_page?(solutions_path) %>"><%= link_to "Solutions", solutions_path, :class => "#{'selected' if current_page?(solutions_path)}" %></li>
-            <li class="last <%= 'selected' if current_page?(contact_us_path) %>"><%= link_to "Contact Us", contact_us_path, :class => "#{'selected' if current_page?(contact_us_path)}" %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="clear"></div>
-
-  <div id="banner">
-
-    <div id="content"><div id="content_inner">
-        <!-- end intro -->
-        <!-- end sidebar_right -->
-        <ul id="slides1">
-          <li>
-            <div class="content_two">
-              <img class="man" src="/assets/smarthost/banner_man.png" alt="" border="0" />
-              <div class="text">
-                <p>The Most User Friendly</p>
-                <h1>TEXT AND CALL</h1>
-                <p>PLATFORM</p>
-                <p>On The Market</p>
-                <div class="buttons">
-                  <a href="#." class="small_btn-gry banner_two_btn" ><span class="small_blk-gry">learn&nbsp;more</span></a>
-                  <a href="#." class="small_btn-org " ><span class="small_blk-org">order&nbsp;now</span></a>
-                  <a href="#." class="small_btn-gry banner_two_btn left-mrgn" ><span class="small_blk-gry">Try&nbsp;now</span></a>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-  <div class="clear"></div>
-
-  <div id="content">
-    <div class="container">
-      <div class="welcome">
-        <h1>Welcome to RoboCent!</h1>
-        <div class="text">
-          <p>For businesses, schools and organizations looking to send text or call notifications to their subscribers, RoboCent provides a user-friendly platform to deliver your messages in minutes!</p>
-          <div class="section double-width">
-            <ul>
-              <li class="tick">Add subscribers individually, from a spreadsheet or text a keyword to join.</li>
-              <li class="tick">Send up to 2,400 texts per minute or 4,000 calls per minute.</li>
-              <li class="tick">Live support available 7 days a week.</li>
-              <li class="tick">Monitor Real-Time Analytics for all Calls and Texts</li>
-            </ul>
-          </div>
-
-        </div>
-        <img class="welcome_img" src="/assets/smarthost/phone.png" alt="" border="0" />
-
-      </div>
-
-      <div class="testimonial">
-        <h3>Happy Clients</h3>
-
-        <ul id="tips">
-          <li><p>We sent over 200,000 robocalls through RoboCent last election cycle and we could not be more pleased with the results!</p> <span class="name">Travis Trawick,</span>
-            <span class="work">Campaign Manager, Meeks for Council</span></li>
-          <li><p>We use RoboCent to keep parents informed of cancellations and events -- thank you for this fantastic platform!</p> <span class="name">Alexis Miller,</span>
-            <span class="work">Softball Coach</span></li>
-          <li><p>Thanks to RoboCent, we've been able to get our customers to come into our restaurant more often, boosting our revenue!</p> <span class="name">Dennis Painter,</span>
-            <span class="work">Virginia Beach Business Owner</span></li>
-        </ul>
-
-
-
-
-      </div>
-    </div>
-    <div class="clear"></div>
-
-    <div class="services">
-      <div class="container">
-        <div class="service_sec">
-          <img src="/assets/smarthost/system_admin.jpg" alt="" border="0" />
-          <h2>User-<span>Control</span></h2>
-          <p>Users have complete control over the RoboCent system, including the content of the messages, sending options and recipients.</p>
-        </div>
-
-        <div class="service_sec">
-          <img src="/assets/smarthost/backup.jpg" alt="" border="0" />
-          <h2><span>Cloud</span> Based</h2>
-          <p>RoboCent is completely cloud-based, ensuring 99.9% uptime, an extremely reliable sending platform and enhanced ease-of-use.</p>
-        </div>
-
-        <div class="service_sec last">
-          <img src="/assets/smarthost/live_support.jpg" alt="" border="0" />
-          <h2><span>Live</span> Support</h2>
-          <p>The RoboCent team is available via live chat, phone or email 7 days a week to ensure you can send your messages with ease.</p>
-        </div>
-
-      </div>
-      <div class="clear"></div>
-    </div>
-
-    <div class="table">
-      <div class="container">
-        <div class="table_sec first">
-          <h2>Pay As You Go</h2>
-          <div class="detail">
-            <p>No Monthly Charge <br /><span class="month">&nbsp;</span></p>
-            <ul>
-              <li>2.0&cent; Per Text or Call</li>
-              <li>1 Keyword</li>
-              <li>Real Time Analytics</li>
-              <li>No Credit Card Required</li>
-              <li>250 Free Texts!</li>
-            </ul>
-            <a href="#." class="small_btn-gry table_btn" ><span class="small_blk-gry">signup&nbsp;now</span></a>
-            <div class="clear"></div>
-          </div>
-          <img src="/assets/smarthost/table_bot.png" alt="" border="0" />
-        </div>
-
-
-
-        <div class="table_sec">
-          <h2 class="orange">Basic</h2>
-          <div class="detail">
-            <p>$5.00 <br /><span class="month">per month</span></p>
-            <ul>
-              <li>400 Texts or Calls Included</li>
-              <li>3 Keywords</li>
-              <li>Real Time Analytics</li>
-              <li>1.5&cent; Per Text or Call</li>
-              <li>500 Free Texts!</li>
-            </ul>
-            <a href="#." class="small_btn-org table_btn" ><span class="small_blk-org">signup&nbsp;now</span></a>
-            <div class="clear"></div>
-          </div>
-          <img src="/assets/smarthost/table_bot.png" alt="" border="0" />
-        </div>
-
-        <div class="table_sec last">
-          <h2>Advanced</h2>
-          <div class="detail">
-            <p>$19.00 <br /><span class="month">per month</span></p>
-            <ul>
-              <li>1,250 Texts or Calls Included</li>
-              <li>5 Keywords</li>
-              <li>Real Time Analytics</li>
-              <li>1.3&cent; Per Text or Call</li>
-              <li>750 Free Texts!</li>
-            </ul>
-            <a href="#." class="small_btn-gry table_btn" ><span class="small_blk-gry">signup&nbsp;now</span></a>
-            <div class="clear"></div>
-          </div>
-          <img src="/assets/smarthost/table_bot.png" alt="" border="0" />
-        </div>
-
-      </div>
-      <div class="clear"></div>
-    </div>
-
-
-  </div>
-
+<div id="content">
   <div class="container">
-<%#*<img class="client" src="/assets/smarthost/client.png" alt="" border="0" />%>
 
-    <img class="client thin-logo" src="/assets/smarthost/HomepageLogo1.jpg" alt="" border="0"  />
-    <img class="client big-logo" src="/assets/smarthost/HomepageLogo2.JPG" alt="" border="0"  />
-    <img class="client semi-thin-logo" src="/assets/smarthost/HomepageLogo3.gif" alt="" border="0"  />
-    <img class="client thin-logo" src="/assets/smarthost/HomepageLogo4.gif" alt="" border="0"  />
-    <div class="clear"></div>
-
-  </div>
-
-  <div id="footer">
-    <div class="building"></div>
-    <div class="detail">
-      <div class="container">
-        <div class="blog">
-          <img class="blog_img" src="/assets/smarthost/blog_img.jpg" alt="" border="0" />
-          <div class="text">
-            <span>FROM OUR BLOG <span class="date">Nov 26, 2012</span></span>
-            <div class="clear"></div>
-            <a href="http://markets.cbsnews.com/cbsnews/news/read/23453798/RoboCent_Gives_500_Text_Alerts_to_Every_Organization_in_America" target = "_blank">
-              <span class="title">RoboCent Gives 500 Text Alerts to Every Organization in America</span>
-            </a>
-            <p>In times of emergency, being able to communicate in a fast and reliable manner is of the highest importance. Through RoboCent's online platform, every organization and small business in America now has the ability to send a text and call alert to their members[...]</p>
-          </div>
-        </div>
-
-        <div class="email">
-          <input name="" type="text" value="Email Address" />
-          <input name="" type="submit" value="submit" />
-        </div>
-        <div class="clear"></div>
-      </div>
-    </div>
-
-    <div class="footer_bot">
-      <div class="container">
-        <div class="links double-link">
-          <h3>About RoboCent</h3>
-          <div class="shade-color">
-            RoboCent is one of the nation's largest providers of call and text
-            notification systems. Small businesses, schools, non-profits and
-            political campaigns across the U.S. rely on RoboCent's notification
-            systems on a daily basis -- delivering millions of calls and texts to
-            their subscribers. For more information,
-            <%= link_to "contact us", contact_us_path %>
-          </div>
-        </div>
-
-        <div class="links">
-          <h3>Smart Host</h3>
+    <div class="welcome">
+      <h1>Welcome to RoboCent!</h1>
+      <div class="text">
+        <p>For businesses, schools and organizations looking to send text or call notifications to their subscribers, RoboCent provides a user-friendly platform to deliver your messages in minutes!</p>
+        <div class="section double-width">
           <ul>
-            <li><%= link_to "Home", root_path %></li>
-            <li><%= link_to "About Us", about_us_path %></li>
-            <li><%= link_to "Cloud Server", "#"   %></li>
-            <li><%= link_to "Domain", "#"   %></li>
-            <li><%= link_to "Contact Us", contact_us_path %></li>
-          </ul>
-        </div>
-
-        <div class="links">
-          <h3>Social Connection</h3>
-          <div class="social">
-            <ul>
-              <li class="fb"><a href="http://www.facebook.com/RoboCent" target="_blank">Facebook</a></li>
-              <li class="tw"><a href="http://www.twitter.com/RoboCent">Twitter</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="links last">
-          <h3>Get in Touch</h3>
-          <div class="get_touch">
-            <ul>
-              <li class="mb"><a>757.821.2121</a></li>
-              <li class="email"><a>Info@RoboCent.com</a></li>
-              <li class="address"><a>111 Granby Street Norfolk, VA 23510</a></li>
-              <img src="/assets/smarthost/paypal.png" alt="" />
-            </ul>
-          </div>
-        </div>
-
-
-      </div>
-      <div class="clear"></div>
-    </div>
-
-    <div class="copyright">
-      <div class="container">
-        <p>Copyright © 2013 Smart Host. All Rights Reserved.</p>
-        <div class="privacy">
-          <ul>
-            <li><%= link_to "Privacy Policy", privacy_policy_path %><a href="#."></a></li>
-            <li class="last"><%= link_to "Terms & Condition", terms_path %></li>
+            <li class="tick">Add subscribers individually, from a spreadsheet or text a keyword to join.</li>
+            <li class="tick">Send up to 2,400 texts per minute or 4,000 calls per minute.</li>
+            <li class="tick">Live support available 7 days a week.</li>
+            <li class="tick">Monitor Real-Time Analytics for all Calls and Texts</li>
           </ul>
         </div>
       </div>
+      <%= image_tag "smarthost/phone.png", :alt => "", :border => "0", :class => "welcome_img" %>
+    </div>
+
+    <div class="testimonial">
+      <h3>Happy Clients</h3>
+      <ul id="tips">
+        <li><p>We sent over 200,000 robocalls through RoboCent last election cycle and we could not be more pleased with the results!</p> <span class="name">Travis Trawick,</span>
+          <span class="work">Campaign Manager, Meeks for Council</span></li>
+        <li><p>We use RoboCent to keep parents informed of cancellations and events -- thank you for this fantastic platform!</p> <span class="name">Alexis Miller,</span>
+          <span class="work">Softball Coach</span></li>
+        <li><p>Thanks to RoboCent, we've been able to get our customers to come into our restaurant more often, boosting our revenue!</p> <span class="name">Dennis Painter,</span>
+          <span class="work">Virginia Beach Business Owner</span></li>
+      </ul>
     </div>
 
   </div>
+  <div class="clear"></div>
 
+  <%= render "shared/service" %>
+  <%= render "shared/payment_table" %>
 </div>
+<%= render "shared/logos" %>
+
+
+<% content_for :js do %>
+  <script type="text/javascript">
+    <%= render "shared/home_page_script.js" %>
+  </script>
+<% end %>
