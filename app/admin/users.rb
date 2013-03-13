@@ -78,4 +78,11 @@ ActiveAdmin.register User do
     auto_login @user
     redirect_to dashboard_path
   end
+
+  member_action :approve_text_auto_send do
+    @user = User.find(params[:id])
+    @user.text_messages_approval = "approved"
+    @user.save
+    redirect_to admin_auto_approval_path
+  end
 end

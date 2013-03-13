@@ -15,7 +15,7 @@ class TextMessagesController < ApplicationController
     else
       @step = "1"
     end
-
+    #debugger
     if session[:text_message].present?
       session[:text_message] = session[:text_message].merge(params[:text_message]) if params[:text_message].present?
       if params[:list_ids].present? and params[:list_ids].size > 0
@@ -35,15 +35,14 @@ class TextMessagesController < ApplicationController
     else
       @text_message = TextMessage.new
     end
-	#debugger
+    #debugger
     if params["step"] == "3" and params[:text_message].present?
       begin
         numbers = []
         @text_message.lists.each do |list|
           numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
         end
-        number_of_contacts = numbers.size
-      
+        number_of_contacts = (numbers - current_user.dnc.pluck(:phone).uniq).size
         cost_per_text = current_user.subscription.plan.price_per_call_or_text / 100.0
         message_size = (@text_message.content.length.to_f / 160.0).ceil
 
@@ -73,8 +72,11 @@ class TextMessagesController < ApplicationController
     @text_message = current_user.text_messages.new(session[:text_message])
     @current_balance = current_user.account_balance.current_balance
 
-    #
+    #debugger
     # convert schedule_at time user time zone to utc time zone
+    unless params[:auto_approved].blank?
+      current_user.update_attributes(:text_messages_approval => "applied")
+    end
     require 'chronic'
     Time.zone = current_user.time_zone
     Chronic.time_class = Time.zone

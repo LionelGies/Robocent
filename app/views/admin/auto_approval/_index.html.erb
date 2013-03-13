@@ -1,0 +1,50 @@
+<% @users = User.where(:text_messages_approval => "applied").order("updated_at desc") %>
+
+<div class="index_content">
+  <div class="index_as_table">
+    <table width="100%" class="index_table index" cellspacing="0" cellpadding="0" border="0">
+      <thead>
+        <tr>
+          <th>User id</th>
+          <th>Name</th>
+          <th>Organization Name</th>
+          <th>Organization Type</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Auto Approval Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each_with_index do |user, index| %>
+          <tr class="<%= index % 2 == 0 ? "even" : "odd" %>">
+            <td>
+              <%= user.id %>
+            </td>
+            <td>
+              <%= user.name %>
+            </td>
+            <td>
+              <%= user.organization_name %>
+            </td>
+            <td>
+              <%= user.organization_type %>
+            </td>
+            <td>
+              <%= user.phone %>
+            </td>
+            <td>
+              <%= user.email %>
+            </td>
+            <td>
+              <%= user.text_messages_approval.capitalize %>
+            </td>
+            <td>
+              <%= link_to "Approve", approve_text_auto_send_admin_user_path(user.id) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

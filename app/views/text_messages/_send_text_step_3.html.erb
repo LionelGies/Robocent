@@ -103,7 +103,7 @@
       </table>
     </div>
   </div>
-   <!-- ----->
+  <!-- ----->
   <div class="g_12">
     <div class="widget_header">
       <h4 class="widget_header_title" style="width: 100%;text-align: center;">
@@ -119,8 +119,11 @@
             </div>
             <div class="g_4"></div>
             <div class="g_2">
-              2 Minutes
+              <%= (@text_message.user.text_messages_approval == "approved" or @text_message.sending_option == 1 or @text_message.number_of_recipients < 50) ? "n/a" : "2 Minutes" %>
             </div>
+            <% if current_user.text_messages_approval.blank? %>
+              <div class="g_8" style="text-align:center; border: 0;" ><%= check_box_tag "auto_approved" %> Apply to Have Your Texts Auto-Approved</div>
+            <% end %>
           </td>
         </tr>
         <tr>

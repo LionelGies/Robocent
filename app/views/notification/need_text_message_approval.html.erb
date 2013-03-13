@@ -1,0 +1,8 @@
+A text message needs  to be approved.<br/>
+You have to approve a text message for <%= @text_message.user.name %> (#<%= @text_message.user_id %>).<br/><br/>
+Text Message ID : <%= @text_message.id %><br/>
+Number of recipients : <%= @text_message.number_of_recipients %><br/>
+Schedule Time : <%= @text_message.schedule_at.in_time_zone("EST").strftime("%b %d, %Y %H:%M:%S") %> EST
+<br/><br/>
+To approve text messages
+<%= link_to "click here", admin_text_messages_url %>

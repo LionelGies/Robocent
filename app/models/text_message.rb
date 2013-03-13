@@ -17,7 +17,7 @@ class TextMessage < ActiveRecord::Base
   before_create :charge_difference
   after_create :create_receipt
   before_create {|t| t.status = "pending" }
-  #after_create :send_text_to_queue
+  after_create :check_for_approval
 
   def lists
     List.find(:all, :conditions => ["id in (?)", list_ids.split(",")])
@@ -65,12 +65,22 @@ class TextMessage < ActiveRecord::Base
     end
   end
   
+  def check_for_approval
+    if(self.user.text_messages_approval == "approved" or self.sending_option == 1 or self.number_of_recipients < 50)
+      self.status = "approved"
+      save
+      send_text_to_queue
+    else
+      Notification.delay.need_text_message_approval(self.id)
+    end
+  end
+  
   def send_text_to_queue
     numbers = []
     lists.each do |list|
       numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
     end
-
+    numbers = numbers - Dnc.where(:account => self.user_id).pluck(:phone).uniq
     numbers.each do |number|
       self.queue_texts.create(:phone_number => number)
     end
