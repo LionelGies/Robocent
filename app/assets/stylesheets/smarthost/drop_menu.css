@@ -2,7 +2,7 @@
 /* CSS Document */
 
 #menu li {
-    /* background:url(/assets/smarthost/nav_divider.png) no-repeat right; */
+    /* background:url('/assets/smarthost/nav_divider.png') no-repeat right; */
     float: left;
     position: relative;
     margin:0 0 0 0;

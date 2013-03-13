@@ -13,7 +13,7 @@ a img {
 	border-width:0;
 }
 #topnav a.signin span{
-	background:url(/assets/smarthost/login_btn.png) no-repeat;
+	background:url('/assets/smarthost/login_btn.png') no-repeat;
 	height:29px;
 	width:90px;
 	float:right;
@@ -124,18 +124,18 @@ border:0;
 	text-align:left;
 }
 .tipsy-north {
-	background-image:url(/assets/smarthost/tipsy-north.gif);
+	background-image:url('/assets/smarthost/tipsy-north.gif');
 	background-position:top center;
 }
 .tipsy-south {
-	background-image:url(/assets/smarthost/tipsy-south.gif);
+	background-image:url('/assets/smarthost/tipsy-south.gif');
 	background-position:bottom center;
 }
 .tipsy-east {
-	background-image:url(/assets/smarthost/tipsy-east.gif);
+	background-image:url('/assets/smarthost/tipsy-east.gif');
 	background-position:right center;
 }
 .tipsy-west {
-	background-image:url(/assets/smarthost/tipsy-west.gif);
+	background-image:url('/assets/smarthost/tipsy-west.gif');
 	background-position:left center;
 }

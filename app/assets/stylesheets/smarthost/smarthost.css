@@ -1,8 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-@import "/assets/smarthost/fonts/stylesheet.css";
-
 body{
 	background:#f3f3f3;
 	margin:0px;
@@ -47,11 +45,11 @@ p{
 #header{
 }
 #header .top_sec{
-	background:url(/assets/smarthost/top_bg.jpg) repeat-x;
+	background:url('/assets/smarthost/top_bg.jpg') repeat-x;
 	height:50px;
 }
 #header .top_sec li.number{
-	background:url(/assets/smarthost/mb_icon.jpg) no-repeat 0 2px;
+	background:url('/assets/smarthost/mb_icon.jpg') no-repeat 0 2px;
 	padding:0 0px 0 25px;
 	font-size:16px;
 	color:#474747;
@@ -63,7 +61,7 @@ p{
 	margin:-27px 0 0 0;
 }
 #header .buttons a.chat{
-	background:url(/assets/smarthost/livechat_btn.png) no-repeat;
+	background:url('/assets/smarthost/livechat_btn.png') no-repeat;
 	height:29px;
 	width:110px;
 	float:right;
@@ -73,7 +71,7 @@ p{
 	background-position:0 -29px;	
 }
 #header .main_bar{
-	background:url(/assets/smarthost/main_bar.jpg) repeat-x;
+	background:url('/assets/smarthost/main_bar.jpg') repeat-x;
 	height:81px;
 }
 #header .main_bar .logo{
@@ -118,7 +116,7 @@ p{
 	border-top:solid 4px #b8b8b8;
 }
 #banner{
-	background:url(/assets/smarthost/banner.jpg) repeat-x;
+	background:url('/assets/smarthost/banner.jpg') repeat-x;
 	height:410px;
 	text-align:center;
 	-moz-box-shadow:inset 0px 0px 7px 0px #909090;
@@ -149,7 +147,7 @@ p{
 #content{
 }
 #content .domain{
-	background:url(/assets/smarthost/domain.png) no-repeat;
+	background:url('/assets/smarthost/domain.png') no-repeat;
 	float:left;
 	width:100%;
 	height:64px;
@@ -213,14 +211,14 @@ p{
 	margin:10px 0 0 0;
 }
 #content .welcome .text li.tick{
-	background:url(/assets/smarthost/tick.png) no-repeat 0 2px;
+	background:url('/assets/smarthost/tick.png') no-repeat 0 2px;
 	font-size:13px;
 	color:#515151;
 	padding:0 0 0 22px;
 	margin:12px 0 0 0;
 }
 #content .testimonial{
-	background:url(/assets/smarthost/testimonial.png) no-repeat;
+	background:url('/assets/smarthost/testimonial.png') no-repeat;
 	width:199px;
 	height:187px;
 	float:right;
@@ -345,7 +343,7 @@ p{
 #footer{
 }
 #footer .building{
-	background:url(/assets/smarthost/buildings.png) no-repeat center;
+	background:url('/assets/smarthost/buildings.png') no-repeat center;
 	height:103px;
 }
 #footer .detail{
@@ -452,7 +450,7 @@ p{
 	color:#5c9018;
 }
 #footer .footer_bot .links .social li{
-	background:url(/assets/smarthost/social_icon.png) no-repeat;
+	background:url('/assets/smarthost/social_icon.png') no-repeat;
 	height:24px;
 	margin:0 0 12px 0;
 	display:block;
@@ -491,13 +489,13 @@ p{
 	padding:0 0px 0 25px;
 }
 #footer .footer_bot .get_touch li.mb{
-	background:url(/assets/smarthost/footer_mb.png) no-repeat;
+	background:url('/assets/smarthost/footer_mb.png') no-repeat;
 }
 #footer .footer_bot .get_touch li.email{
-	background:url(/assets/smarthost/footer_email.png) no-repeat;
+	background:url('/assets/smarthost/footer_email.png') no-repeat;
 }
 #footer .footer_bot .get_touch li.address{
-	background:url(/assets/smarthost/footer_address.png) no-repeat;
+	background:url('/assets/smarthost/footer_address.png') no-repeat;
 }
 #footer .footer_bot .get_touch a{
 	line-height:18px;
@@ -519,7 +517,7 @@ p{
 	width:190px;
 }
 #footer .copyright .privacy li{
-	background:url(/assets/smarthost/privacy_divider.jpg) no-repeat right;
+	background:url('/assets/smarthost/privacy_divider.jpg') no-repeat right;
 	float:left;
 }
 #footer .copyright .privacy li.last{
@@ -573,7 +571,7 @@ p{
 	margin:10px 0 20px 0;
 }
 #sub_content .what_do .text li.tick{
-	background:url(/assets/smarthost/tick.png) no-repeat 0 0;
+	background:url('/assets/smarthost/tick.png') no-repeat 0 0;
 	padding:0 0 0 28px;
 	margin:16px 0 0 0;
 	font-size:13px;
@@ -606,7 +604,7 @@ p{
 	margin:10px 0 20px 0;
 }
 #sub_content .our_mission .text li{
-	background:url(/assets/smarthost/tick.png) no-repeat 0 0;
+	background:url('/assets/smarthost/tick.png') no-repeat 0 0;
 	padding:0 0 0 28px;
 	margin:16px 0 0 0;
 	font-size:13px;
@@ -666,7 +664,7 @@ p{
 	padding:10px 66px;
 }
 #sub_content .team .member_sec .social a{
-	background:url(/assets/smarthost/team_social.png) no-repeat;
+	background:url('/assets/smarthost/team_social.png') no-repeat;
 	float:left;
 	height:15px;
 	width:23px;
@@ -922,7 +920,7 @@ p{
 	font-family: 'PTSansBold';
 }
 #sub_content .table_two .gray_divider{
-	background:url(/assets/smarthost/gray_divider.jpg) repeat-x;
+	background:url('/assets/smarthost/gray_divider.jpg') repeat-x;
 	height:2px;
 	margin:10px 0;
 }
@@ -973,7 +971,7 @@ p{
 	font-family: 'PTSansBold';
 }
 #sub_content .table_two .green_sec .green_divider{
-	background:url(/assets/smarthost/green_divider.jpg) repeat-x;
+	background:url('/assets/smarthost/green_divider.jpg') repeat-x;
 	height:2px;
 	margin:10px 0;
 }
@@ -1035,17 +1033,17 @@ p{
 	width:260px;
 }
 #sub_content .cld_services .top_sec{
-	background:url(/assets/smarthost/cloud_services_top.png) no-repeat;
+	background:url('/assets/smarthost/cloud_services_top.png') no-repeat;
 	height:12px;
 }
 #sub_content .cld_services .mid_sec{
-	background:url(/assets/smarthost/cloud_services_mid.png) repeat-y;
+	background:url('/assets/smarthost/cloud_services_mid.png') repeat-y;
 	padding:0 13px 0 4px;
 }
 
 #sub_content .cld_services li{
 	padding:12px 0;
-	background:url(/assets/smarthost/cloud_services_icons.png) no-repeat 0px 10px;
+	background:url('/assets/smarthost/cloud_services_icons.png') no-repeat 0px 10px;
 	border-bottom:solid 1px #e1e1e1;
 	color:#434343;
 	font-size:14px;
@@ -1108,7 +1106,7 @@ p{
 	margin:38px 0 0 0;
 }
 #sub_content .right_text .feature li{
-	background:url(/assets/smarthost/tick.png) no-repeat;
+	background:url('/assets/smarthost/tick.png') no-repeat;
 	margin:20px 0 0 0;
 	padding:0 0 0 22px;
 	font-size:13px;
@@ -1192,7 +1190,7 @@ p{
     -webkit-border-radius:5px;
 }
 #sub_content .form input[type=submit]{
-	background:url(/assets/smarthost/submit.png) no-repeat;
+	background:url('/assets/smarthost/submit.png') no-repeat;
 	width:97px;
 	height:36px;
 	border:none;
@@ -1215,22 +1213,22 @@ p{
 	color:#515151;
 }
 #sub_content .get_touch li.location{
-	background:url(/assets/smarthost/contact_location.png) no-repeat;
+	background:url('/assets/smarthost/contact_location.png') no-repeat;
 	float:left;
 }
 #sub_content .get_touch li.email{
-	background:url(/assets/smarthost/contact_email.png) no-repeat;
+	background:url('/assets/smarthost/contact_email.png') no-repeat;
 	float:left;
 }
 #sub_content .get_touch li.mobile{
-	background:url(/assets/smarthost/contact_mobile.png) no-repeat;
+	background:url('/assets/smarthost/contact_mobile.png') no-repeat;
 	float:left;
 }
 #sub_content .contact_social{
 	float:right;
 }
 #sub_content .contact_social a{
-	background:url(/assets/smarthost/contact_social_1.png) no-repeat;
+	background:url('/assets/smarthost/contact_social_1.png') no-repeat;
 	float:left;
 	height:37px;
 	width:37px;
@@ -1288,7 +1286,7 @@ p{
 }
 #features-toggle .left {
     width: 260px; float: left;
-    background:url(/assets/smarthost/left_nav.png) repeat-y;
+    background:url('/assets/smarthost/left_nav.png') repeat-y;
     min-height: 270px;
 	padding:0 0 0 15px;
 	
@@ -1332,7 +1330,7 @@ p{
 	float:right;
 }
 #features-toggle .right .detail .feature li{
-	background:url(/assets/smarthost/tick.png) no-repeat 0 3px;
+	background:url('/assets/smarthost/tick.png') no-repeat 0 3px;
 	color:#323232;
 	font-size:14px;
 	line-height:25px;
@@ -1358,7 +1356,7 @@ p{
 #features-toggle .left ul li.features a:hover {
 }
 #features-toggle .left ul li.features a.selected {
-	background:url(/assets/smarthost/tab_selected.png) no-repeat;
+	background:url('/assets/smarthost/tab_selected.png') no-repeat;
 	padding: 0 0 0 10px; color: #FFF; position: relative; right: 10px; bottom: 2px;
 	width: 272px; height: 40px; border-bottom: 0;
 }
@@ -1371,75 +1369,75 @@ p{
 #features-toggle .left ul li.features a .icon1 {
 	width: 21px; height: 21px; display: inline-block; float: left;
 	margin: 9px 9px 0 0;
-	background:url(/assets/smarthost/icon1.png) no-repeat;
+	background:url('/assets/smarthost/icon1.png') no-repeat;
 }
 #features-toggle .left ul li.features a.selected .icon1 {
     margin: 9px 9px 0 0;
-	background:url(/assets/smarthost/icon1.png) no-repeat bottom;
+	background:url('/assets/smarthost/icon1.png') no-repeat bottom;
 }
 #features-toggle .left ul li.features a .icon2 {
 	width: 21px; height: 21px; display: inline-block; float: left;
 	margin: 8px 9px 0 0;
-	background:url(/assets/smarthost/icon2.png) no-repeat;
+	background:url('/assets/smarthost/icon2.png') no-repeat;
 }
 #features-toggle .left ul li.features a.selected .icon2 {
     margin: 9px 9px 0 0;
-	background:url(/assets/smarthost/icon2.png) no-repeat bottom;
+	background:url('/assets/smarthost/icon2.png') no-repeat bottom;
 }
 #features-toggle .left ul li.features a .icon3 {
 	width: 21px; height: 21px; display: inline-block; float: left;
 	margin: 10px 8px 0 0;
-	background:url(/assets/smarthost/icon3.png) no-repeat;
+	background:url('/assets/smarthost/icon3.png') no-repeat;
 }
 #features-toggle .left ul li.features a.selected .icon3 {
     margin: 9px 9px 0 0;
-	background:url(/assets/smarthost/icon3.png) no-repeat bottom;
+	background:url('/assets/smarthost/icon3.png') no-repeat bottom;
 }
 #features-toggle .left ul li.features a .icon4 {
 	width: 21px; height: 21px; display: inline-block; float: left;
 	margin: 11px 9px 0 0;
-	background:url(/assets/smarthost/icon4.png) no-repeat;
+	background:url('/assets/smarthost/icon4.png') no-repeat;
 }
 #features-toggle .left ul li.features a.selected .icon4 {
     margin: 13px 9px 0 0;
-	background:url(/assets/smarthost/icon4.png) no-repeat bottom;
+	background:url('/assets/smarthost/icon4.png') no-repeat bottom;
 }
 #features-toggle .left ul li.features a .icon5 {
 	width: 21px; height: 21px; display: inline-block; float: left;
 	margin: 9px 9px 0 0;
-	background:url(/assets/smarthost/icon5.png) no-repeat;
+	background:url('/assets/smarthost/icon5.png') no-repeat;
 }
 #features-toggle .left ul li.features a.selected .icon5 {
     margin: 9px 9px 0 0;
-	background:url(/assets/smarthost/icon5.png) no-repeat bottom;
+	background:url('/assets/smarthost/icon5.png') no-repeat bottom;
 }
 #features-toggle .left ul li.features a .icon6 {
 	width: 21px; height: 21px; display: inline-block; float: left;
 	margin: 10px 8px 0 0;
-	background:url(/assets/smarthost/icon6.png) no-repeat;
+	background:url('/assets/smarthost/icon6.png') no-repeat;
 }
 #features-toggle .left ul li.features a.selected .icon6 {
     margin: 9px 8px 0 0;
-	background:url(/assets/smarthost/icon6.png) no-repeat bottom;
+	background:url('/assets/smarthost/icon6.png') no-repeat bottom;
 }
 #features-toggle .left ul li.features a .icon7 {
 	width: 21px; height: 21px; display: inline-block; float: left;
 	margin: 10px 8px 0 0;
-	background:url(/assets/smarthost/icon7.png) no-repeat;
+	background:url('/assets/smarthost/icon7.png') no-repeat;
 }
 #features-toggle .left ul li.features a.selected .icon7 {
     margin: 11px 8px 0 0;
-	background:url(/assets/smarthost/icon7.png) no-repeat bottom;
+	background:url('/assets/smarthost/icon7.png') no-repeat bottom;
 }
 
 #features-toggle .left ul li.features a .icon8 {
 	width: 21px; height: 21px; display: inline-block; float: left;
 	margin: 10px 8px 0 0;
-	background:url(/assets/smarthost/icon8.png) no-repeat;
+	background:url('/assets/smarthost/icon8.png') no-repeat;
 }
 #features-toggle .left ul li.features a.selected .icon8 {
     margin: 11px 8px 0 0;
-	background:url(/assets/smarthost/icon8.png) no-repeat bottom;
+	background:url('/assets/smarthost/icon8.png') no-repeat bottom;
 }
 /* Notification Classes */
 .success, .warning{
