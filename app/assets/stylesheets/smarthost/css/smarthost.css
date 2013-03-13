@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-@import "../fonts/stylesheet.css";
+@import "/assets/smarthost/fonts/stylesheet.css";
 
 body{
 	background:#f3f3f3;
@@ -1230,7 +1230,7 @@ p{
 	float:right;
 }
 #sub_content .contact_social a{
-	background:url(/assets/smarthost/contact_social.png) no-repeat;
+	background:url(/assets/smarthost/contact_social_1.png) no-repeat;
 	float:left;
 	height:37px;
 	width:37px;
@@ -1449,7 +1449,7 @@ p{
     padding: 10px 10px 10px 33px;
 }
 .success {
-	background: #EAF7D9 url('../images/success.png') 10px center no-repeat;
+	background: #EAF7D9 url('/assets/smarthost/success.png') 10px center no-repeat;
 	border: 1px solid #BBDF8D;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
@@ -1457,7 +1457,7 @@ p{
 	border-radius: 5px 5px 5px 5px;
 }
 .warning {
-	background: #FFD1D1 url('../images/warning.png') 10px center no-repeat;
+	background: #FFD1D1 url('/assets/smarthost/warning.png') 10px center no-repeat;
 	border: 1px solid #F8ACAC;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	-moz-border-radius: 5px 5px 5px 5px;

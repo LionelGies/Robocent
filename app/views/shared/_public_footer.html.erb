@@ -1,5 +1,96 @@
+<div class="container">
+  <%= image_tag "smarthost/HomepageLogo1.jpg", :alt => "", :border => "0", :class => "client thin-logo" %>
+  <%= image_tag "smarthost/HomepageLogo2.JPG", :alt => "", :border => "0", :class => "client big-logo" %>
+  <%= image_tag "smarthost/HomepageLogo3.gif", :alt => "", :border => "0", :class => "client semi-thin-logo" %>
+  <%= image_tag "smarthost/HomepageLogo4.gif", :alt => "", :border => "0", :class => "client thin-logo" %>
+  <div class="clear"></div>
+</div>
+
 <div id="footer">
   <div class="building"></div>
-  <%= render "shared/blog" %>
-  <%= render "shared/footer_links" %>
+  <div class="detail">
+    <div class="container">
+
+      <div class="blog">
+        <%= image_tag "smarthost/blog_img.jpg", :alt => "", :border => "0", :class => "blog_img" %>
+        <div class="text">
+          <div class="clear"></div>
+          <a href="http://markets.cbsnews.com/cbsnews/news/read/23453798/RoboCent_Gives_500_Text_Alerts_to_Every_Organization_in_America" target = "_blank">
+            <span class="title">RoboCent Gives 500 Text Alerts to Every Organization in America</span>
+          </a>
+          <p>In times of emergency, being able to communicate in a fast and reliable manner is of the highest importance. Through RoboCent's online platform, every organization and small business in America now has the ability to send a text and call alert to their members[...]</p>
+        </div>
+      </div>
+
+      <div class="email">
+        <%= text_field_tag "email", nil, :placeholder => "Email Address" %>
+        <%= submit_tag "submit" %>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="footer_bot">
+    <div class="container">
+      <div class="links double-link">
+        <h3>About RoboCent</h3>
+        <div class="shade-color">
+          RoboCent is one of the nation's largest providers of call and text
+          notification systems. Small businesses, schools, non-profits and
+          political campaigns across the U.S. rely on RoboCent's notification
+          systems on a daily basis -- delivering millions of calls and texts to
+          their subscribers. For more information,
+          <%= link_to "contact us", contact_us_path %>
+        </div>
+      </div>
+
+      <div class="links">
+        <h3>RoboCent</h3>
+        <ul>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "About Us", about_us_path %></li>
+          <li><%= link_to "Solutions", solutions_path  %></li>
+          <li><%= link_to "Contact Us", contact_us_path %></li>
+        </ul>
+      </div>
+
+      <div class="links">
+        <h3>Social Connection</h3>
+        <div class="social">
+          <ul>
+            <li class="fb"><a href="http://www.facebook.com/RoboCent" target="_blank">Facebook</a></li>
+            <li class="tw"><a href="http://www.twitter.com/RoboCent">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="links last">
+        <h3>Get in Touch</h3>
+        <div class="get_touch">
+          <ul>
+            <li class="mb"><a>757.821.2121</a></li>
+            <li class="email"><a>Info@RoboCent.com</a></li>
+            <li class="address"><a>111 Granby Street <br/>Norfolk, VA 23510</a></li>
+            <%= image_tag "smarthost/paypal.png", :alt => "", :border => "0" %>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <div class="copyright">
+    <div class="container">
+      <p>Copyright &copy; 2012 RoboCent, Inc. All Rights Reserved.
+        <small>A <%= link_to "MassRoots, LLC", "http://www.massroots.com/", :target => "_blank"  %> Company</small></p>
+      <div class="privacy">
+        <ul>
+          <li><%= link_to "Privacy Policy", privacy_policy_path %><a href="#."></a></li>
+          <li class="last"><%= link_to "Terms & Condition", terms_path %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

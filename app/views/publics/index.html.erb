@@ -39,11 +39,12 @@
   <%= render "shared/service" %>
   <%= render "shared/payment_table" %>
 </div>
-<%= render "shared/logos" %>
 
 
 <% content_for :js do %>
   <script type="text/javascript">
-    <%= render "shared/home_page_script.js" %>
+    $(function() {
+      randomtip();
+    });
   </script>
 <% end %>
