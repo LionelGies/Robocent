@@ -14,9 +14,11 @@ class TextMessage < ActiveRecord::Base
   validates :sending_option,  :presence => true
   validates :user_id,         :presence => true
 
-  before_create :charge_difference
-  after_create :create_receipt
   before_create {|t| t.status = "pending" }
+  before_create :charge_difference
+  
+  after_create :create_receipt
+  after_create :send_text_to_queue
   after_create :check_for_approval
 
   def lists
@@ -24,7 +26,7 @@ class TextMessage < ActiveRecord::Base
   end
 
   def percent_completed
-    ((succeeded.to_f / number_of_recipients.to_f) * 100.0).to_i
+      number_of_recipients > 0 ? ((succeeded.to_f / number_of_recipients.to_f) * 100.0).to_i : 0
   end
 
   def sending_from
@@ -69,7 +71,7 @@ class TextMessage < ActiveRecord::Base
     if(self.user.text_messages_approval == "approved" or self.sending_option == 1 or self.number_of_recipients < 50)
       self.status = "approved"
       save
-      send_text_to_queue
+      add_send_text_job
     else
       Notification.delay.need_text_message_approval(self.id)
     end
@@ -84,7 +86,9 @@ class TextMessage < ActiveRecord::Base
     numbers.each do |number|
       self.queue_texts.create(:phone_number => number)
     end
+  end
 
+  def add_send_text_job
     delay_time = ((Time.parse(self.schedule_at.to_s) - Time.parse((DateTime.now).to_s))).to_i
     delay_time = 5 if delay_time < 5
     Delayed::Job.enqueue Jobs::TextMessageJob.new(self), :priority => 0 , :run_at => delay_time.seconds.from_now, :queue => "text", :text_message_id => self.id

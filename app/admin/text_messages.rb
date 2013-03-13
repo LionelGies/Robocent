@@ -86,7 +86,7 @@ ActiveAdmin.register TextMessage do
   member_action :approve do
     @text_message = TextMessage.find(params[:id])
     if @text_message.present?
-      @text_message.send_text_to_queue
+      @text_message.add_send_text_job
       @text_message.status = "approved"
       @text_message.save
     end
