@@ -350,8 +350,8 @@ input[type="text"], input[type="password"], textarea {
 
 div.breadcrumbs a {
     color: #6EA004;
-/*    display: inline-block;*/
-/*    margin-top: 3px;*/
+    /*    display: inline-block;*/
+    /*    margin-top: 3px;*/
 }
 
 div.breadcrumbs span.separator {

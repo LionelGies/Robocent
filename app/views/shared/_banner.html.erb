@@ -11,10 +11,12 @@
               <h1>TEXT AND CALL PLATFORM</h1>
               <p>On The Market</p>
               <div class="buttons">
-                <%= email_field_tag "email", nil, :placeholder => "Email", :class => "try-now-email" %>
-                <%= password_field_tag "email", nil, :placeholder => "Password", :class => "try-now-password" %>
-                <%= link_to "", :class => "small_btn-gry banner_two_btn left-mrgn" do %>
-                  <span class="small_blk-gry">Try&nbsp;now</span>
+                <%= form_for User.new do |f| %>
+                  <%= f.email_field "email", :placeholder => "Email", :class => "try-now-email" %>
+                  <%= f.password_field "email", :placeholder => "Password", :class => "try-now-password" %>
+                  <%= link_to "javascript:void(0);", :class => "small_btn-gry banner_two_btn left-mrgn", :onclick => "$(this).closest('form').submit();return false;" do %>
+                    <span class="small_blk-gry">Try&nbsp;now</span>
+                  <% end %>
                 <% end %>
               </div>
             </div>

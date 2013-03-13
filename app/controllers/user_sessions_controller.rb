@@ -1,6 +1,4 @@
 class UserSessionsController < ApplicationController
-  layout 'application'
-
   def new
   end
 

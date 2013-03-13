@@ -23,8 +23,10 @@
       </div>
 
       <div class="email">
-        <%= text_field_tag "email", nil, :placeholder => "Email Address" %>
-        <%= submit_tag "submit" %>
+        <%= form_for TempUser.new, :remote => true do |f| %>
+          <%= f.text_field "email", :placeholder => "Email Address" %>
+          <%= f.submit "submit" %>
+        <% end %>
       </div>
       <div class="clear"></div>
     </div>
@@ -87,8 +89,15 @@
         <small>A <%= link_to "MassRoots, LLC", "http://www.massroots.com/", :target => "_blank"  %> Company</small></p>
       <div class="privacy">
         <ul>
-          <li><%= link_to "Privacy Policy", privacy_policy_path %><a href="#."></a></li>
-          <li class="last"><%= link_to "Terms & Condition", terms_path %></li>
+          <li>
+            <%= link_to "Privacy Policy", privacy_policy_path %>
+          </li>
+          <li>
+            <%= link_to "SMS Terms", sms_terms_path %>
+          </li>
+          <li class="last">
+            <%= link_to "SMS Privacy", sms_privacy_path %>
+          </li>
         </ul>
       </div>
     </div>

@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_login, :except => [:new, :create, :confirmation, :activate, :twilionumbers]
   require 'twilio-ruby'
-  layout 'publics'
-  
+
   def new
     @step_id = params[:step_id]
     if session[:user_temp_id].present?

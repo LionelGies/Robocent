@@ -1,5 +1,4 @@
 class TempUsersController < ApplicationController
-  layout 'publics'
 
   def new
     @temp_user = TempUser.new
@@ -9,10 +8,10 @@ class TempUsersController < ApplicationController
     @temp_user = TempUser.new(params[:temp_user])
     respond_to do |format|
       if @temp_user.save
-        format.html { redirect_to register_path, :alert => "Successfully submitted your email!" }
+        format.html { redirect_to root_path, :alert => "Successfully submitted your email!" }
         format.js
       else
-        format.html { render :action => :new }
+        format.html { redirect_to root_path }
         format.js
       end
     end
