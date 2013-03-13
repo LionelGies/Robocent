@@ -302,59 +302,336 @@ div.buttons input.try-now-password
     margin: 10px 10px 0 0;
 }
 
-/*----------------------------------------------------------------------
- CUSTOM ON PUBLIC
-----------------------------------------------------------------------*/
+/*-------------- SOLUTIONS -------------- */
 
-.logo {
-    width: auto;
-    height: auto;
-    position: static;
-}
-
-body {
-    line-height: normal;
-    color: inherit;
-}
-
-ul, li, h2 {
-    margin: 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    line-height: normal;
-}
-
-input[type="reset"], input[type="submit"], input[type="button"], button
-{
-    line-height: normal;
-    margin: 0;
-    text-align: center;
-    text-shadow: none;
-}
-
-input[type="text"], input[type="password"] {
-    line-height: normal;
-}
-
-input[type="text"], input[type="password"], textarea {
-    background: none repeat scroll 0 0 #ffffff;
-}
-
-/*------- Solutions----------*/
-
-.header_thin {
-    background: url('/assets/public_images/header_bot.gif') no-repeat scroll center -4px transparent;
-    height: 38px;
-}
-
-div.breadcrumbs a {
-    color: #6EA004;
-    /*    display: inline-block;*/
-    /*    margin-top: 3px;*/
-}
-
-div.breadcrumbs span.separator {
+.middle {
+    clear: both;
     position: relative;
-    bottom: 5px;
+    z-index: 1;
+}
+
+.middle .container_12 {
+    min-height: 200px;
+    z-index: 2;
+}
+
+.container_12 {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 960px;
+    line-height: 1.5em;
+}
+
+.full_width .content {
+    float: none;
+    width: 960px;
+}
+
+.full_width .post-detail {
+    float: none;
+    width: 960px;
+}
+
+.post-item .entry, .post-detail .entry {
+    font-size: 14px;
+    padding: 5px 0 0;
+}
+
+.entry {
+    clear: both;
+    color: #404040;
+    line-height: 1.5em;
+}
+
+.title_big {
+    padding-bottom: 40px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.title_big h2 {
+    font-size: 63px;
+    font-weight: normal;
+    color: #050505;
+    line-height: 1em;
+}
+
+.entry .title_big .subtitle {
+    color: #6EA004;
+    font-family: 'Cutive',serif;
+    font-size: 15px;
+}
+
+.box_white {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+
+.box_border {
+    border: 1px solid #E6E6E6;
+}
+
+.box {
+    border-radius: 4px 4px 4px 4px;
+    width: 100%;
+}
+
+.col_1_2 {
+    width: 460px;
+}
+.col_1, .col_1_2, .col_1_3, .col_2_3, .col_1_4, .col_3_4, .col_1_5, .col_2_5, .col_3_5, .col_4_5 {
+    display: inline;
+    float: left;
+    margin-right: 10px;
+    position: relative;
+}
+
+.box .inner {
+    padding: 15px;
+}
+
+.feature_block {
+    padding: 30px 0 0 50px;
+}
+
+.entry .col_1_2 img.alignleft {
+    margin: 32px 15px 3px 0 !important;
+}
+.content .entry img {
+    max-width: 620px;
+}
+img.alignleft {
+    margin: 5px 20px 5px 0 !important;
+}
+.alignleft {
+    float: left;
+}
+
+
+.feature_descr {
+    float: left;
+    width: 295px;
+}
+
+.entry .feature_descr h2, .entry .feature_descr h3 {
+    color: #DD4436;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+}
+.post-detail .entry h3 {
+    font-size: 23px;
+    font-weight: normal;
+    margin: 35px 0 15px;
+}
+
+.entry p {
+    margin: 5px 0 18px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+p.text-center a {
+    display: inline-block;
+}
+
+div.center-text {
+    margin-bottom: 200px;
+    margin-left: 264px;
+    margin-top: 57px;
+}
+
+div.center-text a {
+
+}
+
+div.center-text a.btn-grn {
+    margin-right: 50px;
+}
+
+/*-------------- SMSTERMS -------------- */
+
+.smsterms {
+    margin-top: 40px;
+}
+
+.middle .content {
+    padding-top: 20px;
+}
+
+.middle .content {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.2em;
+}
+
+.divider_space_thin {
+    margin-bottom: 35px;
+    margin-top: 35px;
+}
+
+.divider_space_last {
+    margin-bottom: 115px;
+}
+
+div.container_12 div.content h2 {
+    color: #333332;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+div.container_12 div.content div.row {
+    font-size: 13px;
+    line-height: 185%;
+}
+
+span.orange {
+    color: #F1670B;
+}
+
+span.green {
+    color: #6AA21E;
+}
+
+h1.page-sub-heading {
+    color: #606060;
+    font-family: 'PTSansBold';
+    font-size: 36px;
+    margin: 15px 0 50px;
+}
+
+.page-float-content {
+    float: left;
+    padding-top: 20px;
+    width: 620px;
+}
+
+.middle .sidebar {
+    float: left;
+    width: 300px;
+}
+
+.sidebar_inner {
+    background: url("/assets/smarthost/sidebar_top.jpg") no-repeat scroll 0 top transparent;
+    min-height: 100px;
+    padding: 30px 0 0 60px;
+}
+
+.sidebar .widget-container.widget_contact {
+    font-size: 13px;
+}
+.sidebar .widget-container.last {
+    margin: 0;
+}
+.sidebar .widget-container, .content .widget-container {
+    clear: both;
+    line-height: 1.4em;
+}
+.widget-container {
+    position: relative;
+}
+
+.sidebar_bottom {
+    background: url("/assets/smarthost/sidebar_bot.jpg") no-repeat scroll 0 bottom transparent;
+    height: 100px;
+}
+
+.sidebar {
+    background: url("/assets/smarthost/sidebar_mid.jpg") repeat-y scroll 0 center transparent;
+}
+
+.sidebar .widget-container.widget_contact .widget-title {
+    border: medium none;
+/*    color: #DD4436;*/
+/*    font-family: 'PT Sans',Arial,Helvetica,sans-serif;*/
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: 0;
+    text-transform: none;
+}
+
+
+.widget_contact .contact-address {
+    font-size: 13px;
+    font-style: italic;
+    font-weight: normal;
+    padding: 0 0 25px;
+}
+.widget_contact .contact-phone, .widget_contact .contact-mail, .widget_contact .contact-address, .widget_contact .contact-extra {
+    clear: both;
+    line-height: 1.3em;
+}
+
+.widget_contact .contact-phone {
+    background: none repeat scroll 0 0 transparent;
+}
+.widget_contact .contact-phone, .widget_contact .contact-mail, .widget_contact .contact-address, .widget_contact .contact-extra {
+    clear: both;
+    font-weight: bold;
+    line-height: 1.3em;
+    padding: 2px 0;
+}
+
+
+.widget_contact .contact-phone span, .widget_contact .contact-mail span, .widget_contact .contact-extra span {
+    color: #737373;
+    display: inline-block;
+    float: left;
+    font-style: italic;
+    font-weight: normal;
+    width: 70px;
+}
+
+.contact-social {
+    border-top: 1px solid #E1E1E1;
+    color: #737373;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 15px;
+    padding-top: 10px;
+    display: inline-block;
+}
+
+.contact-social div:first-child {
+    margin-left: 0;
+}
+.contact-social div {
+    float: left;
+}
+
+.contact-social div {
+    float: left;
+    margin-left: 10px;
+}
+
+.contact-map {
+    border: 1px solid #E1E1E1;
+    border-radius: 3px 3px 3px 3px;
+    height: 238px;
+    margin: 45px 0 0;
+    position: relative;
+    width: 238px;
+}
+
+.clear {
+    clear: both;
+}
+
+div.long-top {
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.two-row-desc-page entry p{
+    font-size: 13px;
+    line-height: 185%;
+    font-family: 'PTSansRegular';
 }

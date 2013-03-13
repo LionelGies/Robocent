@@ -1,17 +1,5 @@
 <% title " - Solutions" %>
 
-<div class="header header_thin">
-  <div class="container_12">
-    <div class="breadcrumbs">
-      <%= link_to "Homepage", root_path %>
-      <span class="separator">&nbsp;</span>
-      <a href="#">Our Robocall</a>
-      <span class="separator">&nbsp;</span>
-      Solutions
-    </div>
-  </div>
-</div>
-
 <div class="middle full_width">
   <div class="container_12" style="padding-top:0px">
 
@@ -131,11 +119,17 @@
 
           <div class="divider_space"></div>
 
-          <p class="text-center">
-            <%= link_to "CREATE AN ACCOUNT", register_path, :class => "btn tf_btn_red" %>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= link_to "VIEW OUR PRICING", pricing_path, :class => "btn tf_btn_green" %>
-          </p>
+          <div class="center-text">
+
+            <%= link_to new_user_path, :class => "btn-grn banner_btn" do %>
+              <span class="blk-grn">CREATE AN ACCOUNT</span>
+            <% end %>
+
+            <%= link_to pricing_path, :class => "btn-org banner_btn" do %>
+              <span class="blk-org">VIEW OUR PRICING</span>
+            <% end %>
+
+          </div>
 
           <div class="clear"></div>
         </div>
