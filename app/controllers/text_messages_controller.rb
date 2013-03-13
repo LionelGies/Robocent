@@ -72,8 +72,11 @@ class TextMessagesController < ApplicationController
     @text_message = current_user.text_messages.new(session[:text_message])
     @current_balance = current_user.account_balance.current_balance
 
-    #
+    #debugger
     # convert schedule_at time user time zone to utc time zone
+    unless params[:auto_approved].blank?
+		current_user.update_attributes(:text_messages_approval => "applied")
+    end
     require 'chronic'
     Time.zone = current_user.time_zone
     Chronic.time_class = Time.zone

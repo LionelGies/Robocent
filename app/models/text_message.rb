@@ -70,9 +70,9 @@ class TextMessage < ActiveRecord::Base
 		self.status = "approved"
 		save
 		send_text_to_queue
-		#Notification.need_text_message_approval(self.id).deliver
+		#Notification.delay.need_text_message_approval(self.id)
 	else
-		Notification.need_text_message_approval(self.id).deliver
+		Notification.delay.need_text_message_approval(self.id)
 	end
   end
   

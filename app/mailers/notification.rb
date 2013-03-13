@@ -83,7 +83,7 @@ class Notification < ActionMailer::Base
   end
   
   def need_text_message_approval(text_message_id)
-	#@text_message = TextMessage.find(text_message_id)
-	mail(:to => "info@robocent.com", :subject => "A text needs to be approved")
+	@text_message = TextMessage.find(text_message_id)
+	mail(:to => "info@robocent.com", :subject => "A text needs to be approved")#
   end
 end
