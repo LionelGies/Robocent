@@ -66,14 +66,13 @@ class TextMessage < ActiveRecord::Base
   end
   
   def check_for_approval
-	if(self.sending_option == 1 or self.number_of_recipients < 50)
-		self.status = "approved"
-		save
-		send_text_to_queue
-		#Notification.delay.need_text_message_approval(self.id)
-	else
-		Notification.delay.need_text_message_approval(self.id)
-	end
+    if(self.user.text_messages_approval == "approved" or self.sending_option == 1 or self.number_of_recipients < 50)
+      self.status = "approved"
+      save
+      send_text_to_queue
+    else
+      Notification.delay.need_text_message_approval(self.id)
+    end
   end
   
   def send_text_to_queue
@@ -81,7 +80,7 @@ class TextMessage < ActiveRecord::Base
     lists.each do |list|
       numbers = (numbers + Contact.where(:list_id => list.id).uniq.pluck(:phone_number)).uniq
     end
-	numbers = numbers - Dnc.where(:account => self.user_id).pluck(:phone).uniq
+    numbers = numbers - Dnc.where(:account => self.user_id).pluck(:phone).uniq
     numbers.each do |number|
       self.queue_texts.create(:phone_number => number)
     end

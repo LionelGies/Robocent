@@ -15,7 +15,7 @@ class TextMessagesController < ApplicationController
     else
       @step = "1"
     end
-	#debugger
+    #debugger
     if session[:text_message].present?
       session[:text_message] = session[:text_message].merge(params[:text_message]) if params[:text_message].present?
       if params[:list_ids].present? and params[:list_ids].size > 0
@@ -35,7 +35,7 @@ class TextMessagesController < ApplicationController
     else
       @text_message = TextMessage.new
     end
-	#debugger
+    #debugger
     if params["step"] == "3" and params[:text_message].present?
       begin
         numbers = []
@@ -75,7 +75,7 @@ class TextMessagesController < ApplicationController
     #debugger
     # convert schedule_at time user time zone to utc time zone
     unless params[:auto_approved].blank?
-		current_user.update_attributes(:text_messages_approval => "applied")
+      current_user.update_attributes(:text_messages_approval => "applied")
     end
     require 'chronic'
     Time.zone = current_user.time_zone

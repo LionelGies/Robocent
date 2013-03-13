@@ -9,6 +9,7 @@ ActiveAdmin.register TextMessage do
   index do
     column :id
     column :user
+    column :sending_from
     column :number_of_recipients
     column :total_processed
     column :succeeded
