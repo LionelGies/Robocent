@@ -180,6 +180,7 @@ $(function(){
 
 //Import Contacts
 $(function(){
+	
     $('#import_file_name').change(function(){
         var ext = $('#import_file_name').val().split('.').pop().toLowerCase();
         if($.inArray(ext, ['xls','xlsx','csv']) == -1) {
@@ -196,6 +197,7 @@ $(function(){
             return true;
         }
     });
+    
 });
 
 
