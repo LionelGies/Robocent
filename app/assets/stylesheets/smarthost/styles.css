@@ -630,8 +630,26 @@ div.long-top {
     margin-bottom: 50px;
 }
 
-.two-row-desc-page entry p{
+.two-row-desc-page .entry p {
     font-size: 13px;
     line-height: 185%;
     font-family: 'PTSansRegular';
+    color: #000000;
+}
+
+
+ol.terms-order li {
+    color: #000000;
+    list-style-type: decimal;
+    margin-bottom: 15px;
+    margin-left: 30px;
+    padding-left: 12px;
+}
+
+h1.low-margin {
+    margin-bottom: 15px;
+}
+
+h3.moderate-margin {
+    margin-bottom: 20px;
 }
