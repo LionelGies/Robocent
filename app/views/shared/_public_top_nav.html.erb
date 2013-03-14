@@ -44,11 +44,8 @@
           <li class="<%= 'selected' if current_page?(root_path) %>">
             <%= link_to "Home", root_path, :class => "#{'selected' if current_page?(root_path)}" %>
           </li>
-          <li class="<%= 'selected' if current_page?(about_us_path) %>">
-            <%= link_to "About Us", about_us_path, :class => "#{'selected' if current_page?(about_us_path)}" %>
-          </li>
-          <li class="
-              <%= 'selected' if current_page?(solutions_path) %>"><%= link_to "Solutions", solutions_path, :class => "#{'selected' if current_page?(solutions_path)}" %>
+          <li class="<%= 'selected' if current_page?(solutions_path) %>">
+            <%= link_to "Solutions", solutions_path, :class => "#{'selected' if current_page?(solutions_path)}" %>
           </li>
           <li class="last <%= 'selected' if current_page?(contact_us_path) %>">
             <%= link_to "Contact Us", contact_us_path, :class => "#{'selected' if current_page?(contact_us_path)}" %>
