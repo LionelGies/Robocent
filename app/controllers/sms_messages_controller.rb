@@ -143,35 +143,25 @@ class SmsMessagesController < ApplicationController
 
       #
       # Send message to twilio
-      #
-      # Split Message
-      body_content = @sms_message.body
-      body_content = body_content.scan(/.{1,160}/)
-
       if(Rails.env == 'development')
         from = "+15005550006" #valid for Test
-      elsif(Rails.env == 'staging')
-        from = @sms_message.from
-      elsif(Rails.env == 'production')
+      else
         from = @sms_message.from
       end
+
       to = @sms_message.to
-      count = 0
-      body_content.each do |body|
-        response = TwilioRequest::send_message(from, to, body)
-        if response == "true"
-          count += 1
-        else
-          logger.info response
-          flash.now.alert = response
-        end
-      end
-      if count == body_content.size
+
+
+      response = TwilioRequest::send_message(from, to, @sms_message.body)
+
+      if response == "true"
         flash.now.notice = "Successfully sent your message!"
         @sms_message.status = "sent"
       else
+        flash.now.alert = response
         @sms_message.status = "failed"
       end
+      
       @sms_message.save
     else
       flash.now.alert = "Something went wrong! Please contact Info@RoboCent.com"

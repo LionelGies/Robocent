@@ -16,6 +16,9 @@ ActiveAdmin.register TextMessage do
     column :schedule_at
     column :started_at
     column :status
+    column "View" do |msg|
+      link_to "view", admin_text_message_path(msg), :target => "_blank"
+    end
     column "manage" do |msg|
       if msg.queue_texts.present? and msg.status == "started"
         link_to "Pause", pause_admin_text_message_path(msg), :confirm => "Are you sure?"
@@ -35,6 +38,23 @@ ActiveAdmin.register TextMessage do
     def scoped_collection
       TextMessage.where("status <> 'finished'")
     end
+  end
+  
+  show do |user|
+    attributes_table do
+      row :id
+      row :user
+      row :content
+      row :sending_from
+      row :test_send_to
+      row :number_of_recipients
+      row :cost_per_text
+      row :number_of_texts_required
+      row :total_cost
+      row :schedule_at
+      row :created_at
+    end
+    active_admin_comments
   end
 
   member_action :pause do

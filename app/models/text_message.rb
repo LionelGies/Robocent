@@ -68,7 +68,7 @@ class TextMessage < ActiveRecord::Base
   end
   
   def check_for_approval
-    if(self.user.text_messages_approval == "approved" or self.sending_option == 1 or self.number_of_recipients < 50)
+    if(self.user.text_messages_approval == "approved" or self.sending_option == 1)
       self.status = "approved"
       save
       add_send_text_job
