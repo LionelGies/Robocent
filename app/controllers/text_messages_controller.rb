@@ -28,6 +28,7 @@ class TextMessagesController < ApplicationController
         flash[:alert] = "Please Select at least one contact list!"
         @step = "2"
       end
+      #session[:text_message][:content] = session[:text_message][:content].squish if session[:text_message][:content].present?
       @text_message = current_user.text_messages.new(session[:text_message])
     elsif params[:text_message].present?
       @text_message = current_user.text_messages.new(params[:text_message])
@@ -107,32 +108,22 @@ class TextMessagesController < ApplicationController
 
     numbers = params[:numbers].split(/[,]/).reject{|n| n.length < 3 }
 
-    #from = current_user.twilio_phone_number.phone_number #if @text_message.sending_option == 1
-    #from = "47543" if @text_message.sending_option != 1
-
     if(Rails.env == 'development')
       from = "+15005550006" #valid for Test
     elsif(Rails.env == 'production' or Rails.env == 'staging')
-      from = current_user.twilio_phone_number.phone_number
+      if @text_message.sending_option == 1
+        from = current_user.twilio_phone_number.phone_number
+      end
     end
-
-
-    body_content = @text_message.content
-    body_content = body_content.scan(/.{1,160}/)
 
     count = 0
     numbers.each do |number|
       to = number
-
-      body_content.each do |body|
-        response = TwilioRequest::send_message(from, to, body)
-        count += 1 if response == "true"
-        logger.info response
-      end
-
+      response = TwilioRequest::send_message(from, to, @text_message.content)
+      count += 1 if response == "true"
     end
 
-    if numbers.size == (count / body_content.size)
+    if numbers.size == count
       flash.now.notice = "Your test messages have been successfully sent."
     elsif count > 0
       flash.now.notice = "Your #{count} test messages have been successfully sent."

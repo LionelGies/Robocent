@@ -36,11 +36,23 @@ class TwilioRequest
 
   def self.send_message(from, to, body)
     begin
-      @account.sms.messages.create(
-        :from => from,
-        :to => to,
-        :body => body
-      )
+      r = []
+      len = 160
+      start = 0
+      while(start <= body.length) do
+        r << body[start...start+len]
+        start += len
+      end
+      r.delete_if { |item| item.length == 0 }
+
+      r.each do |s_body|
+        @account.sms.messages.create(
+          :from => from,
+          :to => to,
+          :body => s_body
+        )
+      end
+
       return "true"
     rescue Twilio::REST::RequestError => e
       return e.message
