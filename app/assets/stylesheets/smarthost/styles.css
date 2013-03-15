@@ -653,3 +653,18 @@ h1.low-margin {
 h3.moderate-margin {
     margin-bottom: 20px;
 }
+
+.new-user-popup input {
+    border: 1px solid #c0c0c0;
+    border-radius: 4px 4px 4px 4px;
+    color: #888888;
+    font-size: 11px;
+    height: 38px;
+    margin: 10px 10px 0 0;
+    padding: 0 6px;
+    width: 300px;
+}
+
+div#new-user-signup {
+    padding-left: 30px;
+}

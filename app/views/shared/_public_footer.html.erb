@@ -22,12 +22,6 @@
         </div>
       </div>
 
-      <div class="email">
-        <%= form_for TempUser.new, :remote => true do |f| %>
-          <%= f.text_field "email", :placeholder => "Email Address" %>
-          <%= f.submit "submit" %>
-        <% end %>
-      </div>
       <div class="clear"></div>
     </div>
   </div>
@@ -73,7 +67,7 @@
             <li class="mb"><a>757.821.2121</a></li>
             <li class="email"><a>Info@RoboCent.com</a></li>
             <li class="address"><a>111 Granby Street <br/>Norfolk, VA 23510</a></li>
-            <%= image_tag "smarthost/paypal.png", :alt => "", :border => "0" %>
+            <%= image_tag "smarthost/payment-cards-except-paypal.png", :alt => "", :border => "0" %>
           </ul>
         </div>
       </div>
