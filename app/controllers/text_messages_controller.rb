@@ -114,8 +114,11 @@ class TextMessagesController < ApplicationController
 
     if(Rails.env == 'development')
       from = "+15005550006" #valid for Test
-    elsif(Rails.env == 'production' or Rails.env == 'staging')
-      if @text_message.sending_option == 1
+    else
+      shortcode = ShortCode.first
+      if @text_message.sending_option != 1 and shortcode.present?
+        from = shortcode.number
+      else
         from = current_user.twilio_phone_number.phone_number
       end
     end
