@@ -169,6 +169,19 @@ $(function() {
         $("#contacts-table .ajax-loading").show();
         $("#dnc-table .ajax-loading").show();
     });
+    
+    var time_interval_id = null;
+    $("#text_message_content").focus(function(){
+		time_interval_id = setInterval(function(){
+			console.log("running");
+			$("#text_message_content").val($("#text_message_content").val().replace(/[\~`\^\|\\]/g, ""));
+		}, 200);
+		
+	});
+	$("#text_message_content").focusout(function(){
+		clearInterval(time_interval_id);
+		console.log("stopped");
+	});
 });
 
 //Fix file uploader click event

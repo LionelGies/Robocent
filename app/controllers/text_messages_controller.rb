@@ -15,7 +15,11 @@ class TextMessagesController < ApplicationController
     else
       @step = "1"
     end
-    #debugger
+    
+    if params[:text_message] && params[:text_message][:content]
+		params[:text_message][:content].gsub!(/[\~`\^\|\\]/i, "+")
+    end
+    
     if session[:text_message].present?
       session[:text_message] = session[:text_message].merge(params[:text_message]) if params[:text_message].present?
       if params[:list_ids].present? and params[:list_ids].size > 0
