@@ -3171,8 +3171,8 @@ active_admin.js: active_admin-ce5ca0287661742cd73a0cab42cb95f1.js
 active_admin/index.js: active_admin-ce5ca0287661742cd73a0cab42cb95f1.js
 application.js: application-2fd83499aa79d9d2cbd2d1b756036559.js
 application/index.js: application-2fd83499aa79d9d2cbd2d1b756036559.js
-dashboard.js: dashboard-c84d1974cc47c7385f786cb46bdb46e4.js
-dashboard/index.js: dashboard-c84d1974cc47c7385f786cb46bdb46e4.js
+dashboard.js: dashboard-9406f67868555b2fff70540f41051c64.js
+dashboard/index.js: dashboard-9406f67868555b2fff70540f41051c64.js
 dashboard/Flot/excanvas.js: dashboard/Flot/excanvas-5e6d75c7b564806ccb01cabffbb4e58b.js
 dashboard/Flot/excanvas/index.js: dashboard/Flot/excanvas-5e6d75c7b564806ccb01cabffbb4e58b.js
 public.js: public-ebb0d1a037c017dbfa1dac8494f0e4c2.js
