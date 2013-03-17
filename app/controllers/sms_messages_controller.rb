@@ -10,30 +10,37 @@ class SmsMessagesController < ApplicationController
     # Receive SMS From Twilio
     #
     from_phone_number = formatted_number(params["From"])
-
+    
     twilio_phone_number = TwilioPhoneNumber.find_by_phone_number(params["To"])
-    user = twilio_phone_number.user if twilio_phone_number.present?
-
-    if user.blank?
-      short_code = ShortCode.find_by_number(params["To"])
-      if short_code.present?
-        list = List.find_by_shortcode_keyword(params["Body"])
-        user = list.user if list.present?
+    short_code = ShortCode.find_by_number(params["To"])
+    
+    if twilio_phone_number.present?
+      user = twilio_phone_number.user
+      list = List.find_by_keyword_and_user_id(params["Body"], user.id)
+    elsif short_code.present?
+      contacts = Contact.where(:phone_number => from_phone_number)
+      list = List.find_by_shortcode_keyword(params["Body"])
+      if contacts.present? and contacts.count > 1 and list.blank?
+        text_message_ids = []
+        contacts.each do |contact|
+          text_messages = TextMessage.where("sending_option <> 1 and status = 'finished' and ? in (list_ids)", contact.list_id)
+          text_message_ids += text_messages.map(&:id) if text_messages.present?
+        end
+        text_messages = TextMessage.where("id in (?)", text_message_ids).order("schedule_at desc")
+        if text_messages.present?
+          user = text_messages.first.user
+        end
+      elsif contacts.present? and contacts.count == 1 and list.blank?
+        user = contacts.first.user
       end
     end
 
-    if user.present?
-      list = List.find_by_keyword_and_user_id(params["Body"], user.id) unless short_code.present? and list.present?
-
-      if list.present?
-        contact = Contact.find_by_phone_number_and_user_id_and_list_id(from_phone_number,user.id,list.id)
-        contact = Contact.find_by_phone_number_and_user_id_and_list_id(params["From"],user.id,list.id) if contact.blank?
-      end
-
-      contact = Contact.find_by_phone_number_and_user_id(from_phone_number,user.id) if contact.blank?
-      contact = Contact.find_by_phone_number_and_user_id(params["From"],user.id) if contact.blank?
-
-      if (contact.blank? and list.present?) or (contact.present? and list.present? and contact.list_id != list.id)
+    if list.present?
+      user = list.user
+      contact = Contact.where(:list_id => list.id, :phone_number => from_phone_number)
+      if contact.present?
+        reply_text = "Welcome to #{user.organization_name.present? ? user.organization_name : user.name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
+      else
         contact = list.contacts.new
         contact.user_id = list.user.id
         contact.phone_number = from_phone_number
@@ -44,46 +51,44 @@ class SmsMessagesController < ApplicationController
         contact.source = "sms by keyword"
         contact.save
         reply_text = "Welcome to #{user.organization_name.present? ? user.organization_name : user.name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
-    
-      elsif contact.present? and list.present? and contact.list_id == list.id
-        reply_text = "Welcome to #{user.organization_name.present? ? user.organization_name : user.name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
-
-      elsif contact.present? and params["Body"].downcase == "stop"
-        contacts = Contact.find(:all,
-          :conditions => ["(phone_number = ? or phone_number = ?) and user_id = ?",params["From"],from_phone_number, user.id])
-        contacts.each{ |c| c.destroy }
-        reply_text = "You are opted out from #{user.organization_name.present? ? user.organization_name : user.name}'s alerts. No more messages will be sent. Reply HELP for help or email Info@RoboCent.com. Msg&Data rates may apply."
-    
-      elsif contact.blank? and params["Body"].downcase == "stop"
-        reply_text = "You are opted out from RoboCent's alerts. No more messages will be sent. Reply HELP for help or email Info@RoboCent.com. Msg&Data rates may apply."
-        # Add to global dnc list
-        dnc = Dnc.new(:phone => params["From"], :global => true, :account => user.id)
-        dnc.save
-        
-      elsif params["Body"].downcase == "help"
-        reply_text = "Thank you for contacting us! Please contact Info@RoboCent.com or 888-849-6231 for assistance. Reply STOP to cancel. Msg&Data rates may apply. Frequency of msgs depends on user."
-        
-      else
-        sms = SmsMessage.new
-        sms.user_id = user.id if user.present?
-        sms.contact_id = contact.id if contact.present?
-        sms.sms_sid = params["SmsSid"]
-        sms.body = params["Body"]
-        sms.to = params["To"]
-        sms.from = params["From"]
-        sms.from_state = params["FromState"]
-        sms.from_city = params["FromCity"]
-        sms.from_country = params["FromCountry"]
-        sms.from_zip = params["FromZip"]
-        sms.status = params["SmsStatus"]
-        sms.save
       end
+
+    elsif params["Body"].downcase == "help"
+      reply_text = "Thank you for contacting us! Please contact Info@RoboCent.com or 888-849-6231 for assistance. Reply STOP to cancel. Msg&Data rates may apply. Frequency of msgs depends on user."
+    
+    elsif params["Body"].downcase == "stop"
+      if user.present?
+        user.contacts.where(:phone_number => from_phone_number).each do |c|
+          c.destroy
+        end
+        reply_text = "You are opted out from #{user.organization_name.present? ? user.organization_name : user.name}'s alerts. No more messages will be sent. Reply HELP for help or email Info@RoboCent.com. Msg&Data rates may apply."
+      else
+        # Add to global dnc list
+        dnc = Dnc.new(:phone => params["From"], :global => true)
+        dnc.save
+        reply_text = "You are opted out from RoboCent's alerts. No more messages will be sent. Reply HELP for help or email Info@RoboCent.com. Msg&Data rates may apply."
+      end
+
+    elsif user.present?
+      contacts = Contact.where(:user_id => user.id, :phone_number => from_phone_number)
+      sms = SmsMessage.new
+      sms.user_id = user.id 
+      sms.contact_id = contacts.first.id if contacts.present?
+      sms.sms_sid = params["SmsSid"]
+      sms.body = params["Body"]
+      sms.to = params["To"]
+      sms.from = params["From"]
+      sms.from_state = params["FromState"]
+      sms.from_city = params["FromCity"]
+      sms.from_country = params["FromCountry"]
+      sms.from_zip = params["FromZip"]
+      sms.status = params["SmsStatus"]
+      sms.save
     else
-      reply_text = "An error has occured, please email Info@RoboCent.com with any questions. Msg&Data rates may apply"
-      logger.info "User not found! Please check this Twilio number #{params["To"]}!"
-      # send email to Admin
+      reply_text = "Please email Info@RoboCent.com with any questions. Msg&Data rates may apply"
     end
 
+    
     # build up a response
     response = Twilio::TwiML::Response.new do |r|
       if reply_text.present?
