@@ -3,9 +3,9 @@
   <td><%= list.type_of_list.capitalize %></td>
   <td><%= list.number_of_contacts %></td>
   <td><%= list.keyword %></td>
-  <%#*<td>%>
-    <%#= list.shortcode_keyword %>
-  <%#*</td>%>
+  <td>
+    <%= list.shortcode_keyword %>
+  </td>
   <td align="center">
     <%= link_to "View", list, :class => "submitIt simple_buttons"  %>
   </td>
