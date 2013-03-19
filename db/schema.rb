@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130313110343) do
+ActiveRecord::Schema.define(:version => 20130319094400) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20130313110343) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
     t.string   "shortcode_keyword"
+    t.string   "greeting"
   end
 
   create_table "meta_contents", :force => true do |t|

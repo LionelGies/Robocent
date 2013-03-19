@@ -37,9 +37,10 @@ class SmsMessagesController < ApplicationController
 
     if list.present?
       user = list.user
+      greeting_text = list.greeting.present? ? "#{list.greeting}." : "Welcome to #{user.organization_name.present? ? user.organization_name : user.name}'s text alerts!"
       contact = Contact.where(:list_id => list.id, :phone_number => from_phone_number)
       if contact.present?
-        reply_text = "Welcome to #{user.organization_name.present? ? user.organization_name : user.name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
+        reply_text = "#{greeting_text} Text HELP for help and STOP to quit. Msg&data rates may apply. Frequency depends on user. Sent via RoboCent.com"
       else
         contact = list.contacts.new
         contact.user_id = list.user.id
@@ -50,7 +51,7 @@ class SmsMessagesController < ApplicationController
         contact.custom_1 = params["FromCountry"]
         contact.source = "sms by keyword"
         contact.save
-        reply_text = "Welcome to #{user.organization_name.present? ? user.organization_name : user.name}'s text alerts! Msg&data rates may apply. Reply HELP for help, STOP to cancel. Frequency depends on user. Sent via RoboCent.com."
+        reply_text = "#{greeting_text} Text HELP for help and STOP to quit. Msg&data rates may apply. Frequency depends on user. Sent via RoboCent.com"
       end
 
     elsif params["Body"].downcase == "help"

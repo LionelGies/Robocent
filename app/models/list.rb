@@ -1,6 +1,6 @@
 class List < ActiveRecord::Base
   attr_accessible :keyword, :name, :number_of_contacts, :type_of_list, :user_id,
-    :shortcode_keyword
+    :shortcode_keyword, :greeting
 
   belongs_to  :user
   has_many    :imports,  :dependent => :destroy

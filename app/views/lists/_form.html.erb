@@ -32,12 +32,13 @@
             <div class="filed_error" id="error_list_keyword"></div>
             <%= f.text_field :keyword, :class => "simple_field" %>
             <div class="field_notice">
-              When subscribers will text that key word to your RoboCent number,
-              application will automatically add them to the list.
+              When subscribers will text this keyword to
+              <%= formatted_number current_user.twilio_phone_number.phone_number %>,
+              they will automatically join your list.
             </div>
           </div>
         </div>
-    <div class="line_grid" id="row-shortcode-keyword">
+        <div class="line_grid" id="row-shortcode-keyword">
           <div class="g_3">
             <span class="label">Keyword for ShortCode</span>
           </div>
@@ -45,8 +46,18 @@
             <div class="filed_error" id="error_list_shortcode_keyword"></div>
             <%= f.text_field :shortcode_keyword, :class => "simple_field" %>
             <div class="field_notice">
-              When subscribers will text that key word to RoboCent ShortCode,
-              application will automatically add them to the list.
+              When subscribers will text this keyword to 47543, they will automatically join your list.
+            </div>
+          </div>
+        </div>
+        <div class="line_grid" id="row-greeting">
+          <div class="g_3">
+            <span class="label">Intro Greeting Text</span>
+          </div>
+          <div class="g_9">
+            <div class="filed_error" id="error_list_shortcode_keyword"></div>
+            <%= f.text_field :greeting, :class => "simple_field" %>
+            <div class="field_notice">
             </div>
           </div>
         </div>
