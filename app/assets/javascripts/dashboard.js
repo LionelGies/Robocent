@@ -86,12 +86,15 @@ $(function() {
         if(type_of_list == "text"){
             $("#row-keyword").show();
             $("#row-shortcode-keyword").show();
+            $("#row-greeting").show();
         }
         else if(type_of_list == "call"){
             $("#list_keyword").val("");
             $("#list_shortcode_keyword").val("");
+            $("#list_greeting").val("");
             $("#row-keyword").hide();
             $("#row-shortcode-keyword").hide();
+            $("#row-greeting").hide();
         }
 
         delay(function(){
