@@ -67,6 +67,7 @@ class TextMessagesController < ApplicationController
     end
 
     @current_balance = current_user.account_balance.current_balance
+    @short_code = ShortCode.first
 
     respond_to do |format|
       format.html # new.html.erb
