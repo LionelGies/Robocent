@@ -216,7 +216,7 @@ $(function(){
 	var status = $('#status'); 
 	
 	$('#new_import').ajaxForm({
-		dataType: 'json',
+		dataType: 'script',
 		beforeSend: function() {
 			$(".progress").show();
 			var percentVal = '0%';
@@ -234,7 +234,7 @@ $(function(){
 			var percentVal = '100%'; 
 			bar.width(percentVal); 
 			percent.html(percentVal);
-			window.location.href = "/imports/"+ xhr.responseText.trim()+"/map_column";
+			//window.location.href = "/imports/"+ xhr.responseText.trim()+"/map_column";
 		}
 	}); 
     

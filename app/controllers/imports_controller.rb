@@ -9,10 +9,10 @@ class ImportsController < ApplicationController
 	respond_to do |format|
 		if @import.save
 		  format.html{ redirect_to map_column_import_path(@import) }
-		  format.json		  
+		  format.js		  
 		else
 		  format.html{ redirect_to new_contact_path, :alert => "Something went Wrong!!" }
-		  format.json
+		  format.js
 		end
 	end
   end
