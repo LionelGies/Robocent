@@ -23,6 +23,7 @@
 //= require jquery_ujs
 //= require swfobject
 //= require jquery.joyride-2.0.3
+//= require jquery.form
 
 // Contacts
 $(function() {
@@ -201,15 +202,41 @@ $(function(){
         }
     });
 
-    $("#new_import").submit(function(){
-        var ext = $('#import_file_name').val().split('.').pop().toLowerCase();
-        if($.inArray(ext, ['xls','xlsx','csv']) == -1) {
-            alert('You may only upload an xls, xlsx, or csv file');
-            return false;
-        }else {
-            return true;
-        }
-    });
+    //$("#new_import").submit(function(){
+        //var ext = $('#import_file_name').val().split('.').pop().toLowerCase();
+        //if($.inArray(ext, ['xls','xlsx','csv']) == -1) {
+            //alert('You may only upload an xls, xlsx, or csv file');
+            //return false;
+        //}else {
+            //return true;
+        //}
+    //});
+    var bar = $('.bar');
+	var percent = $('.percent');
+	var status = $('#status'); 
+	
+	$('#new_import').ajaxForm({
+		dataType: 'json',
+		beforeSend: function() {
+			$(".progress").show();
+			var percentVal = '0%';
+			bar.width(percentVal)
+			percent.html(percentVal);
+		},
+		uploadProgress: function(event, position, total, percentComplete) {
+			var percentVal = percentComplete + '%';
+			bar.width(percentVal)
+			percent.html(percentVal);
+			//console.log(percentVal, position, total);
+		},
+		complete: function(xhr) {
+			//status.html(xhr.responseText);
+			var percentVal = '100%'; 
+			bar.width(percentVal); 
+			percent.html(percentVal);
+			window.location.href = "/imports/"+ xhr.responseText.trim()+"/map_column";
+		}
+	}); 
     
 });
 

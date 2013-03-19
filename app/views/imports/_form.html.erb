@@ -3,7 +3,7 @@
     <h4 class="widget_header_title wwIcon i_16_valid">Upload Multiple Contacts</h4>
   </div>
   <div class="widget_contents noPadding">
-    <%= form_for(@import ||= Import.new) do |f| %>
+    <%= form_for(@import ||= Import.new, :multipart => true) do |f| %>
       <div class="line_grid">
         <div class="g_3">
           <span class="label">List Name<span class="must">*</span></span>
@@ -18,6 +18,11 @@
         </div>
         <div class="g_9">
           <%= f.file_field :file_name, :class => "simple_form" %>
+          <div class="progress" style="display:none;">
+			<div class="bar"></div>
+			<div class="percent">0%</div>
+		  </div>
+		  <!--div id="status"></div-->
         </div>
       </div>
       <div class="line_grid">
