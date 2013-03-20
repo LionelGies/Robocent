@@ -9,10 +9,10 @@ class Contact < ActiveRecord::Base
   has_many   :sms_messages
   has_one    :dnc,          :dependent => :destroy
 
-  validate :phone_number_format
-
   validates :user_id, :presence => true
   validates :list_id, :presence => true
+  validate :phone_number_format
+  validate :uniqueness_per_list
 
   scope :by_phone_number, lambda{ |phone| {:conditions => ["contacts.phone_number LIKE ?", "%#{phone}%"]} }
 
@@ -25,6 +25,12 @@ class Contact < ActiveRecord::Base
       self.phone_number = ph
     else
       errors.add(:phone_number, "is Invalid")
+    end
+  end
+
+  def uniqueness_per_list
+    if self.new_record? and Contact.find_by_phone_number_and_list_id(self.phone_number, self.list_id).present?
+      errors.add(:phone_number, "is already in this list")
     end
   end
 

@@ -10,10 +10,10 @@ class Import < ActiveRecord::Base
   validates :list_id, :presence => true
 
   def get_sheet
-    au = ExcelUploader.new
-    au.download!(self.file_name.url.to_s)
-    au.retrieve_from_cache!(au.cache_name)
-    self.file_name.cache_stored_file!
+    #    au = ExcelUploader.new
+    #    au.download!(self.file_name.url.to_s)
+    #    au.retrieve_from_cache!(au.cache_name)
+    #    self.file_name.cache_stored_file!
 
     file_path = self.file_name.file.path
 
