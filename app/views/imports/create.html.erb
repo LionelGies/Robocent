@@ -1,0 +1,7 @@
+<textarea>
+	<% unless @import.new_record? %>	
+		window.location.href = "<%= map_column_import_path(@import) %>"
+	<% else %>
+		alert("Something went Wrong!!");
+	<% end %>
+</textarea>

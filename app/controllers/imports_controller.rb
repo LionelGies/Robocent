@@ -6,12 +6,13 @@ class ImportsController < ApplicationController
   
   def create
     @import = current_user.imports.new(params[:import])
+    #debugger
 	respond_to do |format|
 		if @import.save
-		  format.html{ redirect_to map_column_import_path(@import) }
+		  format.html#{ redirect_to map_column_import_path(@import) }
 		  format.js		  
 		else
-		  format.html{ redirect_to new_contact_path, :alert => "Something went Wrong!!" }
+		  format.html#{ redirect_to new_contact_path, :alert => "Something went Wrong!!" }
 		  format.js
 		end
 	end

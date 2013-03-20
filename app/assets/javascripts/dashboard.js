@@ -211,29 +211,30 @@ $(function(){
             //return true;
         //}
     //});
-    var bar = $('.bar');
-	var percent = $('.percent');
-	var status = $('#status'); 
+    var bar = $('.bar');	
+	var status = $('.status'); 
 	
 	$('#new_import').ajaxForm({
 		dataType: 'script',
+		//iframe: true,
 		beforeSend: function() {
 			$(".progress").show();
+			$(".status").show();
 			var percentVal = '0%';
-			bar.width(percentVal)
-			percent.html(percentVal);
+			bar.width(percentVal);
+			$("#uniform-import_file_name").hide();
 		},
 		uploadProgress: function(event, position, total, percentComplete) {
 			var percentVal = percentComplete + '%';
 			bar.width(percentVal)
-			percent.html(percentVal);
+			status.html("Uploading: <span class='must'>" + percentVal+ "</span>");
 			//console.log(percentVal, position, total);
 		},
 		complete: function(xhr) {
 			//status.html(xhr.responseText);
 			var percentVal = '100%'; 
 			bar.width(percentVal); 
-			percent.html(percentVal);
+			status.html("Upload Finished: <span class='must'>" + percentVal+ "</span>");
 			//window.location.href = "/imports/"+ xhr.responseText.trim()+"/map_column";
 		}
 	}); 
