@@ -16,9 +16,10 @@ class Jobs::ImportJob < Struct.new(:import)
       end
       count += 1 if contact.save
     end
-    import.hold = false
-    import.uploaded = true
-    import.save
+    #    import.hold = false
+    #    import.uploaded = true
+    #    import.save
+    import.destroy
   end
 
   #  def before(job)
