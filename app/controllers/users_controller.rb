@@ -12,65 +12,73 @@ class UsersController < ApplicationController
   end
 
   def create
-    @step_id = params[:step_id]
+    # @step_id = params[:step_id]
+    #
+    # if session[:user_temp_id].present?
+    # @user = User.find(session[:user_temp_id])
+    # else
+    # @user = User.new
+    # end
+    #
+    # if @step_id == "1"
+    # # create or update user
+    # if @user.update_attributes(params[:user])
+    # #create trailing stripe customer
+    # @billing_setting = @user.build_billing_setting
+    # @billing_setting.save
+    # @subscription = @user.build_subscription(:plan_id => Plan.first.id)
+    # @subscription.save
+    # session[:user_temp_id] = @user.id
+    # @step_id = "2"
+    # end
+    #
+    # elsif @step_id == "2"
+    # #twilio integration
+    #
+    # if session[:user_temp_id].present? && @user.present?
+    # @step_id = "finish"
+    # if @user.twilio_phone_number.blank?
+    # @twilio_phone_number = @user.build_twilio_phone_number(params[:twilio_phone_number])
+    # @twilio_phone_number.save
+    # end
+    # unless @user.update_attributes(params[:user])
+    # @step_id = "2"
+    # end
+    # else
+    # @step_id = "1"
+    # end
+    #
+    # elsif @step_id == "3"
+    # # save billing setting with stripe
+    # if session[:user_temp_id].present? && @user.present?
+    # @billing_setting = @user.build_billing_setting(params[:billing_setting])
+    # @billing_setting.save
+    # @subscription = @user.build_subscription(:plan_id => params[:billing_setting][:plan_id])
+    # #@subscription.create_or_update_subscription
+    # @step_id = "finish"
+    # else
+    # @step_id = "1"
+    # end
+    # end
+    #
+    # if @step_id == "finish"
+    # redirect_to register_confirmation_path
+    # else
+    # render :new
+    # end
 
-    if session[:user_temp_id].present?
-      @user = User.find(session[:user_temp_id])
+    # rescue Stripe::StripeError => e
+    # logger.error e.message
+    # @user.errors.add :base, e.message
+    # render :action => :new
+    
+    @user = User.new(params[:user])
+    @user.build_subscription(:plan_id => params[:pricing_plan])
+    if @user.save
+      redirect_to root_url
     else
-      @user = User.new
+      render :action => :new
     end
-
-    if @step_id == "1"
-      # create or update user
-      if @user.update_attributes(params[:user])
-        #create trailing stripe customer
-        @billing_setting = @user.build_billing_setting
-        @billing_setting.save
-        @subscription = @user.build_subscription(:plan_id => Plan.first.id)
-        @subscription.save
-        session[:user_temp_id] = @user.id
-        @step_id = "2"
-      end
-      
-    elsif @step_id == "2"
-      #twilio integration
-      
-      if session[:user_temp_id].present? && @user.present?
-        @step_id = "finish"
-        if @user.twilio_phone_number.blank?
-          @twilio_phone_number = @user.build_twilio_phone_number(params[:twilio_phone_number])
-          @twilio_phone_number.save
-        end
-        unless @user.update_attributes(params[:user])
-         @step_id = "2"
-        end
-      else
-        @step_id = "1"
-      end
-
-    elsif @step_id == "3"
-      # save billing setting with stripe
-      if session[:user_temp_id].present? && @user.present?
-        @billing_setting = @user.build_billing_setting(params[:billing_setting])
-        @billing_setting.save
-        @subscription = @user.build_subscription(:plan_id => params[:billing_setting][:plan_id])
-        #@subscription.create_or_update_subscription
-        @step_id = "finish"
-      else
-        @step_id = "1"
-      end
-    end
-
-    if @step_id == "finish"
-      redirect_to register_confirmation_path
-    else
-      render :new
-    end
-
-  rescue Stripe::StripeError => e
-    logger.error e.message
-    @user.errors.add :base, e.message
-    render :action => :new
   end
 
   def confirmation

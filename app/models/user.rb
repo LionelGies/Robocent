@@ -24,17 +24,17 @@ class User < ActiveRecord::Base
   has_many :dnc,                  :dependent => :destroy, :foreign_key => "account"
   
 
-  validates :name, :presence => true
+  #validates :name, :presence => true
   validates :email, :format =>  { :with => /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/ }
   #validates :organization_name, :presence => true
   #validates :phone, :presence => true
   #validates :organization_type, :presence => true
-  validates :time_zone, :presence => true, :on => :update
+  #validates :time_zone, :presence => true, :on => :update
   #validates :state, :presence => true
   validates_confirmation_of :password
-  validates :password, :presence => true, :on => :create
+  #validates :password, :presence => true, :on => :create
   validates_uniqueness_of :email
-  validates_acceptance_of :terms_and_conditions, :on => :create
+  #validates_acceptance_of :terms_and_conditions, :on => :create
 
   # scopes
   scope :active, :conditions => {:activation_state => 'active'}

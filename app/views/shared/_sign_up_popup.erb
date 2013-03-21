@@ -27,7 +27,7 @@
       $('document').ready(function(){
         $('.pricing-plan-signup').click(function(){
           $myWindow.dialog('open');
-          var pricing_plan_id = this.id.replace('pricing-plan-', '');
+          var pricing_plan_id = this.id;//.replace('pricing-plan-', '');
           $('#pricing_plan').val(pricing_plan_id);
           return false;
         });

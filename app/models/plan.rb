@@ -8,7 +8,9 @@ class Plan < ActiveRecord::Base
   def details
     "#{minimum_numbers}-#{maximum_numbers} Numbers, $#{amount/100}/#{interval.capitalize}, #{price_per_call_or_text}&cent;/Call or Text".html_safe
   end
-
+  
+  STRIPE_ID = %w[pay_as_you_go basic advance]
+  
   def stripe_plan
     @stripe_plan ||= Stripe::Plan.retrieve(self.stripe_id) rescue nil
   end

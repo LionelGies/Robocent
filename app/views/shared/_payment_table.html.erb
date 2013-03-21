@@ -12,7 +12,7 @@
             <li>No Credit Card Required</li>
             <li>250 Free Texts!</li>
           </ul>
-          <%= link_to "", :class => "small_btn-gry table_btn pricing-plan-signup", :id => 'pricing-plan-1' do %>
+          <%= link_to "", :class => "small_btn-gry table_btn pricing-plan-signup", :id => Plan::STRIPE_ID[0] do %>
             <span class="small_blk-gry">signup&nbsp;now</span>
           <% end %>
           <div class="clear"></div>
@@ -33,7 +33,7 @@
             <li>1.5&cent; Per Additional Text or Call</li>
             <li>500 Free Texts!</li>
           </ul>
-          <%= link_to "", :class => "small_btn-org table_btn pricing-plan-signup", :id => 'pricing-plan-2' do %>
+          <%= link_to "", :class => "small_btn-org table_btn pricing-plan-signup", :id => Plan::STRIPE_ID[1] do %>
             <span class="small_blk-org">signup&nbsp;now</span>
           <% end %>
           <div class="clear"></div>
@@ -52,7 +52,7 @@
             <li>1.3&cent; Per Additional Text or Call</li>
             <li>750 Free Texts!</li>
           </ul>
-          <%= link_to "", :class => "small_btn-gry table_btn pricing-plan-signup", :id => 'pricing-plan-3' do %>
+          <%= link_to "", :class => "small_btn-gry table_btn pricing-plan-signup", :id => Plan::STRIPE_ID[2] do %>
             <span class="small_blk-gry">signup&nbsp;now</span>
           <% end %>
           <div class="clear"></div>

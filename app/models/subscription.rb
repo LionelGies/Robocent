@@ -14,7 +14,7 @@ class Subscription < ActiveRecord::Base
 
   def set_trial
     self.trial_start = Time.now
-    self.trial_end = Time.now + 14.days
+    self.trial_end = Time.now + 7.days 
     self.status = "trailing"
   end
 
