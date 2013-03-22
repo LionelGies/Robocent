@@ -1,0 +1,73 @@
+<div id="set_keyword_and_phone_number_form" title="Welcome to RoboCent!">
+	<div style="background: white;">
+		<form method="post" id="new_list" class="list_form" action="/lists" accept-charset="UTF-8">
+			<div style="margin:0;padding:0;display:inline">
+				<input type="hidden" value="✓" name="utf8">
+				<input type="hidden" value="zfr8nMVNhb6pZ/lPkjGhbY/LhdF7jsjS0WvAZ3JioA8=" name="authenticity_token">
+			</div>
+
+			<input type="hidden" value="contacts/index" name="page_from" id="page_from">
+			<div class="line_grid">
+				<div class="g_3">
+					<span class="label">List Name<span class="must">*</span></span>
+				</div>
+				<div class="g_9">
+					<div id="error_list_name" class="filed_error"></div>
+					<input type="text" size="30" required="required" name="list[name]" id="list_name" class="simple_field">
+				</div>
+			</div>
+			<div class="line_grid">
+				<div class="g_3">
+					<span class="label">Type of List<span class="must">*</span></span>
+				</div>
+				<div class="g_9">
+					<div class="selector" id="uniform-list_type_of_list">
+						<span style="-moz-user-select: none;">Text</span>
+						<select required="required" name="list[type_of_list]" id="list_type_of_list" class="simple_form" style="opacity: 0;">
+							<option value="text">Text</option>
+							<option value="call">Call</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div id="row-keyword" class="line_grid">
+				<div class="g_3">
+					<span class="label">Keyword</span>
+				</div>
+				<div class="g_9">
+					<div id="error_list_keyword" class="filed_error"></div>
+					<input type="text" size="30" name="list[keyword]" id="list_keyword" class="simple_field">
+					<div class="field_notice">
+						When subscribers will text that key word to your RoboCent number,
+						application will automatically add them to the list.
+					</div>
+				</div>
+			</div>
+
+			<div class="line_grid">
+				<div class="g_3"></div>
+				<div class="g_3">
+					<input type="submit" value="Create List" name="commit" class="submitIt simple_buttons">
+				</div>
+				<div class="g_6">
+					<div style="display:none" class="ajax-loading">
+						<img src="/assets/dashboard/Icons/Load/load-8.gif" alt="Load-8">
+					</div>
+				</div>
+			</div>
+		</form>
+		
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#set_keyword_and_phone_number_form").dialog({
+			autoOpen : false,
+			height : 300,
+			width : 750,
+			modal : true
+		});
+		$("#set_keyword_and_phone_number_form").dialog('open');
+	})
+</script>

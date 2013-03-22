@@ -1,82 +1,72 @@
 <div class="g_6 contents_header">
-  <h3 class="i_16_dashboard tab_label">Dashboard</h3>
+	<h3 class="i_16_dashboard tab_label">Dashboard</h3>
 </div>
 
-<div class="g_12 separator"><span></span></div>
+<div class="g_12 separator">
+	<span></span>
+</div>
 
 <%= render "shared/show_flash" %>
 
 <div class="g_4">
-  <div class="widget_header">
-    <h4 class="widget_header_title wwIcon i_16_ui">Contacts</h4>
-  </div>
-  <div class="widget_contents noPadding">
-    <table class="tables">
-      <tbody>
-        <tr>
-          <td>Total Contacts</td>
-          <td>
-            <%= @total_contacts_count %>
-          </td>
-        </tr>
-        <tr>
-          <td>Texting Contacts</td>
-          <td>
-            <%= @text_contacts_count %>
-          </td>
-        </tr>
-        <tr>
-          <td>Calling Contacts</td>
-          <td>
-            <%= @call_contacts_count %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" style="text-align:center">
-            <%= link_to "Add and update contacts", contacts_path, :style => "color:#666666;" %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+	<div class="widget_header">
+		<h4 class="widget_header_title wwIcon i_16_ui">Contacts</h4>
+	</div>
+	<div class="widget_contents noPadding">
+		<table class="tables">
+			<tbody>
+				<tr>
+					<td>Total Contacts</td>
+					<td> <%= @total_contacts_count %> </td>
+				</tr>
+				<tr>
+					<td>Texting Contacts</td>
+					<td> <%= @text_contacts_count %> </td>
+				</tr>
+				<tr>
+					<td>Calling Contacts</td>
+					<td> <%= @call_contacts_count %> </td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align:center"> <%= link_to "Add and update contacts", contacts_path, :style => "color:#666666;" %> </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 <div class="g_4"></div>
 <div class="g_4">
-  <div class="widget_header">
-    <h4 class="widget_header_title wwIcon i_16_tabs">Billing Summary</h4>
-  </div>
-  <div class="widget_contents noPadding">
-    <table class="tables">
-      <tbody>
-        <tr>
-          <td>Account Balance</td>
-          <td>
-            <%= "$%.3f" % current_user.current_balance %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" style="line-height:36px;">
-            You can send
-            <%= @total_text_or_call_can_send %>
-            texts or calls with this balance
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" style="text-align:center">
-            <%= link_to "Add Funds to your Account", billing_path, :style => "color:#666666;" %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+	<div class="widget_header">
+		<h4 class="widget_header_title wwIcon i_16_tabs">Billing Summary</h4>
+	</div>
+	<div class="widget_contents noPadding">
+		<table class="tables">
+			<tbody>
+				<tr>
+					<td>Account Balance</td>
+					<td> <%= "$%.3f" % current_user.current_balance %> </td>
+				</tr>
+				<tr>
+					<td colspan="2" style="line-height:36px;"> You can send
+					<%= @total_text_or_call_can_send %>
+					texts or calls with this balance </td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align:center"> <%= link_to "Add Funds to your Account", billing_path, :style => "color:#666666;" %> </td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 
 <div id="recent-activity-table">
-  <%= render "recent_activity" %>
+	<%= render "recent_activity" %>
 </div>
 
+<%= render "add_keyword_phone_number"%>
+
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("#recent-activity-table table.datatable thead tr th:first").click();
-  })
+	$(document).ready(function() {
+		$("#recent-activity-table table.datatable thead tr th:first").click();
+	})
 </script>
