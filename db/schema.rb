@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310220028) do
+ActiveRecord::Schema.define(:version => 20130322050617) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(:version => 20130310220028) do
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
     t.float    "free_credit"
+    t.float    "monthly_free_credit"
   end
 
   create_table "queue_texts", :force => true do |t|
@@ -376,6 +377,7 @@ ActiveRecord::Schema.define(:version => 20130310220028) do
     t.datetime "updated_at",                                     :null => false
     t.string   "address"
     t.string   "state"
+    t.string   "text_messages_approval"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

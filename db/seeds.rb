@@ -10,9 +10,18 @@
 Plan.all.each{ |p| p.destroy }
 
 Plan.create([
-    {stripe_id: "robocent_temp", amount: "500", currency: "usd", interval: "month",
-      name: "Basic", trial_period_days: "14", minimum_numbers: "0",
-      maximum_numbers: "50000", price_per_call_or_text: "1.5", free_credit: "7.5"}
+      {stripe_id: "pay_as_you_go", amount: "0", currency: "usd",
+      name: "Pay As You Go", minimum_numbers: "0",
+      maximum_numbers: "50000", price_per_call_or_text: "2", free_credit: "5"},
+      
+      {stripe_id: "basic", amount: "500", currency: "usd", interval: "month",
+      name: "Basic", trial_period_days: "7", minimum_numbers: "0",
+      maximum_numbers: "50000", price_per_call_or_text: "1.5", free_credit: "7.5", monthly_free_credit: "7.5"},
+      
+      {stripe_id: "advance", amount: "1900", currency: "usd", interval: "month",
+      name: "Advance", trial_period_days: "7", minimum_numbers: "0",
+      maximum_numbers: "50000", price_per_call_or_text: "1.3", free_credit: "9.75", monthly_free_credit: "24.70"}
+      
   ])
 
 #Plan.create([

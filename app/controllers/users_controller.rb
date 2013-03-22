@@ -73,9 +73,13 @@ class UsersController < ApplicationController
     # render :action => :new
     
     @user = User.new(params[:user])
-    @user.build_subscription(:plan_id => params[:pricing_plan])
+    
     if @user.save
-      redirect_to root_url
+      find_plan(params[:pricing_plan])
+      BillingSetting.create(:user_id => @user.id)
+      Subscription.create(:user_id => @user.id, :plan_id => @plan.id)
+      auto_login @user
+      redirect_to dashboard_path
     else
       render :action => :new
     end
@@ -129,5 +133,11 @@ class UsersController < ApplicationController
     else
       redirect_to profile_path, :alert => "Something went wrong! Please try again."
     end
+  end
+  private
+  def find_plan(stripe_id)
+    @plan = Plan.find_by_stripe_id stripe_id
+    @plan = Plan.find_by_stripe_id Plan::STRIPE_ID[0] unless @plan
+    @plan
   end
 end

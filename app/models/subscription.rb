@@ -9,12 +9,12 @@ class Subscription < ActiveRecord::Base
   #before_destroy :deactivate_stripe_subscription
 
   after_create :add_free_balance
-  #after_create :create_or_update_subscription
+  after_create :create_or_update_subscription
   before_create :set_trial
 
   def set_trial
     self.trial_start = Time.now
-    self.trial_end = Time.now + 7.days 
+    self.trial_end = Time.now + self.plan.trial_period_days.to_i.days 
     self.status = "trailing"
   end
 
@@ -22,7 +22,8 @@ class Subscription < ActiveRecord::Base
     Time.now < self.trial_end ? true : false
   end
 
-  def create_or_update_subscription
+  def create_or_update_subscription    
+    return if self.plan.stripe_id == Plan::STRIPE_ID[0]
     subscription = user.billing_setting.customer.update_subscription(:plan => plan.stripe_id)
     self.status = subscription.status if subscription.status.present?
     self.trial_start = Time.at(subscription.trial_start) if subscription.trial_start.present?

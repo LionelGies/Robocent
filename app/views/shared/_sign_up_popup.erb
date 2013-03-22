@@ -3,10 +3,10 @@
     <%= hidden_field_tag "step_id", "1" %>
     <%= hidden_field_tag "pricing_plan", "0" %>
     <br />
-    <%= f.email_field "email", :placeholder => "Email", :class => "try-now-email", :style => "display: block" %>
+    <%= f.email_field :email, :placeholder => "Email", :class => "try-now-email", :style => "display: block" %>
     <br />
     <br />
-    <%= f.password_field "email", :placeholder => "Password", :class => "try-now-password", :style => "display: block" %>
+    <%= f.password_field :password, :placeholder => "Password", :class => "try-now-password", :style => "display: block" %>
     <br />
     <br />
     <%= link_to "javascript:void(0);", :class => "small_btn-org banner_two_btn left-mrgn", :onclick => "$(this).closest('form').submit();return false;" do %>
@@ -28,7 +28,7 @@
         $('.pricing-plan-signup').click(function(){
           $myWindow.dialog('open');
           var pricing_plan_id = this.id;//.replace('pricing-plan-', '');
-          $('#pricing_plan').val(pricing_plan_id);
+          $('#new-user-signup #pricing_plan').val(pricing_plan_id);
           return false;
         });
         $('.signup-popup').click(function(){
