@@ -1,71 +1,28 @@
 <% title " - Reset Password"  %>
 
-<div class="header header_thin">
-  <div class="container_12">
-    <div class="breadcrumbs">
-      <%= link_to "Homepage", root_path %>
-      <span class="separator">&nbsp;</span>
-      Reset Password
-    </div>
-  </div>
-</div>
-
 <div class="middle cols2">
-  <div class="container_12">
+  <div class="container_12 long-top two-row-desc-page">
 
     <!-- content -->
-    <div class="content">
+    <div class="content page-float-content">
 
-      <div class="entry">
+      <div class="post-item post-detail">
+        <h1 class="page-sub-heading"> Reset Password</h1>
 
-        <div class="row">
-          <div class="col col_1_2 ">
-            <div class="inner">
-              <h2>Password Reset</h2>
+        <div class="entry">
 
-              <!-- add comment -->
-              <!-- login widget -->
-              <div class="widget-container widget_login">
-                <%= form_tag password_resets_path, :method => :post, :class => "loginform" do %>
-                  <p>
-                    <%= label_tag :email %>
-                    <%= text_field_tag :email, params[:email], :class => "input", :size => "20", :tabindex => "10" %>
-                  </p>
-                  <p class="submit">
-                    <%= submit_tag "Reset my password!", :class => "btn-submit", :tabindex => "100" %>
-                  </p>
-                <% end %>
-              </div>
-              <!--/ login widget -->
-            </div>
+          <div id="new-user-signup">
+            <%= form_tag password_resets_path, :method => :post do %>
+              <%= text_field_tag :email, params[:email], :placeholder => "Email", :class => "try-now-email" %>
+              <br/>
+              <%= link_to "javascript:void(0);", :class => "small_btn-gry banner_two_btn left-mrgn", :onclick => "$(this).closest('form').submit();return false;" do %>
+                <span class="small_blk-gry">Reset my password!</span>
+              <% end %>
+            <% end %>
           </div>
-
-          <div class="col col_1_2 ">
-            <div class="inner">
-              <h2>Support Center</h2>
-              <p>We're always here to help our clients get the most out of our platform. If you have questions, concerns or comments, feel free to reach out to us through one of our offered support options:</p>
-              <h5 style="margin-bottom:-5px; margin-top:0px;">
-                <%= image_tag("public_images/temp/features2_6.png", :style => "float:left", :width => "45", :height => "45", :class => "alignleft") %>
-                <div style="padding-top:15px;">Live Chat Online</div>
-              </h5>
-              <br clear="all"/>
-              <h5 style="margin-bottom:-5px; margin-top:0px;">
-                <%= image_tag("public_images/temp/features2_7.png", :style => "float:left", :width => "45", :height => "45", :class => "alignleft") %>
-                <div style="padding-top:15px;">Email Us</div>
-              </h5>
-              <br clear="all"/>
-              <h5 style="margin-bottom:-5px; margin-top:0px;">
-                <%= image_tag("public_images/temp/features2_8.png", :style => "float:left", :width => "45", :height => "45", :class => "alignleft") %>
-                <div style="padding-top:15px;">FAQs & Videos</div>
-              </h5>
-            </div>
-          </div>
+          <div class="clear"></div>
         </div>
       </div>
-
-      <div class="clear"></div>
-      <!--/add comment -->
-
     </div>
     <!--/ content -->
 
