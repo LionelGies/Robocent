@@ -1,0 +1,26 @@
+<% if flash.present? %>
+  <% if flash[:notice].present? %>
+    <div class="container" id="flash" style="display:none">
+      <div class="success iDialog">
+        <%= flash[:notice] %>
+      </div>
+    </div>
+  <% end %>
+  <% if flash[:alert].present? %>
+    <div class="container" id="flash" style="display:none">
+      <div class="warning iDialog">
+        <%= flash[:alert] %>
+      </div>
+    </div>
+  <% end %>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#flash").delay(700).fadeIn(1500);
+      
+      $("#flash").click(function(){
+        $("#flash").fadeOut(1500);
+      });
+    });
+  </script>
+<% end %>

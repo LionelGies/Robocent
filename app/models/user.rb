@@ -22,24 +22,20 @@ class User < ActiveRecord::Base
   has_many :recordings,           :dependent => :destroy, :foreign_key => "userID"
   has_many :test_calls,           :dependent => :destroy, :foreign_key => "userID"
   has_many :dnc,                  :dependent => :destroy, :foreign_key => "account"
-  
 
-  #validates :name, :presence => true
+  
   validates :email, :format =>  { :with => /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/ }
-  #validates :organization_name, :presence => true
-  #validates :phone, :presence => true
-  #validates :organization_type, :presence => true
-  #validates :time_zone, :presence => true, :on => :update
-  #validates :state, :presence => true
-  validates_confirmation_of :password
-  #validates :password, :presence => true, :on => :create
   validates_uniqueness_of :email
-  #validates_acceptance_of :terms_and_conditions, :on => :create
+
+  validates_length_of :password, :minimum => 6, :message => "must be at least 6 characters long", :if => :password
+
+  #  validates :password, :presence => true, :on => :create
+  #  validates_confirmation_of :password
 
   # scopes
   scope :active, :conditions => {:activation_state => 'active'}
 
-  #before_save :update_time_zone
+  before_save :update_time_zone
 
   after_create :create_account_balance
 
@@ -55,7 +51,8 @@ class User < ActiveRecord::Base
   private
 
   def update_time_zone
-    self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank? or self.state != self.state_was
+    #self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank? or self.state != self.state_was
+    self.time_zone = "Eastern Time (US & Canada)"
   end
 
   def create_account_balance

@@ -549,8 +549,8 @@ h1.page-sub-heading {
 
 .sidebar .widget-container.widget_contact .widget-title {
     border: medium none;
-/*    color: #DD4436;*/
-/*    font-family: 'PT Sans',Arial,Helvetica,sans-serif;*/
+    /*    color: #DD4436;*/
+    /*    font-family: 'PT Sans',Arial,Helvetica,sans-serif;*/
     font-size: 15px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -667,4 +667,33 @@ h3.moderate-margin {
 
 div#new-user-signup {
     padding-left: 30px;
+}
+
+
+#flash{
+    position: relative;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#flash .iDialog{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 680px;
+    font-family: 'TradeGothicRegular';
+    font-size: 13px;
+    line-height: 25px;
+}
+
+.input-large{
+    border: 1px solid #C0C0C0;
+    border-radius: 4px 4px 4px 4px;
+    color: #888888;
+    font-size: 11px;
+    height: 38px;
+    margin: 10px 10px 0 0;
+    padding: 0 6px;
+    width: 300px;
+    font-family: Verdana,Arial,sans-serif;
 }

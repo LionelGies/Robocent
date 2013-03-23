@@ -12,7 +12,6 @@
               <p>On The Market</p>
               <div class="buttons">
                 <%= form_for User.new do |f| %>
-                  <%= hidden_field_tag "pricing_plan", Plan::STRIPE_ID[0]%>
                   <%= f.email_field :email, :placeholder => "Email", :class => "try-now-email" %>
                   <%= f.password_field :password, :placeholder => "Password", :class => "try-now-password" %>
                   <%= link_to "javascript:void(0);", :class => "small_btn-gry banner_two_btn left-mrgn", :onclick => "$(this).closest('form').submit();return false;" do %>

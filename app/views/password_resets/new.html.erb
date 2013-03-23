@@ -1,35 +1,19 @@
 <% title " - Reset Password"  %>
 
-<div class="middle cols2">
-  <div class="container_12 long-top two-row-desc-page">
-
-    <!-- content -->
-    <div class="content page-float-content">
-
-      <div class="post-item post-detail">
-        <h1 class="page-sub-heading"> Reset Password</h1>
-
-        <div class="entry">
-
-          <div id="new-user-signup">
-            <%= form_tag password_resets_path, :method => :post do %>
-              <%= text_field_tag :email, params[:email], :placeholder => "Email", :class => "try-now-email" %>
-              <br/>
-              <%= link_to "javascript:void(0);", :class => "small_btn-gry banner_two_btn left-mrgn", :onclick => "$(this).closest('form').submit();return false;" do %>
-                <span class="small_blk-gry">Reset my password!</span>
-              <% end %>
-            <% end %>
-          </div>
-          <div class="clear"></div>
-        </div>
-      </div>
+<div id="sub_content">
+  <div class="container">
+    <div class="sigup-form" style="width:400px;margin: 0 auto;">
+      <h2>Reset Password</h2>
+      <%= form_tag password_resets_path, :method => :post do %>
+        <br />
+        <%= text_field_tag :email, params[:email], :placeholder => "Email", :class => "input-large" %>
+        <br /><br/>
+        <%= link_to "javascript:void(0);", :class => "small_btn-org banner_two_btn left-mrgn", :onclick => "$(this).closest('form').submit();return false;" do %>
+          <span class="small_blk-org">Submit</span>
+        <% end %>
+      <% end %>
     </div>
-    <!--/ content -->
-
-    <!-- sidebar -->
-    <%= render "shared/location" %>
-    <!--/ sidebar -->
-
-    <div class="clear"></div>
   </div>
 </div>
+<br/><br/>
+<div class="clear"></div>

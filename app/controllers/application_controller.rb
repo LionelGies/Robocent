@@ -8,7 +8,11 @@ class ApplicationController < ActionController::Base
   helper_method :formatted_number
 
   def not_authenticated
-    redirect_to login_url, :alert => "First login to access this page."
+    redirect_to root_path, :alert => "First login to access this page."
+  end
+
+  def not_authorized
+    redirect_to root_path, :alert => "You are not authorized to access this page!"
   end
 
   def formatted_number(number)

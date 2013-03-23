@@ -4,31 +4,32 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan
 
-  #before_create {|s| s.status = "pending"}
-
-  #before_destroy :deactivate_stripe_subscription
-
-  after_create :add_free_balance
-  after_create :create_or_update_subscription
   before_create :set_trial
 
+  after_create :add_free_balance
+  after_create :create_stripe_subscription
+
+
   def set_trial
-    self.trial_start = Time.now
-    self.trial_end = Time.now + self.plan.trial_period_days.to_i.days 
-    self.status = "trailing"
+    if plan.trial_period_days.present?
+      self.trial_start = Time.now
+      self.trial_end = Time.now + self.plan.trial_period_days.to_i.days
+      self.status = "trailing"
+    end
   end
 
   def trial
     Time.now < self.trial_end ? true : false
   end
 
-  def create_or_update_subscription    
-    return if self.plan.stripe_id == Plan::STRIPE_ID[0]
-    subscription = user.billing_setting.customer.update_subscription(:plan => plan.stripe_id)
-    self.status = subscription.status if subscription.status.present?
-    self.trial_start = Time.at(subscription.trial_start) if subscription.trial_start.present?
-    self.trial_end = Time.at(subscription.trial_end) if subscription.trial_end.present?
-    self.save
+  def create_stripe_subscription
+    if plan.recurring
+      subscription = user.billing_setting.customer.update_subscription(:plan => plan.stripe_id)
+      self.status = subscription.status if subscription.status.present?
+      self.trial_start = Time.at(subscription.trial_start) if subscription.trial_start.present?
+      self.trial_end = Time.at(subscription.trial_end) if subscription.trial_end.present?
+      self.save
+    end
   end
 
   def migrate(new_plan)

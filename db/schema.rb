@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322050617) do
+ActiveRecord::Schema.define(:version => 20130323073540) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20130322050617) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
     t.string   "shortcode_keyword"
+    t.string   "greeting"
   end
 
   create_table "meta_contents", :force => true do |t|
@@ -197,10 +198,14 @@ ActiveRecord::Schema.define(:version => 20130322050617) do
     t.integer  "minimum_numbers"
     t.integer  "maximum_numbers"
     t.float    "price_per_call_or_text"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.float    "free_credit"
-    t.float    "monthly_free_credit"
+    t.float    "monthly_free_credit",    :default => 0.0
+    t.boolean  "recurring",              :default => false
+    t.boolean  "default",                :default => false
+    t.integer  "max_keywords"
+    t.boolean  "card_required",          :default => false
   end
 
   create_table "queue_texts", :force => true do |t|

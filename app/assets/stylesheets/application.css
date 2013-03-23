@@ -9,12 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *
+ *= require jquery-ui.min
  *= require smarthost/embedded_fonts
  *= require smarthost/smarthost
  *= require smarthost/editable_buttons
  *= require smarthost/drop_menu
  *= require smarthost/front
+ *= require niceforms-default
  *= require smarthost/styles
- *= require_tree ../../../vendor/assets/stylesheets
  *= require_self
  */

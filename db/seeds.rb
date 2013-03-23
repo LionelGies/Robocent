@@ -10,17 +10,20 @@
 Plan.all.each{ |p| p.destroy }
 
 Plan.create([
-      {stripe_id: "pay_as_you_go", amount: "0", currency: "usd",
+    {stripe_id: "pay_as_you_go", amount: "0", currency: "usd",
       name: "Pay As You Go", minimum_numbers: "0",
-      maximum_numbers: "50000", price_per_call_or_text: "2", free_credit: "5"},
+      maximum_numbers: "50000", price_per_call_or_text: "2", free_credit: "5",
+      default: true, max_keywords: 1},
       
-      {stripe_id: "basic", amount: "500", currency: "usd", interval: "month",
+    {stripe_id: "basic", amount: "500", currency: "usd", interval: "month",
       name: "Basic", trial_period_days: "7", minimum_numbers: "0",
-      maximum_numbers: "50000", price_per_call_or_text: "1.5", free_credit: "7.5", monthly_free_credit: "7.5"},
+      maximum_numbers: "50000", price_per_call_or_text: "1.5", free_credit: "7.5",
+      monthly_free_credit: "7.5", recurring: true, max_keywords: 3, card_required: true},
       
-      {stripe_id: "advance", amount: "1900", currency: "usd", interval: "month",
+    {stripe_id: "advance", amount: "1900", currency: "usd", interval: "month",
       name: "Advance", trial_period_days: "7", minimum_numbers: "0",
-      maximum_numbers: "50000", price_per_call_or_text: "1.3", free_credit: "9.75", monthly_free_credit: "24.70"}
+      maximum_numbers: "50000", price_per_call_or_text: "1.3", free_credit: "9.75",
+      monthly_free_credit: "24.70", recurring: true, max_keywords: 5, card_required: true}
       
   ])
 
