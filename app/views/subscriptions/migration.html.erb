@@ -16,6 +16,7 @@
 <div class="g_12 separator"><span></span></div>
 
 <%= render "shared/show_flash" %>
+
 <div class="g_12">
   <h4 class="widget_header_title">
     Downgrade will be effective at the end of the current billing cycle.<br/>
@@ -26,6 +27,8 @@
     )
   </h4>
 </div>
+
+
 <div class="g_12">
   <div class="widget_contents noPadding">
     <%= form_for(@subscription, :url => migrate_path) do |f| %>
@@ -37,21 +40,27 @@
           <% end %>
         </tr>
         <tr>
-          <td>Maximum Contacts</td>
-          <% @plans.each do |p| %>
-            <td><%= number_with_delimiter(p.maximum_numbers) %></td>
-          <% end %>
-        </tr>
-        <tr>
           <td>Cost per Month</td>
           <% @plans.each do |p| %>
             <td>$<%= p.amount/100 %></td>
           <% end %>
         </tr>
         <tr>
-          <td>Cost per Message</td>
+          <td>Texts or Calls Included</td>
+          <% @plans.each do |p| %>
+            <td><%= ((p.monthly_free_credit * 100) / p.price_per_call_or_text).to_i %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Cost Per Additional Text or Call</td>
           <% @plans.each do |p| %>
             <td><%= p.price_per_call_or_text %>&cent;</td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Keywords</td>
+          <% @plans.each do |p| %>
+            <td><%= p.max_keywords %></td>
           <% end %>
         </tr>
         <tr>

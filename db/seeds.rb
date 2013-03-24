@@ -10,8 +10,8 @@
 Plan.all.each{ |p| p.destroy }
 
 Plan.create([
-    {stripe_id: "pay_as_you_go", amount: "0", currency: "usd",
-      name: "Pay As You Go", minimum_numbers: "0",
+    {stripe_id: "pay_as_you_go", amount: "0", currency: "usd", interval: "month",
+      name: "Pay As You Go", trial_period_days: "7", minimum_numbers: "0",
       maximum_numbers: "50000", price_per_call_or_text: "2", free_credit: "5",
       default: true, max_keywords: 1},
       

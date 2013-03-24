@@ -54,8 +54,8 @@ Robocent::Application.routes.draw do
   match 'send-a-test'     => 'text_messages#send_a_test', :as => :send_a_test
   match 'send-text'       => 'text_messages#new',         :as => :send_text
 
-  #  put "migrate"             => "subscriptions#migrate",   :as => :migrate
-  #  match "migration"         => "subscriptions#migration", :as => :migration
+  put "migrate"             => "subscriptions#migrate",   :as => :migrate
+  match "migration"         => "subscriptions#migration", :as => :migration
 
   post 'stripe-webhook'       => 'stripe_webhook#create'
 

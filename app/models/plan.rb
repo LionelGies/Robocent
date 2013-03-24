@@ -18,7 +18,7 @@ class Plan < ActiveRecord::Base
   before_create :create_stripe_plan
 
   def create_stripe_plan
-    if stripe_plan.blank? and self.recurring
+    if stripe_plan.blank?
       begin
         Stripe::Plan.create(
           :id => stripe_id,

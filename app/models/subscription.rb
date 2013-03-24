@@ -23,13 +23,11 @@ class Subscription < ActiveRecord::Base
   end
 
   def create_stripe_subscription
-    if plan.recurring
-      subscription = user.billing_setting.customer.update_subscription(:plan => plan.stripe_id)
-      self.status = subscription.status if subscription.status.present?
-      self.trial_start = Time.at(subscription.trial_start) if subscription.trial_start.present?
-      self.trial_end = Time.at(subscription.trial_end) if subscription.trial_end.present?
-      self.save
-    end
+    subscription = user.billing_setting.customer.update_subscription(:plan => plan.stripe_id)
+    self.status = subscription.status if subscription.status.present?
+    self.trial_start = Time.at(subscription.trial_start) if subscription.trial_start.present?
+    self.trial_end = Time.at(subscription.trial_end) if subscription.trial_end.present?
+    self.save
   end
 
   def migrate(new_plan)
