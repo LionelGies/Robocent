@@ -58,7 +58,7 @@
         <tr>
           <td>Your RoboCent Phone Number</td>
           <td>
-            <%= formatted_number @user.twilio_phone_number.phone_number %>
+            <%= formatted_number @user.twilio_phone_number.phone_number if @user.twilio_phone_number %>
           </td>
         </tr>
       </table>

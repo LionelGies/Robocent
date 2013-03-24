@@ -20,11 +20,11 @@ class DashboardController < ApplicationController
   end
 
   def welcome_pop_up_submit
-    @list = current_user.list.new(params[:list])
+    @list = current_user.lists.new(params[:list])
     @list.type_of_list = "text"
     @list.save
 
-    @tpn = current_user.twilio_phone_number.new(params[:twilio_phone_number])
+    @tpn = current_user.build_twilio_phone_number(params[:twilio_phone_number])
     @tpn.save
 
     redirect_to dashboard_path, :notice => ""

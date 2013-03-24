@@ -63,7 +63,13 @@
   <%= render "recent_activity" %>
 </div>
 
-<%= render "add_keyword_phone_number"%>
+<% if current_user.pop_up_count == 0 %>
+  <%= render "add_keyword_phone_number"%>
+  <% current_user.pop_up_counter %>
+<% elsif current_user.pop_up_count == 1 %>
+  <%= render "walk_through" %>
+  <% current_user.pop_up_counter %>
+<% end %>
 
 <script type="text/javascript">
   $(document).ready(function() {
