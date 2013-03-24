@@ -28,7 +28,7 @@
 $(function() {
     $(".fancybox").fancybox()
 
-    var delay = (function(){
+    delay = (function(){
         var timer = 0;
         return function(callback, ms){
             clearTimeout (timer);
@@ -208,5 +208,20 @@ $(function(){
         var msg_text = msg_count == 1 ? " Text Message Used" : " Text Messages Used";
         var text = content.length + char_text + msg_count + msg_text;
         $("#content_length").html(text);
+    });
+});
+
+
+$(document).ready(function(){
+    $("#twilio_phone_number_area_code").keyup(function(){
+        var area_code = $(this).val();
+        if(area_code.length == 3){
+            $("#ajax-loader img").show();
+            $("#twilio_phone_number_phone_number").attr('disabled', true).end();
+            $("#twilio_phone_number_select").load("/twilionumbers/"+area_code, function(){
+                $("select#twilio_phone_number_phone_number").uniform();
+                $("#ajax-loader img").hide();
+            });
+        }
     });
 });
