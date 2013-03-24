@@ -18,5 +18,9 @@ class DashboardController < ApplicationController
   def profile
     @user = current_user
   end
+
+  def welcome_pop_up_submit
+    
+  end
   
 end

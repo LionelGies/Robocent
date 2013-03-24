@@ -1,5 +1,7 @@
 Robocent::Application.routes.draw do
 
+  post "welcome-pop-up-submit" => 'dashboard#welcome_pop_up_submit', :as => :welcome_pop_up_submit
+
   resources :dnc, :only => [:index, :create, :destroy]
 
   match 'inbox-support'       => 'support#inbox',       :as => :inbox_support
