@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
     :terms_and_conditions, :promo_code, :pop_up_count
   attr_accessor :terms_and_conditions, :promo_code
 
-  has_one :billing_setting,       :dependent => :destroy
   has_one :subscription,          :dependent => :destroy
+  has_one :billing_setting,       :dependent => :destroy
   has_one :plan_migration,        :dependent => :destroy
   has_one :twilio_phone_number,   :dependent => :destroy
   has_one :account_balance,       :dependent => :destroy

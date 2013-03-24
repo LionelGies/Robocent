@@ -9,6 +9,7 @@ class Subscription < ActiveRecord::Base
   after_create :add_free_balance
   after_create :create_stripe_subscription
 
+  before_destroy :deactivate_stripe_subscription
 
   def set_trial
     if plan.trial_period_days.present?

@@ -9,6 +9,8 @@ class BillingSetting < ActiveRecord::Base
   before_save :set_card_expiry_date
   before_save :create_or_update_stripe_customer
 
+  before_destroy :delete_stripe_customer
+
   def set_card_expiry_date
     if self.card_exp_month.present? && self.card_exp_year.present?
       exp_date = "#{self.card_exp_year}-#{self.card_exp_month}-01"
@@ -71,6 +73,10 @@ class BillingSetting < ActiveRecord::Base
 
   def customer
     @customer ||= Stripe::Customer.retrieve(self.stripe_id) rescue nil
+  end
+
+  def delete_stripe_customer
+    customer.delete
   end
 
 end
