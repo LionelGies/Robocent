@@ -58,7 +58,17 @@
         <tr>
           <td>Your RoboCent Phone Number</td>
           <td>
-            <%= formatted_number @user.twilio_phone_number.phone_number if @user.twilio_phone_number %>
+            <% if @user.twilio_phone_number %>
+              <%= formatted_number @user.twilio_phone_number.phone_number %>
+            <% elsif @user.subscription.plan.recurring %>
+              <span class="label">
+                <%= link_to "Create Number", "javascript:;", :onclick => "$('#twilio-number-form').toggle();" %>
+              </span>
+            <% else %>
+              <span class="label">
+                Please upgrade your account to create Regular phone number.
+              </span>
+            <% end %>
           </td>
         </tr>
       </table>
@@ -165,6 +175,65 @@
     To request a new RoboCent phone number, please email Info@RoboCent.com with your request.
   </span>
 </div>
+
+<% if current_user.subscription.plan.recurring and @user.twilio_phone_number.blank? %>
+  <div class="g_12" id="twilio-number-form" style="display:none">
+    <div class="widget_header">
+      <h4 class="widget_header_title wwIcon i_16_valid">
+        Create RoboCent Number
+      </h4>
+    </div>
+    <div class="widget_contents noPadding">
+      <div class="line_grid">
+        <div class="g_12">
+          <span class="label">
+            To create a regular phone number, please enter the area code below.
+          </span>
+        </div>
+      </div>
+      <%= form_tag welcome_pop_up_submit_path, :method => :post, :id => "welcome-pop-up-form" do %>
+        <%= fields_for TwilioPhoneNumber.new do |t| %>
+          <div class="line_grid">
+            <div class="g_2">
+              <span class="label">Area Code : </span>
+            </div>
+            <div class="g_2">
+              <div class="filed_error" id="error_list_name"></div>
+              <%= t.text_field :area_code, :maxlength => "3", :class => "simple_field" %>
+            </div>
+            <div class="g_2">
+              <div id="ajax-loader" style="width: 33px;">
+                <%= image_tag("public_images/loading.gif", :style => "display:none") %>
+              </div>
+            </div>
+            <div class="g_2">
+              <span class="label">
+                Select Number :
+              </span>
+            </div>
+            <div class="g_4">
+              <div class="filed_error" id="error_list_shortcode_keyword"></div>
+              <span id="twilio_phone_number_select">
+                <%= t.select :phone_number, "", {:prompt => "Select Number" }, :class => "simple_form" %>
+              </span>
+            </div>
+          </div>
+        <% end %>
+        <div class="line_grid">
+          <div class="g_4"></div>
+          <div class="g_2">
+            <%= submit_tag "Save Settings", :class => "submitIt simple_buttons" %>
+          </div>
+          <div class="g_2">
+            <div class="ajax-loading" style="display:none">
+              <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 <script type="text/javascript">
   $(document).ready(function(){

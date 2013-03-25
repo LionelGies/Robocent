@@ -20,13 +20,17 @@ class DashboardController < ApplicationController
   end
 
   def welcome_pop_up_submit
-    @list = current_user.lists.new(params[:list])
-    @list.type_of_list = "text"
-    @list.save
+    if params[:list].present?
+      @list = current_user.lists.new(params[:list])
+      @list.type_of_list = "text"
+      @list.save
+    end
 
-    @tpn = current_user.build_twilio_phone_number(params[:twilio_phone_number])
-    @tpn.save
-
+    if current_user.subscription.plan.recurring and params[:twilio_phone_number].present?
+      @tpn = current_user.build_twilio_phone_number(params[:twilio_phone_number])
+      @tpn.save
+    end
+    
     redirect_to dashboard_path, :notice => ""
   end
   
