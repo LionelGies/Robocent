@@ -33,7 +33,7 @@ class TextMessage < ActiveRecord::Base
     if self.sending_option == 1
       self.user.twilio_phone_number.phone_number
     else
-      "Shortcode"
+      "47543"
     end
   end
 

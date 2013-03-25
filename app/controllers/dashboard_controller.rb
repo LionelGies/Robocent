@@ -23,15 +23,16 @@ class DashboardController < ApplicationController
     if params[:list].present?
       @list = current_user.lists.new(params[:list])
       @list.type_of_list = "text"
-      @list.save
+      @list_create = true if @list.save
     end
 
     if current_user.subscription.plan.recurring and params[:twilio_phone_number].present?
       @tpn = current_user.build_twilio_phone_number(params[:twilio_phone_number])
-      @tpn.save
+      @number_create = true if @tpn.save
     end
-    
-    redirect_to dashboard_path, :notice => ""
+
+    notice = (@list_create.present? or @number_create.present?) ? "Successfully Saved Settings!" : ""
+    redirect_to dashboard_path, :notice => notice
   end
   
 end
