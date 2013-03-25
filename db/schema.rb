@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324112553) do
+ActiveRecord::Schema.define(:version => 20130325001320) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(:version => 20130324112553) do
     t.integer  "user_id"
     t.string   "event_type"
     t.text     "response"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "recurring",  :default => false
   end
 
   create_table "billing_settings", :force => true do |t|

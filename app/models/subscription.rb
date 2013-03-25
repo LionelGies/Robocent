@@ -32,7 +32,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def migrate(new_plan)
-    if new_plan.amount > self.plan.amount
+    if new_plan.amount >= self.plan.amount
       # Upgrade
       user.billing_setting.customer.update_subscription(:plan => new_plan.stripe_id,
         :prorate => true)

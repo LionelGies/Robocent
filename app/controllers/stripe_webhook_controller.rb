@@ -9,7 +9,8 @@ class StripeWebhookController < ApplicationController
         BillingEvent.create(
           :event_type     => params["type"],
           :user_id        => billing_setting.user.present? ? billing_setting.user_id : nil,
-          :response => params["data"]["object"]
+          :response => params["data"]["object"],
+          :recurring => params["data"]["object"]["invoice"] ? true : false
         )
       end
     rescue => e
