@@ -61,7 +61,6 @@ class User < ActiveRecord::Base
     total_keywords >= max_keywords ? false : true
   end
 
-  private
   def issue_pin_number
     begin
       r = Random.new
@@ -71,6 +70,7 @@ class User < ActiveRecord::Base
     self.pin_number = pin
   end
 
+  private
   def update_time_zone
     #self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank? or self.state != self.state_was
     self.time_zone = "Eastern Time (US & Canada)" if self.time_zone.blank?
