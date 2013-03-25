@@ -18,14 +18,16 @@
     <div class="line_grid">
       <div class="g_2"><span class="label">Sending Options</span></div>
       <div class="g_10">
-        <%= f.radio_button :sending_option, "1", :class => "simple_form", :checked => true %>
-        <span class="label ilC">
-          Send Message from <%= current_user.twilio_phone_number.phone_number %>.
-          (Will send at the rate of 60 text/minute)
-        </span>
-        <% if @short_code.present? %>
+        <% if current_user.twilio_phone_number.present? %>
+          <%= f.radio_button :sending_option, "1", :class => "simple_form" %>
+          <span class="label ilC">
+            Send Message from <%= current_user.twilio_phone_number.phone_number %>.
+            (Will send at the rate of 60 text/minute)
+          </span>
           <br/><br/>
-          <%= f.radio_button :sending_option, "2", :class => "simple_form" %>
+        <% end %>
+        <% if @short_code.present? %>
+          <%= f.radio_button :sending_option, "2", :class => "simple_form", :checked => true %>
           <span class="label ilC">
             Send Message from <%= @short_code.number %>.
             (Will send at the rate of 2400 texts/minute)

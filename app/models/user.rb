@@ -3,11 +3,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :organization_name, :organization_type, :name, :phone, :email,
     :time_zone, :password, :password_confirmation, :activation_state, :activation_token,
-<<<<<<< HEAD
-    :terms_and_conditions, :promo_code, :text_messages_approval
-=======
-    :terms_and_conditions, :promo_code, :pop_up_count
->>>>>>> smarthost
+    :terms_and_conditions, :promo_code, :text_messages_approval, :pop_up_count
+  
   attr_accessor :terms_and_conditions, :promo_code
 
   has_one :subscription,          :dependent => :destroy
@@ -55,6 +52,12 @@ class User < ActiveRecord::Base
   def pop_up_counter
     self.pop_up_count += 1
     self.save
+  end
+
+  def allowed_to_create_keyword?
+    max_keywords = self.subscription.plan.max_keywords
+    total_keywords = self.lists.count(:all, :conditions => ["shortcode_keyword is not NULL"])
+    total_keywords >= max_keywords ? false : true
   end
 
   private
