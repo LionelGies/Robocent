@@ -9,7 +9,7 @@ class BillingEvent < ActiveRecord::Base
   private
 
   def add_monthly_free_balance
-    if self.event_type == "invoice.payment_succeeded" 
+    if self.event_type == "invoice.payment_succeeded" and self.user.subscription.plan.recurring
       payment = self.user.subscription.plan.monthly_free_credit
       r = Receipt.new(:memo => 'Monthly included credit', :credit => payment, :free => true)
       self.user.receipts << r
