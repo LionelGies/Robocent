@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :organization_name, :organization_type, :name, :phone, :email,
     :time_zone, :password, :password_confirmation, :activation_state, :activation_token,
-    :terms_and_conditions, :promo_code, :text_messages_approval, :pop_up_count
+    :terms_and_conditions, :promo_code, :text_messages_approval, :pop_up_count, :pin_number
   
   attr_accessor :terms_and_conditions, :promo_code
 
