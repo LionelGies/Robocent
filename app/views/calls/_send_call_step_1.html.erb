@@ -21,7 +21,7 @@
           <%= "757.349.8601" if Rails.env.staging? %>
           <%= "757.215.4781" if Rails.env.production? %>
           and enter pin
-          <%= current_user.twilio_phone_number.pin_number %>*.
+          <%= current_user.pin_number %>*.
           Record your message and hit the # sign when finished.
           The message will then replay; you may then press 1* to save
           (and it will automatically post to the table below)

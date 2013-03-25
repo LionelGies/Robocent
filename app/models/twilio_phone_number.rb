@@ -6,7 +6,7 @@ class TwilioPhoneNumber < ActiveRecord::Base
   validates :phone_number, :presence => true
 
   before_create :buy_twilio_number
-  after_create :issue_pin_number
+  #after_create :issue_pin_number
 
   before_destroy :release_twilio_number
 

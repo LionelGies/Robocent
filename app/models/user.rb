@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
 
   before_save :update_time_zone
 
+  before_create :issue_pin_number
   after_create :create_account_balance
 
 
@@ -61,10 +62,18 @@ class User < ActiveRecord::Base
   end
 
   private
+  def issue_pin_number
+    begin
+      r = Random.new
+      pin = r.rand(11...99).to_s + r.rand(11...99).to_s + r.rand(11...99).to_s
+      user = User.find_by_pin_number(pin)
+    end while user.present?
+    self.pin_number = pin
+  end
 
   def update_time_zone
     #self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank? or self.state != self.state_was
-    self.time_zone = "Eastern Time (US & Canada)"
+    self.time_zone = "Eastern Time (US & Canada)" if self.time_zone.blank?
   end
 
   def create_account_balance

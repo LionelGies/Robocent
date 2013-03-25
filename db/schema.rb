@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325001320) do
+ActiveRecord::Schema.define(:version => 20130325153841) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -385,6 +385,7 @@ ActiveRecord::Schema.define(:version => 20130325001320) do
     t.string   "state"
     t.string   "text_messages_approval"
     t.integer  "pop_up_count",                    :default => 0
+    t.string   "pin_number"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

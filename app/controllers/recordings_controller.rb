@@ -9,9 +9,9 @@ class RecordingsController < ApplicationController
   def new
     root_url = "http://robocent.com/"
     if params["Digits"].present? and params["Digits"].length == 6
-      tpn = TwilioPhoneNumber.find_by_pin_number(params["Digits"])
-      if tpn.present?
-        user = tpn.user
+      pin_user = User.find_by_pin_number(params["Digits"])
+      if pin_user.present?
+        user = pin_user
       else
         pin_error = true
       end

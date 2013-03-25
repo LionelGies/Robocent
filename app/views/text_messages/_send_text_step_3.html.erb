@@ -157,7 +157,7 @@
       </div>
       <div class="g_2"></div>
       <div class="g_4">
-        <% if (@current_balance < @text_message.total_cost) and !current_user.billing_setting.card %>
+        <% if ((@current_balance < @text_message.total_cost) or current_user.subscription.plan.card_required) and !current_user.billing_setting.card %>
           <%= link_to "Submit", "javascript:;", :class => "submitIt simple_buttons", :id => "provide_card_link" %>
         <% else %>
           <%= f.submit "Submit", :class => "submitIt simple_buttons" %>
@@ -167,7 +167,7 @@
   </div>
 <% end %>
 
-<% if (@current_balance < @text_message.total_cost) and !current_user.billing_setting.card %>
+<% if ((@current_balance < @text_message.total_cost) or current_user.subscription.plan.card_required) and !current_user.billing_setting.card %>
   <div id="dialog" title="<%= current_user.subscription.trial ? "You Must Have a Card on FIle!" : "Your Free Trial has Ended!" %>">
     <div class="dialog">
       <%= render "billing/form" %>

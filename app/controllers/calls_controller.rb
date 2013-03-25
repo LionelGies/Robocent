@@ -94,7 +94,7 @@ class CallsController < ApplicationController
 
     @call.schedule_at = start_time.utc
 
-    if current_user.billing_setting.card or @current_balance > @call.total_cost
+    if current_user.billing_setting.card or (@current_balance >= @call.total_cost and !current_user.subscription.plan.card_required)
       if @call.save
         session.delete(:call)
         redirect_to dashboard_path, :notice => "Successfully placed the call into queue!"

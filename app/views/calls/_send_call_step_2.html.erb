@@ -17,9 +17,12 @@
     <div class="line_grid">
       <div class="g_3"><span class="label">Caller Id Number</span></div>
       <div class="g_9">
-        <%= f.text_field :caller_id_number, :class => "simple_field", :required => true, :value => formatted_number(current_user.twilio_phone_number.phone_number), :style => "width:250px;" %>
-        <div class="field_notice">Please enter the Caller ID number you would like displayed to the recipients.<br/>You may use your RoboCent number if you wish
-          <%= formatted_number(current_user.twilio_phone_number.phone_number) %>
+        <%= f.text_field :caller_id_number, :class => "simple_field", :required => true, :style => "width:250px;" %>
+        <div class="field_notice">Please enter the Caller ID number you would like displayed to the recipients.
+          <% if current_user.twilio_phone_number %>
+            <br/>You may use your RoboCent number if you wish
+            <%= formatted_number(current_user.twilio_phone_number.phone_number) %>
+          <% end %>
         </div>
       </div>
     </div>

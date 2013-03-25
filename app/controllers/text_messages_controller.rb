@@ -96,7 +96,7 @@ class TextMessagesController < ApplicationController
     
     @text_message.schedule_at = start_time.utc
 
-    if current_user.billing_setting.card or @current_balance > @text_message.total_cost
+    if current_user.billing_setting.card or (@current_balance >= @text_message.total_cost and !current_user.subscription.plan.card_required)
       if @text_message.save
         session.delete(:text_message)
         redirect_to dashboard_path, :notice => "Successfully placed the text messages into queue!"
