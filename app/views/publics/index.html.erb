@@ -1,28 +1,50 @@
 <% title " - Texting & Calling Solutions" %>
 
-<%= render "home_new_header" %>
+<%= render "shared/banner" %>
 
-<div class="middle full_width">
-  <div class="container_12" style="padding-top:0px">
+<div id="content">
+  <div class="container">
 
-    <!-- Content -->
-    <div class="content">
-      <div class="post-detail">
-        <div class="entry">
-
-          <%= render 'pricing_table' %>
-
-          <div class="divider_big"></div>
-
-          <p class="text-center">
-            <%= link_to "CREATE AN ACCOUNT", register_path, :class => "btn tf_btn_red" %>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= link_to "VIEW OUR SOLUTIONS", solutions_path, :class => "btn tf_btn_green" %>
-          </p>
+    <div class="welcome">
+      <h1>Welcome to RoboCent!</h1>
+      <div class="text">
+        <p>For businesses, schools and organizations looking to send text or call notifications to their subscribers, RoboCent provides a user-friendly platform to deliver your messages in minutes!</p>
+        <div class="section double-width">
+          <ul>
+            <li class="tick">Add subscribers individually, from a spreadsheet or text a keyword to join.</li>
+            <li class="tick">Send up to 2,400 texts per minute or 4,000 calls per minute.</li>
+            <li class="tick">Live support available 7 days a week.</li>
+            <li class="tick">Monitor Real-Time Analytics for all Calls and Texts</li>
+          </ul>
         </div>
       </div>
+      <%= image_tag "smarthost/phone.png", :alt => "", :border => "0", :class => "welcome_img" %>
     </div>
-    <!--/ content -->
+
+    <div class="testimonial">
+      <h3>Testimonials</h3>
+      <ul id="tips">
+        <li><p>We sent over 200,000 robocalls through RoboCent last election cycle and we could not be more pleased with the results!</p> <span class="name">Travis Trawick,</span>
+          <span class="work">Campaign Manager, Meeks for Council</span></li>
+        <li><p>We use RoboCent to keep parents informed of cancellations and events -- thank you for this fantastic platform!</p> <span class="name">Alexis Miller,</span>
+          <span class="work">Softball Coach</span></li>
+        <li><p>Thanks to RoboCent, we've been able to get our customers to come into our restaurant more often, boosting our revenue!</p> <span class="name">Dennis Painter,</span>
+          <span class="work">Virginia Beach Business Owner</span></li>
+      </ul>
+    </div>
 
   </div>
+  <div class="clear"></div>
+
+  <%= render "shared/service" %>
+  <%= render "shared/pricing_table" %>
 </div>
+<%= render "shared/sign_up_popup" %>
+
+<% content_for :js do %>
+  <script type="text/javascript">
+    $(function() {
+      randomtip();
+    });
+  </script>
+<% end %>

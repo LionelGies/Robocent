@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Robocent</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>
+      Robocent
+      <%= yield :title %>
+    </title>
 
-<%= yield %>
+    <%= render "shared/meta_contents" %>
 
-</body>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+
+    <script src="//cdn.optimizely.com/js/183754947.js"></script>
+
+    <%= csrf_meta_tags %>
+
+    <link rel="shortcut icon" href="favicon.ico"/>
+  </head>
+  <body>
+    <div id="wrap">
+      <%= render "shared/public_flash" %>
+      <%= render "shared/public_top_nav" %>
+      <%= yield %>
+      <%= render "shared/public_footer" %>
+    </div>
+
+    <%= yield :js %>
+
+    <%= render "shared/google" %>
+  </body>
 </html>

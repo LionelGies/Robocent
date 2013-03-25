@@ -11,4 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
+//= require smarthost/niceforms
+//= require smarthost/home
+//= require smarthost/contact_us

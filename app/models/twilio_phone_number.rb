@@ -24,7 +24,11 @@ class TwilioPhoneNumber < ActiveRecord::Base
 
   def buy_twilio_number
     number = TwilioRequest::buy_phone_number(phone_number)
-    self.sid = number.sid
+    if number
+      self.sid = number.sid
+    else
+      return false
+    end
   end
 
   def release_twilio_number

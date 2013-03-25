@@ -1,0 +1,126 @@
+<div id="set_keyword_and_phone_number_form" title="Welcome to RoboCent!">
+  <div class="g_12" style="background: white">
+    <div class="widget_contents noPadding">
+      <%= form_tag welcome_pop_up_submit_path, :method => :post, :id => "welcome-pop-up-form" do %>
+        <div class="line_grid">
+          <div class="g_12 widget_header_title">
+            Please create your first Contact List and the keyword people can text to 47543 to
+            join the list. You may create and manage your lists and keywords on the contacts
+            tab.
+          </div>
+        </div>
+
+        <%= fields_for List.new do |l| %>
+          <div class="line_grid">
+            <div class="g_2">
+              <span class="label">List Name : </span>
+            </div>
+            <div class="g_4">
+              <div class="filed_error" id="error_list_name"></div>
+              <%= l.text_field :name, :class => "simple_field" %>
+            </div>
+            <div class="g_2">
+              <span class="label">Keyword : </span>
+            </div>
+            <div class="g_4">
+              <div class="filed_error" id="error_list_shortcode_keyword"></div>
+              <%= l.text_field :shortcode_keyword, :class => "simple_field" %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if current_user.subscription.plan.recurring %>
+          <div class="line_grid">
+            <div class="g_12 widget_header_title ">
+              You may also create a regular phone number in any area code to send text and
+              calls from. To create a regular phone number, please enter the area code below.
+              You may create and manage phone numbers on the profile tab.
+            </div>
+          </div>
+
+          <%= fields_for TwilioPhoneNumber.new do |t| %>
+            <div class="line_grid">
+              <div class="g_2">
+                <span class="label">Area Code : </span>
+              </div>
+              <div class="g_2">
+                <div class="filed_error" id="error_list_name"></div>
+                <%= t.text_field :area_code, :maxlength => "3", :class => "simple_field" %>
+              </div>
+              <div class="g_2">
+                <div id="ajax-loader" style="width: 33px;">
+                  <%= image_tag("public_images/loading.gif", :style => "display:none") %>
+                </div>
+              </div>
+              <div class="g_2">
+                <span class="label">
+                  Select Number :
+                </span>
+              </div>
+              <div class="g_4">
+                <div class="filed_error" id="error_list_shortcode_keyword"></div>
+                <span id="twilio_phone_number_select">
+                  <%= t.select :phone_number, "", {:prompt => "Select Number" }, :class => "simple_form" %>
+                </span>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="line_grid">
+            <div class="g_12 widget_header_title ">
+              If you want to create a regular phone number in any area code to send text and
+              calls from. You have to upgrade your account to Basic or Advanced from billing tab.
+              Then you may create and manage phone numbers on the profile tab.
+            </div>
+          </div>
+        <% end %>
+
+        <div class="line_grid">
+          <div class="g_4"></div>
+          <div class="g_2">
+            <%= submit_tag "Save Settings", :class => "submitIt simple_buttons" %>
+          </div>
+          <div class="g_2">
+            <div class="ajax-loading" style="display:none">
+              <%= image_tag("dashboard/Icons/Load/load-8.gif") %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#set_keyword_and_phone_number_form").dialog({
+      closeOnEscape: false,
+      autoOpen : true,
+      resizable: false,
+      draggable: false,
+      modal : true,
+      height: 'auto',
+      width : 800,
+      position: 'center',
+      overlay: {
+        opacity: 0.5
+      }
+    });
+
+    $("#list_shortcode_keyword, #list_name").live("keyup", function(){
+      delay(function(){
+        if(typeof window.xhr != 'undefined'){
+          window.xhr.abort();
+        }
+        $("#welcome-pop-up-form .ajax-loading").show();
+        var form = $("#welcome-pop-up-form");
+        var action = '/lists/check_validation'
+        window.xhr = $.ajax({
+          type: 'POST',
+          url: action,
+          data: form.serialize(),
+          dataType: "script"
+        });
+      }, 1000);
+    });
+  })
+</script>

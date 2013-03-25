@@ -1,98 +1,54 @@
 <% title " - Reset Password"  %>
 
-<div class="header header_thin">
-  <div class="container_12">
-    <div class="breadcrumbs">
-      <%= link_to "Homepage", root_path %>
-      <span class="separator">&nbsp;</span>
-      Reset Password
-    </div>
-  </div>
-</div>
-
-<div class="middle cols2">
-  <div class="container_12">
-
-    <!-- content -->
-    <div class="content">
-
-      <div class="entry">
-
-        <div class="row">
-          <div class="col col_1_2 ">
-            <div class="inner">
-              <h2>Client Login</h2>
-
-              <!-- add comment -->
-              <!-- login widget -->
-              <div class="widget-container widget_login">
-                <%= form_for @user, :url => password_reset_path(@user), :html => {:method => :put, :class => "loginform"} do |f| %>
-                  <% if @user.errors.any? %>
-                    <div id="error_explanation">
-                      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-                      <ul>
-                        <% @user.errors.full_messages.each do |msg| %>
-                          <li><%= msg %></li>
-                        <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
-                  <p>
-                    <%= f.label :email %><br/>
-                    <%= @user.email %>
-                  </p>
-                  <p>
-                    <%= f.label :password %>
-                    <%= f.password_field :password, :class => "input", :size => "20", :tabindex => "20" %>
-                  </p>
-                  <p>
-                    <%= f.label :password_confirmation %>
-                    <%= f.password_field :password_confirmation, :class => "input", :size => "20", :tabindex => "20" %>
-                    <%= hidden_field_tag :token, @token %>
-                  </p>
-                  <p class="submit">
-                    <%= f.submit "Update Password", :class => "btn-submit", :tabindex => "100" %>
-                  </p>
-                <% end %>
-              </div>
-              <!--/ login widget -->
-            </div>
-          </div>
-
-          <div class="col col_1_2 ">
-            <div class="inner">
-              <h2>Support Center</h2>
-              <p>We're always here to help our clients get the most out of our platform. If you have questions, concerns or comments, feel free to reach out to us through one of our offered support options:</p>
-              <h5 style="margin-bottom:-5px; margin-top:0px;">
-                <%= image_tag("public_images/temp/features2_6.png", :style => "float:left", :width => "45", :height => "45", :class => "alignleft") %>
-                <div style="padding-top:15px;">Live Chat Online</div>
-              </h5>
-              <br clear="all"/>
-              <h5 style="margin-bottom:-5px; margin-top:0px;">
-                <%= image_tag("public_images/temp/features2_7.png", :style => "float:left", :width => "45", :height => "45", :class => "alignleft") %>
-                <div style="padding-top:15px;">Email Us</div>
-              </h5>
-              <br clear="all"/>
-              <h5 style="margin-bottom:-5px; margin-top:0px;">
-                <%= image_tag("public_images/temp/features2_8.png", :style => "float:left", :width => "45", :height => "45", :class => "alignleft") %>
-                <div style="padding-top:15px;">FAQs & Videos</div>
-              </h5>
-            </div>
-          </div>
+<div id="sub_content">
+  <div class="container">
+    <div class="sigup-form" style="width:400px;margin: 0 auto;">
+      <h2>Reset Password</h2>
+      <%= form_for @user, :url => password_reset_path(@user), :html => {:method => :put} do |f| %>
+        <div class="warning" style="display: <%= @user.errors.any? ? "block" : "none" %>">
+          <% if @user.errors.any? %>
+            <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
+            <br/>
+            <% @user.errors.full_messages.each do |msg| %>
+              <%= msg %><br/>
+            <% end %>
+          <% end %>
         </div>
-      </div>
-
-      <div class="clear"></div>
-      <!--/add comment -->
-
+        <%= hidden_field_tag :token, @token %>
+        <br />
+        Email :
+        <%= @user.email %>
+        <br />
+        <br />
+        <%= f.password_field :password, :placeholder => "Password", :class => "input-large" %>
+        <br /><br/>
+        <%= link_to "javascript:void(0);", :class => "small_btn-org banner_two_btn left-mrgn", :onclick => "$(this).closest('form').submit();return false;" do %>
+          <span class="small_blk-org">Submit</span>
+        <% end %>
+      <% end %>
     </div>
-    <!--/ content -->
-
-    <!-- sidebar -->
-    <%= render "shared/location" %>
-    <!--/ sidebar -->
-
-    <div class="clear"></div>
   </div>
 </div>
+<br/><br/>
+<div class="clear"></div>
+
+<script type="text/javascript">
+  jQuery(document).ready( function(){
+    $(".edit_user").submit(function(e){
+      var password = $(".edit_user #user_password").val();
+      var errors = "";
+      if(password.length < 6){
+        errors += "<li>Password must be at least 6 characters long</li>"
+      }
+
+      if(errors != ""){
+        e.preventDefault();
+        $(".edit_user .warning").html("<ul>"+errors+"</ul>");
+        $(".edit_user .warning").show();
+      }
+      else{
+        return true;
+      }
+    });
+  });
+</script>

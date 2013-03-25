@@ -3,11 +3,15 @@ class User < ActiveRecord::Base
 
   attr_accessible :organization_name, :organization_type, :name, :phone, :email,
     :time_zone, :password, :password_confirmation, :activation_state, :activation_token,
+<<<<<<< HEAD
     :terms_and_conditions, :promo_code, :text_messages_approval
+=======
+    :terms_and_conditions, :promo_code, :pop_up_count
+>>>>>>> smarthost
   attr_accessor :terms_and_conditions, :promo_code
 
-  has_one :billing_setting,       :dependent => :destroy
   has_one :subscription,          :dependent => :destroy
+  has_one :billing_setting,       :dependent => :destroy
   has_one :plan_migration,        :dependent => :destroy
   has_one :twilio_phone_number,   :dependent => :destroy
   has_one :account_balance,       :dependent => :destroy
@@ -22,24 +26,20 @@ class User < ActiveRecord::Base
   has_many :recordings,           :dependent => :destroy, :foreign_key => "userID"
   has_many :test_calls,           :dependent => :destroy, :foreign_key => "userID"
   has_many :dnc,                  :dependent => :destroy, :foreign_key => "account"
-  
 
-  validates :name, :presence => true
+  
   validates :email, :format =>  { :with => /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/ }
-  #validates :organization_name, :presence => true
-  #validates :phone, :presence => true
-  #validates :organization_type, :presence => true
-  validates :time_zone, :presence => true, :on => :update
-  #validates :state, :presence => true
-  validates_confirmation_of :password
-  validates :password, :presence => true, :on => :create
   validates_uniqueness_of :email
-  validates_acceptance_of :terms_and_conditions, :on => :create
+
+  validates_length_of :password, :minimum => 6, :message => "must be at least 6 characters long", :if => :password
+
+  #  validates :password, :presence => true, :on => :create
+  #  validates_confirmation_of :password
 
   # scopes
   scope :active, :conditions => {:activation_state => 'active'}
 
-  #before_save :update_time_zone
+  before_save :update_time_zone
 
   after_create :create_account_balance
 
@@ -52,10 +52,16 @@ class User < ActiveRecord::Base
     self.last_login_at.blank? and self.last_logout_at.blank?
   end
 
+  def pop_up_counter
+    self.pop_up_count += 1
+    self.save
+  end
+
   private
 
   def update_time_zone
-    self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank? or self.state != self.state_was
+    #self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank? or self.state != self.state_was
+    self.time_zone = "Eastern Time (US & Canada)"
   end
 
   def create_account_balance

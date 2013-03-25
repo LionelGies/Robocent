@@ -1,110 +1,68 @@
 <% title " - Create an Account" %>
 
-<div class="header header_thin">
-  <div class="container_12">
-    <div class="breadcrumbs">
-      <%= link_to "Homepage", root_path %>
-      <span class="separator">&nbsp;</span>
-      Register
-    </div>
-  </div>
-</div>
-
-<div class="middle full_width">
-  <div class="container_12">
-
-    <!-- content -->
-    <div class="content">
-
-      <div class="post-item post-detail">
-
-        <div class="post-title" style="text-align:center">
-          <h2>Create an Account</h2>
-        </div>
-
-        <%#*<div class="entry">%>
-          <%#*<p>%>
-            <%#*To create an account, simply fill out the information below.%>
-            <%#*All accounts come standard with 14 day free trial and%>
-            <%#*$10 in free texts and calls. If you have any questions,%>
-            <%#*don't hesitate to ask.%>
-          <%#*</p>%>
-          <%#*<div class="clear"></div>%>
-        <%#*</div>%>
-      </div>
-      <!--/ post item -->
-
-
-      <!-- add comment -->
-      <div class="add-comment contact-form" style="width:620px;margin: auto">
-        <%#*<h3>%>
-          <%# if @step_id == "3" %>
-            <%#*Billing Information%>
-          <%# elsif @step_id == "2" %>
-            <%#*Your RoboCent Phone Number%>
-          <%# else %>
-            <%#*Account Details%>
-          <%# end %>
-
-          <%#*<div class="breadcrumbs" style="font-size:12px;">%>
-            <%# if @step_id == "3" %>
-              <%#*Step 1%>
-              <%#*<span class="separator">&nbsp;</span> Step 2%>
-              <%#*<span class="separator">&nbsp;</span>%>
-              <%#= link_to "Step 3", "#" %>
-            <%# elsif @step_id == "2" %>
-              <%#*Step 1%>
-              <%#*<span class="separator">&nbsp;</span>%>
-              <%#= link_to "Step 2", "#" %>
-              <%#*<span class="separator">&nbsp;</span> Step 3%>
-            <%# else %>
-              <%#= link_to "Step 1", "#" %>
-              <%#*<span class="separator">&nbsp;</span> Step 2%>
-              <%#*<span class="separator">&nbsp;</span> Step 3%>
-            <%# end %>
-          <%#*</div>%>
-        <%#*</h3>%>
-
-        <div id="results" style="padding-left: 20px;color:#FF0000;">
+<div id="sub_content">
+  <div class="container">
+    <div class="sigup-form" style="width:400px;margin: 0 auto;">
+      <h2>Create An Account</h2>
+      <%= form_for @user do |f| %>
+        <div class="warning" style="display: <%= @user.errors.any? ? "block" : "none" %>">
           <% if @user.errors.any? %>
-            <span style="color:#FF0000;">
-              <%= pluralize(@user.errors.count, "error") %> prohibited this message from being saved:
-              <br/>
-              <% @user.errors.full_messages.each do |msg| %>
-                <%= msg %><br/>
-              <% end %>
-            </span>
-          <% end %>
-          <% if flash.present? %>
-            <span style="color:#FF0000;">
-              <%= flash.now[:alert] %>
-            </span>
-          <% end %>
-        </div>
-
-        <div class="comment-form">
-          <%= form_for @user, :url => register_user_path do |f| %>
-
-            <% if @step_id == "2" %>
-              <%= render :partial => 'form_step_2', :locals => {:f => f} %>
-            <% elsif @step_id == "3" %>
-              <%= render :partial => 'form_step_3', :locals => {:f => f} %>
-            <% else %>
-              <%= render :partial => 'form_step_1', :locals => {:f => f} %>
+            <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
+            <br/>
+            <% @user.errors.full_messages.each do |msg| %>
+              <%= msg %><br/>
             <% end %>
-
           <% end %>
         </div>
-      </div>
-      <!--/add comment -->
-
+        <% if params[:pricing_plan].present? %>
+          <%= hidden_field_tag "pricing_plan", params[:pricing_plan] %>
+          Selected Subscription Plan :
+          <%= params[:pricing_plan].humanize.titleize %>
+          <br/>
+        <% end %>
+        <br />
+        <%= f.email_field :email, :placeholder => "Email", :class => "input-large" %>
+        <br />
+        <br />
+        <%= f.password_field :password, :placeholder => "Password", :class => "input-large" %>
+        <br /><br/>
+        <span>
+          Before click next, please read RoboCent
+          <%= link_to "Terms & Conditions", terms_path, :target => "_blank" %>
+        </span>
+        <br /><br/>
+        <%= link_to "javascript:void(0);", :class => "small_btn-org banner_two_btn left-mrgn", :onclick => "$(this).closest('form').submit();return false;" do %>
+          <span class="small_blk-org">Next >></span>
+        <% end %>
+      <% end %>
     </div>
-    <!--/ content -->
-
-    <!-- sidebar -->
-    <%#= render "shared/location" %>
-    <!--/ sidebar -->
-
-    <div class="clear"></div>
   </div>
 </div>
+<br/><br/>
+<div class="clear"></div>
+
+<script type="text/javascript">
+  jQuery(document).ready( function(){
+    $("#new_user").submit(function(e){
+      var email = $("#new_user #user_email").val();
+      var password = $("#new_user #user_password").val();
+      var email_regex = /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/i
+      var errors = "";
+      if(!email_regex.test(email)){
+        errors += "<li>Email is Invalid</li>";
+      }
+      if(password.length < 6){
+        errors += "<li>Password must be at least 6 characters long</li>"
+      }
+
+      if(errors != ""){
+        e.preventDefault();
+        $("#new_user .warning").html("<ul>"+errors+"</ul>");
+        $("#new_user .warning").show();
+      }
+      else{
+        return true;
+      }
+    });
+  });
+</script>

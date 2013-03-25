@@ -1,0 +1,29 @@
+<div id="banner">
+  <div id="content"><div id="content_inner">
+      <!-- end intro -->
+      <!-- end sidebar_right -->
+      <ul id="slides1">
+        <li>
+          <div class="content_two">
+            <%= image_tag "smarthost/banner_man.png", :alt => "", :border => "0", :class => "man" %>
+            <div class="text">
+              <p>The Most User Friendly</p>
+              <h1>TEXT AND CALL PLATFORM</h1>
+              <p>On The Market</p>
+              <div class="buttons">
+                <%= form_for User.new do |f| %>
+                  <%= f.email_field :email, :placeholder => "Email", :class => "try-now-email" %>
+                  <%= f.password_field :password, :placeholder => "Password", :class => "try-now-password" %>
+                  <%= link_to "javascript:void(0);", :class => "small_btn-gry banner_two_btn left-mrgn", :onclick => "$(this).closest('form').submit();return false;" do %>
+                    <span class="small_blk-gry">Try&nbsp;now</span>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

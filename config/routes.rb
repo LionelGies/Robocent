@@ -1,5 +1,7 @@
 Robocent::Application.routes.draw do
 
+  post "welcome-pop-up-submit" => 'dashboard#welcome_pop_up_submit', :as => :welcome_pop_up_submit
+
   resources :dnc, :only => [:index, :create, :destroy]
 
   match 'inbox-support'       => 'support#inbox',       :as => :inbox_support
@@ -52,8 +54,8 @@ Robocent::Application.routes.draw do
   match 'send-a-test'     => 'text_messages#send_a_test', :as => :send_a_test
   match 'send-text'       => 'text_messages#new',         :as => :send_text
 
-  #  put "migrate"             => "subscriptions#migrate",   :as => :migrate
-  #  match "migration"         => "subscriptions#migration", :as => :migration
+  put "migrate"             => "subscriptions#migrate",   :as => :migrate
+  match "migration"         => "subscriptions#migration", :as => :migration
 
   post 'stripe-webhook'       => 'stripe_webhook#create'
 
@@ -131,6 +133,7 @@ Robocent::Application.routes.draw do
   match 'contact-us-submit' => "publics#contact_us_submit" , :as => :contact_us_submit
   match "terms"       => "publics#terms",      :as => "terms"
   match "contact-us"  => "publics#contact",    :as => "contact_us"
+  match "about-us"  => "publics#about",    :as => "about_us"
   match "guide"       => "publics#guide",      :as => "guide"
   match "tutorials"   => "publics#tutorials",  :as => "tutorials"
   match "faq"         => "publics#faq",        :as => "faq"

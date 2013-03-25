@@ -1,96 +1,59 @@
 <% title " - Contact Us" %>
 
-<div class="header header_thin">
-  <div class="container_12">
-    <div class="breadcrumbs">
-      <%= link_to "Homepage", root_path %>
-      <span class="separator">&nbsp;</span>
-      <a href="#">Our Hosting</a>
-      <span class="separator">&nbsp;</span>
-      Contact us
+<div id="sub_content">
+  <div class="container">
+    <div class="info">
+      <h1>Contact Information</h1>
+      <div style="height: margin-top:30px;"></div>
+      <iframe width="100%" height="386" frameborder="0" scrolling="no"
+              marginheight="0" marginwidth="0"
+              src="http://maps.google.ca/maps?f=q&source=s_q&hl=en&geocode=&q=111+Granby+Street,+Norfolk,+VA+23510&sll=36.846824,-76.292000&sspn=0.002215,0.005284&ie=UTF8&ll=36.846824,-76.292000&spn=0.002215,0.005284&z=18&iwloc=near&output=embed">
+      </iframe>
     </div>
+
+    <div class="form">
+      <div id="div_success"></div>
+      <h1>Leave us a message</h1>
+      <div class="success" style="display:none;">Email has submitted.</div>
+      <div id="error" class="warning" style="display:none;"></div>
+
+      <%= form_for(@contact_us, :url => contact_us_submit_path, :remote => true) do |f| %>
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.text_field :email, :placeholder => "(never published)" %>
+        </div>
+        <div class="field">
+          <%= f.label :content, "Message" %>
+          <%= f.text_area :content %>
+        </div>
+        <%= f.submit "", :class => "btn-org banner_btn contact" %>
+        <%= image_tag("smarthost/loading.gif", :class => "ajax-loading", :style => "display:none") %>
+      <% end %>
+    </div>
+    <div class="clear"></div>
   </div>
-</div>
 
-
-<div class="middle cols2">
-  <div class="container_12">
-
-    <!-- content -->
-    <div class="content">
-
-      <div class="post-item post-detail">
-
-        <div class="post-title">
-          <h1>Contact us now!</h1>
-        </div>
-
-        <div class="entry">
-          <p>Send us a message below and we will get back to you as quickly as possible (max. 12 hours). For immediate assistance, please use the options on the right.</p>
-
-          <div class="clear"></div>
-        </div>
+  <div class="white_bg">
+    <div class="container">
+      <div class="get_touch">
+        <ul>
+          <li class="location">RoboCent Inc, 111 Granby Street, Norfolk, VA 23510</li>
+          <li class="email">info@robocent.com</li>
+          <li class="mobile">(+1) 757-821-2121</li>
+        </ul>
       </div>
-      <!--/ post item -->
 
-
-      <!-- add comment -->
-      <div class="add-comment contact-form">
-        <h3>Leave us a message</h3>
-
-        <div id="results" style="padding-left: 20px;color:#FF0000;">
-          <% if @contact_us.errors.any? %>
-            <span style="color:#FF0000;">
-              <%= pluralize(@contact_us.errors.count, "error") %> prohibited this message from being saved:
-              <br/>
-              <% @contact_us.errors.full_messages.each do |msg| %>
-                <%= msg %><br/>
-              <% end %>
-            </span>
-          <% end %>
-          <% if flash.present? %>
-            <span style="color:#FF0000;">
-              <%= flash.now[:alert] %>
-            </span>
-          <% end %>
-        </div>
-
-        <div class="comment-form">
-          <%= form_for(@contact_us, :url => contact_us_submit_path) do |f| %>
-            <div class="row alignleft">
-              <label><strong>Name</strong></label>
-              <%= f.text_field :name, :class => "inputtext input_middle required" %>
-            </div>
-
-            <div class="space"></div>
-
-            <div class="row  alignleft">
-              <label><strong>Email</strong> (never published)</label>
-              <%= f.text_field :email, :class => "inputtext input_middle required" %>
-            </div>
-
-            <div class="clear"></div>
-
-            <div class="row">
-              <label><strong>Message</strong></label>
-              <%= f.text_area :content, :class => "textarea textarea_middle required", :size => "30x10" %>
-            </div>
-
-            <div class="row rowSubmit">
-              <input type="submit" id="send" value="SEND MESSAGE" class="btn-submit" />
-              <a onclick="document.getElementById('contactForm').reset();return false" href="#" class="link-reset">reset all fields</a>
-            </div>
-          <% end %>
-        </div>
+      <div class="contact_social">
+        <a href="#." class="gp" onclick="return SnapABug.startLink();"></a>
+        <a href="http://www.twitter.com/RoboCent" class="tw"></a>
+        <a href="http://www.facebook.com/RoboCent" class="fb"></a>
       </div>
-      <!--/add comment -->
+
     </div>
-    <!--/ content -->
-
-    <!-- sidebar -->
-    <%= render "shared/location" %>
-    <!--/ sidebar -->
-
     <div class="clear"></div>
   </div>
 </div>

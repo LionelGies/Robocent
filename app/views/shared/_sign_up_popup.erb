@@ -1,0 +1,100 @@
+<div id="new-user-signup">
+  <%= form_for User.new, :html => {:class => "new-user-popup"} do |f| %>
+    <div class="warning" style="display:none"></div>
+    <%= hidden_field_tag "pricing_plan", "" %>
+    <br />
+    <%= f.email_field :email, :placeholder => "Email", :class => "try-now-email" %>
+    <br />
+    <br />
+    <%= f.password_field :password, :placeholder => "Password", :class => "try-now-password" %>
+    <br /><br/>
+    <span>
+      By clicking on the "NEXT" button, you agree that you have read, understand, and accept the
+      <%= link_to "Terms & Conditions", terms_path, :target => "_blank" %>
+    </span>
+    <br /><br/>
+    <%= link_to "javascript:void(0);", :class => "small_btn-org banner_two_btn left-mrgn", :onclick => "$(this).closest('form').submit();return false;" do %>
+      <span class="small_blk-org">Next >></span>
+    <% end %>
+  <% end %>
+</div>
+
+<% content_for :js do %>
+  <script type="text/javascript">
+    jQuery(document).ready( function(){
+      $myWindow = jQuery('#new-user-signup');
+
+      $('.sign-up-popup').live( "clickoutside", function(event){
+        $myWindow.dialog('close');
+      });
+
+      $('document').ready(function(){
+        $('.pricing-plan-signup').click(function(){
+          $myWindow.dialog('open');
+          var pricing_plan_id = this.id;
+          $('#new-user-signup #pricing_plan').val(pricing_plan_id);
+          return false;
+        });
+        $('.signup-popup').click(function(){
+          $myWindow.dialog('open');
+          return false;
+        });
+      });
+
+      $myWindow.dialog({
+        beforeClose :function(event,ui){
+          return true;
+          $('#new_user #pricing_plan').val('0');
+        },
+        open :function( event, ui ){
+          $('.ui-widget-overlay').bind('click', function() {
+            $myWindow.dialog('close');
+          });
+        },
+        close :function( event, ui ){
+          $("#new_user.new-user-popup .warning").hide();
+        },
+        title: "Signup Now",
+        resizable: false,
+        draggable: false,
+        height: 350,
+        width: '400px',
+        modal: true,
+        position: ['middle',80],
+        closeText: "X",
+        dialogClass: "sign-up-popup",
+        hide: "scale",
+        show: "scale",
+        autoOpen: false,
+        overlay: {
+          opacity: 0.8
+        }
+      });
+    });
+
+    jQuery(document).ready( function(){
+      $("#new_user.new-user-popup").submit(function(e){
+        var email = $("#new_user.new-user-popup #user_email").val();
+        var password = $("#new_user.new-user-popup #user_password").val();
+        var email_regex = /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/i
+        var errors = "";
+        if(!email_regex.test(email)){
+          errors += "<li>Email is Invalid</li>";
+        }
+        if(password.length < 6){
+          errors += "<li>Password must be at least 6 characters long</li>"
+        }
+
+        if(errors != ""){
+          e.preventDefault();
+          $("#new_user.new-user-popup .warning").html("<ul>"+errors+"</ul>");
+          $("#new_user.new-user-popup .warning").show();
+        }
+        else{
+          return true;
+        }
+      });
+    });
+    
+  </script>
+<% end %>

@@ -1,114 +1,98 @@
-<div class="footer">
-  <div class="container_12">
+<div class="container">
+  <%= image_tag "smarthost/footer-logo-1.png", :alt => "", :border => "0", :class => "client thin-logo" %>
+  <%= image_tag "smarthost/footer-logo-2.png", :alt => "", :border => "0", :class => "client semi-thin-logo" %>
+  <%= image_tag "smarthost/footer-logo-3.png", :alt => "", :border => "0", :class => "client thin-logo" %>
+  <%= image_tag "smarthost/footer-logo-4.png", :alt => "", :border => "0", :class => "client thin-logo" %>
+  <div class="clear"></div>
+</div>
 
-    <div class="grid_6">
-      <div class="widget-container widget_nav_menu">
-        <h3 class="widget-title">ABOUT ROBOCENT</h3>
-        <p>
+<div id="footer">
+  <div class="building"></div>
+  <div class="detail">
+    <div class="container">
+
+      <div class="blog">
+        <%= image_tag "smarthost/blog_img.jpg", :alt => "", :border => "0", :class => "blog_img" %>
+        <div class="text">
+          <div class="clear"></div>
+          <a href="http://markets.cbsnews.com/cbsnews/news/read/23453798/RoboCent_Gives_500_Text_Alerts_to_Every_Organization_in_America" target = "_blank">
+            <span class="title">RoboCent Gives 500 Text Alerts to Every Organization in America</span>
+          </a>
+          <p>In times of emergency, being able to communicate in a fast and reliable manner is of the highest importance. Through RoboCent's online platform, every organization and small business in America now has the ability to send a text and call alert to their members[...]</p>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="footer_bot">
+    <div class="container">
+      <div class="links double-link">
+        <h3>About RoboCent</h3>
+        <div class="shade-color">
           RoboCent is one of the nation's largest providers of call and text
           notification systems. Small businesses, schools, non-profits and
           political campaigns across the U.S. rely on RoboCent's notification
           systems on a daily basis -- delivering millions of calls and texts to
           their subscribers. For more information,
           <%= link_to "contact us", contact_us_path %>
-          .
-        </p>
-      </div>
-    </div>
-    <!--/ footer col 3 -->
-    <div class="grid_2">
-      <div class="widget-container widget_nav_menu">
-        <h3 class="widget-title">SITE MAP</h3>
-        <ul>
-          <li>
-            <%= link_to content_tag(:span, "Solutions"), solutions_path %>
-          </li>
-          <li>
-            <%= link_to content_tag(:span, "Pricing"), pricing_path %>
-          </li>
-<%#*<li>%>
-<%#= link_to content_tag(:span, "SMS Terms"), sms_terms_path %>
-<%#*</li>%>
-<%#*<li>%>
-<%#= link_to content_tag(:span, "SMS Privacy"), sms_privacy_path %>
-<%#*</li>%>
-        </ul>
-      </div>
-    </div>
-    <div class="grid_2">
-      <div class="widget-container widget_nav_menu">
-        <h3 class="widget-title">Terms & Privacy</h3>
-        <ul>
-          <li>
-            <%= link_to content_tag(:span, "Privacy Policy"), privacy_policy_path %>
-          </li>
-          <li>
-            <%= link_to content_tag(:span, "SMS Terms"), sms_terms_path %>
-          </li>
-          <li>
-            <%= link_to content_tag(:span, "SMS Privacy"), sms_privacy_path %>
-          </li>
-        </ul>
-<%#*<h3 class="widget-title">SUPPORT</h3>%>
-<%#*<ul>%>
-<%#*<li>%>
-<%#= link_to content_tag(:span, "Support"), support_path %>
-<%#*</li>%>
-<%#*<li>%>
-<%#= link_to content_tag(:span, "FAQs"), faq_path %>
-<%#*</li>%>
-<%#*<li>%>
-<%#= link_to content_tag(:span, "Help Guide"), guide_path %>
-<%#*</li>%>
-<%#*<li>%>
-<%#= link_to content_tag(:span, "Video Tutorials"), tutorials_path %>
-<%#*</li>%>
-<%#*</ul>%>
-      </div>
-    </div>
-    <!--/ footer col 4 -->
-    <div class="grid_2">
-      <!-- widget contacts -->
-      <div class="widget-container widget_contact">
-        <h3>CONTACT US</h3>
-        <div class="contact-address">
-          <div class="address">111 Granby Street<br/>Norfolk, VA 23510</div>
-          <div class="phone">Phone: <strong>757.821.2121</strong></div>
-          <div class="fax"><strong>info@robocent.com</strong></div>
         </div>
       </div>
-      <!--/ widget contacts -->
-    </div>
-    <!--/ footer col 4 -->
 
-    <div class="divider"></div>
-
-    <div class="footer_support">
-      <div class="icon_write_mail">
-        <%= link_to "Send an Email", contact_us_path %>
+      <div class="links">
+        <h3>RoboCent</h3>
+        <ul>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Solutions", solutions_path  %></li>
+          <li><%= link_to "Contact Us", contact_us_path %></li>
+        </ul>
       </div>
-      <div class="icon_live_chat"><a href="#" onClick="return SnapABug.startLink();">Live Chat 24 / 7</a></div>
-      <div class="icon_phone">Support: 757 821 2121</div>
-      <div class="clear"></div>
-    </div>
 
-    <div class="copyright">
-      <p>&copy; Copyright 2012  |   RoboCent, Inc. All rights reserved.<br/>
-        <small>A <a href="http://massroots.com/">MassRoots, LLC</a> Company</small></p>
-    </div>
+      <div class="links">
+        <h3>Social Connection</h3>
+        <div class="social">
+          <ul>
+            <li class="fb"><a href="http://www.facebook.com/RoboCent" target="_blank">Facebook</a></li>
+            <li class="tw"><a href="http://www.twitter.com/RoboCent">Twitter</a></li>
+          </ul>
+        </div>
+      </div>
 
+      <div class="links last">
+        <h3>Get in Touch</h3>
+        <div class="get_touch">
+          <ul>
+            <li class="mb"><a>757.821.2121</a></li>
+            <li class="email"><a>Info@RoboCent.com</a></li>
+            <li class="address"><a>111 Granby Street <br/>Norfolk, VA 23510</a></li>
+            <%= image_tag "smarthost/payment-cards-except-paypal.png", :alt => "", :border => "0" %>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
     <div class="clear"></div>
+  </div>
 
+  <div class="copyright">
+    <div class="container">
+      <p>Copyright &copy; 2012 RoboCent, Inc. All Rights Reserved.
+        <small>A <%= link_to "MassRoots, LLC", "http://www.massroots.com/", :target => "_blank"  %> Company</small></p>
+      <div class="privacy">
+        <ul>
+          <li>
+            <%= link_to "Privacy Policy", privacy_policy_path %>
+          </li>
+          <li>
+            <%= link_to "SMS Terms", sms_terms_path %>
+          </li>
+          <li class="last">
+            <%= link_to "SMS Privacy", sms_privacy_path %>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
-
-
-<!-- begin SnapEngage code -->
-<script type="text/javascript">
-  (function() {
-    var se = document.createElement('script'); se.type = 'text/javascript'; se.async = true;
-    se.src = '//commondatastorage.googleapis.com/code.snapengage.com/js/9843552f-3b65-481c-850a-78b1e037bb57.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(se, s);
-  })();
-</script>
-<!-- end SnapEngage code -->

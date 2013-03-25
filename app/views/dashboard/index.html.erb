@@ -2,7 +2,9 @@
   <h3 class="i_16_dashboard tab_label">Dashboard</h3>
 </div>
 
-<div class="g_12 separator"><span></span></div>
+<div class="g_12 separator">
+  <span></span>
+</div>
 
 <%= render "shared/show_flash" %>
 
@@ -15,26 +17,18 @@
       <tbody>
         <tr>
           <td>Total Contacts</td>
-          <td>
-            <%= @total_contacts_count %>
-          </td>
+          <td> <%= @total_contacts_count %> </td>
         </tr>
         <tr>
           <td>Texting Contacts</td>
-          <td>
-            <%= @text_contacts_count %>
-          </td>
+          <td> <%= @text_contacts_count %> </td>
         </tr>
         <tr>
           <td>Calling Contacts</td>
-          <td>
-            <%= @call_contacts_count %>
-          </td>
+          <td> <%= @call_contacts_count %> </td>
         </tr>
         <tr>
-          <td colspan="2" style="text-align:center">
-            <%= link_to "Add and update contacts", contacts_path, :style => "color:#666666;" %>
-          </td>
+          <td colspan="2" style="text-align:center"> <%= link_to "Add and update contacts", contacts_path, :style => "color:#666666;" %> </td>
         </tr>
       </tbody>
     </table>
@@ -50,21 +44,15 @@
       <tbody>
         <tr>
           <td>Account Balance</td>
-          <td>
-            <%= "$%.3f" % current_user.current_balance %>
-          </td>
+          <td> <%= "$%.3f" % current_user.current_balance %> </td>
         </tr>
         <tr>
-          <td colspan="2" style="line-height:36px;">
-            You can send
+          <td colspan="2" style="line-height:36px;"> You can send
             <%= @total_text_or_call_can_send %>
-            texts or calls with this balance
-          </td>
+					texts or calls with this balance </td>
         </tr>
         <tr>
-          <td colspan="2" style="text-align:center">
-            <%= link_to "Add Funds to your Account", billing_path, :style => "color:#666666;" %>
-          </td>
+          <td colspan="2" style="text-align:center"> <%= link_to "Add Funds to your Account", billing_path, :style => "color:#666666;" %> </td>
         </tr>
       </tbody>
     </table>
@@ -75,8 +63,16 @@
   <%= render "recent_activity" %>
 </div>
 
+<% if current_user.pop_up_count == 0 %>
+  <%= render "add_keyword_phone_number"%>
+  <% current_user.pop_up_counter %>
+<% elsif current_user.pop_up_count == 1 %>
+  <%= render "walk_through" %>
+  <% current_user.pop_up_counter %>
+<% end %>
+
 <script type="text/javascript">
-  $(document).ready(function(){
+  $(document).ready(function() {
     $("#recent-activity-table table.datatable thead tr th:first").click();
   })
 </script>

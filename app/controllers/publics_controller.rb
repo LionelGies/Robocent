@@ -32,11 +32,12 @@ class PublicsController < ApplicationController
     @contact_us = TmpMessage.new(params[:tmp_message])
     if @contact_us.save
       Notification.delay.contact_us_submit(@contact_us)
-      flash[:alert] = "Message sent! Thank you for contacting us."
-      redirect_to contact_us_path
-    else
-      render :action => :contact
     end
+    respond_to do |format|
+      format.js
+      format.html {redirect_to contact_path}
+    end
+    
   end
 
   def sms_terms
@@ -56,4 +57,9 @@ class PublicsController < ApplicationController
   def privacy_policy
     
   end
+
+  def about
+
+  end
+
 end

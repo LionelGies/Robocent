@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319094400) do
+ActiveRecord::Schema.define(:version => 20130325001320) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "user_id"
@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(:version => 20130319094400) do
     t.integer  "user_id"
     t.string   "event_type"
     t.text     "response"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "recurring",  :default => false
   end
 
   create_table "billing_settings", :force => true do |t|
@@ -198,9 +199,14 @@ ActiveRecord::Schema.define(:version => 20130319094400) do
     t.integer  "minimum_numbers"
     t.integer  "maximum_numbers"
     t.float    "price_per_call_or_text"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.float    "free_credit"
+    t.float    "monthly_free_credit",    :default => 0.0
+    t.boolean  "recurring",              :default => false
+    t.boolean  "default",                :default => false
+    t.integer  "max_keywords"
+    t.boolean  "card_required",          :default => false
   end
 
   create_table "queue_texts", :force => true do |t|
@@ -378,6 +384,7 @@ ActiveRecord::Schema.define(:version => 20130319094400) do
     t.string   "address"
     t.string   "state"
     t.string   "text_messages_approval"
+    t.integer  "pop_up_count",                    :default => 0
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
