@@ -8,10 +8,10 @@ class Jobs::TextMessageJob < Struct.new(:text_message)
       from = "+15005550006" #valid for Test
     else
       shortcode = ShortCode.first
-      if text_message.sending_option != 1 and shortcode.present?
-        from = shortcode.number
-      else
+      if text_message.sending_option == 1 and text_message.user.twilio_phone_number.present?
         from = text_message.user.twilio_phone_number.phone_number
+      elsif shortcode.present?
+        from = shortcode.number
       end
     end
 

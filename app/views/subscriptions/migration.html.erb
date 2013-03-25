@@ -25,6 +25,8 @@
     to
     <%= Time.at(@customer.subscription.current_period_end).in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
     )
+    <br/><br/>
+    If you downgrade to Pay As You Go plan, your RoboCent regular number will be released!
   </h4>
 </div>
 

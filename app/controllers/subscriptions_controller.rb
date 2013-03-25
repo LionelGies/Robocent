@@ -3,7 +3,8 @@ class SubscriptionsController < ApplicationController
   layout "dashboard"
   
   def migration
-    @plans = Plan.order("amount asc")
+    @plans = Plan.order("amount asc, id asc").reject{ |plan|
+      plan.stripe_id == "special" and current_user.subscription.plan.stripe_id != "special"}
     @current_plan = current_user.subscription.plan
     @subscription = current_user.subscription
     @plan_migration = current_user.plan_migration

@@ -39,6 +39,9 @@ class Subscription < ActiveRecord::Base
       self.plan_id = new_plan.id
       self.status = "pending"
       self.save!
+      if !new_plan.recurring
+        user.twilio_phone_number.destroy
+      end
     else
       # Downgrade
       user.billing_setting.customer.update_subscription(:plan => new_plan.stripe_id,
