@@ -16,7 +16,7 @@
         <div class="line_grid">
           <div class="g_3"><span class="label">From<span class="must">*</span></span></div>
           <div class="g_9">
-            <%= f.select :from, [current_user.twilio_phone_number.phone_number], {}, :class => "simple_form" %>
+            <%= f.select :from, current_user.available_from_numbers, {}, :class => "simple_form" %>
           </div>
         </div>
         <div class="line_grid">

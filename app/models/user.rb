@@ -42,6 +42,13 @@ class User < ActiveRecord::Base
   after_create :create_account_balance
 
 
+  def available_from_numbers
+    from_nunmbers = Array.new
+    from_nunmbers << self.twilio_phone_number.phone_number if self.twilio_phone_number.present?
+    from_nunmbers << ShortCode.first.number if ShortCode.first.present?
+    from_nunmbers
+  end
+
   def current_balance
     account_balance.current_balance
   end

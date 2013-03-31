@@ -24,12 +24,13 @@
           <th>Date and Time</th>
           <th>Message Preview</th>
           <th>From</th>
+          <th>Delete</th>
           <th>View / Reply</th>
         </tr>
       </thead>
       <tbody>
         <% @sms_messages.each do |sms| %>
-          <tr>
+          <tr id="sms-row-<%= sms.id %>">
             <td>
               <%= sms.created_at.in_time_zone(current_user.time_zone).strftime("%b %d, %Y %H:%M") %>
             </td>
@@ -38,6 +39,9 @@
             </td>
             <td>
               <%= formatted_number(sms.from) %>
+            </td>
+            <td style="text-align: center">
+              <%= link_to "Delete", sms, :method => :delete, :confirm => "Are you sure?", :remote => true, :style => "color:#007BBF;" %>
             </td>
             <td style="text-align: center">
               <% unless sms.read %>

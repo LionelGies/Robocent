@@ -174,4 +174,12 @@ class SmsMessagesController < ApplicationController
     end
   end
 
+  def destroy
+    @sms_message = SmsMessage.find(params[:id])
+
+    if @sms_message.present?  and @sms_message.user == current_user
+      @sms_message.destroy
+    end
+  end
+
 end
