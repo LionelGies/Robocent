@@ -40,10 +40,6 @@ GEM
     activesupport (3.2.9)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    airbrake (3.1.9)
-      activesupport
-      builder
-      json
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (3.0.2)
@@ -98,6 +94,8 @@ GEM
     enum_column3 (0.1.4)
     erubis (2.7.0)
     eventmachine (1.0.0)
+    exception_notification (3.0.1)
+      actionmailer (>= 3.0.4)
     excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -254,7 +252,6 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
-  airbrake
   cancan
   capistrano-ext
   carrierwave
@@ -265,6 +262,7 @@ DEPENDENCIES
   debugger
   delayed_job_active_record
   enum_column3
+  exception_notification
   execjs
   jquery-rails
   jw_player_helper
