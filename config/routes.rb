@@ -7,10 +7,10 @@ Robocent::Application.routes.draw do
   match 'inbox-support'       => 'support#inbox',       :as => :inbox_support
   match 'send-a-call-support' => 'support#send_a_call', :as => :send_a_call_support
   match 'send-a-text-support' => 'support#send_a_text', :as => :send_a_text_support
-  match 'contacts-support'    => 'support#contacts',    :as => :contacts_support
-  match 'dashboard-support'   => 'support#index',       :as => :dashboard_support
+  match 'dashboard-support'   => 'support#contacts',    :as => :contacts_support
+  match 'support'             => 'support#index',       :as => :dashboard_support
 
-  resources :password_resets
+  resources :password_resets, :except => [:index, :destroy]
 
   ActiveAdmin.routes(self)
 
@@ -51,19 +51,19 @@ Robocent::Application.routes.draw do
   #
   # Text
   #
-  match 'send-a-test'     => 'text_messages#send_a_test', :as => :send_a_test
-  match 'send-text'       => 'text_messages#new',         :as => :send_text
+  match 'send-a-test'         => 'text_messages#send_a_test', :as => :send_a_test
+  match 'send-text'           => 'text_messages#new',         :as => :send_text
 
-  put "migrate"             => "subscriptions#migrate",   :as => :migrate
-  match "migration"         => "subscriptions#migration", :as => :migration
+  put   "migrate"             => "subscriptions#migrate",   :as => :migrate
+  match "migration"           => "subscriptions#migration", :as => :migration
 
   post 'stripe-webhook'       => 'stripe_webhook#create'
 
   put   'update-billing/:id'  => 'billing#update',       :as => :update_billing
   match 'edit-billing/:id'    => 'billing#edit',         :as => :edit_billing
   post  'fund-account'        => 'billing#fund_account', :as => :fund_account
-  get 'billing'             => 'billing#index',           :as => :billing
-  post 'billing'            => 'billing#create',          :as => :create_billing
+  get   'billing'             => 'billing#index',           :as => :billing
+  post  'billing'             => 'billing#create',          :as => :create_billing
 
   resources :imports do
     collection do
@@ -98,60 +98,31 @@ Robocent::Application.routes.draw do
   match 'login'                 => 'user_sessions#new',           :as => :login
   match 'logout'                => 'user_sessions#destroy',       :as => :logout
 
-  resources :user_sessions
+  resources :user_sessions, :only => [:create]
 
   #
   # registration
   #
   get   'twilionumbers/:code'      => 'users#twilionumbers',  :as => :twilionumbers
-  put   'register'                 => 'users#create',         :as => :register_user
-  post  'register'                 => 'users#create',         :as => :register_user
-  get   'register'                 => 'users#new',            :as => :register
   match 'register/activate/:token' => 'users#activate',       :as => :activate
-  match 'register/confirmation'    => 'users#confirmation',   :as => :register_confirmation
+
   put 'update-password'    => 'users#update_password',   :as => :update_password
-  resources :users
 
-  # for demo
-  #  get   'twilionumbers/:code'      => 'users#twilionumbers',   :as => :twilionumbers
-  #  put   'register2'                 => 'users#create',         :as => :register_user
-  #  post  'register2'                 => 'users#create',         :as => :register_user
-  #  get   'register2'                 => 'users#new',            :as => :register2
-  #  match 'register2/activate/:token' => 'users#activate',       :as => :activate
-  #  match 'register2/confirmation'    => 'users#confirmation',   :as => :register_confirmation
-  #  get   'register'                 => 'temp_users#new',        :as => :register
-  #  put 'update-password'    => 'users#update_password',   :as => :update_password
-  #  resources :users
-
-  resources :temp_users, :only => [:new, :create]
+  resources :users, :except => [:index, :show, :destroy]
   
   #
   # public pages
   #
   match "email-code"       => 'publics#email_code'
   match "email"       => 'publics#promo_email', :as => :promo_email
-  match 'contact-us-submit' => "publics#contact_us_submit" , :as => :contact_us_submit
-  match "terms"       => "publics#terms",      :as => "terms"
-  match "contact-us"  => "publics#contact",    :as => "contact_us"
-  match "about-us"  => "publics#about",    :as => "about_us"
-  match "guide"       => "publics#guide",      :as => "guide"
-  match "tutorials"   => "publics#tutorials",  :as => "tutorials"
-  match "faq"         => "publics#faq",        :as => "faq"
-  match "support"     => "publics#support",    :as => "support"
-  match "pricing"     => "publics#pricing",    :as => "pricing"
-  match 'solutions'   => "publics#solutions",  :as => "solutions"
-  match "SMSTerms"    => "publics#sms_terms",   :as => "sms_terms"
-  match "SMSPrivacy"  => "publics#sms_privacy", :as => "sms_privacy"
+ 
   match "smsterms"    => "publics#sms_terms", :as => :sms_terms
   match "smsprivacy"  => "publics#sms_privacy", :as => :sms_privacy
+  match "terms"       => "publics#terms",      :as => "terms"
   match "privacy-policy" => "publics#privacy_policy", :as => :privacy_policy
+  match 'contact-us-submit' => "publics#contact_us_submit" , :as => :contact_us_submit
+  match "contact-us"  => "publics#contact",    :as => "contact_us"
+  match 'solutions'   => "publics#solutions",  :as => "solutions"
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
   root :to => 'publics#index'
-
-  # See how all your routes lay out with "rake routes"
 end

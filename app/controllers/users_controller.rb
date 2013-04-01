@@ -25,14 +25,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def confirmation
-    @user = User.find(session[:user_temp_id]) if session[:user_temp_id].present?
-    session.delete(:user_temp_id)
-    if @user.present? and @user.activation_state == "active"
-      redirect_to login_path
-    end
-  end
-
   def activate
     if @user = User.load_from_activation_token(params[:token])
       @user.activate!

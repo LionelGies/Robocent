@@ -32,7 +32,7 @@ class SubscriptionsController < ApplicationController
       end
     rescue => e
       logger.info e
-      message = "Something went wrong! Please contact with customer care."
+      message = e.message
     end
     redirect_to migration_path, :alert => message if message.present?
   end

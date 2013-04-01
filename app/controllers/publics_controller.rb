@@ -6,26 +6,8 @@ class PublicsController < ApplicationController
   def solutions
   end
 
-  def pricing
-  end
-
-  def support
-  end
-
-  def faq
-  end
-
-  def tutorials
-  end
-
-  def guide
-  end
-
   def contact
     @contact_us = TmpMessage.new
-  end
-
-  def terms
   end
 
   def contact_us_submit
@@ -40,6 +22,12 @@ class PublicsController < ApplicationController
     
   end
 
+  def privacy_policy
+  end
+
+  def terms
+  end
+
   def sms_terms
   end
 
@@ -52,14 +40,6 @@ class PublicsController < ApplicationController
 
   def email_code
     render :layout => false
-  end
-
-  def privacy_policy
-    
-  end
-
-  def about
-
   end
 
 end
