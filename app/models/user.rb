@@ -3,9 +3,10 @@ class User < ActiveRecord::Base
 
   attr_accessible :organization_name, :organization_type, :name, :phone, :email,
     :time_zone, :password, :password_confirmation, :activation_state, :activation_token,
-    :terms_and_conditions, :promo_code, :text_messages_approval, :pop_up_count, :pin_number
+    :terms_and_conditions, :promo_code, :text_messages_approval, :pop_up_count, :pin_number,
+    :current_password
   
-  attr_accessor :terms_and_conditions, :promo_code
+  attr_accessor :terms_and_conditions, :promo_code, :current_password
 
   has_one :subscription,          :dependent => :destroy
   has_one :billing_setting,       :dependent => :destroy
@@ -29,6 +30,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   validates_length_of :password, :minimum => 6, :message => "must be at least 6 characters long", :if => :password
+  validate :password_match, :if => :password, :on => :update
+
 
   #  validates :password, :presence => true, :on => :create
   #  validates_confirmation_of :password
@@ -78,6 +81,12 @@ class User < ActiveRecord::Base
   end
 
   private
+  def password_match
+    unless User.authenticate(self.email, self.current_password)
+      errors.add(:base, "Current password is wrong!")
+    end
+  end
+
   def update_time_zone
     #self.time_zone = UsState::get_time_zone(self.state) if self.time_zone.blank? or self.state != self.state_was
     self.time_zone = "Eastern Time (US & Canada)" if self.time_zone.blank?

@@ -46,7 +46,8 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to profile_path, :notice => "Your password has been updated"
     else
-      redirect_to profile_path, :alert => "Password doesn't match confirmation!"
+      @alert = @user.errors.present? ? @user.errors.full_messages.first : "Something went wrong!"
+      redirect_to profile_path, :alert => @alert
     end
   end
 
