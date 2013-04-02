@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   validates_length_of :password, :minimum => 6, :message => "must be at least 6 characters long", :if => :password
-  validate :password_match, :if => :password, :on => :update
+  validate :password_match, :if => [:password, :current_password], :on => :update
 
 
   #  validates :password, :presence => true, :on => :create
