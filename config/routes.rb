@@ -123,6 +123,7 @@ Robocent::Application.routes.draw do
   match 'contact-us-submit' => "publics#contact_us_submit" , :as => :contact_us_submit
   match "contact-us"  => "publics#contact",    :as => "contact_us"
   match 'solutions'   => "publics#solutions",  :as => "solutions"
+  match 'residential_communities'   => "publics#residential_communities",  :as => "residential_communities"
 
   root :to => 'publics#index'
 end
