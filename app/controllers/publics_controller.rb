@@ -42,4 +42,8 @@ class PublicsController < ApplicationController
     render :layout => false
   end
 
+  def residential_communities
+    render :layout => false
+  end
+
 end

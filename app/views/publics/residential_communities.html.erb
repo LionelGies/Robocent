@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+  <head>
+    <title>RoboCent</title>
+    <%= render "shared/meta_contents" %>
+
+    <%= stylesheet_link_tag "light_phone" %>
+
+    <link rel="shortcut icon" href="/assets/favicon.ico"/>
+  </head>
+
+  <body>
+    <!-- START: TOP PANEL /-->
+    <div id="topPanel">
+      <%= link_to "RoboCent", root_path, :id => "logo" %>
+    </div>
+    <!-- END: TOP PANEL /-->
+
+
+    <!-- START: HEADER /-->
+    <div id="header">
+      <div id="get-app">
+        <h1>Easily Send Text and Call Alerts</h1>
+        <h2>Keep residents informed of<br />events and emergencies in real-time for $5/month</h2>
+
+        <!-- get the app button /-->
+        <%= form_for User.new do |f| %>
+          <%= f.email_field :email, :placeholder => "Email", :class => "try-now-email" %>
+          <%= f.password_field :password, :placeholder => "Password", :class => "try-now-password" %>
+          <div class="clear"></div>
+          <%= link_to "javascript:void(0);", :class => "getAppBtn low-margin", :onclick => "$(this).closest('form').submit();return false;" do %>
+            <span class="text">Try&nbsp;now</span>
+            <span class="hover"></span>
+            <span class="normal"></span>
+          <% end %>
+        <% end %>
+
+
+
+      </div>
+    </div>
+    <!-- END: HEADER /-->
+
+
+    <!-- START: BACKGROUND /-->
+    <div class="background">
+
+      <!-- START: COLUMNS /-->
+      <div class="container">
+        <ul id="columns">
+
+          <!-- COLUMN 1 /-->
+          <li class="phone">
+            <h3>Easy-to-use web platform</h3>
+            <p>Sending a text or call has never been easier; in fact, it takes less than 2 minutes!</p>
+          </li>
+
+          <!-- COLUMN 2 /-->
+          <li class="brush">
+            <h3>Text-to-join</h3>
+            <p>Set-up a custom keyword subscribers can text to join your list!</p>
+          </li>
+
+
+          <!-- COLUMN 3 /-->
+          <li class="wheel">
+            <h3>Feature-packed system</h3>
+            <p>No matter what you're trying to accomplish with RoboCent, our system has the features to make it happen!</p>
+          </li>
+        </ul>
+      </div>
+      <!-- END: COLUMNS /-->
+
+
+
+      <!-- START: INFO LINE /-->
+      <div id="infoLine">
+        <div class="container">
+          <h2>The Power of RoboCent</h2>
+          <p>We enable organizations to send thousands of messages in a matter of seconds, not minutes. By focusing on speed, reliability and ease-of-use, RoboCent has developed the best platform on the market.</p>
+          <p>With plans starting at $5/month, RoboCent is affordable to every organization, regardless of their size and budget. So what are you waiting for? Register now or check out our awesome info-graphics below!</p>
+        </div>
+      </div>
+      <!-- END: INFO LINE /-->
+
+
+      <!-- BEGIN: SHOWCASE /-->
+      <div id="showcase">
+        <div class="container">
+          <h2>Learn more about RoboCent</h2>
+          <p>RoboCent is a cloud-based text and call notification platform that can deliver 2,400 texts/minute and 5,000 calls/minute. To learn more, please see the info-graphics below or proceed to RoboCent.com!</p>
+
+
+        </div>
+      </div>
+      <!-- END: SHOWCASE /-->
+
+    </div>
+    <!-- END: BACKGROUND /-->
+
+    <!-- START: BOTTOM  BG /-->
+    <div id="bottom">
+      <div class="container">
+        <p class="low-width">Cloud-based text and call alerts for $5/month. What are you waiting for?</p>
+
+        <!-- get the app button /-->
+        <div class="clear"></div>
+        <%= form_for User.new, :html => {:class => "floating-form"} do |f| %>
+          <%= f.email_field :email, :placeholder => "Email", :class => "try-now-email" %>
+          <%= f.password_field :password, :placeholder => "Password", :class => "try-now-password" %>
+          <div class="clear"></div>
+          <%= link_to "javascript:void(0);", :class => "getAppBtn no-margin", :onclick => "$(this).closest('form').submit();return false;" do %>
+            <span class="text">Try&nbsp;now</span>
+            <span class="hover"></span>
+            <span class="normal"></span>
+          <% end %>
+        <% end %>
+
+      </div>
+    </div>
+    <!-- END: BOTTOM  BG /-->
+
+
+    <!-- START: FOOTER /-->
+    <div  class="background" id="footer">
+      <div class="container">
+
+        <span id="copyright">&copy; 2013 RoboCent, Inc. All Rights Reserved.</span>
+
+        <ul id="social">
+
+          <!-- Twitter link /-->
+          <li class="twitter">
+            <a href="http://www.twitter.com/RoboCent" title="Follow me on Twitter">
+              <span class="hover"></span>
+              <span class="normal"></span>
+            </a>
+          </li>
+
+          <!-- Facebook link /-->
+          <li class="facebook">
+            <a href="http://www.facebook.com/RoboCent" title="Follow me on Facebook">
+              <span class="hover"></span>
+              <span class="normal"></span>
+            </a>
+          </li>
+
+
+        </ul>
+
+
+        <!-- CREDITS /-->
+        <div id="credits">
+          <p>&nbsp;</p>
+          <p class="authors">&nbsp;</p>
+        </div>
+
+      </div>
+    </div>
+    <!-- END: FOOTER /-->
+
+
+    <!-- Javascript /-->
+    <%= javascript_include_tag "light_phone" %>
+
+  </body>
+</html>
