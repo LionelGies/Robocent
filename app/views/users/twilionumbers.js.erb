@@ -1,7 +1,11 @@
-<% if @numbers.size > 0 %>
-  <%= fields_for @twilio_phone_number ||= TwilioPhoneNumber.new do |t| %>
-    <%= t.select :phone_number, @numbers %>
-  <% end %>
+<% if @error.present? %>
+  <span class="widget_header_title"><%= @error %></span>
 <% else %>
-  <span class="widget_header_title">No Available Numbers in Area Code <%= @area_code %></span>
+  <% if @numbers.size > 0 %>
+    <%= fields_for @twilio_phone_number ||= TwilioPhoneNumber.new do |t| %>
+      <%= t.select :phone_number, @numbers %>
+    <% end %>
+  <% else %>
+    <span class="widget_header_title">No Available Numbers in Area Code <%= @area_code %></span>
+  <% end %>
 <% end %>

@@ -38,7 +38,11 @@ class UsersController < ApplicationController
 
   def twilionumbers
     @area_code = params[:code]
-    @numbers = TwilioRequest::available_phone_numbers(params[:code]).collect{|n| [n.phone_number]}
+    begin
+      @numbers = TwilioRequest::available_phone_numbers(params[:code]).collect{|n| [n.phone_number]}
+    rescue => e
+     @error = e.message
+    end
   end
 
   def update_password
