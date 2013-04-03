@@ -22,7 +22,7 @@
     <div id="credit-card-errors" style="display: none">
       <div id="stripe-error-message" class="alert iDialog"></div>
     </div>
-    <%= form_for(@billing_setting ||= BillingSetting.new, :url => create_billing_path, :html => {:class => "list_form"}) do |f| %>
+    <%= form_for(@billing_setting ||= BillingSetting.new, :url => create_billing_path) do |f| %>
       <%= f.hidden_field :stripe_token %>
       <%= f.hidden_field :card_last_four_digits %>
       <%= f.hidden_field :card_exp_month %>
