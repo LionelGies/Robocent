@@ -1,5 +1,6 @@
 class PublicsController < ApplicationController
   def index
+    @plans = Plan.enabled.order(:amount)
     redirect_to dashboard_path if current_user.present?
   end
 

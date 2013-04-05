@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   
   def migration
     @plans = Plan.order("amount asc, id asc").reject{ |plan|
-      plan.stripe_id == "special" and current_user.subscription.plan.stripe_id != "special"}
+      plan.disabled? and current_user.subscription.plan != plan }
     @current_plan = current_user.subscription.plan
     @subscription = current_user.subscription
     @plan_migration = current_user.plan_migration
@@ -17,7 +17,7 @@ class SubscriptionsController < ApplicationController
         if current_user.plan_migration.blank?
           @new_plan = Plan.find(params[:subscription][:plan_id])
           @total_contacts = current_user.lists.sum_number_of_contacts.first.total.to_i
-          if @new_plan.maximum_numbers >= @total_contacts
+          if @new_plan.maximum_numbers.to_i >= @total_contacts
             @subscription = current_user.subscription
             @subscription.migrate(@new_plan)
             redirect_to migration_path, :notice => "Successfully Migrated Your Account"
@@ -33,6 +33,7 @@ class SubscriptionsController < ApplicationController
     rescue => e
       logger.info e
       message = e.message
+      debugger
     end
     redirect_to migration_path, :alert => message if message.present?
   end
