@@ -5,6 +5,7 @@ class PublicsController < ApplicationController
   end
 
   def solutions
+    @plans = Plan.enabled.order(:amount)
   end
 
   def contact

@@ -74,15 +74,13 @@ ActiveRecord::Schema.define(:version => 20130405095329) do
   end
 
   create_table "call_queue", :force => true do |t|
-    t.integer  "order"
-    t.string   "phone",         :limit => 20
-    t.enum     "status",        :limit => [:NOT_DIALED, :DIALING, :DIALED, :CACHED], :default => :NOT_DIALED
-    t.string   "calleridname",  :limit => 50
-    t.string   "calleridnum",   :limit => 30
-    t.string   "recordingname", :limit => 200
-    t.string   "dialingserver", :limit => 50
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "order"
+    t.string  "phone",         :limit => 20
+    t.enum    "status",        :limit => [:NOT_DIALED, :DIALING, :DIALED, :CACHED], :default => :NOT_DIALED
+    t.string  "calleridname",  :limit => 50
+    t.string  "calleridnum",   :limit => 30
+    t.string  "recordingname", :limit => 200
+    t.string  "dialingserver", :limit => 50
   end
 
   add_index "call_queue", ["dialingserver"], :name => "dialingserver"
@@ -99,8 +97,6 @@ ActiveRecord::Schema.define(:version => 20130405095329) do
     t.datetime "schedule_at"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
-    t.datetime "started_at"
-    t.datetime "finished_at"
   end
 
   create_table "contacts", :force => true do |t|

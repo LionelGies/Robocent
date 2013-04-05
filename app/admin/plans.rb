@@ -30,7 +30,7 @@ ActiveAdmin.register Plan do
         f.input :monthly_fee, :label => "Monthly subscription fee(0.00 for no fee)"
         f.input :monthly_included_text_or_call, :label => "Texts or calls included per month"
         f.input :free_text
-        f.input :trial_period_days
+        f.input :trial_period_days, :as => :hidden, :input_html => { :value => '7' }
         f.input :currency, :as => :hidden, :input_html => { :value => 'usd' }
         f.input :interval, :as => :hidden, :input_html => { :value => 'month' }
       else
@@ -39,13 +39,12 @@ ActiveAdmin.register Plan do
         f.input :price_per_call_or_text
         f.input :monthly_included_text_or_call, :label => "Texts or calls included per month"
         f.input :free_text
-        f.input :trial_period_days
       end
     end
     f.buttons
   end
   
-  member_action :destroy do
+  member_action :destroy, :method => :delete do
     @plan = Plan.find(params[:id])
     @plan.disabled = true
     @plan.save

@@ -56,17 +56,19 @@ class Plan < ActiveRecord::Base
   def monthly_included_text_or_call=(text_or_call)
     self.monthly_free_credit = text_or_call.to_f * formated_price_per_call_text / 100
   end
+
   def monthly_included_text_or_call
     begin
       (self.monthly_free_credit.to_f / formated_price_per_call_text * 100).round 
     rescue
-      0 #if exception return 0. Divide by zore exeception my raised 
+      0 #if exception return 0. Divide by zero exception my raised
     end
   end
   
   def free_text=(free)
     self.free_credit = (formated_price_per_call_text * free.to_i / 100).round
   end
+
   def free_text
     begin
       (self.free_credit.to_f / formated_price_per_call_text * 100).round
