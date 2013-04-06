@@ -1,12 +1,9 @@
 class Plan < ActiveRecord::Base
-  #default_scope where(:disabled => false)
-  
   attr_accessible :stripe_id, :amount, :currency, :interval, :maximum_numbers,
     :minimum_numbers, :name, :price_per_call_or_text, :trial_period_days, 
     :free_credit, :monthly_free_credit, :default, :recurring, :max_keywords,
     :card_required, :monthly_fee, :monthly_included_text_or_call, :free_text
     
-
   has_many :subscriptions
   has_many :users, :through => :subscriptions
   
@@ -18,8 +15,6 @@ class Plan < ActiveRecord::Base
   def details
     "#{minimum_numbers}-#{maximum_numbers} Numbers, $#{amount/100}/#{interval.capitalize}, #{price_per_call_or_text}&cent;/Call or Text".html_safe
   end
-  
-  STRIPE_ID = %w[pay_as_you_go basic advance]
 
   before_create :create_stripe_plan
   before_create :card_required_check

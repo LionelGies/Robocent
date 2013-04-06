@@ -26,10 +26,10 @@ ActiveAdmin.register Plan do
     f.inputs "Plan Details" do
       if f.object.new_record?
         f.input :name
-        f.input :stripe_id, :label => "Stripe plan name(should be unique)"
+        f.input :stripe_id, :label => "Stripe plan name (should be unique)"
         f.input :max_keywords
-        f.input :price_per_call_or_text, :label => "Price pre call or text(in cent)"
-        f.input :monthly_fee, :label => "Monthly subscription fee(0.00 for no fee)"
+        f.input :price_per_call_or_text, :label => "Price per call or text (in cent)"
+        f.input :monthly_fee, :label => "Monthly subscription fee (0.00 for no fee)"
         f.input :monthly_included_text_or_call, :label => "Texts or calls included per month"
         f.input :free_text
         f.input :default
