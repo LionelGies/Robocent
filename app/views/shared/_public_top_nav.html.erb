@@ -46,9 +46,11 @@
           </li>
           <li class="<%= 'selected' if current_page?(solutions_path) %>">
             <%= link_to "Solutions", solutions_path, :class => "#{'selected' if current_page?(solutions_path)}" %>
-            <ul>
-              <li><%= link_to "Residential Communities", residential_communities_path  %></li>
-            </ul>
+<%#*<ul>%>
+<%#*<li>%>
+<%#= link_to "Residential Communities", residential_communities_path  %>
+<%#*</li>%>
+<%#*</ul>%>
           </li>
           <li class="last <%= 'selected' if current_page?(contact_us_path) %>">
             <%= link_to "Contact Us", contact_us_path, :class => "#{'selected' if current_page?(contact_us_path)}" %>
