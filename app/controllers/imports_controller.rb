@@ -6,16 +6,16 @@ class ImportsController < ApplicationController
   
   def create
     @import = current_user.imports.new(params[:import])
-    #debugger
-	respond_to do |format|
-		if @import.save
-		  format.html#{ redirect_to map_column_import_path(@import) }
-		  format.js		  
-		else
-		  format.html#{ redirect_to new_contact_path, :alert => "Something went Wrong!!" }
-		  format.js
-		end
-	end
+
+    respond_to do |format|
+      if @import.save
+        format.html#{ redirect_to map_column_import_path(@import) }
+        format.js
+      else
+        format.html#{ redirect_to new_contact_path, :alert => "Something went Wrong!!" }
+        format.js
+      end
+    end
   end
 
   def map_column
@@ -49,21 +49,15 @@ class ImportsController < ApplicationController
 
   def insert_into_db
     @import = Import.find(params[:id])
+    
     if params["row"].present?
       @import.mapping = params["row"].to_hash
       @import.save
       @import = Import.find(params[:id])
     end
 
-    @total_contacts_count = current_user.lists.sum_number_of_contacts.first.total.to_i
-    @allowed_contacts_count = current_user.subscription.plan.maximum_numbers
-
     if @import.hold
       redirect_to new_contact_path, :alert => "Your list is currently pending administrator approval."
-    elsif((@total_contacts_count + @import.number_of_contacts) > @allowed_contacts_count)
-      @import.hold = true
-      @import.save
-      redirect_to new_contact_path, :alert => "Your list is currently pending administrator approval. Please upgrade your account in order to add more subscribers to the system."
     else
       Delayed::Job.enqueue Jobs::ImportJob.new(@import), 0 , 2.seconds.from_now, :queue => "import"
       redirect_to new_contact_path, :notice => "Your uploads successfully placed into queue."
