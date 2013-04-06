@@ -36,8 +36,7 @@ class RecordingsController < ApplicationController
             g.Play "#{root_url}ivr/NewPrompt.mp3"
           end
         end
-        #        r.Say "We didn't receive any input. Goodbye!", :voice => "woman"
-        r.Play "#{root_url}ivr/RobocentRecording-560.mp3"
+        r.Say "We didn't receive any input. Goodbye!", :voice => "woman"
       end
     end
 
@@ -64,7 +63,8 @@ class RecordingsController < ApplicationController
         g.Play "#{root_url}ivr/RobocentRecording-558.mp3"
         g.Play "#{url}.wav"
       end
-      r.Say "Your recording was created, it will appear in your account shortly", :voice => "woman"
+      #      r.Say "Your recording was created, it will appear in your account shortly", :voice => "woman"
+      r.Play "#{root_url}ivr/RobocentRecording-560.mp3"
     end
     logger.info response.text
 
