@@ -22,6 +22,7 @@ class Plan < ActiveRecord::Base
   STRIPE_ID = %w[pay_as_you_go basic advance]
 
   before_create :create_stripe_plan
+  before_create :card_required_check
   
   def create_stripe_plan
     if stripe_plan.blank?
@@ -44,6 +45,10 @@ class Plan < ActiveRecord::Base
   def stripe_plan
     @stripe_plan ||= Stripe::Plan.retrieve(self.stripe_id) rescue nil
   end
+
+  def card_required_check
+    self.card_required = true if self.amount > 0
+  end
   
   #attr_accessor
   def monthly_fee=(fee)
@@ -59,14 +64,14 @@ class Plan < ActiveRecord::Base
 
   def monthly_included_text_or_call
     begin
-      (self.monthly_free_credit.to_f / formated_price_per_call_text * 100).round 
+      (self.monthly_free_credit.to_f / formated_price_per_call_text * 100).round
     rescue
       0 #if exception return 0. Divide by zero exception my raised
     end
   end
   
   def free_text=(free)
-    self.free_credit = (formated_price_per_call_text * free.to_i / 100).round
+    self.free_credit = (formated_price_per_call_text * free.to_i / 100)
   end
 
   def free_text

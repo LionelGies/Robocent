@@ -17,6 +17,8 @@ ActiveAdmin.register Plan do
     column "Text or Call included/Month", :monthly_included_text_or_call, :sortable => false
     column "Keywords", :max_keywords
     column "Free Text", :free_text, :sortable => false
+    column :default
+    column :card_required
     default_actions
   end
 
@@ -30,6 +32,7 @@ ActiveAdmin.register Plan do
         f.input :monthly_fee, :label => "Monthly subscription fee(0.00 for no fee)"
         f.input :monthly_included_text_or_call, :label => "Texts or calls included per month"
         f.input :free_text
+        f.input :default
         f.input :trial_period_days, :as => :hidden, :input_html => { :value => '7' }
         f.input :currency, :as => :hidden, :input_html => { :value => 'usd' }
         f.input :interval, :as => :hidden, :input_html => { :value => 'month' }
@@ -39,6 +42,7 @@ ActiveAdmin.register Plan do
         f.input :price_per_call_or_text
         f.input :monthly_included_text_or_call, :label => "Texts or calls included per month"
         f.input :free_text
+        f.input :default
       end
     end
     f.buttons
