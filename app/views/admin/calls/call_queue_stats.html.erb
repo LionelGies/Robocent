@@ -1,0 +1,33 @@
+<div class="index_content">
+	<div class="index_as_table">
+		<table width="100%" class="index_table index" cellspacing="0" cellpadding="0" border="0">
+			<thead>
+				<tr>
+					<th>CallQueue id</th>
+					<th>Phone </th>
+					<th>Queued at</th>
+					<th>Call Start</th>
+					<th>Dialing Delay</th>
+					<th>Call Result</th>
+					<th>Call Duration</th>
+					<th>On Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @call_queues.each_with_index do |queue, index| %>
+				<tr class="<%= index % 2 == 0 ? "even" : "odd" %>">
+					<td> <%= queue.id %> </td>
+					<td> <%= queue.phone %> </td>
+					<td> <%= queue.created_at.in_time_zone("EST") if queue.created_at.present? %> </td>
+					<td> <%= Time.at(queue.result.call_start.to_i).in_time_zone("EST") if queue.result.present? && queue.result.call_start.present? %> </td>
+					<td> <%= Time.at((queue.created_at.present? ? queue.created_at.to_i : (@call.started_at.present? ? @call.started_at.to_i : @call.schedule_at.to_i)) - queue.result.call_start.to_i).strftime("%H:%M:%S")  if queue.result.present? %> </td>
+					<td> <%= queue.result.call_result if queue.result.present? %> </td>
+					<td> <%= queue.result.call_dur if queue.result.present? %> </td>
+					<td> <%= queue.result.on_time if queue.result.present? %> </td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<%= paginate(@call_queues) %>
+	</div>
+</div>
