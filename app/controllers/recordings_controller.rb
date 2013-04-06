@@ -36,7 +36,8 @@ class RecordingsController < ApplicationController
             g.Play "#{root_url}ivr/NewPrompt.mp3"
           end
         end
-        r.Say "We didn't receive any input. Goodbye!", :voice => "woman"
+        #        r.Say "We didn't receive any input. Goodbye!", :voice => "woman"
+        r.Play "#{root_url}ivr/RobocentRecording-560.mp3"
       end
     end
 
@@ -47,16 +48,23 @@ class RecordingsController < ApplicationController
   end
 
   def replay
+    root_url = "http://robocent.com/"
+
     user = User.find(params["user_id"])
     url = params["RecordingUrl"]
     duration = params["RecordingDuration"]
+
+    recording = user.recordings.new({:url => url, :duration => duration })
+    recording.save
+
+    session[:recording_id] = recording.id
     
     response = Twilio::TwiML::Response.new do |r|
       r.Gather(:action => save_or_record_path(:user_id => user.id, :url => url, :duration => duration), :timeout => "5", :finishOnKey => "*", :method => "GET") do |g|
         g.Play "#{root_url}ivr/RobocentRecording-558.mp3"
         g.Play "#{url}.wav"
       end
-      r.Say "We didn't receive any voice. Goodbye!", :voice => "woman"
+      r.Say "Your recording was created, it will appear in your account shortly", :voice => "woman"
     end
     logger.info response.text
 
@@ -65,20 +73,28 @@ class RecordingsController < ApplicationController
   end
 
   def save_or_record
+    root_url = "http://robocent.com/"
+    
     user = User.find(params["user_id"])
 
     if(params["Digits"] == "1")
-      url = params["url"]
-      duration = params["duration"]
-
-      recording = user.recordings.new({:url => url, :duration => duration })
-      recording.save
+      #      url = params["url"]
+      #      duration = params["duration"]
+      #
+      #      recording = user.recordings.new({:url => url, :duration => duration })
+      #      recording.save
 
       response = Twilio::TwiML::Response.new do |r|
         r.Play "#{root_url}ivr/RobocentRecording-560.mp3"
       end
 
     elsif(params["Digits"] == "2")
+      if session[:recording_id].present?
+        recording = Recording.find(session[:recording_id])
+        recording.destroy
+        session.delete(:recording_id)
+      end
+
       response = Twilio::TwiML::Response.new do |r|
         r.Play "#{root_url}ivr/RobocentRecording-556.mp3"
         r.Record(:action => replay_path(:user_id => user.id), :method => "GET", :playBeep => true, :finishOnKey => "#", :maxLength => "90")
