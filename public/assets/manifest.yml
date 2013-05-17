@@ -831,8 +831,8 @@ active_admin.js: active_admin-ce5ca0287661742cd73a0cab42cb95f1.js
 active_admin/index.js: active_admin-ce5ca0287661742cd73a0cab42cb95f1.js
 application.js: application-dfb063cfde9a6fd4cd257e861245649e.js
 application/index.js: application-dfb063cfde9a6fd4cd257e861245649e.js
-dashboard.js: dashboard-6c77d821be7d03ecd4f1ffdebcdee930.js
-dashboard/index.js: dashboard-6c77d821be7d03ecd4f1ffdebcdee930.js
+dashboard.js: dashboard-761ad00b1240694008cbf0bf9a60f62c.js
+dashboard/index.js: dashboard-761ad00b1240694008cbf0bf9a60f62c.js
 dashboard/Flot/excanvas.js: dashboard/Flot/excanvas-5e6d75c7b564806ccb01cabffbb4e58b.js
 dashboard/Flot/excanvas/index.js: dashboard/Flot/excanvas-5e6d75c7b564806ccb01cabffbb4e58b.js
 light_phone.js: light_phone-f08f9a969a6bd85c5ceb8879ffa02842.js
