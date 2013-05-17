@@ -68,7 +68,7 @@ class CallsController < ApplicationController
         session[:call] = session[:call].merge(new_hash)
         @call = current_user.calls.new(session[:call])
       rescue => e
-        puts e.message
+        #puts e.message
         @step = "1"
       end
     end
@@ -77,32 +77,36 @@ class CallsController < ApplicationController
   end
 
   def create
-    @call = current_user.calls.new(session[:call])
-    @current_balance = current_user.account_balance.current_balance
-    #
-    # convert schedule_at time user time zone to utc time zone
-    require 'chronic'
-    Time.zone = current_user.time_zone
-    Chronic.time_class = Time.zone
-    start_time_string = "#{session[:call]["schedule_at(1i)"]}-#{session[:call]["schedule_at(2i)"]}-#{session[:call]["schedule_at(3i)"]} at #{session[:call]["schedule_at(4i)"]}:#{session[:call]["schedule_at(5i)"]} #{session[:call]["schedule_at(7i)"]}"
-    start_time = Chronic.parse(start_time_string)
+    if session[:call].present?
+      @call = current_user.calls.new(session[:call])
+      @current_balance = current_user.account_balance.current_balance
+      #
+      # convert schedule_at time user time zone to utc time zone
+      require 'chronic'
+      Time.zone = current_user.time_zone
+      Chronic.time_class = Time.zone
+      start_time_string = "#{session[:call]["schedule_at(1i)"]}-#{session[:call]["schedule_at(2i)"]}-#{session[:call]["schedule_at(3i)"]} at #{session[:call]["schedule_at(4i)"]}:#{session[:call]["schedule_at(5i)"]} #{session[:call]["schedule_at(7i)"]}"
+      start_time = Chronic.parse(start_time_string)
 
-    if start_time <= Time.now or session[:call][:schedule_now] == "1"
-      start_time = Time.zone.now + 5.seconds
-    end
-    Time.zone = "UTC"
+      if start_time <= Time.now or session[:call][:schedule_now] == "1"
+        start_time = Time.zone.now + 5.seconds
+      end
+      Time.zone = "UTC"
 
-    @call.schedule_at = start_time.utc
+      @call.schedule_at = start_time.utc
 
-    if current_user.billing_setting.card or (@current_balance >= @call.total_cost and !current_user.subscription.plan.card_required)
-      if @call.save
-        session.delete(:call)
-        redirect_to dashboard_path, :notice => "Successfully placed the call into queue!"
+      if current_user.billing_setting.card or (@current_balance >= @call.total_cost and !current_user.subscription.plan.card_required)
+        if @call.save
+          session.delete(:call)
+          redirect_to dashboard_path, :notice => "Successfully placed the call into queue!"
+        else
+          redirect_to send_call_path
+        end
       else
-        redirect_to send_call_path
+        redirect_to billing_path, :alert => "You must have a Card on file to perform this task!"
       end
     else
-      redirect_to billing_path, :alert => "You must have a Card on file to perform this task!"
+      redirect_to send_call_path
     end
   end
 
