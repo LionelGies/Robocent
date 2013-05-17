@@ -12,7 +12,10 @@
       <div class="g_10">
         <%= f.text_area :content, :class => "simple_field", :required => true %>
         <div class="field_notice" id="content_length">0 Characters</div>
-        <div id="whitelist_exceptional_characters" style="color: #6EA004;" class="field_notice">Following characters are not allowed: <b style="font-size: 12px;"><%= "~ ` ^ | \\ " %></b></div>
+        <div id="whitelist_exceptional_characters" style="color: #6EA004;" class="field_notice">
+          Following characters are not allowed:
+          <b style="font-size: 12px;"><%= "~ ` ^ | \\" %></b>
+        </div>
       </div>
     </div>
     <div class="line_grid">

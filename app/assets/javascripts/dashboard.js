@@ -177,8 +177,10 @@ $(function() {
     var time_interval_id = null;
     $("#text_message_content").focus(function(){
         time_interval_id = setInterval(function(){
-            console.log("running");
-            $("#text_message_content").val($("#text_message_content").val().replace(/[\~`\^\|\\]/g, ""));
+            //            console.log("running");
+            var content = $("#text_message_content").val();
+            content = content.replace(/[\~`\^\|\\]/g, "").replace(/[\‘\’]/g, "'").replace(/[\“\”]/g, '"');
+            $("#text_message_content").val(content);
         }, 200);
 		
     });
@@ -206,30 +208,30 @@ $(function(){
     });
 
     var bar = $('.bar');	
-	var status = $('.status'); 
-	$('input[type="submit"]').removeAttr('disabled');
-	$('#new_import').ajaxForm({
-		dataType: 'script',
-		beforeSend: function() {
-			$(".progress").show();
-			$(".status").show();
-			var percentVal = '0%';
-			bar.width(percentVal);
-			$("#uniform-import_file_name").hide();
-			$('input[type="submit"]').attr('disabled', 'disabled');
-		},
-		uploadProgress: function(event, position, total, percentComplete) {
-			var percentVal = percentComplete + '%';
-			bar.width(percentVal)
-			status.html("Uploading: <span class='must'>" + percentVal+ "</span>");
+    var status = $('.status');
+    $('input[type="submit"]').removeAttr('disabled');
+    $('#new_import').ajaxForm({
+        dataType: 'script',
+        beforeSend: function() {
+            $(".progress").show();
+            $(".status").show();
+            var percentVal = '0%';
+            bar.width(percentVal);
+            $("#uniform-import_file_name").hide();
+            $('input[type="submit"]').attr('disabled', 'disabled');
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal)
+            status.html("Uploading: <span class='must'>" + percentVal+ "</span>");
 			
-		},
-		complete: function(xhr) {
-			var percentVal = '100%'; 
-			bar.width(percentVal); 
-			status.html("Upload Finished: <span class='must'>" + percentVal+ "</span>");
-		}
-	}); 
+        },
+        complete: function(xhr) {
+            var percentVal = '100%';
+            bar.width(percentVal);
+            status.html("Upload Finished: <span class='must'>" + percentVal+ "</span>");
+        }
+    });
     
 });
 
