@@ -1,10 +1,10 @@
 <div id="content" class="pricing-table">
 	<div class="table">
-		<div class="container" style="width: 100%;position: relative;">
+		<div class="container">
 			<div class="centered">
+                        <% plans_last_element = @plans.length - 1 %>
 			<% @plans.each_with_index do |plan, index| %>
-				
-				<div class="table_sec" style='<%= index == 0 ? "margin-left: 49px;" : ""%>' >
+				<div class="table_sec <%= 'last' if index == plans_last_element %>">
 					<h2 class="<%= plan.amount > 0 ? 'orange' : nil %>"><%= plan.name %></h2>
 					<div class="detail">
 						<p>
