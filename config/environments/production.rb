@@ -77,7 +77,7 @@ Robocent::Application.configure do
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[Exception] ",
     :sender_address => %{"RoboCent" <info@robocent.com>},
-    :exception_recipients => %w{maruf.freelancer@gmail.com}
+    :exception_recipients => %w{maruf.freelancer@gmail.com asif@iconsbd.com}
 
   config.action_mailer.delivery_method = :smtp
 end
