@@ -66,3 +66,7 @@ group :development do
   gem 'debugger'
 end
 # gem 'debugger'
+
+group :production do
+	gem 'pg'
+end
