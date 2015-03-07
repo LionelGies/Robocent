@@ -20,7 +20,7 @@ test:
   database: robocent_test
   username: root
   password: admin
-  host: localhost
+#  host: localhost
   pool: 5
   timeout: 5000
 
@@ -29,7 +29,7 @@ staging:
   database: robocent
   username: root
   password: admin
-  host: localhost
+#  host: localhost
   pool: 5
   timeout: 5000
 
@@ -39,6 +39,6 @@ production:
   database: robocent
   username: root
   password: admin
-  host: localhost
+#  host: localhost
   pool: 5
   timeout: 5000
