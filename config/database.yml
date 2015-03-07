@@ -25,7 +25,7 @@ test:
   timeout: 5000
 
 staging:
-  adapter: mysql2
+  adapter: postgresql
   database: robocent
   username: root
   password: admin
