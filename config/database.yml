@@ -35,7 +35,7 @@ staging:
 
 
 production:
-  adapter: mysql2
+  adapter: postgresql
   database: robocent
   username: root
   password: admin
