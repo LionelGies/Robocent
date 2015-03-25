@@ -28562,3 +28562,1770 @@ Connecting to database specified by database.yml
   [1m[35m (0.1ms)[0m  BEGIN
   [1m[36mPlan Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `plans` WHERE `plans`.`stripe_id` = BINARY 'high-usage' LIMIT 1[0m
   [1m[35m (0.2ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+  [1m[36m (108.4ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to SorceryCore (20121209235734)
+Migrating to AddAddressAndStateToUsers (20121211125004)
+Migrating to CreateBillingSettings (20121211211301)
+Migrating to CreatePlans (20121212192455)
+Migrating to CreateSubscriptions (20121212193249)
+Migrating to CreateTwilioPhoneNumbers (20121212233934)
+Migrating to CreateAccountBalances (20121215194157)
+Migrating to CreateReceipts (20121215194309)
+Migrating to CreateLists (20121215225919)
+Migrating to CreateContacts (20121215225940)
+Migrating to CreateImports (20121216002034)
+Migrating to AddMappingToImports (20121218030521)
+Migrating to AddStripeChargeIdToReceipts (20121219002412)
+Migrating to CreateBillingEvents (20121221223505)
+Migrating to CreateTextMessages (20121230142738)
+Migrating to AddListIdsToTextMessages (20121230234126)
+Migrating to AddScheduleAtToTextMessages (20130102193934)
+Migrating to CreateDelayedJobs (20130105193055)
+Migrating to AddTwilioResponseToTextMessages (20130105234103)
+Migrating to AddJobStatusToTextMessages (20130106055705)
+Migrating to CreateSmsMessages (20130107030826)
+Migrating to AddPinNumberToTwilioPhoneNumbers (20130109230529)
+Migrating to CreateRecordings (20130110033622)
+Migrating to CreateCalls (20130110072114)
+Migrating to AddFileToRecordings (20130112183113)
+Migrating to CreateDnc (20130114232428)
+Migrating to CreateTestCalls (20130115003040)
+Migrating to CreateCallQueue (20130115004147)
+Migrating to CreateResults (20130115005352)
+Migrating to CreatePlanMigrations (20130116143501)
+Migrating to CreateTempUsers (20130117114245)
+Migrating to CreateTmpMessages (20130117183352)
+Migrating to DeviseCreateAdminUsers (20130118091523)
+Migrating to CreateAdminNotes (20130118091601)
+Migrating to MoveAdminNotesToComments (20130118091602)
+Migrating to AddSidToTwilioPhoneNumbers (20130119054827)
+Migrating to AddReadToSmsMessages (20130121160020)
+Migrating to AddShortcodeKeywordToLists (20130124130317)
+Migrating to CreateShortCodes (20130125215046)
+Migrating to AddTextMessageIdToDelayedJobs (20130130015958)
+Migrating to CreateQueueTexts (20130207064947)
+Migrating to AddStatusToTextMessages (20130208034324)
+Migrating to AddFreeCreditToPlans (20130208090346)
+Migrating to AddUploadedToRecordings (20130212115327)
+Migrating to CreateMetaContents (20130217182758)
+Migrating to AddTrialColumnsToSubscriptions (20130219123907)
+Migrating to CreateTmpQueueCalls (20130221190516)
+Migrating to AddContactIdToDnc (20130310220028)
+Migrating to AddTextMessagesApprovalToUsers (20130313110343)
+Migrating to AddGreetingToLists (20130319094400)
+Migrating to AddExtraAttrToPlans (20130323073540)
+Migrating to AddPopUpCountToUsers (20130324112553)
+Migrating to AddRecurringToBillingEvents (20130325001320)
+Migrating to AddPinNumberToUsers (20130325153841)
+Migrating to AddColumnsStratedAtAndFinishedAddToCalls (20130404072849)
+Migrating to AddTimestampToCallQueue (20130404101014)
+Migrating to AddColumnDisabledToPlans (20130405095329)
+  [1m[35m (0.1ms)[0m  SELECT `schema_migrations`.`version` FROM `schema_migrations` 
+Connecting to database specified by database.yml
+  [1m[36m (2.9ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mPlan Exists (18.4ms)[0m  [1mSELECT 1 AS one FROM `plans` WHERE `plans`.`stripe_id` = BINARY 'pay_as_you_go' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mPlan Exists (0.4ms)[0m  SELECT 1 AS one FROM `plans` WHERE `plans`.`stripe_id` = BINARY 'basic' LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mPlan Exists (0.4ms)[0m  [1mSELECT 1 AS one FROM `plans` WHERE `plans`.`stripe_id` = BINARY 'advance' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mPlan Exists (0.3ms)[0m  SELECT 1 AS one FROM `plans` WHERE `plans`.`stripe_id` = BINARY 'elite' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mPlan Exists (0.3ms)[0m  [1mSELECT 1 AS one FROM `plans` WHERE `plans`.`stripe_id` = BINARY 'high-usage' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+Connecting to database specified by database.yml
+
+
+Started GET "/solutions" for 127.0.0.1 at 2015-03-10 23:56:09 +0800
+Processing by PublicsController#solutions as HTML
+  [1m[36mPlan Load (0.7ms)[0m  [1mSELECT `plans`.* FROM `plans` WHERE `plans`.`disabled` = 0 ORDER BY amount[0m
+  Rendered shared/_pricing_table.html.erb (148.4ms)
+  Rendered shared/_sign_up_popup.erb (43.9ms)
+  Rendered publics/solutions.html.erb within layouts/application (252.8ms)
+  [1m[35mMetaContent Load (0.3ms)[0m  SELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at
+  Rendered shared/_meta_contents.html.erb (3.2ms)
+Compiled jquery.js  (2ms)  (pid 12773)
+Compiled jquery-ui.js  (8ms)  (pid 12773)
+Compiled application.js  (242ms)  (pid 12773)
+  Rendered shared/_public_flash.html.erb (0.7ms)
+  Rendered shared/_public_top_nav.html.erb (4.4ms)
+  Rendered shared/_public_footer.html.erb (2.7ms)
+  Rendered shared/_google.html.erb (0.7ms)
+Completed 200 OK in 1079ms (Views: 1074.0ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /jquery-ui.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /smarthost/drop_menu.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /niceforms-default.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /smarthost/styles.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /application.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /smarthost/smarthost.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /smarthost/front.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /jquery-ui.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /smarthost/niceforms.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /smarthost/home.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /smarthost/contact_us.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /application.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-10 23:56:10 +0800
+Served asset /next-logo.png - 304 Not Modified (387ms)
+
+
+Started GET "/assets/smarthost/fonts/PTS55F-webfont.woff" for 127.0.0.1 at 2015-03-10 23:56:11 +0800
+Served asset /smarthost/fonts/PTS55F-webfont.woff - 304 Not Modified (76ms)
+
+
+Started GET "/assets/smarthost/cloud_services_bot.png" for 127.0.0.1 at 2015-03-10 23:56:11 +0800
+Served asset /smarthost/cloud_services_bot.png - 304 Not Modified (71ms)
+
+
+Started GET "/assets/smarthost/table_bot.png" for 127.0.0.1 at 2015-03-10 23:56:11 +0800
+Served asset /smarthost/table_bot.png - 304 Not Modified (33ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-10 23:56:11 +0800
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (11ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-10 23:56:11 +0800
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (9ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-10 23:56:11 +0800
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (32ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-10 23:56:11 +0800
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (12ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-10 23:56:11 +0800
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (22ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-10 23:56:11 +0800
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (31ms)
+
+
+Started GET "/assets/smarthost/top_bg.jpg" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/top_bg.jpg - 304 Not Modified (29ms)
+
+
+Started GET "/assets/smarthost/mb_icon.jpg" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/mb_icon.jpg - 304 Not Modified (27ms)
+
+
+Started GET "/assets/smarthost/main_bar.jpg" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/main_bar.jpg - 304 Not Modified (13ms)
+
+
+Started GET "/assets/smarthost/fonts/tradegothic-light-webfont.woff" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/fonts/tradegothic-light-webfont.woff - 304 Not Modified (7ms)
+
+
+Started GET "/assets/smarthost/fonts/PTS75F-webfont.woff" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/fonts/PTS75F-webfont.woff - 304 Not Modified (3ms)
+
+
+Started GET "/assets/smarthost/livechat_btn.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/livechat_btn.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/login_btn.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/login_btn.png - 304 Not Modified (9ms)
+
+
+Started GET "/assets/smarthost/cloud_services_mid.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/cloud_services_mid.png - 304 Not Modified (5ms)
+
+
+Started GET "/assets/smarthost/cloud_services_icons.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/cloud_services_icons.png - 304 Not Modified (10ms)
+
+
+Started GET "/assets/smarthost/larg_button.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/larg_button.png - 304 Not Modified (14ms)
+
+
+Started GET "/assets/smarthost/tick.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/tick.png - 304 Not Modified (19ms)
+
+
+Started GET "/assets/smarthost/cloud_services_top.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/cloud_services_top.png - 304 Not Modified (10ms)
+
+
+Started GET "/assets/smarthost/warning.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/warning.png - 304 Not Modified (36ms)
+
+
+Started GET "/assets/smarthost/social_icon.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/social_icon.png - 304 Not Modified (19ms)
+
+
+Started GET "/assets/smarthost/footer_mb.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/footer_mb.png - 304 Not Modified (23ms)
+
+
+Started GET "/assets/smarthost/footer_email.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/footer_email.png - 304 Not Modified (23ms)
+
+
+Started GET "/assets/smarthost/footer_address.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/footer_address.png - 304 Not Modified (18ms)
+
+
+Started GET "/assets/smarthost/buildings.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/buildings.png - 304 Not Modified (17ms)
+
+
+Started GET "/assets/smarthost/privacy_divider.jpg" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/privacy_divider.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/small_btn.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /smarthost/small_btn.png - 304 Not Modified (17ms)
+
+
+Started GET "/assets/jquery-ui/ui-bg_highlight-hard_100_f9f9f9_1x100.png" for 127.0.0.1 at 2015-03-10 23:56:12 +0800
+Served asset /jquery-ui/ui-bg_highlight-hard_100_f9f9f9_1x100.png - 304 Not Modified (12ms)
+
+
+Started GET "/contact-us" for 127.0.0.1 at 2015-03-10 23:56:29 +0800
+Processing by PublicsController#contact as HTML
+  Rendered publics/contact.html.erb within layouts/application (4.1ms)
+  [1m[36mMetaContent Load (0.2ms)[0m  [1mSELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at[0m
+  Rendered shared/_meta_contents.html.erb (0.8ms)
+  Rendered shared/_public_flash.html.erb (0.1ms)
+  Rendered shared/_public_top_nav.html.erb (2.6ms)
+  Rendered shared/_public_footer.html.erb (1.4ms)
+  Rendered shared/_google.html.erb (0.0ms)
+Completed 200 OK in 30ms (Views: 20.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:29 +0800
+Served asset /jquery-ui.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:29 +0800
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:29 +0800
+Served asset /smarthost/smarthost.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:29 +0800
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:29 +0800
+Served asset /smarthost/drop_menu.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:29 +0800
+Served asset /smarthost/front.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:29 +0800
+Served asset /niceforms-default.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:29 +0800
+Served asset /smarthost/styles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:29 +0800
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /jquery-ui.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/niceforms.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/contact_us.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /next-logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/loading.gif" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/loading.gif - 304 Not Modified (19ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/success.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/success.png - 304 Not Modified (65ms)
+
+
+Started GET "/assets/smarthost/contact_social_1.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/contact_social_1.png - 304 Not Modified (36ms)
+
+
+Started GET "/assets/smarthost/contact_mobile.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/contact_mobile.png - 304 Not Modified (71ms)
+
+
+Started GET "/assets/smarthost/submit.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/submit.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/contact_location.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/contact_location.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/contact_email.png" for 127.0.0.1 at 2015-03-10 23:56:30 +0800
+Served asset /smarthost/contact_email.png - 304 Not Modified (15ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-10 23:56:39 +0800
+Processing by PublicsController#index as HTML
+  Rendered shared/_banner.html.erb (3.2ms)
+  Rendered shared/_service.html.erb (1.3ms)
+  [1m[35mPlan Load (0.1ms)[0m  SELECT `plans`.* FROM `plans` WHERE `plans`.`disabled` = 0 ORDER BY amount
+  Rendered shared/_pricing_table.html.erb (7.5ms)
+  Rendered shared/_sign_up_popup.erb (2.0ms)
+  Rendered publics/index.html.erb within layouts/application (69.3ms)
+  [1m[36mMetaContent Load (0.1ms)[0m  [1mSELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at[0m
+  Rendered shared/_meta_contents.html.erb (0.8ms)
+  Rendered shared/_public_flash.html.erb (0.1ms)
+  Rendered shared/_public_top_nav.html.erb (2.8ms)
+  Rendered shared/_public_footer.html.erb (1.5ms)
+  Rendered shared/_google.html.erb (0.0ms)
+Completed 200 OK in 115ms (Views: 113.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /jquery-ui.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/smarthost.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/drop_menu.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/front.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /niceforms-default.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/styles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /jquery-ui.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/niceforms.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/contact_us.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/banner_man.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/banner_man.png - 304 Not Modified (14ms)
+
+
+Started GET "/assets/smarthost/phone.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/phone.png - 304 Not Modified (28ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /next-logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/system_admin.jpg" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/system_admin.jpg - 304 Not Modified (8ms)
+
+
+Started GET "/assets/smarthost/backup.jpg" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/backup.jpg - 304 Not Modified (27ms)
+
+
+Started GET "/assets/smarthost/live_support.jpg" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/live_support.jpg - 304 Not Modified (6ms)
+
+
+Started GET "/assets/smarthost/table_bot.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/table_bot.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/banner.jpg" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/banner.jpg - 304 Not Modified (24ms)
+
+
+Started GET "/assets/smarthost/tick.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/tick.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/testimonial.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/testimonial.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-10 23:56:40 +0800
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/solutions" for 127.0.0.1 at 2015-03-11 00:09:36 +0800
+Processing by PublicsController#solutions as HTML
+  [1m[36mPlan Load (0.2ms)[0m  [1mSELECT `plans`.* FROM `plans` WHERE `plans`.`disabled` = 0 ORDER BY amount[0m
+  Rendered shared/_pricing_table.html.erb (118.0ms)
+  Rendered shared/_sign_up_popup.erb (34.6ms)
+  Rendered publics/solutions.html.erb within layouts/application (205.6ms)
+  [1m[35mMetaContent Load (0.2ms)[0m  SELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at
+  Rendered shared/_meta_contents.html.erb (2.6ms)
+  Rendered shared/_public_flash.html.erb (0.6ms)
+  Rendered shared/_public_top_nav.html.erb (4.6ms)
+  Rendered shared/_public_footer.html.erb (2.9ms)
+  Rendered shared/_google.html.erb (0.4ms)
+Completed 200 OK in 397ms (Views: 391.8ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /jquery-ui.min.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/smarthost.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/drop_menu.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/front.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /niceforms-default.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/styles.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /application.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /jquery-ui.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/niceforms.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/home.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/contact_us.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /application.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /next-logo.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/cloud_services_bot.png" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/cloud_services_bot.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/table_bot.png" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/table_bot.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (70ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-11 00:09:37 +0800
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery-ui/ui-bg_diagonals-thick_8_333333_40x40.png" for 127.0.0.1 at 2015-03-11 00:09:59 +0800
+Served asset /jquery-ui/ui-bg_diagonals-thick_8_333333_40x40.png - 304 Not Modified (27ms)
+
+
+Started GET "/assets/jquery-ui/ui-icons_bbbbbb_256x240.png" for 127.0.0.1 at 2015-03-11 00:09:59 +0800
+Served asset /jquery-ui/ui-icons_bbbbbb_256x240.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery-ui/ui-bg_highlight-hard_40_aaaaaa_1x100.png" for 127.0.0.1 at 2015-03-11 00:09:59 +0800
+Served asset /jquery-ui/ui-bg_highlight-hard_40_aaaaaa_1x100.png - 304 Not Modified (4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"g94PZKFj2WSwJUXfUJQeMUMgyY9lnGSulCMF8CueK90=", "pricing_plan"=>"high-usage", "user"=>{"email"=>"pellerylander3655@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'pellerylander3655@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  Rendered users/new.html.erb within layouts/application (4.2ms)
+  [1m[35mMetaContent Load (0.2ms)[0m  SELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at
+  Rendered shared/_meta_contents.html.erb (0.8ms)
+  Rendered shared/_public_flash.html.erb (0.1ms)
+  Rendered shared/_public_top_nav.html.erb (2.8ms)
+  Rendered shared/_public_footer.html.erb (1.5ms)
+  Rendered shared/_google.html.erb (0.0ms)
+Completed 200 OK in 86ms (Views: 24.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /jquery-ui.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/smarthost.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/drop_menu.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/front.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /niceforms-default.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/styles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /jquery-ui.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/niceforms.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/contact_us.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /application.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /next-logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-11 00:10:02 +0800
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"g94PZKFj2WSwJUXfUJQeMUMgyY9lnGSulCMF8CueK90=", "pricing_plan"=>"high-usage", "user"=>{"email"=>"pellerylander3655@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'pellerylander3655@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  Rendered users/new.html.erb within layouts/application (2.2ms)
+  [1m[35mMetaContent Load (0.1ms)[0m  SELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at
+  Rendered shared/_meta_contents.html.erb (0.6ms)
+  Rendered shared/_public_flash.html.erb (0.0ms)
+  Rendered shared/_public_top_nav.html.erb (2.6ms)
+  Rendered shared/_public_footer.html.erb (1.7ms)
+  Rendered shared/_google.html.erb (0.0ms)
+Completed 200 OK in 25ms (Views: 21.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /jquery-ui.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/smarthost.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/drop_menu.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/front.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /niceforms-default.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/styles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /jquery-ui.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/niceforms.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/contact_us.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /application.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /next-logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-11 00:10:12 +0800
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"g94PZKFj2WSwJUXfUJQeMUMgyY9lnGSulCMF8CueK90=", "pricing_plan"=>"high-usage", "user"=>{"email"=>"pellerylander3655@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.2ms)[0m  SELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'pellerylander3655@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  Rendered users/new.html.erb within layouts/application (2.6ms)
+  [1m[35mMetaContent Load (0.1ms)[0m  SELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at
+  Rendered shared/_meta_contents.html.erb (0.7ms)
+  Rendered shared/_public_flash.html.erb (0.1ms)
+  Rendered shared/_public_top_nav.html.erb (2.6ms)
+  Rendered shared/_public_footer.html.erb (1.5ms)
+  Rendered shared/_google.html.erb (0.0ms)
+Completed 200 OK in 26ms (Views: 21.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /jquery-ui.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/smarthost.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/drop_menu.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/front.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /niceforms-default.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/styles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /jquery-ui.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/niceforms.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/contact_us.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /next-logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-11 00:10:13 +0800
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Processing by PublicsController#index as HTML
+  Rendered shared/_banner.html.erb (5.0ms)
+  Rendered shared/_service.html.erb (0.9ms)
+  [1m[36mPlan Load (1.4ms)[0m  [1mSELECT `plans`.* FROM `plans` WHERE `plans`.`disabled` = 0 ORDER BY amount[0m
+  Rendered shared/_pricing_table.html.erb (7.0ms)
+  Rendered shared/_sign_up_popup.erb (1.9ms)
+  Rendered publics/index.html.erb within layouts/application (18.9ms)
+  [1m[35mMetaContent Load (0.1ms)[0m  SELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at
+  Rendered shared/_meta_contents.html.erb (0.8ms)
+  Rendered shared/_public_flash.html.erb (0.1ms)
+  Rendered shared/_public_top_nav.html.erb (3.9ms)
+  Rendered shared/_public_footer.html.erb (1.6ms)
+  Rendered shared/_google.html.erb (0.0ms)
+Completed 200 OK in 97ms (Views: 95.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /jquery-ui.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/smarthost.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/drop_menu.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/front.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /niceforms-default.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/styles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /jquery-ui.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/niceforms.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/contact_us.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/banner_man.png" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/banner_man.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/phone.png" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/phone.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /next-logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/system_admin.jpg" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/system_admin.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/backup.jpg" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/backup.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/live_support.jpg" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/live_support.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/table_bot.png" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/table_bot.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-11 00:10:22 +0800
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+
+
+Started GET "/solutions" for 127.0.0.1 at 2015-03-12 00:45:27 +0100
+Processing by PublicsController#solutions as HTML
+  [1m[36mPlan Load (0.6ms)[0m  [1mSELECT `plans`.* FROM `plans` WHERE `plans`.`disabled` = 0 ORDER BY amount[0m
+  Rendered shared/_pricing_table.html.erb (143.4ms)
+  Rendered shared/_sign_up_popup.erb (33.1ms)
+  Rendered publics/solutions.html.erb within layouts/application (230.3ms)
+  [1m[35mMetaContent Load (0.3ms)[0m  SELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at
+  Rendered shared/_meta_contents.html.erb (2.7ms)
+Compiled application.js  (234ms)  (pid 3582)
+  Rendered shared/_public_flash.html.erb (0.7ms)
+  Rendered shared/_public_top_nav.html.erb (4.4ms)
+  Rendered shared/_public_footer.html.erb (2.7ms)
+  Rendered shared/_google.html.erb (0.4ms)
+Completed 200 OK in 949ms (Views: 944.4ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /jquery-ui.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/smarthost.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/drop_menu.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/front.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /niceforms-default.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/styles.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /jquery-ui.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/niceforms.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/home.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/contact_us.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /application.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /next-logo.png - 304 Not Modified (11ms)
+
+
+Started GET "/assets/smarthost/cloud_services_bot.png" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/cloud_services_bot.png - 304 Not Modified (19ms)
+
+
+Started GET "/assets/smarthost/table_bot.png" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/table_bot.png - 304 Not Modified (8ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (97ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (65ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (23ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (3ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (13ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-12 00:45:28 +0100
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (22ms)
+
+
+Started GET "/assets/smarthost/cloud_services_top.png" for 127.0.0.1 at 2015-03-12 00:45:29 +0100
+Served asset /smarthost/cloud_services_top.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/cloud_services_mid.png" for 127.0.0.1 at 2015-03-12 00:45:29 +0100
+Served asset /smarthost/cloud_services_mid.png - 304 Not Modified (18ms)
+
+
+Started GET "/assets/smarthost/cloud_services_icons.png" for 127.0.0.1 at 2015-03-12 00:45:29 +0100
+Served asset /smarthost/cloud_services_icons.png - 304 Not Modified (8ms)
+
+
+Started GET "/assets/smarthost/tick.png" for 127.0.0.1 at 2015-03-12 00:45:29 +0100
+Served asset /smarthost/tick.png - 304 Not Modified (14ms)
+
+
+Started GET "/assets/smarthost/larg_button.png" for 127.0.0.1 at 2015-03-12 00:45:29 +0100
+Served asset /smarthost/larg_button.png - 304 Not Modified (2ms)
+
+
+Started GET "/contact-us" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Processing by PublicsController#contact as HTML
+  Rendered publics/contact.html.erb within layouts/application (3.7ms)
+  [1m[36mMetaContent Load (0.2ms)[0m  [1mSELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at[0m
+  Rendered shared/_meta_contents.html.erb (0.8ms)
+  Rendered shared/_public_flash.html.erb (0.1ms)
+  Rendered shared/_public_top_nav.html.erb (2.8ms)
+  Rendered shared/_public_footer.html.erb (1.5ms)
+  Rendered shared/_google.html.erb (0.0ms)
+Completed 200 OK in 31ms (Views: 22.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /jquery-ui.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/smarthost.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/drop_menu.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/front.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /niceforms-default.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/styles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /jquery-ui.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/niceforms.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/contact_us.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /next-logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/loading.gif" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/loading.gif - 304 Not Modified (6ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-12 00:45:31 +0100
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-12 00:45:32 +0100
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/success.png" for 127.0.0.1 at 2015-03-12 00:45:32 +0100
+Served asset /smarthost/success.png - 304 Not Modified (18ms)
+
+
+Started GET "/assets/smarthost/submit.png" for 127.0.0.1 at 2015-03-12 00:45:32 +0100
+Served asset /smarthost/submit.png - 304 Not Modified (5ms)
+
+
+Started GET "/assets/smarthost/contact_location.png" for 127.0.0.1 at 2015-03-12 00:45:32 +0100
+Served asset /smarthost/contact_location.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/contact_email.png" for 127.0.0.1 at 2015-03-12 00:45:32 +0100
+Served asset /smarthost/contact_email.png - 304 Not Modified (8ms)
+
+
+Started GET "/assets/smarthost/contact_mobile.png" for 127.0.0.1 at 2015-03-12 00:45:32 +0100
+Served asset /smarthost/contact_mobile.png - 304 Not Modified (9ms)
+
+
+Started GET "/assets/smarthost/contact_social_1.png" for 127.0.0.1 at 2015-03-12 00:45:32 +0100
+Served asset /smarthost/contact_social_1.png - 304 Not Modified (4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Processing by PublicsController#index as HTML
+  Rendered shared/_banner.html.erb (2.4ms)
+  Rendered shared/_service.html.erb (0.7ms)
+  [1m[35mPlan Load (0.2ms)[0m  SELECT `plans`.* FROM `plans` WHERE `plans`.`disabled` = 0 ORDER BY amount
+  Rendered shared/_pricing_table.html.erb (4.9ms)
+  Rendered shared/_sign_up_popup.erb (1.6ms)
+  Rendered publics/index.html.erb within layouts/application (26.1ms)
+  [1m[36mMetaContent Load (0.2ms)[0m  [1mSELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at[0m
+  Rendered shared/_meta_contents.html.erb (0.7ms)
+  Rendered shared/_public_flash.html.erb (0.1ms)
+  Rendered shared/_public_top_nav.html.erb (2.6ms)
+  Rendered shared/_public_footer.html.erb (1.5ms)
+  Rendered shared/_google.html.erb (0.0ms)
+Completed 200 OK in 46ms (Views: 44.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /jquery-ui.min.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/smarthost.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/drop_menu.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/front.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /niceforms-default.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/styles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /jquery-ui.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/niceforms.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/home.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/contact_us.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/phone.png" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/phone.png - 304 Not Modified (27ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /next-logo.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/banner_man.png" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/banner_man.png - 304 Not Modified (40ms)
+
+
+Started GET "/assets/smarthost/system_admin.jpg" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/system_admin.jpg - 304 Not Modified (4ms)
+
+
+Started GET "/assets/smarthost/backup.jpg" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/backup.jpg - 304 Not Modified (13ms)
+
+
+Started GET "/assets/smarthost/live_support.jpg" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/live_support.jpg - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/table_bot.png" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/table_bot.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-12 01:05:16 +0100
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2015-03-25 03:13:53 +0100
+Processing by PublicsController#index as HTML
+  Rendered shared/_banner.html.erb (34.3ms)
+  Rendered shared/_service.html.erb (0.8ms)
+  [1m[36mPlan Load (133.3ms)[0m  [1mSELECT `plans`.* FROM `plans` WHERE `plans`.`disabled` = 0 ORDER BY amount[0m
+  Rendered shared/_pricing_table.html.erb (302.1ms)
+  Rendered shared/_sign_up_popup.erb (2.7ms)
+  Rendered publics/index.html.erb within layouts/application (393.6ms)
+  [1m[35mMetaContent Load (0.3ms)[0m  SELECT `meta_contents`.* FROM `meta_contents` ORDER BY created_at
+  Rendered shared/_meta_contents.html.erb (2.7ms)
+  Rendered shared/_public_flash.html.erb (0.6ms)
+  Rendered shared/_public_top_nav.html.erb (4.7ms)
+  Rendered shared/_public_footer.html.erb (2.7ms)
+  Rendered shared/_google.html.erb (0.4ms)
+Completed 200 OK in 644ms (Views: 506.5ms | ActiveRecord: 136.5ms)
+
+
+Started GET "/assets/jquery-ui.min.css?body=1" for 127.0.0.1 at 2015-03-25 03:13:53 +0100
+Served asset /jquery-ui.min.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/embedded_fonts.css?body=1" for 127.0.0.1 at 2015-03-25 03:13:53 +0100
+Served asset /smarthost/embedded_fonts.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/editable_buttons.css?body=1" for 127.0.0.1 at 2015-03-25 03:13:53 +0100
+Served asset /smarthost/editable_buttons.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/styles.css?body=1" for 127.0.0.1 at 2015-03-25 03:13:53 +0100
+Served asset /smarthost/styles.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-03-25 03:13:53 +0100
+Served asset /application.css - 200 OK (9ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-03-25 03:13:53 +0100
+Served asset /jquery.js - 200 OK (17ms)
+
+
+Started GET "/assets/smarthost/smarthost.css?body=1" for 127.0.0.1 at 2015-03-25 03:13:53 +0100
+Served asset /smarthost/smarthost.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/drop_menu.css?body=1" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/drop_menu.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/niceforms-default.css?body=1" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /niceforms-default.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/front.css?body=1" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/front.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /jquery-ui.js - 200 OK (4ms)
+
+
+Started GET "/assets/smarthost/niceforms.js?body=1" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/niceforms.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /jquery_ujs.js - 200 OK (1ms)
+
+
+Started GET "/assets/smarthost/home.js?body=1" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/home.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/smarthost/contact_us.js?body=1" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/contact_us.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /application.js - 200 OK (11ms)
+
+
+Started GET "/assets/next-logo.png" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /next-logo.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/banner_man.png" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/banner_man.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/phone.png" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/phone.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/system_admin.jpg" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/system_admin.jpg - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/backup.jpg" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/backup.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/fonts/PTS55F-webfont.woff" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/fonts/PTS55F-webfont.woff - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/live_support.jpg" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/live_support.jpg - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/table_bot.png" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/table_bot.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/footer-logo-1.png" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/footer-logo-1.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/footer-logo-2.png" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/footer-logo-2.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/footer-logo-3.png" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/footer-logo-3.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/footer-logo-4.png" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/footer-logo-4.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/blog_img.jpg" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/blog_img.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/payment-cards-except-paypal.png" for 127.0.0.1 at 2015-03-25 03:13:54 +0100
+Served asset /smarthost/payment-cards-except-paypal.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/top_bg.jpg" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/top_bg.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/mb_icon.jpg" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/mb_icon.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/livechat_btn.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/livechat_btn.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/main_bar.jpg" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/main_bar.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/fonts/tradegothic-light-webfont.woff" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/fonts/tradegothic-light-webfont.woff - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/fonts/PTS75F-webfont.woff" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/fonts/PTS75F-webfont.woff - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/login_btn.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/login_btn.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/banner.jpg" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/banner.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/testimonial.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/testimonial.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/tick.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/tick.png - 304 Not Modified (4ms)
+
+
+Started GET "/assets/smarthost/small_btn.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/small_btn.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/warning.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/warning.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/buildings.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/buildings.png - 304 Not Modified (6ms)
+
+
+Started GET "/assets/smarthost/social_icon.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/social_icon.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/footer_mb.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/footer_mb.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/footer_email.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/footer_email.png - 304 Not Modified (2ms)
+
+
+Started GET "/assets/smarthost/footer_address.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/footer_address.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/smarthost/privacy_divider.jpg" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /smarthost/privacy_divider.jpg - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery-ui/ui-bg_highlight-hard_100_f9f9f9_1x100.png" for 127.0.0.1 at 2015-03-25 03:13:55 +0100
+Served asset /jquery-ui/ui-bg_highlight-hard_100_f9f9f9_1x100.png - 304 Not Modified (1ms)
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2015-03-25 03:13:59 +0100
+Served asset /favicon.ico - 200 OK (1ms)
