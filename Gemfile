@@ -6,7 +6,7 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+
 gem 'sorcery'
 gem 'stripe'
 gem 'twilio-ruby'
@@ -65,6 +65,7 @@ gem 'capistrano-ext'
 # To use debugger
 group :test, :development do
   #gem 'debugger'
+  gem 'mysql2'
 end
 # gem 'debugger'
 
