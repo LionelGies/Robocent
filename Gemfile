@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '1.9.3'
 
 gem 'rails', '3.2.9'
 
@@ -62,7 +63,7 @@ gem 'rvm-capistrano', '>= 1.1.0'
 gem 'capistrano-ext'
 
 # To use debugger
-group :development do
+group :test, :development do
   gem 'debugger'
 end
 # gem 'debugger'

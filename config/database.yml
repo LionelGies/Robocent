@@ -36,9 +36,4 @@ staging:
 
 production:
   adapter: postgresql
-  database: robocent
-  username: root
-  password: admin
-#  host: localhost
-  pool: 5
-  timeout: 5000
+
